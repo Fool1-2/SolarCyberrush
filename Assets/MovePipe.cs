@@ -2,47 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class MovePipe : MonoBehaviour
 {
 
-    public bool x;
-    public bool y;
-    [SerializeField]bool mouseOff;
-    Vector2 originalTransform;
+    enum axisEnum{x, y};
+    [SerializeField]axisEnum axis;
+    [SerializeField]bool mouseOn;
+    public Transform testObject;
+    Rigidbody2D rb;
+    
 
     private void Start()
     {
-        mouseOff = true;
+        mouseOn = false;
     }
 
     private void Update()
     {
-        if (mouseOff)
-        {
-            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-            //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-            
-        }
+        
+
+
     }
 
     private void OnMouseDrag()
     {
-        mouseOff = false;
-        float distance_towards_Camera = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        if (y)
+        mouseOn = true;
+
+        if (axis == axisEnum.y)//The object only goes on the Y axis
         {
-            Vector3 pos_Move = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_towards_Camera));
-            transform.position = new Vector3(pos_Move.x, transform.position.y, pos_Move.z);
+            transform.position = new Vector2(transform.position.x, testObject.position.y);
+            
         }
-        else if (x)
+        else if (axis == axisEnum.x)//The object only goes on the X axis
         {
-            Vector3 pos_Move = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_towards_Camera));
-            transform.position = new Vector3(transform.position.x, pos_Move.y, pos_Move.z);
+
+            transform.position = new Vector2(testObject.position.x, transform.position.y);
         }
     }
 
-    private void OnMouseExit()
-    {
-        mouseOff = true;
+    private void OnMouseUp() {
+        mouseOn = false;
     }
+
+    
 }
