@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class liftScript : MonoBehaviour
 {
-    public bool liftTriggered;
+    Vector2 VectorDown, VectorUp;
+    float motionSpeed = 1f;
     Transform liftTransform;
+    //This will be triggered to true when the lift button is being pressed
+    public static bool buttonPressed = false;
     // Start is called before the first frame update
     void Start()
     {
         liftTransform = gameObject.transform;
+        VectorDown = new Vector2(-4.25f, -9);
+        VectorUp = new Vector2(-4.25f, 7);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (liftTriggered)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-
+            buttonPressed = true;
+        }
+        //If the lift button is pressed the lift will go to the up position else go to down position
+        if (buttonPressed)
+        {
+            transform.position = Vector2.Lerp(transform.position, VectorUp, motionSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = Vector2.Lerp(transform.position, VectorDown, motionSpeed * Time.deltaTime);
         }
     }
 }
