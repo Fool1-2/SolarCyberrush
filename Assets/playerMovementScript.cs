@@ -21,10 +21,6 @@ public class playerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    private void FixedUpdate()
-    {
         //Jumping
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
@@ -36,6 +32,9 @@ public class playerMovementScript : MonoBehaviour
             //rb.AddForce(Vector3.up * jumpSpeed, ForceMode2D.Impulse);
 
         }
+    }
+    private void FixedUpdate()
+    {
         HorMovement();
         //Hard fix to lower velocity for jump
         rb.velocity = rb.velocity * .85f;
