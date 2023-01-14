@@ -22,10 +22,16 @@ public class MovePipe : MonoBehaviour
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
 
-        if (!mouseOn)//If the mouse is off turn the movement off.
+        if (!mouseOn)//If the mouse is off turn the movement off. Also turns the body type from kinematic(still state) to dynamic(move state)
         {
             rb.velocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic;
         }
+        else
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+        
     }
 
     private void FixedUpdate() {
