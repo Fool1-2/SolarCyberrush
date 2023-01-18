@@ -4,12 +4,12 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
 [RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
-public class MovePipe : MonoBehaviour
+public class wireScript : MonoBehaviour
 {
     //Turn the positon of in constraints in rigidbody to limit the axis its on
-    
-    [SerializeField]bool mouseOn;
-    [SerializeField]Rigidbody2D rb;
+
+    [SerializeField] bool mouseOn;
+    [SerializeField] Rigidbody2D rb;
     Vector2 mousePos;
     public Vector2 boxSize;
     public Transform StartObject;
@@ -17,7 +17,8 @@ public class MovePipe : MonoBehaviour
     HingeJoint2D hingeJoint2D;
     public bool conOne;
     public bool conTwo;
-   
+    public bool wireCon;
+
 
 
     private void Start()
@@ -39,18 +40,16 @@ public class MovePipe : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
 
-        if (conOne && conTwo == true)
-        {
-            Debug.Log("Wire is connected");
-        }
+
 
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
 
         if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
-           // float distance = Vector2.Distance(boxSize, mousePos);
+            // float distance = Vector2.Distance(boxSize, mousePos);
             rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
             //   transform.localScale = new Vector2(distance,boxSize.y);
             if (Input.GetKey(KeyCode.Space))
@@ -72,14 +71,15 @@ public class MovePipe : MonoBehaviour
     private void OnMouseDrag()
     {
         mouseOn = true;//checks if player is clicking the object
-        
+
     }
 
-    private void OnMouseUp() {
+    private void OnMouseUp()
+    {
         mouseOn = false;//when player clicks off object.
     }
 
-    void OnTriggerStay2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "ConnecterOne")
         {
@@ -91,7 +91,29 @@ public class MovePipe : MonoBehaviour
             Debug.Log("Connecting 2");
             conTwo = true;
         }
+        if ( conOne && conTwo == true)
+        {
+            wireCon = true;
+            Debug.Log("Wire Connected");
+        }
     }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ConnecterOne")
+        {
+            Debug.Log("Disconnecting 1");
+            conOne = false;
+        }
+        if (collision.gameObject.tag == "ConnectorTwo")
+        {
+            Debug.Log("Disconnecting 2");
+            conTwo = false;
+        }
+        if (conOne && conTwo == false)
+        {
+            wireCon = false;
+            Debug.Log("Wire Disconnected");
+        }
+    }
+
 }
-
-
