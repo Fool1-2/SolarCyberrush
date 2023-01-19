@@ -11,6 +11,8 @@ public class playerMovementScript : MonoBehaviour
     public float jumpSpeed;
     public Vector3 vector3;
 
+    public static bool notPoss = true;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +24,7 @@ public class playerMovementScript : MonoBehaviour
     void Update()
     {
         //Jumping
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        if (Input.GetKeyDown(KeyCode.Space) && canJump && notPoss)
         {
             canJump = false;
             //rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
