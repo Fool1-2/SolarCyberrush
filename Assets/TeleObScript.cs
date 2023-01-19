@@ -27,6 +27,7 @@ public class TeleObScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         tf = transform;
         xMagnitude = gameObject.transform.localScale.y * .5f;
         yMagnitude = gameObject.transform.localScale.x;
@@ -50,7 +51,6 @@ public class TeleObScript : MonoBehaviour
         else
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-
         }
 
     }
