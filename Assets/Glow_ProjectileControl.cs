@@ -10,15 +10,19 @@ public class Glow_ProjectileControl : MonoBehaviour
     [SerializeField]Rigidbody2D rb;
     [SerializeField]float speed;
     [SerializeField]Vector2 scaleTest;
+    [SerializeField]Transform player;
 
     private void OnEnable() {
         //glowBullet = Resources.Load<GameObject>("GlowAssets/RotateCircle");
         currentGlowBullet = transform.GetChild(0).gameObject;
         currentGlowBullet.GetComponent<FollowMouse>().enabled = true;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
     void Update()
     {
-        currentGlowBullet.transform.localScale = scaleTest;
+        
+
+
         rb = currentGlowBullet.GetComponent<Rigidbody2D>();
 
         if (Input.GetKeyDown(KeyCode.Mouse0))

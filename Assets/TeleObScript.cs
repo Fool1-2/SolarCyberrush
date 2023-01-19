@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TeleObScript : MonoBehaviour
 {
+    
     public Rigidbody2D rb;
     public static bool isPoss;
     public float speed = 3f;
