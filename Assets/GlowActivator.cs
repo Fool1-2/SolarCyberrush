@@ -4,26 +4,11 @@ using UnityEngine;
 
 public class GlowActivator : MonoBehaviour
 {
-    //public GlowAbility player;
-    //public TeleObScript teleScript;
-    public bool isTeleOn;
-    // Start is called before the first frame update
-    void Start()
-    {
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "TeleObj")
-        {
-            isTeleOn = true;
-        }
-    }
+    
 }

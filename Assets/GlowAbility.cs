@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GlowAbility : MonoBehaviour
 {
-    public bool isGlowActive;
+    public enum glowPower{Light, Telekenisis, Growth}
+    public glowPower glow; 
 
     // Start is called before the first frame update
     void Start()
