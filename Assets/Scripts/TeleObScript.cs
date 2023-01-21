@@ -6,7 +6,7 @@ public class TeleObScript : MonoBehaviour
 {
     
     public Rigidbody2D rb;
-    public static bool isPoss;
+    public static bool isPoss = false;
     public float speed = 3f;
     int randPos;
     //The function shake turns this on and off everytime it moves in one direction as to not call a shake every frame
@@ -32,6 +32,8 @@ public class TeleObScript : MonoBehaviour
         tf = transform;
         xMagnitude = gameObject.transform.localScale.y * .5f;
         yMagnitude = gameObject.transform.localScale.x;
+        speed = 3;
+        duration = .1f;
     }
 
     // Update is called once per frame
@@ -40,13 +42,17 @@ public class TeleObScript : MonoBehaviour
 
         if (isPoss)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 StartCoroutine(pause());
                 isPoss = false;
                 isNotRunningShake = true;
                 playerMovementScript.notPoss = true;
             }
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+        else
+        {
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 
@@ -117,7 +123,7 @@ public class TeleObScript : MonoBehaviour
     }*/
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Telekenisis")
+        if (collision.gameObject.tag == "Telekinesis")
         {
             playerMovementScript.notPoss = false;
             Destroy(collision.gameObject);
@@ -126,7 +132,7 @@ public class TeleObScript : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Telekenisis")
+        if (collision.gameObject.tag == "Telekinesis")
         {
             playerMovementScript.notPoss = false;
             Destroy(collision.gameObject);
