@@ -32,6 +32,8 @@ public class TeleObScript : MonoBehaviour
         tf = transform;
         xMagnitude = gameObject.transform.localScale.y * .5f;
         yMagnitude = gameObject.transform.localScale.x;
+        speed = 3;
+        duration = .1f;
     }
 
     // Update is called once per frame
@@ -51,7 +53,7 @@ public class TeleObScript : MonoBehaviour
         }
         else
         {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 
     }
@@ -121,7 +123,7 @@ public class TeleObScript : MonoBehaviour
     }*/
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Telekenisis")
+        if (collision.gameObject.tag == "Telekinesis")
         {
             playerMovementScript.notPoss = false;
             Destroy(collision.gameObject);
@@ -130,7 +132,7 @@ public class TeleObScript : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Telekenisis")
+        if (collision.gameObject.tag == "Telekinesis")
         {
             playerMovementScript.notPoss = false;
             Destroy(collision.gameObject);

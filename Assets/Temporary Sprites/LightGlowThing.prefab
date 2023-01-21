@@ -99,8 +99,8 @@ GameObject:
   - component: {fileID: 2105084201}
   - component: {fileID: 2105084200}
   m_Layer: 0
-  m_Name: RotateCircle
-  m_TagString: Untagged
+  m_Name: LightGlowThing
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -244,4 +244,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72e8b8c91c39954b99d89098521c19a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowAbil: {fileID: 0}
