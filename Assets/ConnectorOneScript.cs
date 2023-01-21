@@ -8,9 +8,9 @@ public class ConnectorOneScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ColorCoroutine());
-        connectorTwo = GameObject.FindWithTag("wireTwo");
-        connectorTwo.GetComponent<wireTwoScript>();
+        StartCoroutine(ColorCoroutine());// starts time for color time
+        connectorTwo = GameObject.FindWithTag("wireTwo"); // find gameobject with tag wireTwo
+        connectorTwo.GetComponent<wireTwoScript>();// find wireTwo script
     }
 
     // Update is called once per frame

@@ -10,9 +10,9 @@ public class ConnectorTwoScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ColorCoroutine());
-        connectorOne = GameObject.FindWithTag("wireOne");
-        connectorOne.GetComponent<wireScript>();
+        StartCoroutine(ColorCoroutine());// start coroutine
+        connectorOne = GameObject.FindWithTag("wireOne");// find gaemobject with tag wireOne
+        connectorOne.GetComponent<wireScript>();// get that script
     }
 
     // Update is called once per frame
@@ -22,23 +22,23 @@ public class ConnectorTwoScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (wireScript.conOne && wireScript.conTwo == true)
+        if (wireScript.conOne && wireScript.conTwo == true)// if these values in this script are true
         {
-            wireScript.wireCon = true;
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
+            wireScript.wireCon = true;// the wire connection is true
+            gameObject.GetComponent<Renderer>().material.color = Color.red;// change connection color to red
         }
 
         if (wireScript.conOne && wireScript.conTwo == false)
         {
             wireScript.wireCon = false;
-            gameObject.GetComponent<Renderer>().material.color = Color.white;
+            gameObject.GetComponent<Renderer>().material.color = Color.white;// if the above values are false make white again
         }
     }
     IEnumerator ColorCoroutine()
     {
 
         //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1);// wait for a secound and change color
         gameObject.GetComponent<Renderer>().material.color = Color.red;
         yield return new WaitForSeconds(1);
         gameObject.GetComponent<Renderer>().material.color = Color.black;

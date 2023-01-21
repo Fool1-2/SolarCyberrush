@@ -15,10 +15,10 @@ public class wireScript : MonoBehaviour
     public Transform StartObject;
     public Transform EndObject;
     HingeJoint2D hingeJoint2D;
-    Rotat rotat;
-    public static bool conOne;
-    public static bool conTwo;
-    public static bool wireCon;
+    Rotat rotat;// rotate script is rotate
+    public static bool conOne;// connector one
+    public static bool conTwo;// connector two
+    public static bool wireCon;// is wire connected
 
 
 
@@ -29,8 +29,8 @@ public class wireScript : MonoBehaviour
         hingeJoint2D = gameObject.GetComponent<HingeJoint2D>();
         rotat = gameObject.GetComponent<Rotat>();
         // Debug.Log("Hello world");
-        conOne = false;
-        conTwo = false;
+        conOne = false;// wire is not connected to port
+        conTwo = false;// wire is not connected to port
        
     }
 
@@ -83,47 +83,47 @@ public class wireScript : MonoBehaviour
         mouseOn = false;//when player clicks off object.
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)// when wire collides with object
     {
-        if (collision.gameObject.tag == "ConnecterOne")
+        if (collision.gameObject.tag == "ConnecterOne")// if its connectorONe
         {
-            Debug.Log("Connecting 1");
-            conOne = true;
+            Debug.Log("Connecting 1");// say connecting(this is more for the devs)
+            conOne = true;// is connected to port
         }
         if (collision.gameObject.tag == "ConnectorTwo")
         {
             Debug.Log("Connecting 2");
             conTwo = true;
         }
-        if ( conOne && conTwo == true)
+        if ( conOne && conTwo == true)// if both ports connection is true
         {
-            wireCon = true;
+            wireCon = true;// wire is connected
             Debug.Log("Wire Connected");
         }
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree")
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree")// if collides with other wires
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Debug.Log("Collision");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
+            Debug.Log("Collision");// test collision works with log message
         }
     }
 
    // 
-    void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)// when wire exits collision box
     {
-        if (collision.gameObject.tag == "ConnecterOne")
+        if (collision.gameObject.tag == "ConnecterOne")// if exit port 1 collision box
         {
-            Debug.Log("Disconnecting 1");
-            conOne = false;
+            Debug.Log("Disconnecting 1");// print disconnect message
+            conOne = false;// no longer connected to  port
         }
         if (collision.gameObject.tag == "ConnectorTwo")
         {
             Debug.Log("Disconnecting 2");
             conTwo = false;
         }
-        if (conOne && conTwo == false)
+        if (conOne && conTwo == false)// if when leaving both values are false
         {
-            wireCon = false;
-            Debug.Log("Wire Disconnected");
+            wireCon = false;// wire is no longer connected
+            Debug.Log("Wire Disconnected");// print message
         }
 
 
