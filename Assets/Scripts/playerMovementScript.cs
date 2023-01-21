@@ -37,7 +37,10 @@ public class playerMovementScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        HorMovement();
+        if (notPoss)
+        {
+            HorMovement();
+        }
         //Hard fix to lower velocity for jump
         rb.velocity = rb.velocity * .85f;
         if (rb.velocity.y <= 0.01f)

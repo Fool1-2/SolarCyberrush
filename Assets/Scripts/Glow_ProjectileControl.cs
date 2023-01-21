@@ -14,21 +14,23 @@ public class Glow_ProjectileControl : MonoBehaviour
     public List<GameObject> glowProjectiles;
     public int curProjNum;
 
+
     private void OnEnable() {
-        currentGlowBullet = transform.GetChild(0).gameObject;
-        currentGlowBullet.GetComponent<FollowMouse>().enabled = true;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        AutoReloadBullet();
+        currentGlowBullet = transform.GetChild(0).gameObject;//When the script starts finds the controllers child and makes that the current bullet
+        currentGlowBullet.GetComponent<FollowMouse>().enabled = true;//turns on follow mouse script
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();//finds the player through its tag
     }
     void Update()
     {
+
         if (!isShot)
         {
-            currentGlowBullet.transform.position = player.position;
+            currentGlowBullet.transform.position = player.position;//sets the bullets position on the players position
+            rb = currentGlowBullet.GetComponent<Rigidbody2D>();//Finds the rigidbody when the bullet isn't shot.
         }
-        //Sets the current glowBullet to the selected glow
-        glowBullet = glowProjectiles[curProjNum];
 
-        rb = currentGlowBullet.GetComponent<Rigidbody2D>();
+        //Sets the current glowBullet to the selected glow
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -38,28 +40,38 @@ public class Glow_ProjectileControl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             curProjNum = 0;
+            StartCoroutine(respawnItem(1f));
         }
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             curProjNum = 1;
+            StartCoroutine(respawnItem(1f));
         }
     }
 
-    void Shooting(){
-        isShot = true;
-        rb.AddForce(currentGlowBullet.transform.up * speed, ForceMode2D.Impulse);
-        currentGlowBullet.GetComponent<FollowMouse>().enabled = false;
-        StartCoroutine(respawnItem());
+    void Shooting()
+    {
+        isShot = true;//turns is shot on
+        rb.AddForce(currentGlowBullet.transform.up * speed, ForceMode2D.Impulse);//Shoots the bullet in the direction its facing multiplied by speed
+        currentGlowBullet.GetComponent<FollowMouse>().enabled = false;//Turns followmouse script off
+        StartCoroutine(respawnItem(3f));//starts the respawn function
     }
 
-    IEnumerator respawnItem(){
-        yield return new WaitForSeconds(3f);
-        Destroy(currentGlowBullet);
-        currentGlowBullet = Instantiate(glowBullet, (Vector2)transform.position, Quaternion.identity);
-        currentGlowBullet.transform.parent = gameObject.transform;
-        currentGlowBullet.transform.localScale = new Vector3(6, 8, 7);
-        isShot = false;
-        
-        
+    IEnumerator respawnItem(float time)//Customizable time for respawn
+    {
+        yield return new WaitForSeconds(time);//Wait for a certain amount of time
+        Destroy(currentGlowBullet);//Destroy the object that was shot
+        currentGlowBullet = Instantiate(glowProjectiles[curProjNum], (Vector2)transform.position, Quaternion.identity);//Spawn a new bullet replacing the old bullet
+        currentGlowBullet.transform.parent = gameObject.transform;//Puts the bullet under the controller as a child
+        currentGlowBullet.transform.localScale = new Vector3(6, 8, 7);//Fixes the scaling of the bullet
+        isShot = false;//turns isshot back off
+    }
+
+    void AutoReloadBullet()
+    {
+        currentGlowBullet = Instantiate(glowProjectiles[curProjNum], (Vector2)transform.position, Quaternion.identity);//Spawn a new bullet replacing the old bullet
+        currentGlowBullet.transform.parent = gameObject.transform;//Puts the bullet under the controller as a child
+        currentGlowBullet.transform.localScale = new Vector3(6, 8, 7);//Fixes the scaling of the bullet
+        isShot = false;//turns isshot back off
     }
 }

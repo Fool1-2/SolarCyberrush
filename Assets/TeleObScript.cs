@@ -6,7 +6,7 @@ public class TeleObScript : MonoBehaviour
 {
     
     public Rigidbody2D rb;
-    public static bool isPoss;
+    public static bool isPoss = false;
     public float speed = 3f;
     int randPos;
     //The function shake turns this on and off everytime it moves in one direction as to not call a shake every frame
@@ -42,7 +42,7 @@ public class TeleObScript : MonoBehaviour
 
         if (isPoss)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 StartCoroutine(pause());
                 isPoss = false;
