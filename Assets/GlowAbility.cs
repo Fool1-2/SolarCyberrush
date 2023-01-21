@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GlowAbility : MonoBehaviour
 {
+    public bool isGlowActive;
+
     // Start is called before the first frame update
     void Start()
     {
