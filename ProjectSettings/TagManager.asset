@@ -5,7 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
-  - Border
+  - ConnecterOne
+  - ConnectorTwo
+  - ConnectorThree
+  - ConnectorFour
+  - ConnectorFive
+  - ConnectorSix
+  - wireOne
+  - wireTwo
+  - wireThree
   layers:
   - Default
   - TransparentFX

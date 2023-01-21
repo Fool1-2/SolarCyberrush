@@ -4,20 +4,22 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
 [RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
-public class MovePipe : MonoBehaviour
+public class wireTwoScript : MonoBehaviour
 {
     //Turn the positon of in constraints in rigidbody to limit the axis its on
-    
-    [SerializeField]bool mouseOn;
-    [SerializeField]Rigidbody2D rb;
+
+    [SerializeField] bool mouseOn;
+    [SerializeField] Rigidbody2D rb;
     Vector2 mousePos;
     public Vector2 boxSize;
     public Transform StartObject;
     public Transform EndObject;
     HingeJoint2D hingeJoint2D;
-    public bool conOne;
-    public bool conTwo;
-   
+    Rotat rotat;
+    public static bool conThree;
+    public static bool conFour;
+    public static bool wireCon;
+
 
 
     private void Start()
@@ -25,9 +27,10 @@ public class MovePipe : MonoBehaviour
         mouseOn = false;
         boxSize = transform.localScale;
         hingeJoint2D = gameObject.GetComponent<HingeJoint2D>();
+        rotat = gameObject.GetComponent<Rotat>();
         // Debug.Log("Hello world");
-        conOne = false;
-        conTwo = false;
+        conThree = false;
+        conFour = false;
     }
 
     private void Update()
@@ -39,18 +42,16 @@ public class MovePipe : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
 
-        if (conOne && conTwo == true)
-        {
-            Debug.Log("Wire is connected");
-        }
+
 
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
 
         if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
-           // float distance = Vector2.Distance(boxSize, mousePos);
+            // float distance = Vector2.Distance(boxSize, mousePos);
             rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
             //   transform.localScale = new Vector2(distance,boxSize.y);
             if (Input.GetKey(KeyCode.Space))
@@ -58,10 +59,11 @@ public class MovePipe : MonoBehaviour
                 //float distance = Vector2.Distance(boxSize, mousePos);
                 transform.localScale = new Vector2(mousePos.x, boxSize.y);
             }
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                //checks if the hinge is enabled or disabled
-                hingeJoint2D.enabled = !hingeJoint2D.enabled;
+                //checks if the script is enabled or disabled
+                rotat.enabled = !rotat.enabled;
+
             }
 
 
@@ -72,26 +74,49 @@ public class MovePipe : MonoBehaviour
     private void OnMouseDrag()
     {
         mouseOn = true;//checks if player is clicking the object
-        
+
     }
 
-    private void OnMouseUp() {
+    private void OnMouseUp()
+    {
         mouseOn = false;//when player clicks off object.
     }
 
-    void OnTriggerStay2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "ConnecterOne")
+        if (collision.gameObject.tag == "ConnectorThree")
         {
-            Debug.Log("Connecting 1");
-            conOne = true;
+            Debug.Log("Connecting 3");
+            conThree = true;
         }
-        if (collision.gameObject.tag == "ConnectorTwo")
+        if (collision.gameObject.tag == "ConnectorFour")
         {
-            Debug.Log("Connecting 2");
-            conTwo = true;
+            Debug.Log("Connecting 4");
+            conFour = true;
+        }
+        if (conThree && conFour == true)
+        {
+            wireCon = true;
+            Debug.Log("Wire2 Connected");
         }
     }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "ConnectorThree")
+        {
+            Debug.Log("Disconnecting 3");
+            conThree = false;
+        }
+        if (collision.gameObject.tag == "ConnectorFour")
+        {
+            Debug.Log("Disconnecting 4");
+            conFour = false;
+        }
+        if (conThree && conFour == false)
+        {
+            wireCon = false;
+            Debug.Log("Wire2 Disconnected");
+        }
+    }
+
 }
-
-
