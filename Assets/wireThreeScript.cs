@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 [RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
 [RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
-public class wireScript : MonoBehaviour
+public class wireThreeScript : MonoBehaviour
 {
     //Turn the positon of in constraints in rigidbody to limit the axis its on
 
@@ -16,9 +17,10 @@ public class wireScript : MonoBehaviour
     public Transform EndObject;
     HingeJoint2D hingeJoint2D;
     Rotat rotat;
-    public static bool conOne;
-    public static bool conTwo;
+    public static bool conFive;
+    public static bool conSix;
     public static bool wireCon;
+    
 
 
 
@@ -26,12 +28,10 @@ public class wireScript : MonoBehaviour
     {
         mouseOn = false;
         boxSize = transform.localScale;
-        hingeJoint2D = gameObject.GetComponent<HingeJoint2D>();
         rotat = gameObject.GetComponent<Rotat>();
         // Debug.Log("Hello world");
-        conOne = false;
-        conTwo = false;
-       
+        conFive = false;
+        conSix = false;
     }
 
     private void Update()
@@ -85,47 +85,44 @@ public class wireScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "ConnecterOne")
+        if (collision.gameObject.tag == "ConnectorFive")
         {
-            Debug.Log("Connecting 1");
-            conOne = true;
+            Debug.Log("Connecting 5");
+            conFive = true;
         }
-        if (collision.gameObject.tag == "ConnectorTwo")
+        if (collision.gameObject.tag == "ConnectorSix")
         {
-            Debug.Log("Connecting 2");
-            conTwo = true;
+            Debug.Log("Connecting 6");
+            conSix = true;
         }
-        if ( conOne && conTwo == true)
+        if (conFive && conSix == true)
         {
             wireCon = true;
-            Debug.Log("Wire Connected");
+            Debug.Log("Wire3 Connected");
         }
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree")
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wire")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Debug.Log("Collision");
         }
     }
-
-   // 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "ConnecterOne")
+        if (collision.gameObject.tag == "ConnectorFive")
         {
-            Debug.Log("Disconnecting 1");
-            conOne = false;
+            Debug.Log("Disconnecting 5");
+            conFive = false;
         }
-        if (collision.gameObject.tag == "ConnectorTwo")
+        if (collision.gameObject.tag == "ConnectorFour")
         {
-            Debug.Log("Disconnecting 2");
-            conTwo = false;
+            Debug.Log("Disconnecting 6");
+            conSix = false;
         }
-        if (conOne && conTwo == false)
+        if (conFive && conSix == false)
         {
             wireCon = false;
-            Debug.Log("Wire Disconnected");
+            Debug.Log("Wire3 Disconnected");
         }
-
-
     }
+
 }
