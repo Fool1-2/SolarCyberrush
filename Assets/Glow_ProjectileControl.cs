@@ -11,6 +11,8 @@ public class Glow_ProjectileControl : MonoBehaviour
     [SerializeField]float speed;
     [SerializeField]Transform player;
     [SerializeField]bool isShot;
+    public List<GameObject> glowProjectiles;
+    public int curProjNum;
 
     private void OnEnable() {
         currentGlowBullet = transform.GetChild(0).gameObject;
@@ -23,13 +25,23 @@ public class Glow_ProjectileControl : MonoBehaviour
         {
             currentGlowBullet.transform.position = player.position;
         }
-
+        //Sets the current glowBullet to the selected glow
+        glowBullet = glowProjectiles[curProjNum];
 
         rb = currentGlowBullet.GetComponent<Rigidbody2D>();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Shooting();
+        }
+        //Sets glow and telekinesis objects to be fired
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            curProjNum = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            curProjNum = 1;
         }
     }
 
