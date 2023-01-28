@@ -16,10 +16,12 @@ public class wireThreeScript : MonoBehaviour
     public Transform StartObject;
     public Transform EndObject;
     HingeJoint2D hingeJoint2D;
+    Collider2D boxCollider;
     Rotat rotat;
     public static bool conFive;
     public static bool conSix;
     public static bool wireCon;
+    
     
 
 
@@ -29,6 +31,10 @@ public class wireThreeScript : MonoBehaviour
         mouseOn = false;
         boxSize = transform.localScale;
         rotat = gameObject.GetComponent<Rotat>();
+        boxCollider = GetComponent<Collider2D>();
+
+
+
         // Debug.Log("Hello world");
         conFive = false;
         conSix = false;
@@ -44,12 +50,6 @@ public class wireThreeScript : MonoBehaviour
         }
 
 
-
-    }
-
-    private void FixedUpdate()
-    {
-
         if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
             // float distance = Vector2.Distance(boxSize, mousePos);
@@ -64,12 +64,18 @@ public class wireThreeScript : MonoBehaviour
             {
                 //checks if the script is enabled or disabled
                 rotat.enabled = !rotat.enabled;
-
+                
             }
 
 
 
         }
+
+    }
+
+    private void FixedUpdate()
+    {
+
     }
 
     private void OnMouseDrag()
@@ -105,6 +111,12 @@ public class wireThreeScript : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Debug.Log("Collision");
         }
+
+        if (collision.gameObject.tag == "wall")
+        {
+            boxCollider.isTrigger = false;
+            Debug.Log("Collision");
+        }
     }
     void OnTriggerExit2D(Collider2D collision)
     {
@@ -112,16 +124,20 @@ public class wireThreeScript : MonoBehaviour
         {
             Debug.Log("Disconnecting 5");
             conFive = false;
+            wireCon = false;
+            Debug.Log("Wire3 Disconnected");
         }
         if (collision.gameObject.tag == "ConnectorFour")
         {
             Debug.Log("Disconnecting 6");
             conSix = false;
-        }
-        if (conFive && conSix == false)
-        {
             wireCon = false;
             Debug.Log("Wire3 Disconnected");
+        }
+        if (collision.gameObject.tag == "wall")
+        {
+            boxCollider.isTrigger = true;
+            Debug.Log("Collision");
         }
     }
 

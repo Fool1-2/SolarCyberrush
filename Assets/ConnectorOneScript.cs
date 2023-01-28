@@ -5,32 +5,38 @@ using UnityEngine;
 public class ConnectorOneScript : MonoBehaviour
 {
     public GameObject connectorTwo;
+    public bool randomFinished;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(ColorCoroutine());// starts time for color time
         connectorTwo = GameObject.FindWithTag("wireTwo"); // find gameobject with tag wireTwo
         connectorTwo.GetComponent<wireTwoScript>();// find wireTwo script
+        randomFinished = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (randomFinished == true)
+        {
+            if (wireTwoScript.wireCon == true)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.green;
 
+            }
+
+
+            if (wireTwoScript.wireCon == false)
+            {
+
+                gameObject.GetComponent<Renderer>().material.color = Color.white;
+            }
+        }
     }
     void FixedUpdate()
     {
-        if (wireTwoScript.conThree && wireTwoScript.conFour == true)
-        {
-            wireTwoScript.wireCon = true;
-            gameObject.GetComponent<Renderer>().material.color = Color.green;
-        }
 
-        if (wireTwoScript.conThree && wireTwoScript.conFour == false)
-        {
-            wireTwoScript.wireCon = false;
-            gameObject.GetComponent<Renderer>().material.color = Color.white;
-        }
     }
     IEnumerator ColorCoroutine()
     {
@@ -48,5 +54,7 @@ public class ConnectorOneScript : MonoBehaviour
         gameObject.GetComponent<Renderer>().material.color = Color.gray;
         yield return new WaitForSeconds(1);
         gameObject.GetComponent<Renderer>().material.color = Color.white;
+        randomFinished = true; ;
+        yield return null;
     }
 }

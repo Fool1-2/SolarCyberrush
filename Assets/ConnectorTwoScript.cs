@@ -6,33 +6,39 @@ using UnityEngine;
 public class ConnectorTwoScript : MonoBehaviour
 {
     public GameObject connectorOne;
-    
+    public bool randomFinished;
+
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(ColorCoroutine());// start coroutine
         connectorOne = GameObject.FindWithTag("wireOne");// find gaemobject with tag wireOne
         connectorOne.GetComponent<wireScript>();// get that script
+        randomFinished = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (randomFinished == true)
+        {
+            if (wireScript.wireCon == true)
+            {
+                gameObject.GetComponent<Renderer>().material.color = Color.blue;
 
+            }
+
+
+            if (wireScript.wireCon == false)
+            {
+
+                gameObject.GetComponent<Renderer>().material.color = Color.white;
+            }
+        }
     }
     void FixedUpdate()
     {
-        if (wireScript.conOne && wireScript.conTwo == true)// if these values in this script are true
-        {
-            wireScript.wireCon = true;// the wire connection is true
-            gameObject.GetComponent<Renderer>().material.color = Color.red;// change connection color to red
-        }
 
-        if (wireScript.conOne && wireScript.conTwo == false)
-        {
-            wireScript.wireCon = false;
-            gameObject.GetComponent<Renderer>().material.color = Color.white;// if the above values are false make white again
-        }
     }
     IEnumerator ColorCoroutine()
     {
@@ -50,5 +56,7 @@ public class ConnectorTwoScript : MonoBehaviour
         gameObject.GetComponent<Renderer>().material.color = Color.green;
         yield return new WaitForSeconds(1);
         gameObject.GetComponent<Renderer>().material.color = Color.white;
+        randomFinished = true; ;
+        yield return null;
     }
 }

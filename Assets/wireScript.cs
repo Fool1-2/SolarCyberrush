@@ -15,6 +15,7 @@ public class wireScript : MonoBehaviour
     public Transform StartObject;
     public Transform EndObject;
     HingeJoint2D hingeJoint2D;
+    Collider2D boxCollider;
     Rotat rotat;// rotate script is rotate
     public static bool conOne;// connector one
     public static bool conTwo;// connector two
@@ -27,6 +28,7 @@ public class wireScript : MonoBehaviour
         mouseOn = false;
         boxSize = transform.localScale;
         hingeJoint2D = gameObject.GetComponent<HingeJoint2D>();
+        boxCollider = GetComponent<Collider2D>();
         rotat = gameObject.GetComponent<Rotat>();
         // Debug.Log("Hello world");
         conOne = false;// wire is not connected to port
@@ -42,13 +44,6 @@ public class wireScript : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
-
-
-
-    }
-
-    private void FixedUpdate()
-    {
 
         if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
@@ -70,6 +65,13 @@ public class wireScript : MonoBehaviour
 
 
         }
+
+    }
+
+    private void FixedUpdate()
+    {
+
+
     }
 
     private void OnMouseDrag()
@@ -105,6 +107,11 @@ public class wireScript : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
             Debug.Log("Collision");// test collision works with log message
         }
+        if (collision.gameObject.tag == "wall")
+        {
+            boxCollider.isTrigger = false;
+            Debug.Log("Collision");
+        }
     }
 
    // 
@@ -114,17 +121,23 @@ public class wireScript : MonoBehaviour
         {
             Debug.Log("Disconnecting 1");// print disconnect message
             conOne = false;// no longer connected to  port
+            conTwo = false;
+            wireCon = false;// if 1 port is false the wire is not connected 
+            Debug.Log("Wire Disconnected");
         }
         if (collision.gameObject.tag == "ConnectorTwo")
         {
             Debug.Log("Disconnecting 2");
             conTwo = false;
+            wireCon = false;
+            Debug.Log("Wire Disconnected");
         }
-        if (conOne && conTwo == false)// if when leaving both values are false
+        if (collision.gameObject.tag == "wall")
         {
-            wireCon = false;// wire is no longer connected
-            Debug.Log("Wire Disconnected");// print message
+            boxCollider.isTrigger = true;
+            Debug.Log("Collision");
         }
+
 
 
     }

@@ -16,6 +16,7 @@ public class wireTwoScript : MonoBehaviour
     public Transform EndObject;
     HingeJoint2D hingeJoint2D;
     Rotat rotat;
+    Collider2D boxCollider;
     public static bool conThree;
     public static bool conFour;
     public static bool wireCon;
@@ -28,6 +29,7 @@ public class wireTwoScript : MonoBehaviour
         boxSize = transform.localScale;
         hingeJoint2D = gameObject.GetComponent<HingeJoint2D>();
         rotat = gameObject.GetComponent<Rotat>();
+        boxCollider = GetComponent<Collider2D>();
         // Debug.Log("Hello world");
         conThree = false;
         conFour = false;
@@ -41,13 +43,6 @@ public class wireTwoScript : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
-
-
-
-    }
-
-    private void FixedUpdate()
-    {
 
         if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
@@ -69,6 +64,13 @@ public class wireTwoScript : MonoBehaviour
 
 
         }
+
+    }
+
+    private void FixedUpdate()
+    {
+
+
     }
 
     private void OnMouseDrag()
@@ -99,6 +101,11 @@ public class wireTwoScript : MonoBehaviour
             wireCon = true;
             Debug.Log("Wire2 Connected");
         }
+        if (collision.gameObject.tag == "wall")
+        {
+            boxCollider.isTrigger = false;
+            Debug.Log("Collision");
+        }
     }
     void OnTriggerExit2D(Collider2D collision)
     {
@@ -106,17 +113,24 @@ public class wireTwoScript : MonoBehaviour
         {
             Debug.Log("Disconnecting 3");
             conThree = false;
+          
+            wireCon = false;
+            Debug.Log("Wire2 Disconnected");
         }
         if (collision.gameObject.tag == "ConnectorFour")
         {
             Debug.Log("Disconnecting 4");
             conFour = false;
-        }
-        if (conThree && conFour == false)
-        {
+           
             wireCon = false;
             Debug.Log("Wire2 Disconnected");
         }
+        if (collision.gameObject.tag == "wall")
+        {
+            boxCollider.isTrigger = true;
+            Debug.Log("Collision");
+        }
+
     }
 
 }
