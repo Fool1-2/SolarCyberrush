@@ -7,6 +7,7 @@ public class liftScript : MonoBehaviour
     Vector2 VectorDown, VectorUp;
     float motionSpeed = 1f;
     Transform liftTransform;
+    public ButtonScript buttonScript;
     //This will be triggered to true when the lift button is being pressed
     public static bool buttonPressed = false;
     // Start is called before the first frame update
@@ -20,12 +21,8 @@ public class liftScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            buttonPressed = true;
-        }
         //If the lift button is pressed the lift will go to the up position else go to down position
-        if (buttonPressed)
+        if (buttonScript.isPressed)
         {
             transform.position = Vector2.Lerp(transform.position, VectorUp, motionSpeed * Time.deltaTime);
         }

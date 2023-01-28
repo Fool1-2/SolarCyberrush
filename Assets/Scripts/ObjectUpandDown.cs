@@ -23,7 +23,6 @@ public class ObjectUpandDown : MonoBehaviour
         {
             transform.position = Vector2.Lerp(transform.position, upObj.transform.position, motionSpeed * Time.deltaTime);
         }
-
         if (currentMotion == motion.Down)
         {
             transform.position = Vector2.Lerp(transform.position, downObj.transform.position, motionSpeed * Time.deltaTime);

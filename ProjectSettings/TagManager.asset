@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
+  - TeleObj
+  - Light
+  - Telekinesis
+  - ProjectileController
   - ConnecterOne
   - ConnectorTwo
   - ConnectorThree
@@ -19,11 +23,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floor
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - canPoss
   - 
   - 
   - 
