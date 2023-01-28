@@ -11,8 +11,8 @@ public class GlowActivator : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        
-        if (other.gameObject.tag == "TeleObj")
+        //Checks this is a tele arrow and other object is a teleob
+        if (other.gameObject.tag == "TeleObj" && gameObject.tag == "Telekinesis")
         {
             if (Glow_ProjectileControl.isShot)
             {
@@ -22,8 +22,8 @@ public class GlowActivator : MonoBehaviour
                 PlayerMovement.isPossessing = true;
             }
         }
-
-        if (other.gameObject.tag == "LightObj")
+        //Check the other gameObject is a light ob and this is the light glow arrow
+        if (other.gameObject.tag == "LightObj" && gameObject.tag == "Light")
         {
             other.gameObject.GetComponent<ILightAbility>().ActivatePower();
             glowProjectile.AutoReloadBullet();

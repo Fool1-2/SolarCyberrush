@@ -26,11 +26,13 @@ public class TeleObj : MonoBehaviour
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         PossessionMovement(isPoss);
     }
 
-    void PossessionMovement(bool isPoss){
+    void PossessionMovement(bool isPoss)
+    {
         
         if (isPoss)
         {
