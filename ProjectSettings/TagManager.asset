@@ -9,6 +9,16 @@ TagManager:
   - Light
   - Telekinesis
   - ProjectileController
+  - ConnecterOne
+  - ConnectorTwo
+  - ConnectorThree
+  - ConnectorFour
+  - ConnectorFive
+  - ConnectorSix
+  - wireOne
+  - wireTwo
+  - wireThree
+  - wall
   - LightObj
   layers:
   - Default
