@@ -19,7 +19,6 @@ public class GlowActivator : MonoBehaviour
                 glowProjectile.AutoReloadBullet();
                 Glow.currentPossessedObj = other.gameObject;
                 Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = true;
-                PlayerMovement.isPossessing = true;
             }
         }
         //Check the other gameObject is a light ob and this is the light glow arrow

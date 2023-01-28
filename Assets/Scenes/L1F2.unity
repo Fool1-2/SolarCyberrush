@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 16301673}
   - component: {fileID: 16301672}
   - component: {fileID: 16301677}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RobBlockOb (16)
   m_TagString: TeleObj
   m_Icon: {fileID: 0}
@@ -272,6 +272,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &87074054
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +621,7 @@ GameObject:
   - component: {fileID: 383859928}
   - component: {fileID: 383859927}
   - component: {fileID: 383859932}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RobBlockOb (10)
   m_TagString: TeleObj
   m_Icon: {fileID: 0}
@@ -754,6 +757,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &387479908
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,7 +911,7 @@ GameObject:
   - component: {fileID: 469319203}
   - component: {fileID: 469319202}
   - component: {fileID: 469319207}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RobBlockOb (9)
   m_TagString: TeleObj
   m_Icon: {fileID: 0}
@@ -1041,6 +1047,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &482823230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,7 +1357,7 @@ GameObject:
   - component: {fileID: 728950042}
   - component: {fileID: 728950041}
   - component: {fileID: 728950046}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RobBlockOb (12)
   m_TagString: TeleObj
   m_Icon: {fileID: 0}
@@ -1484,6 +1493,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &754443183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,7 +1509,7 @@ GameObject:
   - component: {fileID: 754443185}
   - component: {fileID: 754443184}
   - component: {fileID: 754443189}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RobBlockOb (11)
   m_TagString: TeleObj
   m_Icon: {fileID: 0}
@@ -1633,6 +1645,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &869361447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,9 +1661,10 @@ GameObject:
   - component: {fileID: 869361450}
   - component: {fileID: 869361448}
   - component: {fileID: 869361449}
+  - component: {fileID: 869361453}
   m_Layer: 0
   m_Name: 'Robot '
-  m_TagString: Untagged
+  m_TagString: TeleObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1686,6 +1702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0f556bf01a840a685b97614e6900a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRobotActive: 0
   isAbletoMove: 0
 --- !u!61 &869361450
 BoxCollider2D:
@@ -1773,13 +1790,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869361447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.01, y: 11.36, z: 0}
+  m_LocalPosition: {x: -10.19, y: -7.99, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &869361453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869361447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a90593b7dc05d4e87e2b3193759600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPoss: 0
+  speed: 3
+  rb: {fileID: 0}
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &929169814
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,7 +2416,7 @@ GameObject:
   - component: {fileID: 1115219837}
   - component: {fileID: 1115219836}
   - component: {fileID: 1115219841}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: RobBlockOb (18)
   m_TagString: TeleObj
   m_Icon: {fileID: 0}
@@ -2495,7 +2530,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115219835}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.52, y: -19.66, z: 0.35157064}
+  m_LocalPosition: {x: -49.8, y: -20.68, z: 0.35157064}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2517,6 +2552,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 11
   rb: {fileID: 0}
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1123272873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,11 +2772,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2490544299736315167, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2490544299736315167, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_IsActive
@@ -2851,7 +2889,7 @@ GameObject:
   - component: {fileID: 1166557530}
   - component: {fileID: 1166557529}
   - component: {fileID: 1166557534}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RobBlockOb (15)
   m_TagString: TeleObj
   m_Icon: {fileID: 0}
@@ -2987,6 +3025,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1373805290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3000,11 +3041,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2490544299736315167, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2490544299736315167, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_IsActive
@@ -3117,7 +3158,7 @@ GameObject:
   - component: {fileID: 1428737001}
   - component: {fileID: 1428737000}
   - component: {fileID: 1428737005}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RobBlockOb (17)
   m_TagString: TeleObj
   m_Icon: {fileID: 0}
@@ -3253,6 +3294,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1455511514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3595,7 +3639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636535834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.3, y: -6.19, z: 0}
+  m_LocalPosition: {x: 11.3, y: -6.3, z: 0}
   m_LocalScale: {x: 0.6267, y: 0.6596, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3768,11 +3812,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2490544299736315167, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2490544299736315167, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_IsActive
@@ -3885,7 +3929,7 @@ GameObject:
   - component: {fileID: 1857844528}
   - component: {fileID: 1857844527}
   - component: {fileID: 1857844532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RobBlockOb (13)
   m_TagString: TeleObj
   m_Icon: {fileID: 0}
@@ -4021,6 +4065,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1943058318
 GameObject:
   m_ObjectHideFlags: 0
@@ -4296,7 +4343,7 @@ GameObject:
   - component: {fileID: 2102984339}
   - component: {fileID: 2102984338}
   - component: {fileID: 2102984343}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RobBlockOb (14)
   m_TagString: TeleObj
   m_Icon: {fileID: 0}
@@ -4432,6 +4479,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  touchableLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &2110806794
 PrefabInstance:
   m_ObjectHideFlags: 0

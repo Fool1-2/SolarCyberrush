@@ -9,6 +9,7 @@ TagManager:
   - Light
   - Telekinesis
   - ProjectileController
+  - LightObj
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - UI
   - Ground
   - canPoss
-  - 
+  - NonPossGround
   - 
   - 
   - 
