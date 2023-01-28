@@ -17,7 +17,7 @@ public class Glow_ProjectileControl : MonoBehaviour
 
     [SerializeField]Glow glow;
     public Light2D glowLight;
-    [SerializeField]bool isShot;
+    public static bool isShot;
     [SerializeField]Color[] diffGlowColors;
 
     private void OnEnable() {
@@ -45,7 +45,7 @@ public class Glow_ProjectileControl : MonoBehaviour
         if (glow.isGlowActive)//Checks if the glow ability has changed and turns on the projectile
         {
             currentGlowBullet.SetActive(true);
-
+            glowLight.enabled = true;
             switch (glow.glowAB)
             {
                 
@@ -66,6 +66,7 @@ public class Glow_ProjectileControl : MonoBehaviour
         else
         {
             currentGlowBullet.SetActive(false);
+            glowLight.enabled = false;
         }
 
         if (PlayerMovement.isPossessing)

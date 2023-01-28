@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private LayerMask groundLayer;
     [SerializeField]private float groundCheckNum;
     public static bool isPossessing;
+    public float possessedrangeNum;
+    public LayerMask possessedLayer;
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -31,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.velocity = Vector2.zero;
-            rb.bodyType = RigidbodyType2D.Kinematic;
+            
         }
 
     }
@@ -42,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by 
         }
+
+        //Collider2D inRange = Physics2D.OverlapCircle(transform.position, possessedrangeNum, possessedLayer);
+
     }
     
     bool isGrounded()
@@ -52,5 +57,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos() 
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckNum);//Shows the outline of it in scene
+        //Gizmos.DrawWireSphere(transform.position, possessedrangeNum);
     }
 }

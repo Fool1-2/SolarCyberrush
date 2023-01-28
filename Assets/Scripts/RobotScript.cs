@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RobotScript : MonoBehaviour
+public class RobotScript : MonoBehaviour, ILightAbility
 {
     public static bool isRobotActive;
     public bool isAbletoMove;
@@ -48,6 +48,11 @@ public class RobotScript : MonoBehaviour
         {
             isAbletoMove = false;
         }
+    }
+
+    public void ActivatePower()
+    {
+        isRobotActive = true;
     }
     
 }

@@ -11,12 +11,16 @@ public class GlowActivator : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        
         if (other.gameObject.tag == "TeleObj")
         {
-            glowProjectile.AutoReloadBullet();
-            Glow.currentPossessedObj = other.gameObject;
-            Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = true;
-            PlayerMovement.isPossessing = true;
+            if (Glow_ProjectileControl.isShot)
+            {
+                glowProjectile.AutoReloadBullet();
+                Glow.currentPossessedObj = other.gameObject;
+                Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = true;
+                PlayerMovement.isPossessing = true;
+            }
         }
 
         if (other.gameObject.tag == "LightObj")
