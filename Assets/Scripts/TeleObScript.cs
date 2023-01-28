@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TeleObScript : MonoBehaviour
 {
+    /*
     
     public Rigidbody2D rb;
     public static bool isPoss = false;
@@ -47,7 +48,7 @@ public class TeleObScript : MonoBehaviour
                 StartCoroutine(pause());
                 isPoss = false;
                 isNotRunningShake = true;
-                playerMovementScript.notPoss = true;
+                PlayerMovementScript.notPoss = true;
             }
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
@@ -121,6 +122,7 @@ public class TeleObScript : MonoBehaviour
         Vector2 moveDir = new Vector2(x, y);
         rb.MovePosition(rb.position + moveDir * speed * Time.fixedDeltaTime);
     }*/
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Telekinesis")
@@ -139,4 +141,5 @@ public class TeleObScript : MonoBehaviour
             isPoss = true;
         }
     }
+    */
 }
