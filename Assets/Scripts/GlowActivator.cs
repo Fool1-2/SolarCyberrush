@@ -23,9 +23,15 @@ public class GlowActivator : MonoBehaviour
             }
         }
         //Check the other gameObject is a light ob and this is the light glow arrow
-        if (other.gameObject.tag == "LightObj" && gameObject.tag == "Light")
+        else if (other.gameObject.tag == "LightObj" && gameObject.tag == "Light")
         {
             other.gameObject.GetComponent<ILightAbility>().ActivatePower();
+            glowProjectile.AutoReloadBullet();
+        }
+        //Add something so that object is destroyed on all collisions so that it cannot go through walls
+        else
+        {
+            //Test this
             glowProjectile.AutoReloadBullet();
         }
     }
