@@ -95,9 +95,9 @@ GameObject:
   - component: {fileID: 7653752798712699212}
   - component: {fileID: 7653752798712699210}
   - component: {fileID: 7653752798712699209}
-  - component: {fileID: 7653752798712699211}
   - component: {fileID: 2105084201}
-  - component: {fileID: 2105084200}
+  - component: {fileID: 7653752798712699211}
+  - component: {fileID: 4739718663633589037}
   m_Layer: 0
   m_Name: LightGlowThing
   m_TagString: Light
@@ -194,18 +194,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7653752798712699211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7653752798712699213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a391b6f843a1a4e8b52f47bfbd425e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &2105084201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -232,7 +220,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15550017, y: 0.13489503}
   m_EdgeRadius: 0
---- !u!114 &2105084200
+--- !u!114 &7653752798712699211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,6 +229,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7653752798712699213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e72e8b8c91c39954b99d89098521c19a, type: 3}
+  m_Script: {fileID: 11500000, guid: f1a391b6f843a1a4e8b52f47bfbd425e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4739718663633589037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7653752798712699213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5fadbd94d403f043a0f57b7989584dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowProjectile: {fileID: 0}

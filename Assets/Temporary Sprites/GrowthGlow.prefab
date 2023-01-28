@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7653752798712699211}
   - component: {fileID: 6786891780902492304}
   m_Layer: 0
-  m_Name: TelekensisGlowThing
+  m_Name: GrowthGlow
   m_TagString: Telekinesis
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

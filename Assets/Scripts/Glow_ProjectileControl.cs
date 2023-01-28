@@ -1,28 +1,91 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Glow_ProjectileControl : MonoBehaviour
 {
-    
-    public GameObject glowBullet;
+    #region Bullet Variables
+    public List<GameObject> glowProjectiles;
+    public int curProjNum;
     [SerializeField] GameObject currentGlowBullet;
     [SerializeField]Rigidbody2D rb;
     [SerializeField]float speed;
-    [SerializeField]Transform player;
-    [SerializeField]bool isShot;
-    public List<GameObject> glowProjectiles;
-    public int curProjNum;
+    Transform player;
+    Vector3 setScaleForBullet = new Vector3(3, 8, 7);
+    #endregion
 
+    [SerializeField]Glow glow;
+    public Light2D glowLight;
+    [SerializeField]bool isShot;
+    [SerializeField]Color[] diffGlowColors;
 
     private void OnEnable() {
         AutoReloadBullet();
         currentGlowBullet = transform.GetChild(0).gameObject;//When the script starts finds the controllers child and makes that the current bullet
         currentGlowBullet.GetComponent<FollowMouse>().enabled = true;//turns on follow mouse script
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();//finds the player through its tag
+        glow = GameObject.FindGameObjectWithTag("Player").GetComponent<Glow>();//Finds the script in playe called Glow
+        rb = transform.GetChild(0).gameObject.GetComponent<Rigidbody2D>();//finds its childs rigidbody2D
+        glowLight = GetComponent<Light2D>();//finds Light2D script
     }
+
+    public void AutoReloadBullet()
+    {
+        Destroy(currentGlowBullet);
+        currentGlowBullet = Instantiate(glowProjectiles[curProjNum], (Vector2)transform.position, Quaternion.identity);//Spawn a new bullet replacing the old bullet
+        currentGlowBullet.transform.parent = gameObject.transform;//Puts the bullet under the controller as a child
+        currentGlowBullet.transform.localScale = setScaleForBullet;//Fixes the scaling of the bullet
+        isShot = false;//turns isshot back off
+    }
+    
     void Update()
     {
+        #region Glow bool
+        if (glow.isGlowActive)//Checks if the glow ability has changed and turns on the projectile
+        {
+            currentGlowBullet.SetActive(true);
+
+            switch (glow.glowAB)
+            {
+                
+                case Glow.glowAbility.Light:
+                    curProjNum = 0;
+                    glowLight.color = diffGlowColors[0];
+                    break;
+                case Glow.glowAbility.Telekinesis:
+                    curProjNum = 1;
+                    glowLight.color = diffGlowColors[1];
+                    break;
+                case Glow.glowAbility.Growth:
+                    curProjNum = 2;
+                    glowLight.color = diffGlowColors[2];
+                    break;
+            }
+        }
+        else
+        {
+            currentGlowBullet.SetActive(false);
+        }
+
+        if (PlayerMovement.isPossessing)
+        {
+            currentGlowBullet.SetActive(false);
+        }
+        #endregion
+
+        #region arrowKeys
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            AutoReloadBullet();
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            AutoReloadBullet();
+        }
+        #endregion
 
         if (!isShot)
         {
@@ -30,22 +93,9 @@ public class Glow_ProjectileControl : MonoBehaviour
             rb = currentGlowBullet.GetComponent<Rigidbody2D>();//Finds the rigidbody when the bullet isn't shot.
         }
 
-        //Sets the current glowBullet to the selected glow
-
-        if (Input.GetKeyDown(KeyCode.E))
+        if (glow.isGlowActive && Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shooting();
-        }
-        //Sets glow and telekinesis objects to be fired
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            curProjNum = 0;
-            StartCoroutine(respawnItem(1f));
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            curProjNum = 1;
-            StartCoroutine(respawnItem(1f));
         }
     }
 
@@ -57,21 +107,13 @@ public class Glow_ProjectileControl : MonoBehaviour
         StartCoroutine(respawnItem(3f));//starts the respawn function
     }
 
-    IEnumerator respawnItem(float time)//Customizable time for respawn
+    public IEnumerator respawnItem(float time)//Customizable time for respawn
     {
         yield return new WaitForSeconds(time);//Wait for a certain amount of time
         Destroy(currentGlowBullet);//Destroy the object that was shot
         currentGlowBullet = Instantiate(glowProjectiles[curProjNum], (Vector2)transform.position, Quaternion.identity);//Spawn a new bullet replacing the old bullet
         currentGlowBullet.transform.parent = gameObject.transform;//Puts the bullet under the controller as a child
-        currentGlowBullet.transform.localScale = new Vector3(6, 8, 7);//Fixes the scaling of the bullet
-        isShot = false;//turns isshot back off
-    }
-
-    void AutoReloadBullet()
-    {
-        currentGlowBullet = Instantiate(glowProjectiles[curProjNum], (Vector2)transform.position, Quaternion.identity);//Spawn a new bullet replacing the old bullet
-        currentGlowBullet.transform.parent = gameObject.transform;//Puts the bullet under the controller as a child
-        currentGlowBullet.transform.localScale = new Vector3(6, 8, 7);//Fixes the scaling of the bullet
+        currentGlowBullet.transform.localScale = setScaleForBullet;//Fixes the scaling of the bullet
         isShot = false;//turns isshot back off
     }
 }
