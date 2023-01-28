@@ -24,7 +24,7 @@ public class ConnectorTwoScript : MonoBehaviour
         {
             if (wireScript.wireCon == true)
             {
-                gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
 
             }
 
