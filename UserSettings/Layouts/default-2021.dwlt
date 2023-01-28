@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1440
     height: 847
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 492}
   m_MaxSize: {x: 10000, y: 10000}
@@ -342,15 +342,15 @@ MonoBehaviour:
       m_ExpandedIDs: f2faffff2c6c0000006d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: BlockObject
-        m_OriginalName: BlockObject
+        m_Name: RobBlockOb (17)
+        m_OriginalName: RobBlockOb (17)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 27724
+        m_UserData: 27798
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
