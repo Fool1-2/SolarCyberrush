@@ -46,7 +46,7 @@ public class Glow_ProjectileControl : MonoBehaviour
         {
             currentGlowBullet.SetActive(true);
             glowLight.enabled = true;
-            switch (glow.glowAB)
+            /*switch (glow.glowAB)
             {
                 
                 case Glow.glowAbility.Light:
@@ -61,7 +61,7 @@ public class Glow_ProjectileControl : MonoBehaviour
                     curProjNum = 2;
                     glowLight.color = diffGlowColors[2];
                     break;
-            }
+            }*/
         }
         else
         {
@@ -79,11 +79,29 @@ public class Glow_ProjectileControl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
+            if (curProjNum > 0)
+            {
+                curProjNum -= 1;
+            }
+            else
+            {
+                curProjNum = 2;
+            }
+            glowLight.color = diffGlowColors[curProjNum];
             AutoReloadBullet();
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            if (curProjNum < 2)
+            {
+                curProjNum += 1;
+            }
+            else
+            {
+                curProjNum = 0;
+            }
+            glowLight.color = diffGlowColors[curProjNum];
             AutoReloadBullet();
         }
         #endregion
