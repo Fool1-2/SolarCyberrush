@@ -119,4 +119,9 @@ public class TeleObj : MonoBehaviour
         Debug.Log("Shook");
         yield return null;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        isPoss = false;
+        PlayerMovement.isPossessing = false;
+    }
 }
