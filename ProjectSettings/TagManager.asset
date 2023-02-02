@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Floor
+  - TeleObj
+  - Light
+  - Telekinesis
+  - ProjectileController
   - ConnecterOne
   - ConnectorTwo
   - ConnectorThree
@@ -14,15 +18,16 @@ TagManager:
   - wireOne
   - wireTwo
   - wireThree
+  - wall
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floor
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - canPoss
   - 
   - 
   - 
