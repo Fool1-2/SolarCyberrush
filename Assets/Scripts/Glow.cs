@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Glow : MonoBehaviour
 {
-    public bool isGlowActive;
+    public static bool isGlowActive;
     //public enum glowAbility{Light, Telekinesis, Growth}// An enum is also converted to ints kinda of like an array
     public int glowAB; 
     public static GameObject currentPossessedObj;
