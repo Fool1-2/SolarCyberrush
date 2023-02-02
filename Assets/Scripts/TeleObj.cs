@@ -38,7 +38,7 @@ public class TeleObj : MonoBehaviour
         speed = 11;
         duration = .1f;
         yDif = 1;
-        shakeForce = 20;
+        shakeForce = 3;
         isNotRunningShake = true;
     }
     // Update is called once per frame
@@ -49,6 +49,14 @@ public class TeleObj : MonoBehaviour
         if (this.gameObject != Glow.currentPossessedObj)
         {
             isPoss = false;          
+        }
+        if (isPoss)
+        {
+            rb.gravityScale = 0;
+        }
+        else
+        {
+            rb.gravityScale = 5;
         }
     }
 

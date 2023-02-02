@@ -35,6 +35,10 @@ public class GlowActivator : MonoBehaviour
                     Glow.currentPossessedObj = other.gameObject;
                     Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = true;
                     PlayerMovement.isPossessing = true;
+                    //The dumbest way to add .1 to the y of the colliding object so that it isnt touching the floor
+                    Transform hi = other.gameObject.GetComponent<Transform>();
+                    hi.position += new Vector3(0, 0.5f, 0);
+                    other.gameObject.GetComponent<Transform>().position = hi.position;
                 }
             }
             //Check the other gameObject is a light ob and this is the light glow arrow
