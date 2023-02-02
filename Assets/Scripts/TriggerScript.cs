@@ -18,7 +18,10 @@ public class TriggerScript : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        buttonscript.Pressed();
+        if (collision.gameObject.tag != "Telekinesis" || collision.gameObject.tag != "Light")
+        {
+            buttonscript.Pressed();
+        }
         Debug.Log("Entered");
     }
     private void OnTriggerExit2D(Collider2D collision)

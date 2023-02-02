@@ -6,16 +6,30 @@ TagManager:
   tags:
   - Floor
   - TeleObj
+  - Light
+  - Telekinesis
+  - ProjectileController
+  - ConnecterOne
+  - ConnectorTwo
+  - ConnectorThree
+  - ConnectorFour
+  - ConnectorFive
+  - ConnectorSix
+  - wireOne
+  - wireTwo
+  - wireThree
+  - wall
+  - LightObj
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floor
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Ground
+  - canPoss
+  - NonPossGround
   - 
   - 
   - 

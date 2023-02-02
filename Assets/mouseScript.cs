@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlowAbility : MonoBehaviour
+public class mouseScript : MonoBehaviour
 {
-    public bool isGlowActive;
-
     // Start is called before the first frame update
     void Start()
     {
