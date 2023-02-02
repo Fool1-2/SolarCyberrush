@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isPossessing)
+        if (!Glow.isGlowActive)
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
