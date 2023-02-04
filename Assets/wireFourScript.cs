@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
 [RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
-public class wireScript : MonoBehaviour
+public class wireFourScript : MonoBehaviour
 {
     //Turn the positon of in constraints in rigidbody to limit the axis its on
 
@@ -17,8 +17,8 @@ public class wireScript : MonoBehaviour
     HingeJoint2D hingeJoint2D;
     Collider2D boxCollider;
     Rotat rotat;// rotate script is rotate
-    public static bool conOne;// connector one
-    public static bool conTwo;// connector two
+    public static bool conSev;// connector one
+    public static bool conEig;// connector two
     public static bool wireCon;// is wire connected
 
 
@@ -31,9 +31,9 @@ public class wireScript : MonoBehaviour
         boxCollider = GetComponent<Collider2D>();
         rotat = gameObject.GetComponent<Rotat>();
         // Debug.Log("Hello world");
-        conOne = false;// wire is not connected to port
-        conTwo = false;// wire is not connected to port
-       
+        conSev = false;// wire is not connected to port
+        conEig = false;// wire is not connected to port
+
     }
 
     private void Update()
@@ -87,22 +87,22 @@ public class wireScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)// when wire collides with object
     {
-        if (collision.gameObject.tag == "ConnecterOne")// if its connectorONe
+        if (collision.gameObject.tag == "ConnectorSeven")// if its connectorONe
         {
-            Debug.Log("Connecting 1");// say connecting(this is more for the devs)
-            conOne = true;// is connected to port
+            Debug.Log("Connecting 7");// say connecting(this is more for the devs)
+            conSev = true;// is connected to port
         }
-        if (collision.gameObject.tag == "ConnectorTwo")
+        if (collision.gameObject.tag == "ConnectorEight")
         {
-            Debug.Log("Connecting 2");
-            conTwo = true;
+            Debug.Log("Connecting 8");
+            conEig = true;
         }
-        if ( conOne && conTwo == true)// if both ports connection is true
+        if (conSev && conEig == true)// if both ports connection is true
         {
             wireCon = true;// wire is connected
             Debug.Log("Wire Connected");
         }
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFour")// if collides with other wires
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
             Debug.Log("Collision");// test collision works with log message
@@ -114,21 +114,21 @@ public class wireScript : MonoBehaviour
         }
     }
 
-   // 
+    // 
     void OnTriggerExit2D(Collider2D collision)// when wire exits collision box
     {
-        if (collision.gameObject.tag == "ConnecterOne")// if exit port 1 collision box
+        if (collision.gameObject.tag == "ConnectorSeven")// if exit port 1 collision box
         {
-            Debug.Log("Disconnecting 1");// print disconnect message
-            conOne = false;// no longer connected to  port
-            conTwo = false;
+            Debug.Log("Disconnecting 7");// print disconnect message
+            conSev = false;// no longer connected to  port
+            conEig = false;
             wireCon = false;// if 1 port is false the wire is not connected 
             Debug.Log("Wire Disconnected");
         }
-        if (collision.gameObject.tag == "ConnectorTwo")
+        if (collision.gameObject.tag == "ConnectorEight")
         {
-            Debug.Log("Disconnecting 2");
-            conTwo = false;
+            Debug.Log("Disconnecting 8");
+            conEig = false;
             wireCon = false;
             Debug.Log("Wire Disconnected");
         }
