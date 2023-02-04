@@ -10,9 +10,12 @@ public class liftScript : MonoBehaviour
     public ButtonScript buttonScript;
     //This will be triggered to true when the lift button is being pressed
     public static bool buttonPressed = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
+       
         liftTransform = gameObject.transform;
         VectorDown = new Vector2(-4.25f, -9);
         VectorUp = new Vector2(-4.25f, 7);

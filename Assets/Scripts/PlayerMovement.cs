@@ -36,6 +36,18 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
+        if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
+        {
+            if (Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss)//if the current possessedObj isPoss bool on then it will trun on isPossessing
+            {
+                isPossessing = true;
+            }
+            else
+            {
+                isPossessing = false;
+            }
+        }
+
     }
 
     private void FixedUpdate()

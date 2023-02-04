@@ -19,6 +19,16 @@ TagManager:
   - wireTwo
   - wireThree
   - wall
+  - LightObj
+  - Border
+  - CamSwitcher
+  - Border
+  - ConnectorSeven
+  - ConnectorEight
+  - ConnectorNine
+  - ConnectorTen
+  - wireFour
+  - wireFive
   layers:
   - Default
   - TransparentFX
@@ -28,7 +38,7 @@ TagManager:
   - UI
   - Ground
   - canPoss
-  - 
+  - NonPossGround
   - 
   - 
   - 
