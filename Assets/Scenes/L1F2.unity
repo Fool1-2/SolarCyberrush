@@ -272,6 +272,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  duration: 0
+  shakeForce: 1
+  yDif: 1
 --- !u!1 &87074054
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +608,63 @@ Transform:
   m_Father: {fileID: 929169815}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &381619137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 381619139}
+  - component: {fileID: 381619138}
+  m_Layer: 0
+  m_Name: GMOb
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &381619138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381619137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76fd91b4fc56c4e9b82ee657681763f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectivesList:
+  - Escape Before Irradiated
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  objectiveText: {fileID: 2132936141}
+  objectiveNumber: 0
+--- !u!4 &381619139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381619137}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 35.48577, y: 4.523115, z: -0.14478394}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &383859926
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +814,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  duration: 0
+  shakeForce: 1
+  yDif: 1
 --- !u!1 &387479908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1104,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  duration: 0
+  shakeForce: 1
+  yDif: 1
 --- !u!1 &482823230
 GameObject:
   m_ObjectHideFlags: 0
@@ -1484,6 +1550,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  duration: 0
+  shakeForce: 1
+  yDif: 1
 --- !u!1 &754443183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,6 +1702,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  duration: 0
+  shakeForce: 1
+  yDif: 1
 --- !u!1 &869361447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,6 +2589,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 11
   rb: {fileID: 0}
+  duration: 0
+  shakeForce: 1
+  yDif: 1
 --- !u!1 &1123272873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2987,6 +3062,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  duration: 0
+  shakeForce: 1
+  yDif: 1
 --- !u!1001 &1373805290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3253,6 +3331,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  duration: 0
+  shakeForce: 1
+  yDif: 1
 --- !u!1001 &1455511514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3618,7 +3699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebf4fbdab445ac4c8d6468ba8e04520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGlowActive: 0
   glowAB: 0
 --- !u!114 &1636535842
 MonoBehaviour:
@@ -4021,6 +4101,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  duration: 0
+  shakeForce: 1
+  yDif: 1
 --- !u!1 &1943058318
 GameObject:
   m_ObjectHideFlags: 0
@@ -4432,6 +4515,9 @@ MonoBehaviour:
   isPoss: 0
   speed: 5
   rb: {fileID: 0}
+  duration: 0
+  shakeForce: 1
+  yDif: 1
 --- !u!1001 &2110806794
 PrefabInstance:
   m_ObjectHideFlags: 0

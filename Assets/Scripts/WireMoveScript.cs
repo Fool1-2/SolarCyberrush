@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
 [RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
-public class MovePipe : MonoBehaviour
+public class WireMoveScript : MonoBehaviour
 {
     //Turn the positon of in constraints in rigidbody to limit the axis its on
     
