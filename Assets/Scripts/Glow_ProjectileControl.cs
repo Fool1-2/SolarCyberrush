@@ -42,7 +42,7 @@ public class Glow_ProjectileControl : MonoBehaviour
     void Update()
     {
         #region Glow bool
-        if (glow.isGlowActive)//Checks if the glow ability has changed and turns on the projectile
+        if (Glow.isGlowActive)//Checks if the glow ability has changed and turns on the projectile
         {
             currentGlowBullet.SetActive(true);
             glowLight.enabled = true;
@@ -112,7 +112,7 @@ public class Glow_ProjectileControl : MonoBehaviour
             rb = currentGlowBullet.GetComponent<Rigidbody2D>();//Finds the rigidbody when the bullet isn't shot.
         }
 
-        if (glow.isGlowActive && Input.GetKeyDown(KeyCode.Mouse0))
+        if (Glow.isGlowActive && Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shooting();
         }
