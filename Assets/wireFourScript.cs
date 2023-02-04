@@ -26,6 +26,7 @@ public class wireFourScript : MonoBehaviour
     private void Start()
     {
         mouseOn = false;
+      
         boxSize = transform.localScale;
         hingeJoint2D = gameObject.GetComponent<HingeJoint2D>();
         boxCollider = GetComponent<Collider2D>();
@@ -53,11 +54,13 @@ public class wireFourScript : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 //float distance = Vector2.Distance(boxSize, mousePos);
-                transform.localScale = new Vector2(mousePos.x, boxSize.y);
+                transform.localScale = new Vector2(boxSize.x, mousePos.y);
+
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
                 //checks if the script is enabled or disabled
+                
                 rotat.enabled = !rotat.enabled;
 
             }
@@ -91,11 +94,13 @@ public class wireFourScript : MonoBehaviour
         {
             Debug.Log("Connecting 7");// say connecting(this is more for the devs)
             conSev = true;// is connected to port
+            boxCollider.isTrigger = true;
         }
         if (collision.gameObject.tag == "ConnectorEight")
         {
             Debug.Log("Connecting 8");
             conEig = true;
+            boxCollider.isTrigger = true;
         }
         if (conSev && conEig == true)// if both ports connection is true
         {
@@ -104,14 +109,28 @@ public class wireFourScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
+            boxCollider.isTrigger = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
             Debug.Log("Collision");// test collision works with log message
         }
+
         if (collision.gameObject.tag == "wall")
         {
+            StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
             Debug.Log("Collision");
+            
         }
+
+    }
+    IEnumerator ColCoroutine()
+    {
+
+        
+        yield return new WaitForSeconds(1); 
+        boxCollider.isTrigger = true;
+
+        yield return null;
     }
 
     // 
@@ -135,10 +154,11 @@ public class wireFourScript : MonoBehaviour
         if (collision.gameObject.tag == "wall")
         {
             boxCollider.isTrigger = true;
-            Debug.Log("Collision");
+            Debug.Log("HINEn");
         }
 
 
 
     }
+
 }
