@@ -6,6 +6,15 @@ public class GlowActivator : MonoBehaviour
 {
     public Glow_ProjectileControl glowProjectile;
     public BoxCollider2D bc;
+    GameObject[] camBoxCollider;
+
+    private void Start() {
+        camBoxCollider = GameObject.FindGameObjectsWithTag("CamSwitcher");//finds all the gameObjects that have the tag Camswitcher
+        foreach (GameObject col in camBoxCollider)
+        {
+            Physics2D.IgnoreCollision(col.GetComponent<BoxCollider2D>(), GetComponent<Collider2D>());//ignores all the gameObjects collison with the tag CamSwitcher
+        }
+    }
 
     private void OnEnable() {
         glowProjectile = GameObject.FindGameObjectWithTag("ProjectileController").GetComponent<Glow_ProjectileControl>();
