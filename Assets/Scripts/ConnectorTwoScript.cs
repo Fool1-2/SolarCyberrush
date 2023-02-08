@@ -31,7 +31,7 @@ public class ConnectorTwoScript : MonoBehaviour
 
             if (wireScript.wireCon == false)
             {
-
+                
                 gameObject.GetComponent<Renderer>().material.color = Color.white;
             }
         }

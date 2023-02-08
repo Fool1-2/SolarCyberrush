@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConnectorThreeScript : MonoBehaviour
+public class ConnectorFiveScript : MonoBehaviour
 {
-    public GameObject connectorThree;
+    public GameObject connectorFive;
     public bool randomFinished;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(ColorCoroutine());
-        connectorThree = GameObject.FindWithTag("wireThree");
-        connectorThree.GetComponent<wireThreeScript>();
+        connectorFive = GameObject.FindWithTag("wireFive");
+        connectorFive.GetComponent<wireFiveScript>();
         randomFinished = false;
     }
 
@@ -20,14 +20,14 @@ public class ConnectorThreeScript : MonoBehaviour
     {
         if (randomFinished == true)
         {
-            if (wireThreeScript.wireCon == true)
+            if (wireFiveScript.wireCon == true)
             {
-                gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                gameObject.GetComponent<Renderer>().material.color = Color.magenta;
 
             }
 
 
-            if (wireThreeScript.wireCon == false)
+            if (wireFiveScript.wireCon == false)
             {
 
                 gameObject.GetComponent<Renderer>().material.color = Color.white;
@@ -46,15 +46,15 @@ public class ConnectorThreeScript : MonoBehaviour
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.blue;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.red;
+        gameObject.GetComponent<Renderer>().material.color = Color.yellow;
         yield return new WaitForSeconds(1);
         gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.blue;
+        gameObject.GetComponent<Renderer>().material.color = Color.gray;
+        yield return new WaitForSeconds(1);
+        gameObject.GetComponent<Renderer>().material.color = Color.cyan;
+        yield return new WaitForSeconds(1);
+        gameObject.GetComponent<Renderer>().material.color = Color.magenta;
         yield return new WaitForSeconds(1);
         gameObject.GetComponent<Renderer>().material.color = Color.white;
         yield return new WaitForSeconds(1);
@@ -67,4 +67,3 @@ public class ConnectorThreeScript : MonoBehaviour
     }
 
 }
-

@@ -43,15 +43,15 @@ public class ConnectorOneScript : MonoBehaviour
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.blue;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.blue;
+        gameObject.GetComponent<Renderer>().material.color = Color.green;
         yield return new WaitForSeconds(1);
         gameObject.GetComponent<Renderer>().material.color = Color.gray;
+        yield return new WaitForSeconds(1);
+        gameObject.GetComponent<Renderer>().material.color = Color.blue;
+        yield return new WaitForSeconds(1);
+        gameObject.GetComponent<Renderer>().material.color = Color.green;
+        yield return new WaitForSeconds(1);
+        gameObject.GetComponent<Renderer>().material.color = Color.cyan;
         yield return new WaitForSeconds(1);
         gameObject.GetComponent<Renderer>().material.color = Color.white;
         randomFinished = true; ;

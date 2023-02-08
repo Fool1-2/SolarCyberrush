@@ -19,6 +19,13 @@ TagManager:
   - wireTwo
   - wireThree
   - wall
+  - Border
+  - ConnectorSeven
+  - ConnectorEight
+  - ConnectorNine
+  - ConnectorTen
+  - wireFour
+  - wireFive
   layers:
   - Default
   - TransparentFX
