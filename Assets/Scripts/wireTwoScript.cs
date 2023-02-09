@@ -118,12 +118,16 @@ public class wireTwoScript : MonoBehaviour
     IEnumerator ColCoroutine()
     {
 
+        if (boxCollider.isTrigger == false)
+        {
+            yield return new WaitForSeconds(1);
+            boxCollider.isTrigger = true;
 
-        yield return new WaitForSeconds(1);
-        boxCollider.isTrigger = true;
+            yield return null;
+        }
 
-        yield return null;
     }
+
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "ConnectorThree")
