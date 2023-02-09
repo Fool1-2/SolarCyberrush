@@ -35,6 +35,10 @@ public class wireTwoScript : MonoBehaviour
         conFour = false;
     }
 
+    public void LoadGame()
+    {
+
+    }
     private void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
