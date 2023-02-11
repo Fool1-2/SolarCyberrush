@@ -16,6 +16,7 @@ public class MovePipe : MonoBehaviour
     private void Start()
     {
         mouseOn = false;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()

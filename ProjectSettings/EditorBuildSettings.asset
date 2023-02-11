@@ -11,10 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/L1F2.unity
     guid: b45f2cf64a0544da8b968c316c03879f
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Slide Puzzle 1.unity
+    guid: 19fd598bdb9056e4c9771ac97c222396
   - enabled: 1
     path: Assets/Scenes/WirePuzzleScene.unity
     guid: bde508f2db67ff1489b82f4178f320f1
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
