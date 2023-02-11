@@ -120,11 +120,23 @@ public class wireFiveScript : MonoBehaviour
     IEnumerator ColCoroutine()
     {
 
+        if (boxCollider.isTrigger == false)
+        {
+            yield return new WaitForSeconds(1);
+            boxCollider.isTrigger = true;
 
-        yield return new WaitForSeconds(1);
-        boxCollider.isTrigger = true;
+            yield return null;
+        }
 
-        yield return null;
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
+        {
+            boxCollider.isTrigger = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
+            Debug.Log("Collision");// test collision works with log message
+        }
     }
 
     // 

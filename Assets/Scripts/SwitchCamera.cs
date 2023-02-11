@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwitchCamera : MonoBehaviour
 {
     Vector2 smoothPosition;
-    Transform camTransform;
+    Transform camTransform;// constrols camera transform
     public bool isMoving;
     public float camMoveSpeed;
     
