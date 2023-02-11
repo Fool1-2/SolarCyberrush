@@ -19,6 +19,9 @@ TagManager:
   - wireTwo
   - wireThree
   - wall
+  - LightObj
+  - Border
+  - CamSwitcher
   - Border
   - ConnectorSeven
   - ConnectorEight
@@ -35,9 +38,9 @@ TagManager:
   - UI
   - Ground
   - canPoss
+  - NonPossGround
   - 
-  - 
-  - 
+  - Background
   - 
   - 
   - 

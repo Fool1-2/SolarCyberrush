@@ -120,11 +120,14 @@ public class wireScript : MonoBehaviour
     IEnumerator ColCoroutine()
     {
 
+        if (boxCollider.isTrigger == false)
+        {
+            yield return new WaitForSeconds(1);
+            boxCollider.isTrigger = true;
 
-        yield return new WaitForSeconds(1);
-        boxCollider.isTrigger = true;
+            yield return null;
+        }
 
-        yield return null;
     }
 
     // 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RobotScript : MonoBehaviour, ILightAbility
 {
-    public static bool isRobotActive;
+    public bool isRobotActive;
     public bool isAbletoMove;
     Rigidbody2D rb;
     // Start is called before the first frame update
@@ -16,11 +16,7 @@ public class RobotScript : MonoBehaviour, ILightAbility
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))//when space is pressed activates the robot and turns on the move bool.
-        {
-            isRobotActive = true;
-            isAbletoMove = true;
-        }
+        
     }
     private void FixedUpdate()
     {
@@ -44,10 +40,12 @@ public class RobotScript : MonoBehaviour, ILightAbility
         }
     }
     private void OnTriggerStay2D(Collider2D other) {
-        if (other.gameObject.tag == "Floor")// if the robot touhes the floor it will stop moving.
+        if (other.gameObject.tag == "Light")// if the robot touhes the floor it will stop moving.
         {
-            isAbletoMove = false;
+            ActivatePower();
         }
+
+        
     }
 
     public void ActivatePower()

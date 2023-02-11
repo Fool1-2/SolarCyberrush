@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class ConnectorTwoScript : MonoBehaviour
@@ -25,6 +26,14 @@ public class ConnectorTwoScript : MonoBehaviour
             if (wireScript.wireCon == true)
             {
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
+
+            }
+
+            if (wireScript.wireCon == true && wireTwoScript.wireCon == true && wireThreeScript.wireCon == true && wireFourScript.wireCon == true && wireFiveScript.wireCon == true)
+            {
+
+                SceneManager.LoadScene(0);
+                Debug.Log("ChangeNOW");
 
             }
 
