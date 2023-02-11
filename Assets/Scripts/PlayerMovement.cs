@@ -25,9 +25,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rb.bodyType = RigidbodyType2D.Dynamic;
         if (!Glow.isGlowActive)
         {
-            rb.bodyType = RigidbodyType2D.Dynamic;
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded())//checks if player has pressed space and is on the ground before jumping
             {   
@@ -36,8 +36,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.velocity = Vector2.zero;
-            
+            rb.velocity = new Vector2(0,-1);
+            rb.inertia = 0;
         }
 
         if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isPossessing)
+        if (!isPossessing && !Glow.isGlowActive)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by 
         }

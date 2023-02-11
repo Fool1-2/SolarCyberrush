@@ -10,6 +10,8 @@ public class GrateScript : MonoBehaviour
     public static bool slidePuzzleCompleted;
     public TMP_Text promptText;
     public string curText = "";
+    bool ishere;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -21,15 +23,16 @@ public class GrateScript : MonoBehaviour
     void Update()
     {
         promptText.text = curText;
-
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        if (Input.GetKeyDown(KeyCode.M))
         {
+            slidePuzzleCompleted = true;
+        }
+        if (ishere)
+        { 
+            Debug.Log("Here");
             if (slidePuzzleCompleted)
             {
-                curText = "Press E to Crawl to the Exit"; 
+                curText = "Press E to Crawl to the Exit";
             }
             else
             {
@@ -40,17 +43,33 @@ public class GrateScript : MonoBehaviour
             {
                 if (slidePuzzleCompleted)
                 {
-                    collision.gameObject.GetComponent<Transform>().position = new Vector3(20, -4, 0);
+                    player.GetComponent<Transform>().position = new Vector3(20, -4, 0);
                 }
                 else
                 {
                     SceneManager.LoadScene(2);
                 }
             }
+            
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ishere = true;
+        if (collision.gameObject.tag == "Player")
+        {
+            player = collision.gameObject;
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        //Bugged
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("left");
+        ishere = false;
         promptText.text = "";
+
     }
 }
