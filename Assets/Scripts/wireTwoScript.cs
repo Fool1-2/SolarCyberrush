@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
 [RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
@@ -33,6 +34,7 @@ public class wireTwoScript : MonoBehaviour
         // Debug.Log("Hello world");
         conThree = false;
         conFour = false;
+        wireCon = false;// if 1 port is false the wire is not connected 
     }
 
     public void LoadGame()
@@ -127,7 +129,18 @@ public class wireTwoScript : MonoBehaviour
         }
 
     }
-
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
+        {
+            boxCollider.isTrigger = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
+            Debug.Log("Collision");// test collision works with log message
+            conThree = false;
+            conFour = false;
+            wireCon = false;
+        }
+    }
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "ConnectorThree")
