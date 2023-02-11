@@ -33,6 +33,8 @@ public class wireFiveScript : MonoBehaviour
         // Debug.Log("Hello world");
         conNin = false;// wire is not connected to port
         conTen = false;// wire is not connected to port
+        wireCon = false;// if 1 port is false the wire is not connected 
+
 
     }
 
@@ -136,6 +138,9 @@ public class wireFiveScript : MonoBehaviour
             boxCollider.isTrigger = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
             Debug.Log("Collision");// test collision works with log message
+            wireCon = false;
+            conNin = false;// no longer connected to  port
+            conTen = false;
         }
     }
 

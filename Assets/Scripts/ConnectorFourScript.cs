@@ -6,6 +6,7 @@ public class ConnectorFourScript : MonoBehaviour
 {
     public GameObject connectorFour;
     public bool randomFinished;
+    public Sprite spriteOne, spriteTwo;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,7 @@ public class ConnectorFourScript : MonoBehaviour
         connectorFour = GameObject.FindWithTag("wireFour");
         connectorFour.GetComponent<wireFourScript>();
         randomFinished = false;
+        GetComponent<SpriteRenderer>().sprite = spriteOne;
     }
 
     // Update is called once per frame
@@ -22,7 +24,8 @@ public class ConnectorFourScript : MonoBehaviour
         {
             if (wireFourScript.wireCon == true)
             {
-                gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+                GetComponent<SpriteRenderer>().sprite = spriteTwo;
+
 
             }
 
@@ -30,7 +33,7 @@ public class ConnectorFourScript : MonoBehaviour
             if (wireFourScript.wireCon == false)
             {
 
-                gameObject.GetComponent<Renderer>().material.color = Color.white;
+                GetComponent<SpriteRenderer>().sprite = spriteOne;
             }
         }
 
@@ -46,18 +49,7 @@ public class ConnectorFourScript : MonoBehaviour
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.black;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.green;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.gray;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.white;
-        yield return new WaitForSeconds(1);
+
         randomFinished = true; ;
         yield return null;
 

@@ -6,12 +6,14 @@ public class ConnectorFiveScript : MonoBehaviour
 {
     public GameObject connectorFive;
     public bool randomFinished;
+    public Sprite spriteOne, spriteTwo;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(ColorCoroutine());
         connectorFive = GameObject.FindWithTag("wireFive");
         connectorFive.GetComponent<wireFiveScript>();
+        GetComponent<SpriteRenderer>().sprite = spriteOne;
         randomFinished = false;
     }
 
@@ -22,7 +24,8 @@ public class ConnectorFiveScript : MonoBehaviour
         {
             if (wireFiveScript.wireCon == true)
             {
-                gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+                GetComponent<SpriteRenderer>().sprite = spriteTwo;
+
 
             }
 
@@ -30,7 +33,7 @@ public class ConnectorFiveScript : MonoBehaviour
             if (wireFiveScript.wireCon == false)
             {
 
-                gameObject.GetComponent<Renderer>().material.color = Color.white;
+                GetComponent<SpriteRenderer>().sprite = spriteOne;
             }
         }
 
@@ -46,18 +49,7 @@ public class ConnectorFiveScript : MonoBehaviour
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.magenta;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.gray;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.magenta;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.white;
-        yield return new WaitForSeconds(1);
+
         randomFinished = true; ;
         yield return null;
 

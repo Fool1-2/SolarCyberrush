@@ -37,6 +37,7 @@ public class wireThreeScript : MonoBehaviour
 
         // Debug.Log("Hello world");
         conFive = false;
+        wireCon = false;
         conSix = false;
     }
 
@@ -129,6 +130,9 @@ public class wireThreeScript : MonoBehaviour
             boxCollider.isTrigger = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
             Debug.Log("Collision");// test collision works with log message
+            conFive = false;
+            wireCon = false;
+            conSix = false;
         }
     }
     IEnumerator ColCoroutine()
