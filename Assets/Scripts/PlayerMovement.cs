@@ -17,6 +17,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
+        if (!GrateScript.slidePuzzleCompleted)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
     // Update is called once per frame
     void Update()
