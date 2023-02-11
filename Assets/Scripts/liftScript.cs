@@ -17,8 +17,8 @@ public class liftScript : MonoBehaviour
     {
        
         liftTransform = gameObject.transform;
-        VectorDown = new Vector2(-4.25f, -9);
-        VectorUp = new Vector2(-4.25f, 7);
+        VectorDown = new Vector2(-6.5f, -8);
+        VectorUp = new Vector2(-6.5f, 4.3f);
     }
 
     // Update is called once per frame

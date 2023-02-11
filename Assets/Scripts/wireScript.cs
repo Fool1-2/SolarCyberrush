@@ -53,7 +53,7 @@ public class wireScript : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 //float distance = Vector2.Distance(boxSize, mousePos);
-                transform.localScale = new Vector2(mousePos.x, boxSize.y);
+                transform.localScale = new Vector2(boxSize.x, mousePos.y);
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -107,14 +107,30 @@ public class wireScript : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
             Debug.Log("Collision");// test collision works with log message
         }
+
         if (collision.gameObject.tag == "wall")
         {
+            StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
             Debug.Log("Collision");
+
         }
+
+    }
+    IEnumerator ColCoroutine()
+    {
+
+        if (boxCollider.isTrigger == false)
+        {
+            yield return new WaitForSeconds(1);
+            boxCollider.isTrigger = true;
+
+            yield return null;
+        }
+
     }
 
-   // 
+    // 
     void OnTriggerExit2D(Collider2D collision)// when wire exits collision box
     {
         if (collision.gameObject.tag == "ConnecterOne")// if exit port 1 collision box

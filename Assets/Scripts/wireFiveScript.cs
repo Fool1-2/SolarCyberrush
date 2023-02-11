@@ -53,7 +53,7 @@ public class wireFiveScript : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 //float distance = Vector2.Distance(boxSize, mousePos);
-                transform.localScale = new Vector2(mousePos.x, boxSize.y);
+                transform.localScale = new Vector2(boxSize.x, mousePos.y);
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -107,10 +107,35 @@ public class wireFiveScript : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
             Debug.Log("Collision");// test collision works with log message
         }
+
         if (collision.gameObject.tag == "wall")
         {
+            StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
             Debug.Log("Collision");
+
+        }
+
+    }
+    IEnumerator ColCoroutine()
+    {
+
+        if (boxCollider.isTrigger == false)
+        {
+            yield return new WaitForSeconds(1);
+            boxCollider.isTrigger = true;
+
+            yield return null;
+        }
+
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
+        {
+            boxCollider.isTrigger = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
+            Debug.Log("Collision");// test collision works with log message
         }
     }
 
