@@ -6,6 +6,7 @@ public class ConnectorOneScript : MonoBehaviour
 {
     public GameObject connectorTwo;
     public bool randomFinished;
+    public Sprite spriteOne, spriteTwo;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,7 @@ public class ConnectorOneScript : MonoBehaviour
         connectorTwo = GameObject.FindWithTag("wireTwo"); // find gameobject with tag wireTwo
         connectorTwo.GetComponent<wireTwoScript>();// find wireTwo script
         randomFinished = false;
+        GetComponent<SpriteRenderer>().sprite = spriteOne;
     }
 
     // Update is called once per frame
@@ -22,7 +24,8 @@ public class ConnectorOneScript : MonoBehaviour
         {
             if (wireTwoScript.wireCon == true)
             {
-                gameObject.GetComponent<Renderer>().material.color = Color.green;
+                GetComponent<SpriteRenderer>().sprite = spriteTwo;
+
 
             }
 
@@ -30,7 +33,7 @@ public class ConnectorOneScript : MonoBehaviour
             if (wireTwoScript.wireCon == false)
             {
 
-                gameObject.GetComponent<Renderer>().material.color = Color.white;
+                GetComponent<SpriteRenderer>().sprite = spriteOne;
             }
         }
     }
@@ -43,18 +46,8 @@ public class ConnectorOneScript : MonoBehaviour
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.green;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.gray;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.blue;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.green;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.cyan;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.white;
-        randomFinished = true; ;
+
+        randomFinished = true; 
         yield return null;
     }
 }

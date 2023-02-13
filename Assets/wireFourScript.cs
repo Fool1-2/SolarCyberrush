@@ -34,6 +34,7 @@ public class wireFourScript : MonoBehaviour
         // Debug.Log("Hello world");
         conSev = false;// wire is not connected to port
         conEig = false;// wire is not connected to port
+        wireCon = false;// if 1 port is false the wire is not connected 
 
     }
 
@@ -130,6 +131,9 @@ public class wireFourScript : MonoBehaviour
             boxCollider.isTrigger = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
             Debug.Log("Collision");// test collision works with log message
+            conSev = false;// no longer connected to  port
+            conEig = false;
+            wireCon = false;// if 1 port is false the wire is not connected 
         }
     }
     IEnumerator ColCoroutine()
