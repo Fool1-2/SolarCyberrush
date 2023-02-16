@@ -124,7 +124,6 @@ public class TeleObj : MonoBehaviour
             elapsed += Time.deltaTime;
         }
         isNotRunningShake = true;
-        Debug.Log("Shook");
         yield return null;
     }
     private void OnCollisionEnter2D(Collision2D collision)

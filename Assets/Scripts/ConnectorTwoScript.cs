@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class ConnectorTwoScript : MonoBehaviour
 {
     public GameObject connectorOne;
     public bool randomFinished;
+    public Sprite spriteOne, spriteTwo;
+    public static bool wirePuzzleCompleted;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +18,8 @@ public class ConnectorTwoScript : MonoBehaviour
         connectorOne = GameObject.FindWithTag("wireOne");// find gaemobject with tag wireOne
         connectorOne.GetComponent<wireScript>();// get that script
         randomFinished = false;
+        GetComponent<SpriteRenderer>().sprite = spriteOne;
+
     }
 
     // Update is called once per frame
@@ -24,7 +29,16 @@ public class ConnectorTwoScript : MonoBehaviour
         {
             if (wireScript.wireCon == true)
             {
-                gameObject.GetComponent<Renderer>().material.color = Color.red;
+                GetComponent<SpriteRenderer>().sprite = spriteTwo;
+               
+
+            }
+
+            if (wireScript.wireCon == true && wireTwoScript.wireCon == true && wireThreeScript.wireCon == true && wireFourScript.wireCon == true && wireFiveScript.wireCon == true)
+            {
+                Debug.Log("ChangeNOW");
+                wirePuzzleCompleted = true;
+                SceneManager.LoadScene(0);
 
             }
 
@@ -32,7 +46,7 @@ public class ConnectorTwoScript : MonoBehaviour
             if (wireScript.wireCon == false)
             {
 
-                gameObject.GetComponent<Renderer>().material.color = Color.white;
+                GetComponent<SpriteRenderer>().sprite = spriteOne;
             }
         }
     }
@@ -45,18 +59,8 @@ public class ConnectorTwoScript : MonoBehaviour
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(1);// wait for a secound and change color
-        gameObject.GetComponent<Renderer>().material.color = Color.red;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.black;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.magenta;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.red;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.green;
-        yield return new WaitForSeconds(1);
-        gameObject.GetComponent<Renderer>().material.color = Color.white;
-        randomFinished = true; ;
+
+        randomFinished = true; 
         yield return null;
     }
 }

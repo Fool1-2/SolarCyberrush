@@ -33,7 +33,8 @@ public class wireScript : MonoBehaviour
         // Debug.Log("Hello world");
         conOne = false;// wire is not connected to port
         conTwo = false;// wire is not connected to port
-       
+        wireCon = false;// if 1 port is false the wire is not connected 
+
     }
 
     private void Update()
@@ -53,7 +54,7 @@ public class wireScript : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 //float distance = Vector2.Distance(boxSize, mousePos);
-                transform.localScale = new Vector2(mousePos.x, boxSize.y);
+                transform.localScale = new Vector2(boxSize.x, mousePos.y);
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -102,19 +103,46 @@ public class wireScript : MonoBehaviour
             wireCon = true;// wire is connected
             Debug.Log("Wire Connected");
         }
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree")// if collides with other wires
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFour")// if collides with other wires
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
             Debug.Log("Collision");// test collision works with log message
         }
+
         if (collision.gameObject.tag == "wall")
         {
+            StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
             Debug.Log("Collision");
+
         }
+
+    }
+    IEnumerator ColCoroutine()
+    {
+
+        if (boxCollider.isTrigger == false)
+        {
+            yield return new WaitForSeconds(1);
+            boxCollider.isTrigger = true;
+
+            yield return null;
+        }
+
     }
 
-   // 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
+        {
+            boxCollider.isTrigger = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
+            Debug.Log("Collision");// test collision works with log message
+            conOne = false;// no longer connected to  port
+            conTwo = false;
+            wireCon = false;// if 1 port is false the wire is not connected 
+        }
+    }
     void OnTriggerExit2D(Collider2D collision)// when wire exits collision box
     {
         if (collision.gameObject.tag == "ConnecterOne")// if exit port 1 collision box

@@ -16,15 +16,23 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask possessedLayer;
 
     private void Start() {
+        
         rb = GetComponent<Rigidbody2D>();
+        if (!GrateScript.slidePuzzleCompleted)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
     // Update is called once per frame
     void Update()
     {
-
-        if (!isPossessing)
+        if (Input.GetKeyDown(KeyCode.M))
         {
-            rb.bodyType = RigidbodyType2D.Dynamic;
+            GrateScript.slidePuzzleCompleted = true;
+        }
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        if (!Glow.isGlowActive)
+        {
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded())//checks if player has pressed space and is on the ground before jumping
             {   
@@ -33,8 +41,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.velocity = Vector2.zero;
-            
+            rb.velocity = new Vector2(0,-1);
+            rb.inertia = 0;
         }
 
         if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
@@ -53,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isPossessing)
+        if (!isPossessing && !Glow.isGlowActive)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by 
         }

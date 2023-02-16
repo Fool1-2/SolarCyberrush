@@ -19,7 +19,7 @@ public class Glow_ProjectileControl : MonoBehaviour
     public Light2D glowLight;
     public static bool isShot;
     [SerializeField]Color[] diffGlowColors;
-
+    
     private void OnEnable() {
         AutoReloadBullet();
         currentGlowBullet = transform.GetChild(0).gameObject;//When the script starts finds the controllers child and makes that the current bullet

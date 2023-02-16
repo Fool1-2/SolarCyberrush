@@ -20,6 +20,17 @@ TagManager:
   - wireThree
   - wall
   - LightObj
+  - Border
+  - CamSwitcher
+  - Border
+  - ConnectorSeven
+  - ConnectorEight
+  - ConnectorNine
+  - ConnectorTen
+  - wireFour
+  - wireFive
+  - WinBox
+  - Snappable
   layers:
   - Default
   - TransparentFX
@@ -30,9 +41,9 @@ TagManager:
   - Ground
   - canPoss
   - NonPossGround
-  - 
-  - 
-  - 
+  - Player
+  - Background
+  - SnapAble
   - 
   - 
   - 
