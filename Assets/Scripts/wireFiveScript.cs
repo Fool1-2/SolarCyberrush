@@ -20,6 +20,15 @@ public class wireFiveScript : MonoBehaviour
     public static bool conNin;// connector one
     public static bool conTen;// connector two
     public static bool wireCon;// is wire connected
+    public bool wireSelected;
+    public float yScale;
+    public float rotate;
+    public bool canRotate;
+    public bool canStretchUp;
+    public bool canStretchDown;
+    SpriteRenderer SR;
+    
+
 
 
 
@@ -33,8 +42,18 @@ public class wireFiveScript : MonoBehaviour
         // Debug.Log("Hello world");
         conNin = false;// wire is not connected to port
         conTen = false;// wire is not connected to port
-        wireCon = false;// if 1 port is false the wire is not connected 
+        wireCon = false;// if 1 port is false the wire is not connected
+        wireSelected = false;
+        gameObject.GetComponent<SpriteRenderer>();
+        boxSize.x = 5.338786f;
+        canStretchUp = true;
+        canStretchDown = true;
+        canRotate = true;
 
+        //gameObject.GetComponent<transform.localScale.y>();
+        yScale = transform.localScale.y;
+        
+        //Debug.Log(yScale);
 
     }
 
@@ -45,6 +64,14 @@ public class wireFiveScript : MonoBehaviour
         if (!mouseOn)//If the mouse is off turn the movement off.
         {
             rb.velocity = Vector2.zero;
+            wireSelected = false;
+            if (wireSelected == false)
+            {
+
+
+                GetComponent<SpriteRenderer>().color = Color.white;
+
+            }
         }
 
         if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
@@ -52,16 +79,86 @@ public class wireFiveScript : MonoBehaviour
             // float distance = Vector2.Distance(boxSize, mousePos);
             rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
             //   transform.localScale = new Vector2(distance,boxSize.y);
-            if (Input.GetKey(KeyCode.Space))
+            if (yScale >= 13)
             {
-                //float distance = Vector2.Distance(boxSize, mousePos);
-                transform.localScale = new Vector2(boxSize.x, mousePos.y);
+                canStretchUp = false;
+
+
             }
-            if (Input.GetKeyDown(KeyCode.W))
+            if (yScale <= 5)
+            {
+                canStretchDown = false;
+
+
+            }
+            if (yScale < 13)
+            {
+                canStretchUp = true;
+
+
+            }
+            if (yScale > 5)
+            {
+                canStretchDown = true;
+
+
+            }
+            if (canStretchUp == true)
+            {
+                if (Input.GetKey(KeyCode.W))
+                {
+                    //float distance = Vector2.Distance(boxSize, mousePos);
+                    transform.localScale = new Vector2(5.338786f, yScale);
+                    yScale += .01f;
+
+                }
+            }
+            if (canStretchDown == true)
+            {
+                if (Input.GetKey(KeyCode.S))
+                {
+                    //float distance = Vector2.Distance(boxSize, mousePos);
+                    transform.localScale = new Vector2(5.338786f, yScale);
+                    yScale -= 0.01f;
+                }
+
+
+            }
+
+            
+       
+
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 //checks if the script is enabled or disabled
                 rotat.enabled = !rotat.enabled;
 
+            }
+            if (wireSelected == true)
+            {
+
+
+                GetComponent<SpriteRenderer>().color = Color.yellow;
+
+            }
+
+            wireSelected = true;
+            if (canRotate == true)
+            {
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
+                    // rotate_Z -= 90;
+                    transform.rotation = Quaternion.Euler(0, 0, rotate);
+                    rotate += 1;
+                }
+                if (Input.GetKey(KeyCode.E))
+                {
+                    //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
+                    // rotate_Z -= 90;
+                    transform.rotation = Quaternion.Euler(0, 0, rotate);
+                    rotate -= 1;
+                }
             }
 
 
@@ -115,6 +212,10 @@ public class wireFiveScript : MonoBehaviour
             StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
             Debug.Log("Collision");
+            canRotate = false;
+            rotate = 0;
+            
+            transform.rotation = Quaternion.Euler(0, 0, 0);
 
         }
 
@@ -141,7 +242,26 @@ public class wireFiveScript : MonoBehaviour
             wireCon = false;
             conNin = false;// no longer connected to  port
             conTen = false;
+            //HingeJoint2D.enabled = true;
         }
+        if (collision.gameObject.tag == "wall")
+        {
+            canRotate = false;
+
+
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag == "wall")
+        {
+            canRotate = true;
+
+
+        }
+
     }
 
     // 
@@ -164,8 +284,10 @@ public class wireFiveScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "wall")
         {
+            
             boxCollider.isTrigger = true;
             Debug.Log("Collision");
+            canRotate = true;
         }
 
 
