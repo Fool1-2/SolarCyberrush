@@ -126,11 +126,13 @@ public class TeleObj : MonoBehaviour
         isNotRunningShake = true;
         yield return null;
     }
+    //These two combined break telekinesis when you're touching somethimg
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isPoss = false;
         PlayerMovement.isPossessing = false;
     }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         isPoss = false;
