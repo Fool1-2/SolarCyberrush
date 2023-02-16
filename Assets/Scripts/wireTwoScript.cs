@@ -21,6 +21,13 @@ public class wireTwoScript : MonoBehaviour
     public static bool conThree;
     public static bool conFour;
     public static bool wireCon;
+    public bool wireSelected;
+    public float yScale;
+    public float rotate;
+    public bool canRotate;
+    public bool canStretchUp;
+    public bool canStretchDown;
+    SpriteRenderer SR;
 
 
 
@@ -34,7 +41,12 @@ public class wireTwoScript : MonoBehaviour
         // Debug.Log("Hello world");
         conThree = false;
         conFour = false;
-        wireCon = false;// if 1 port is false the wire is not connected 
+        wireCon = false;// if 1 port is false the wire is not connected
+        boxSize.x = 5.338786f;
+        canStretchUp = true;
+        canStretchDown = true;
+        canRotate = true;
+        yScale = transform.localScale.y;
     }
 
     public void LoadGame()
@@ -47,7 +59,14 @@ public class wireTwoScript : MonoBehaviour
 
         if (!mouseOn)//If the mouse is off turn the movement off.
         {
-            rb.velocity = Vector2.zero;
+            wireSelected = false;
+            if (wireSelected == false)
+            {
+
+
+                GetComponent<SpriteRenderer>().color = Color.white;
+
+            }
         }
 
         if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
@@ -55,20 +74,87 @@ public class wireTwoScript : MonoBehaviour
             // float distance = Vector2.Distance(boxSize, mousePos);
             rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
             //   transform.localScale = new Vector2(distance,boxSize.y);
-            if (Input.GetKey(KeyCode.Space))
+            if (yScale >= 13)
             {
-                //float distance = Vector2.Distance(boxSize, mousePos);
-                transform.localScale = new Vector2(boxSize.x, mousePos.y);
+                canStretchUp = false;
+
+
             }
-            if (Input.GetKeyDown(KeyCode.W))
+            if (yScale <= 5)
+            {
+                canStretchDown = false;
+
+
+            }
+            if (yScale < 13)
+            {
+                canStretchUp = true;
+
+
+            }
+            if (yScale > 5)
+            {
+                canStretchDown = true;
+
+
+            }
+            if (canStretchUp == true)
+            {
+                if (Input.GetKey(KeyCode.W))
+                {
+                    //float distance = Vector2.Distance(boxSize, mousePos);
+                    transform.localScale = new Vector2(5.338786f, yScale);
+                    yScale += .01f;
+
+                }
+            }
+            if (canStretchDown == true)
+            {
+                if (Input.GetKey(KeyCode.S))
+                {
+                    //float distance = Vector2.Distance(boxSize, mousePos);
+                    transform.localScale = new Vector2(5.338786f, yScale);
+                    yScale -= 0.01f;
+                }
+
+
+            }
+
+
+
+
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 //checks if the script is enabled or disabled
                 rotat.enabled = !rotat.enabled;
 
             }
+            if (wireSelected == true)
+            {
 
 
+                GetComponent<SpriteRenderer>().color = Color.yellow;
 
+            }
+
+            wireSelected = true;
+            if (canRotate == true)
+            {
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
+                    // rotate_Z -= 90;
+                    transform.rotation = Quaternion.Euler(0, 0, rotate);
+                    rotate += 1;
+                }
+                if (Input.GetKey(KeyCode.E))
+                {
+                    //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
+                    // rotate_Z -= 90;
+                    transform.rotation = Quaternion.Euler(0, 0, rotate);
+                    rotate -= 1;
+                }
+            }
         }
 
     }
@@ -113,6 +199,10 @@ public class wireTwoScript : MonoBehaviour
             StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
             Debug.Log("Collision");
+            canRotate = false;
+            rotate = 0;
+
+            transform.rotation = Quaternion.Euler(0, 0, 0);
 
         }
 
@@ -140,6 +230,23 @@ public class wireTwoScript : MonoBehaviour
             conFour = false;
             wireCon = false;
         }
+        if (collision.gameObject.tag == "wall")
+        {
+            canRotate = false;
+
+
+        }
+    }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.tag == "wall")
+        {
+            canRotate = true;
+
+
+        }
+
     }
     void OnTriggerExit2D(Collider2D collision)
     {
@@ -161,8 +268,10 @@ public class wireTwoScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "wall")
         {
+
             boxCollider.isTrigger = true;
             Debug.Log("Collision");
+            canRotate = true;
         }
 
     }
