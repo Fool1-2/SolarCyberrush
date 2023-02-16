@@ -30,6 +30,7 @@ TagManager:
   - wireFour
   - wireFive
   - WinBox
+  - Snappable
   layers:
   - Default
   - TransparentFX
@@ -42,7 +43,7 @@ TagManager:
   - NonPossGround
   - Player
   - Background
-  - 
+  - SnapAble
   - 
   - 
   - 

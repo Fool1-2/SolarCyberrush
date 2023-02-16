@@ -18,7 +18,7 @@ public class InteractScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 interactEvent.Invoke();
-                GameObject.FindGameObjectWithTag("Player").SetActive(false);
+                PlayerMovement.isPossessing = true;
             }
         }
     }

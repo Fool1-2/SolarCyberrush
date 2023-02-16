@@ -15,6 +15,7 @@ public class SpawnPlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.O))
         {
             SceneManager.LoadScene(2);
+            PlayerMovement.isPossessing = false;
         }
         if (Input.GetKeyDown(KeyCode.P))
         {

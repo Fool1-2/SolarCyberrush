@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask possessedLayer;
 
     private void Start() {
+        
         rb = GetComponent<Rigidbody2D>();
         if (!GrateScript.slidePuzzleCompleted)
         {
@@ -25,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            GrateScript.slidePuzzleCompleted = true;
+        }
         rb.bodyType = RigidbodyType2D.Dynamic;
         if (!Glow.isGlowActive)
         {
