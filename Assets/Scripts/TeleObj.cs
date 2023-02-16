@@ -131,4 +131,9 @@ public class TeleObj : MonoBehaviour
         isPoss = false;
         PlayerMovement.isPossessing = false;
     }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        isPoss = false;
+        PlayerMovement.isPossessing = false;
+    }
 }
