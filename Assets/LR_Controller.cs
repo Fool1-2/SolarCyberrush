@@ -5,86 +5,106 @@ using UnityEngine;
 public class LR_Controller : MonoBehaviour
 {
     public Transform[] points;
+    public PipeControllerScript[] pipeCon;
     public Transform OPoint;
     public Transform CPoint;
-    public int currentPointNum;
-    public LR_Controller lr;
+    public List<LR_Controller> lr;
     public int pointsAmount;
     public float pointSize;
-    //public PipeControllerScript pipeCon;
     public bool iscon;
-    public GameObject TS;
+    public bool isDone;
+    [SerializeField]GameObject TS;
 
     private void Start() {
-        if (Vector2.Distance(transform.position, TS.transform.position) < 3.5f)
+        pointsAmount = points.Length - 1;
+        if (TS == null)
         {
-            TS.GetComponent<TestScrpt>().LR = this.GetComponent<LR_Controller>();
+            if (Vector2.Distance(transform.position, TS.transform.position) < 3.5f)
+            {
+                TS.GetComponent<TestScrpt>().LR = this.GetComponent<LR_Controller>();
+            }
+            return;
+        }
+    }
+    
+    private void Update() {
+        if (TS == null)
+        {
+            if (Vector2.Distance(transform.position, TS.transform.position) < 3.5f)
+            {
+                TS.GetComponent<TestScrpt>().LR = this.GetComponent<LR_Controller>();
+            }
+            return;
         }
 
-        pointsAmount = points.Length;
-    }
-
-    private void OnDrawGizmos() {
-        pointsAmount = points.Length;
-
-        if (!iscon)
+        if (pipeCon[0].isSnapped)
         {
-            foreach (Transform point in points)
-            {
-                Gizmos.color = Color.blue;
-                Gizmos.DrawWireSphere(point.position, pointSize);
-            }
-    
-            for (int i = 0; i < pointsAmount - 1; i++)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(points[i].position, points[i + 1].position);
-            }
+            OPoint = pipeCon[0].transform;
+            CPoint = pipeCon[0].snappableParent.transform;
         }
         else
         {
-            foreach (Transform point in lr.points)
+            OPoint = null;
+            CPoint = null;
+        }
+
+        if (pipeCon[1].isSnapped)
+        {
+            OPoint = pipeCon[1].transform;
+            CPoint = pipeCon[1].snappableParent.transform;
+        }
+        else
+        {
+            OPoint = null;
+            CPoint = null;
+        }
+
+
+
+    }
+
+    private void OnDrawGizmos() {
+        pointsAmount = points.Length - 1;
+
+
+        foreach (Transform gameObjectPoint in points)
+        {
+            if (points != null)
             {
-                for (int i = 0; i < points.Length; i++)
+                foreach (Transform point in points)
                 {
-                    if (Vector2.Distance(points[i].position, point.position) < 2)
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawWireSphere(point.position, pointSize);
+                }
+            
+                for (int i = 0; i < pointsAmount; i++)
+                {
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawLine(points[i].position, points[i + 1].position);
+                }
+
+                if(pipeCon[0].isSnapped)
+                {
+                    if (OPoint != null && CPoint != null)
                     {
-                        OPoint = points[i];
-                        CPoint = point;
                         Gizmos.color = Color.red;
                         Gizmos.DrawLine(OPoint.position, CPoint.position);
-                        break;
+                    }
+                }
+
+                if(pipeCon[1].isSnapped)
+                {
+                    if (OPoint != null && CPoint != null)
+                    {
+                        Gizmos.color = Color.red;
+                        Gizmos.DrawLine(OPoint.position, CPoint.position);
                     }
                 }
             }
-
-            foreach (Transform point in points)
+            else
             {
-                Gizmos.color = Color.blue;
-                Gizmos.DrawWireSphere(point.position, pointSize);
+                return;
             }
-    
-            for (int i = 0; i < pointsAmount - 1; i++)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(points[i].position, points[i + 1].position);
-            }
-        }
-    }
-
-    private void Update() {
-        if (Vector2.Distance(transform.position, TS.transform.position) < 3.5f)
-        {
-            TS.GetComponent<TestScrpt>().LR = this.GetComponent<LR_Controller>();
-        }
-    }
-
-    public void GetNextPoint(Transform currentPoint, Transform currentGameObject)
-    {
-        if (currentPoint == points[currentPointNum])
-        {
-            currentPoint = points[currentPointNum + 1];
-            
         }
     }
 }

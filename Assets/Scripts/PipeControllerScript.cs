@@ -7,55 +7,42 @@ using UnityEngine.Rendering.Universal;
 public class PipeControllerScript : MonoBehaviour
 {
     public bool isSnapped;
-    bool once;
-    public List<GameObject> snappableParent;
-    public int snappableParentNum;
+    public bool once;
+    public GameObject snappableParent;
     public Vector2 offSet;
     MovePipe movePipe;
     public Transform parentsTransform;
-    Light2D highlight;
-    public float lightStrength;
+    Animation anim;
 
     private void Start() {
         movePipe = GetComponentInParent<MovePipe>();
-        highlight = GetComponentInParent<Light2D>();
-        
+        anim = GetComponentInParent<Animation>();
     }
     private void Update() {
 
-        
-
         if (isSnapped)
         {
-            parentsTransform.position = (Vector2)snappableParent[snappableParentNum].transform.position + offSet;
+            parentsTransform.position = (Vector2)snappableParent.transform.position + offSet;
         }
         else
         {
             once = false;
         }
 
-        if (isSnapped && !movePipe.mouseOn && !snappableParent[snappableParentNum].GetComponentInParent<MovePipe>().mouseOn)
+        if (isSnapped && !movePipe.mouseOn && !snappableParent.GetComponentInParent<MovePipe>().mouseOn)
         {
-            if(!once)
+            if (!once)
             {
-                highlight.intensity = 0.20f;
-                highlight.intensity -= Time.deltaTime * lightStrength;
-                if (highlight.intensity <= 0)
-                {
-                    highlight.intensity = 0;
-                    once = true;
-                }
+                anim.Play();
+                once = true;
             }
         }
        
 
-        if (snappableParent.Capacity > 0)
+        if (movePipe.mouseOn)
         {
-            if (movePipe.mouseOn)
-            {
-                isSnapped = false;
-                snappableParent[snappableParentNum].GetComponent<PipeControllerScript>().isSnapped = false;
-            }
+            isSnapped = false;
+            snappableParent.GetComponent<PipeControllerScript>().isSnapped = false;
         }
     }
 
@@ -63,12 +50,8 @@ public class PipeControllerScript : MonoBehaviour
         if (other.gameObject.tag == "Snappable")
         {
             isSnapped = true;
-            if (!snappableParent.Contains(other.gameObject))
-            {
-                snappableParent.Add(other.gameObject);
-            }
-            snappableParentNum = snappableParent.IndexOf(other.gameObject);
-            offSet = parentsTransform.position - snappableParent[snappableParentNum].transform.position;
+            snappableParent = other.gameObject;
+            offSet = parentsTransform.position - snappableParent.transform.position;
         
         }
     }
@@ -76,7 +59,7 @@ public class PipeControllerScript : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "Snappable")
         {
-            if (!snappableParent[snappableParentNum].GetComponentInParent<MovePipe>().mouseOn)
+            if (!snappableParent.GetComponentInParent<MovePipe>().mouseOn)
             {
                 isSnapped = true;
             }
