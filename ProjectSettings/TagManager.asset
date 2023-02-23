@@ -31,6 +31,7 @@ TagManager:
   - wireFive
   - WinBox
   - Snappable
+  - LrObjects
   layers:
   - Default
   - TransparentFX
