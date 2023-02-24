@@ -29,9 +29,9 @@ TagManager:
   - ConnectorTen
   - wireFour
   - wireFive
-  - WinBox
   - Snappable
   - LrObjects
+  - WinObj
   layers:
   - Default
   - TransparentFX

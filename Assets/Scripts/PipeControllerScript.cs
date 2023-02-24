@@ -11,6 +11,7 @@ public class PipeControllerScript : MonoBehaviour
     public GameObject snappableParent;
     public Vector2 offSet;
     MovePipe movePipe;
+    MovePipe snapObjMovePipe;
     public Transform parentsTransform;
     Animation anim;
 
@@ -29,39 +30,92 @@ public class PipeControllerScript : MonoBehaviour
             once = false;
         }
 
-        if (isSnapped && !movePipe.mouseOn && !snappableParent.GetComponentInParent<MovePipe>().mouseOn)
+        if (snappableParent != null)
         {
-            if (!once)
+            if (isSnapped && snappableParent.GetComponent<PipeControllerScript>().isSnapped)
             {
-                anim.Play();
-                once = true;
+                if (!once)
+                {
+                    anim.Play();
+                    once = true;
+                }
             }
-        }
-       
 
-        if (movePipe.mouseOn)
-        {
-            isSnapped = false;
-            snappableParent.GetComponent<PipeControllerScript>().isSnapped = false;
-        }
-    }
+            if (movePipe != null && snappableParent.GetComponentInParent<MovePipe>() != null)
+            {
+                if (movePipe.mouseOn || snappableParent.GetComponentInParent<MovePipe>().mouseOn)
+                {
+                    isSnapped = false;
+                    snappableParent.GetComponent<PipeControllerScript>().isSnapped = false;
+                }
+            }
+            
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Snappable")
+            if (movePipe != null && snappableParent.GetComponentInParent<MovePipe>() == null)
+            {
+                if (movePipe.mouseOn)
+                {
+                    isSnapped = false;
+                    snappableParent.GetComponent<PipeControllerScript>().isSnapped = false;
+                }
+            }
+            
+        }
+        else
         {
-            isSnapped = true;
-            snappableParent = other.gameObject;
-            offSet = parentsTransform.position - snappableParent.transform.position;
-        
+            return;
         }
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "Snappable")
         {
-            if (!snappableParent.GetComponentInParent<MovePipe>().mouseOn)
+            if (movePipe != null)
             {
-                isSnapped = true;
+                if (!movePipe.mouseOn)
+                {
+                    snappableParent = other.gameObject;
+                    if (snappableParent != null && snappableParent.GetComponentInParent<MovePipe>() != null)
+                    {
+                        if (!movePipe.mouseOn && !snappableParent.GetComponentInParent<MovePipe>().mouseOn)
+                        {
+                            isSnapped = true;
+                            offSet = parentsTransform.position - snappableParent.transform.position;
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                    if (snappableParent != null && snappableParent.GetComponentInParent<MovePipe>() == null)
+                    {
+                        if (!movePipe.mouseOn)
+                        {
+                            isSnapped = true;
+                            offSet = parentsTransform.position - snappableParent.transform.position;
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                snappableParent = other.gameObject;
+                if (!snappableParent.GetComponentInParent<MovePipe>().mouseOn)
+                {
+                    if (snappableParent != null)
+                    {
+                        if (!snappableParent.GetComponentInParent<MovePipe>().mouseOn)
+                        {
+                            isSnapped = true;
+                            offSet = parentsTransform.position - snappableParent.transform.position;
+                        }
+                    }
+                }
             }
         }
     }
