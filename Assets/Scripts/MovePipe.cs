@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
-[RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
+//[RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
 public class MovePipe : MonoBehaviour
 {
     //Turn the positon of in constraints in rigidbody to limit the axis its on
     
-    [SerializeField]bool mouseOn;
+    public bool mouseOn;
     [SerializeField]Rigidbody2D rb;
     Vector2 mousePos;
     
@@ -16,6 +16,7 @@ public class MovePipe : MonoBehaviour
     private void Start()
     {
         mouseOn = false;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()

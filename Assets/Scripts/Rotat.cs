@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Rotat : MonoBehaviour
 {
+    public float rotat;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,11 +16,19 @@ public class Rotat : MonoBehaviour
     {
         Vector2 mouse_Pos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.Q))
         {
-            float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
-            rotate_Z -= 90;
-            transform.rotation = Quaternion.Euler(0, 0, rotate_Z);
+            //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
+           // rotate_Z -= 90;
+            transform.rotation = Quaternion.Euler(0, 0, rotat);
+            rotat += 1;
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
+            // rotate_Z -= 90;
+            transform.rotation = Quaternion.Euler(0, 0, rotat);
+            rotat -= 1;
         }
     }
 }
