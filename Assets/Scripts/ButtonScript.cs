@@ -5,6 +5,7 @@ using UnityEngine;
 public class ButtonScript : MonoBehaviour
 {
     public bool isPressed;
+    public AudioClip buttonPressSound;
     Vector2 pressedPos, unpressedPos;
 
     Transform tf;
@@ -18,6 +19,7 @@ public class ButtonScript : MonoBehaviour
         pressedPos = new Vector2(0, 0.5f);
         unpressedPos = new Vector2(0, 0.6f);
         ScaleChange = new Vector3(0, 0.1f, 0);
+        //buttonPressSound = GetComponent<AudioClip>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,8 @@ public class ButtonScript : MonoBehaviour
         if (isPressed)
         {
             tf.localScale += ScaleChange;
+            AudioSource.PlayClipAtPoint(buttonPressSound, ScaleChange);
+
         }
         isPressed = false;
         transform.localPosition = unpressedPos;
