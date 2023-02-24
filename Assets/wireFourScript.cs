@@ -26,6 +26,8 @@ public class wireFourScript : MonoBehaviour
     public bool canRotate;
     public bool canStretchUp;
     public bool canStretchDown;
+    public bool hitWall;
+    public float xScale;
     SpriteRenderer SR;
 
 
@@ -47,7 +49,10 @@ public class wireFourScript : MonoBehaviour
         canStretchUp = true;
         canStretchDown = true;
         canRotate = true;
+        rotate = -147.912f;
         yScale = transform.localScale.y;
+        xScale = transform.localScale.x;
+
 
     }
 
@@ -73,37 +78,39 @@ public class wireFourScript : MonoBehaviour
             // float distance = Vector2.Distance(boxSize, mousePos);
             rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
             //   transform.localScale = new Vector2(distance,boxSize.y);
-            if (yScale >= 13)
+            if (yScale >= 10)
             {
                 canStretchUp = false;
 
 
             }
-            if (yScale <= 5)
+            if (yScale < 5 || hitWall == true)
             {
                 canStretchDown = false;
 
 
             }
-            if (yScale < 13)
+            if (yScale < 10 && hitWall == false)
             {
                 canStretchUp = true;
 
 
             }
-            if (yScale > 5)
+            if (yScale >= 5 && hitWall == false)
             {
                 canStretchDown = true;
 
 
             }
+
+
             if (canStretchUp == true)
             {
                 if (Input.GetKey(KeyCode.W))
                 {
                     //float distance = Vector2.Distance(boxSize, mousePos);
-                    transform.localScale = new Vector2(5.338786f, yScale);
-                    yScale += .01f;
+                    transform.localScale = new Vector2(xScale, yScale);
+                    yScale += 0.01f;
 
                 }
             }
@@ -112,7 +119,7 @@ public class wireFourScript : MonoBehaviour
                 if (Input.GetKey(KeyCode.S))
                 {
                     //float distance = Vector2.Distance(boxSize, mousePos);
-                    transform.localScale = new Vector2(5.338786f, yScale);
+                    transform.localScale = new Vector2(xScale, yScale);
                     yScale -= 0.01f;
                 }
 
@@ -144,18 +151,16 @@ public class wireFourScript : MonoBehaviour
                     //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
                     // rotate_Z -= 90;
                     transform.rotation = Quaternion.Euler(0, 0, rotate);
-                    rotate += 1;
+                    rotate += 0.6f;
                 }
                 if (Input.GetKey(KeyCode.E))
                 {
                     //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
                     // rotate_Z -= 90;
                     transform.rotation = Quaternion.Euler(0, 0, rotate);
-                    rotate -= 1;
+                    rotate -= 0.6f;
                 }
             }
-
-
         }
 
     }
@@ -209,9 +214,11 @@ public class wireFourScript : MonoBehaviour
             boxCollider.isTrigger = false;
             Debug.Log("Collision");
             canRotate = false;
-            rotate = 0;
-
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            // rotate = 0;
+            canStretchUp = false;
+            canStretchDown = false;
+            hitWall = true;
+            //transform.rotation = Quaternion.Euler(0, 0, 0);
 
         }
 
@@ -226,12 +233,17 @@ public class wireFourScript : MonoBehaviour
             conSev = false;// no longer connected to  port
             conEig = false;
             wireCon = false;// if 1 port is false the wire is not connected
-            if (collision.gameObject.tag == "wall")
-            {
-                canRotate = false;
+
+        }
+
+        if (collision.gameObject.tag == "wall")
+        {
+            canRotate = false;
+            canStretchUp = false;
+            canStretchDown = false;
+            hitWall = true;
 
 
-            }
         }
     }
     IEnumerator ColCoroutine()
@@ -253,6 +265,9 @@ public class wireFourScript : MonoBehaviour
         if (collision.gameObject.tag == "wall")
         {
             canRotate = true;
+            canStretchUp = true;
+            canStretchDown = true;
+            hitWall = false;
 
 
         }
@@ -278,10 +293,12 @@ public class wireFourScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "wall")
         {
-
+            hitWall = false;
             boxCollider.isTrigger = true;
             Debug.Log("Collision");
             canRotate = true;
+            canStretchUp = true;
+            canStretchDown = true;
         }
 
 

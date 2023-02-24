@@ -645,10 +645,12 @@ MonoBehaviour:
   EndObject: {fileID: 0}
   wireSelected: 0
   yScale: 0
+  xScale: 0
   rotate: 0
   canRotate: 0
   canStretchUp: 0
   canStretchDown: 0
+  hitWall: 0
 --- !u!114 &347769884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,11 +876,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.8
+      value: -7.82
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.04
+      value: 1.97
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -958,9 +960,11 @@ MonoBehaviour:
   EndObject: {fileID: 0}
   wireSelected: 0
   yScale: 0
+  xScale: 0
   rotate: 0
   canRotate: 0
   canStretchUp: 0
+  hitWall: 0
   canStretchDown: 0
 --- !u!114 &666505493
 MonoBehaviour:
@@ -1064,7 +1068,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -2.0923734, y: -0.010722935}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1075,7 +1079,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.2156477, y: 0.9785541}
   m_EdgeRadius: 0
 --- !u!1001 &698404918
 PrefabInstance:
@@ -2051,7 +2055,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.29206562}
+  m_Offset: {x: -0.07193148, y: 0.52278304}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2062,7 +2066,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.5841312}
+  m_Size: {x: 1.1438622, y: 1.1226964}
   m_EdgeRadius: 0
 --- !u!1 &1359692554 stripped
 GameObject:
@@ -2663,10 +2667,12 @@ MonoBehaviour:
   EndObject: {fileID: 0}
   wireSelected: 0
   yScale: 0
+  xScale: 0
   rotate: 0
   canRotate: 0
   canStretchUp: 0
   canStretchDown: 0
+  hitWall: 0
 --- !u!114 &1752639733
 MonoBehaviour:
   m_ObjectHideFlags: 0
