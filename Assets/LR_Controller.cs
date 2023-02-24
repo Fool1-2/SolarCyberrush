@@ -13,52 +13,60 @@ public class LR_Controller : MonoBehaviour
     public float pointSize;
     public bool iscon;
     public bool isDone;
+    bool isColliding;
     [SerializeField]GameObject TS;
 
     private void Start() {
         pointsAmount = points.Length - 1;
-        if (TS == null)
-        {
-            if (Vector2.Distance(transform.position, TS.transform.position) < 3.5f)
-            {
-                TS.GetComponent<TestScrpt>().LR = this.GetComponent<LR_Controller>();
-            }
-            return;
-        }
+        
     }
-    
+
     private void Update() {
-        if (TS == null)
+
+        if (TS != null)
         {
-            if (Vector2.Distance(transform.position, TS.transform.position) < 3.5f)
+            if (TS.GetComponent<TestScrpt>().LR == this.GetComponent<LR_Controller>())
             {
-                TS.GetComponent<TestScrpt>().LR = this.GetComponent<LR_Controller>();
+                if (pipeCon[0].isSnapped)
+                {
+                    if (!pipeCon[0].snappableParent.GetComponentInParent<LR_Controller>().isDone)
+                    {
+                        OPoint = pipeCon[0].transform;
+                        CPoint = pipeCon[0].snappableParent.transform;
+                    }
+                }
+
+                if (pipeCon[1].isSnapped)
+                {
+                    if (!pipeCon[1].snappableParent.GetComponentInParent<LR_Controller>().isDone)
+                    {
+                        OPoint = pipeCon[1].transform;
+                        CPoint = pipeCon[1].snappableParent.transform;
+                    }
+                }
             }
+        }
+        else
+        {
             return;
         }
 
-        if (pipeCon[0].isSnapped)
-        {
-            OPoint = pipeCon[0].transform;
-            CPoint = pipeCon[0].snappableParent.transform;
-        }
-        else
+        if (!pipeCon[1].isSnapped && !pipeCon[0].isSnapped)
         {
             OPoint = null;
             CPoint = null;
         }
 
-        if (pipeCon[1].isSnapped)
+        if (!isDone)
         {
-            OPoint = pipeCon[1].transform;
-            CPoint = pipeCon[1].snappableParent.transform;
+            if (OPoint != null)
+            {
+                if (TS.transform.position == OPoint.position)
+                {
+                    isDone = true;
+                }
+            }
         }
-        else
-        {
-            OPoint = null;
-            CPoint = null;
-        }
-
 
 
     }
@@ -67,44 +75,43 @@ public class LR_Controller : MonoBehaviour
         pointsAmount = points.Length - 1;
 
 
-        foreach (Transform gameObjectPoint in points)
+        if (points != null)
         {
-            if (points != null)
+            foreach (Transform point in points)
             {
-                foreach (Transform point in points)
+                Gizmos.color = Color.blue;
+                Gizmos.DrawWireSphere(point.position, pointSize);
+            }
+
+            for (int i = 0; i < pointsAmount; i++)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(points[i].position, points[i + 1].position);
+            }
+
+            if (pipeCon[0].isSnapped)
+            {
+                Gizmos.color = Color.red;
+                if (OPoint != null && CPoint != null)
                 {
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawWireSphere(point.position, pointSize);
+                    Gizmos.DrawLine(OPoint.position, CPoint.position);
                 }
+            }
             
-                for (int i = 0; i < pointsAmount; i++)
-                {
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawLine(points[i].position, points[i + 1].position);
-                }
 
-                if(pipeCon[0].isSnapped)
-                {
-                    if (OPoint != null && CPoint != null)
-                    {
-                        Gizmos.color = Color.red;
-                        Gizmos.DrawLine(OPoint.position, CPoint.position);
-                    }
-                }
-
-                if(pipeCon[1].isSnapped)
-                {
-                    if (OPoint != null && CPoint != null)
-                    {
-                        Gizmos.color = Color.red;
-                        Gizmos.DrawLine(OPoint.position, CPoint.position);
-                    }
-                }
-            }
-            else
+            if (pipeCon[1].isSnapped)
             {
-                return;
+                Gizmos.color = Color.red;
+                if (OPoint != null && CPoint != null)
+                {
+                    Gizmos.DrawLine(OPoint.position, CPoint.position);
+                }
             }
+            
+        }
+        else
+        {
+            return;
         }
     }
 }
