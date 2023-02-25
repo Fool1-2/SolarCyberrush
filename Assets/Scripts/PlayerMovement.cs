@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded())//checks if player has pressed space and is on the ground before jumping
+            if (Input.GetKeyDown(KeyCode.W) && isGrounded())//checks if player has pressed space and is on the ground before jumping
             {
                 
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
