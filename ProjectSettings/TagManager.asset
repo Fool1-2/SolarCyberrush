@@ -29,7 +29,9 @@ TagManager:
   - ConnectorTen
   - wireFour
   - wireFive
-  - WinBox
+  - Snappable
+  - LrObjects
+  - WinObj
   layers:
   - Default
   - TransparentFX
@@ -42,7 +44,7 @@ TagManager:
   - NonPossGround
   - Player
   - Background
-  - 
+  - SnapAble
   - 
   - 
   - 

@@ -14,8 +14,12 @@ public class PlayerMovement : MonoBehaviour
     public static bool isPossessing;
     public float possessedrangeNum;
     public LayerMask possessedLayer;
+    public AudioClip playerJumpUpSound;
+
+    
 
     private void Start() {
+        
         rb = GetComponent<Rigidbody2D>();
         if (!GrateScript.slidePuzzleCompleted)
         {
@@ -25,14 +29,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            GrateScript.slidePuzzleCompleted = true;
+        }
         rb.bodyType = RigidbodyType2D.Dynamic;
         if (!Glow.isGlowActive)
         {
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
+
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded())//checks if player has pressed space and is on the ground before jumping
-            {   
+            {
+                
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                AudioSource.PlayClipAtPoint(playerJumpUpSound, transform.position);
             }
+
         }
         else
         {
@@ -68,11 +80,14 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
+        
     }
+
 
     private void OnDrawGizmos() 
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckNum);//Shows the outline of it in scene
+        
         //Gizmos.DrawWireSphere(transform.position, possessedrangeNum);
     }
 }

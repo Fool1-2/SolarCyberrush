@@ -23,10 +23,13 @@ public class wireThreeScript : MonoBehaviour
     public static bool wireCon;
     public bool wireSelected;
     public float yScale;
+    public float xScale;
     public float rotate;
     public bool canRotate;
     public bool canStretchUp;
     public bool canStretchDown;
+    public bool hitWall;
+    public Vector3 offset;
     SpriteRenderer SR;
 
 
@@ -44,7 +47,9 @@ public class wireThreeScript : MonoBehaviour
         canStretchUp = true;
         canStretchDown = true;
         canRotate = true;
+        rotate = -15.267f;
         yScale = transform.localScale.y;
+        xScale = transform.localScale.x;
 
 
         // Debug.Log("Hello world");
@@ -55,7 +60,7 @@ public class wireThreeScript : MonoBehaviour
 
     private void Update()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
+         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
 
         if (!mouseOn)//If the mouse is off turn the movement off.
         {
@@ -72,40 +77,48 @@ public class wireThreeScript : MonoBehaviour
 
         if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
+            
             // float distance = Vector2.Distance(boxSize, mousePos);
-            rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
-            //   transform.localScale = new Vector2(distance,boxSize.y);
-            if (yScale >= 13)
+            rb.MovePosition(new Vector3(mousePos.x, mousePos.y));
+            // transform.position = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+            
+
+            // Set the new position of the object
+            //rb.MovePosition(newPos);
+            if (yScale >= 10)
             {
                 canStretchUp = false;
 
 
             }
-            if (yScale <= 5)
+            if (yScale < 5 || hitWall == true)
             {
                 canStretchDown = false;
 
 
             }
-            if (yScale < 13)
+            if (yScale < 10 && hitWall == false)
             {
                 canStretchUp = true;
 
 
             }
-            if (yScale > 5)
+            if (yScale >= 5 && hitWall == false)
             {
                 canStretchDown = true;
 
 
             }
+
+
             if (canStretchUp == true)
             {
                 if (Input.GetKey(KeyCode.W))
                 {
                     //float distance = Vector2.Distance(boxSize, mousePos);
-                    transform.localScale = new Vector2(5.338786f, yScale);
-                    yScale += .01f;
+                    transform.localScale = new Vector2(xScale, yScale);
+                    yScale += 0.01f;
 
                 }
             }
@@ -114,7 +127,7 @@ public class wireThreeScript : MonoBehaviour
                 if (Input.GetKey(KeyCode.S))
                 {
                     //float distance = Vector2.Distance(boxSize, mousePos);
-                    transform.localScale = new Vector2(5.338786f, yScale);
+                    transform.localScale = new Vector2(xScale, yScale);
                     yScale -= 0.01f;
                 }
 
@@ -135,7 +148,7 @@ public class wireThreeScript : MonoBehaviour
 
 
                 GetComponent<SpriteRenderer>().color = Color.yellow;
-
+                
             }
 
             wireSelected = true;
@@ -146,17 +159,16 @@ public class wireThreeScript : MonoBehaviour
                     //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
                     // rotate_Z -= 90;
                     transform.rotation = Quaternion.Euler(0, 0, rotate);
-                    rotate += 1;
+                    rotate += 0.6f;
                 }
                 if (Input.GetKey(KeyCode.E))
                 {
                     //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
                     // rotate_Z -= 90;
                     transform.rotation = Quaternion.Euler(0, 0, rotate);
-                    rotate -= 1;
+                    rotate -= 0.6f;
                 }
             }
-
         }
 
     }
@@ -169,7 +181,7 @@ public class wireThreeScript : MonoBehaviour
     private void OnMouseDrag()
     {
         mouseOn = true;//checks if player is clicking the object
-
+       
     }
 
     private void OnMouseUp()
@@ -207,9 +219,11 @@ public class wireThreeScript : MonoBehaviour
             boxCollider.isTrigger = false;
             Debug.Log("Collision");
             canRotate = false;
-            rotate = 0;
-
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            // rotate = 0;
+            canStretchUp = false;
+            canStretchDown = false;
+            hitWall = true;
+            //transform.rotation = Quaternion.Euler(0, 0, 0);
 
         }
 
@@ -228,6 +242,9 @@ public class wireThreeScript : MonoBehaviour
         if (collision.gameObject.tag == "wall")
         {
             canRotate = false;
+            canStretchUp = false;
+            canStretchDown = false;
+            hitWall = true;
 
 
         }
@@ -250,6 +267,9 @@ public class wireThreeScript : MonoBehaviour
         if (collision.gameObject.tag == "wall")
         {
             canRotate = true;
+            canStretchUp = true;
+            canStretchDown = true;
+            hitWall = false;
 
 
         }
@@ -273,10 +293,12 @@ public class wireThreeScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "wall")
         {
-
+            hitWall = false;
             boxCollider.isTrigger = true;
             Debug.Log("Collision");
             canRotate = true;
+            canStretchUp = true;
+            canStretchDown = true;
         }
     }
 
