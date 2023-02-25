@@ -13,14 +13,19 @@ public class Glow : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.G) && !PlayerMovement.isPossessing)//Turns on glow when G is pressed
+        if (Input.GetKeyDown(KeyCode.Space) && !PlayerMovement.isPossessing)//Turns on glow when G is pressed
         {
             isGlowActive = !isGlowActive;//Turns the bool off and on
+            if (PlayerMovement.isPossessing == true)
+            {
+                Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
+
         }
     }
 }
+
