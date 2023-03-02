@@ -29,17 +29,30 @@ public class ButtonScript : MonoBehaviour
     }
     public void Pressed()
     {
+
         //Fix so it only gets called once with the lerp
+        StartCoroutine(Press());
+        
+    }
+    public void notPressed()
+    {
+        StartCoroutine(Unpress());
+        
+    }
+    IEnumerator Press()
+    {
+        yield return new WaitForSeconds(.1f);
         if (!isPressed)
         {
             tf.localScale -= ScaleChange;
         }
         isPressed = true;
         transform.localPosition = pressedPos;
-        
+
     }
-    public void notPressed()
+    IEnumerator Unpress()
     {
+        yield return new WaitForSeconds(.1f);
         if (isPressed)
         {
             tf.localScale += ScaleChange;
@@ -48,7 +61,6 @@ public class ButtonScript : MonoBehaviour
         }
         isPressed = false;
         transform.localPosition = unpressedPos;
-        
     }
 }
  

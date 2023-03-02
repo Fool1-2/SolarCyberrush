@@ -76,6 +76,7 @@ public class Glow_ProjectileControl : MonoBehaviour
         #endregion
 
         #region arrowKeys
+        //Change to shift to change glow
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
