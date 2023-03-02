@@ -13,17 +13,29 @@ public class gmScript : MonoBehaviour
     public Vector2 curPlayerPos = new Vector2(-14f, -5.5f);
     public List<Vector2> instantiatePositions;
 
+    public List<GameObject> playerList;
+
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
+    private void Awake()
+    {
+        playerList.Add(GameObject.FindGameObjectWithTag("Player"));
+
+        if (playerList.Capacity > 0)
+        {
+
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         objectiveText.text = "Current Objective: " + ObjectivesList[objectiveNumber];
-            
+         
     }
     private void OnLevelWasLoaded(int level)
     {
