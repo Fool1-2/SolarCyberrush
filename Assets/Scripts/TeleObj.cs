@@ -33,8 +33,8 @@ public class TeleObj : MonoBehaviour
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
-        xMagnitude = gameObject.transform.localScale.y * .5f;
-        yMagnitude = gameObject.transform.localScale.x;
+        xMagnitude = 1;
+        yMagnitude = 1;
         speed = 11;
         duration = .1f;
         yDif = 1;
