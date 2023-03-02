@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestScrpt : MonoBehaviour
 {
@@ -53,6 +54,12 @@ public class TestScrpt : MonoBehaviour
     }
 
     private void Update() {
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GrateScript.slidePuzzleCompleted = true;
+            SGameManager.isWin = true;
+        }
 
         if (LR != null)
         {

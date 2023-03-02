@@ -25,24 +25,6 @@ public class gmScript : MonoBehaviour
         objectiveText.text = "Current Objective: " + ObjectivesList[objectiveNumber];
             
     }
-    private void OnLevelWasLoaded(int level)
-    {
-        if (level == 1)
-        {
-            if (!GrateScript.slidePuzzleCompleted)
-            {
-                curPlayerPos = instantiatePositions[0];
-            }
-            else
-            {
-                curPlayerPos = instantiatePositions[1];
-            }
-            ReloadPlayer();
-        }
-    }
-    void ReloadPlayer()
-    {
-        Instantiate(player, curPlayerPos, Quaternion.identity);
-    }
+    
 
 }
