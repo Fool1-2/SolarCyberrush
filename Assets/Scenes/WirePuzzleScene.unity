@@ -343,6 +343,9 @@ MonoBehaviour:
   randomFinished: 0
   spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
   spriteTwo: {fileID: 21300000, guid: 568e531339a7d40d6a151b82abf78387, type: 3}
+  SceneName: 
+  isNextScene: 0
+  SceneInfo: {fileID: 0}
 --- !u!61 &49404567
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1641,6 +1644,8 @@ MonoBehaviour:
   canRotate: 0
   canStretchUp: 0
   canStretchDown: 0
+  hitWall: 0
+  xScale: 0
 --- !u!1001 &899344736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2291,6 +2296,8 @@ MonoBehaviour:
   canRotate: 0
   canStretchUp: 0
   canStretchDown: 0
+  hitWall: 0
+  xScale: 0
 --- !u!1001 &1428568048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2784,6 +2791,7 @@ MonoBehaviour:
   canStretchUp: 0
   canStretchDown: 0
   hitWall: 0
+  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &1752639733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3094,6 +3102,9 @@ MonoBehaviour:
   randomFinished: 0
   spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
   spriteTwo: {fileID: 21300000, guid: 568e531339a7d40d6a151b82abf78387, type: 3}
+  SceneName: WireScene
+  isNextScene: 0
+  SceneInfo: {fileID: 11400000, guid: 1a9d54c70dfc1492bb96cd4e2e4626cc, type: 2}
 --- !u!61 &1980343818
 BoxCollider2D:
   m_ObjectHideFlags: 0

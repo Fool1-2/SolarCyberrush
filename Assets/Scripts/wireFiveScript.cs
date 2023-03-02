@@ -64,6 +64,11 @@ public class wireFiveScript : MonoBehaviour
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            SceneManager.LoadScene(1);
+        }
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
 
         if (!mouseOn)//If the mouse is off turn the movement off.
