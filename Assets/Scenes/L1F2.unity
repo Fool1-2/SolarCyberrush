@@ -6111,6 +6111,8 @@ MonoBehaviour:
   promptText: {fileID: 1760926242}
   curText: 
   player: {fileID: 0}
+  delayActive: 0
+  timer: 0
 --- !u!4 &1258508460
 Transform:
   m_ObjectHideFlags: 0
@@ -9798,7 +9800,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.82096577, y: 1.3135431}

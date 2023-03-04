@@ -77,24 +77,10 @@ public class Glow_ProjectileControl : MonoBehaviour
 
         #region arrowKeys
         //Change to shift to change glow
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //Changed to remove plant growth
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (curProjNum > 0)
-            {
-                curProjNum -= 1;
-            }
-            else
-            {
-                curProjNum = 2;
-            }
-            glowLight.color = diffGlowColors[curProjNum];
-            AutoReloadBullet();
-        }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            if (curProjNum < 2)
+            if (curProjNum < 1)
             {
                 curProjNum += 1;
             }
@@ -105,6 +91,8 @@ public class Glow_ProjectileControl : MonoBehaviour
             glowLight.color = diffGlowColors[curProjNum];
             AutoReloadBullet();
         }
+
+
         #endregion
 
         if (!isShot)
