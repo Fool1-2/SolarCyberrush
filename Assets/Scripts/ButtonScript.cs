@@ -16,8 +16,8 @@ public class ButtonScript : MonoBehaviour
     void Start()
     {
         tf = gameObject.transform;
-        pressedPos = new Vector2(0, 0.1f);
-        unpressedPos = new Vector2(0, 0.07f);
+        pressedPos = new Vector2(0, 0.07f);
+        unpressedPos = new Vector2(0, 0.1f);
         //ScaleChange = new Vector3(0, 0.03f, 0);
         //buttonPressSound = GetComponent<AudioClip>();
     }
