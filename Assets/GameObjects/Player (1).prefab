@@ -163,6 +163,7 @@ MonoBehaviour:
   possessedLayer:
     serializedVersion: 2
     m_Bits: 128
+  playerJumpUpSound: {fileID: 0}
 --- !u!114 &1271182409550023008
 MonoBehaviour:
   m_ObjectHideFlags: 0

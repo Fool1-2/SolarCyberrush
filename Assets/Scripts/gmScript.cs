@@ -89,7 +89,7 @@ public class gmScript : MonoBehaviour
     }
     void ReloadPlayer()
     {
-        Instantiate(player, curPlayerPos, Quaternion.identity);
+        //Instantiate(player, curPlayerPos, Quaternion.identity);
     }
     public void closeMenu()
     {

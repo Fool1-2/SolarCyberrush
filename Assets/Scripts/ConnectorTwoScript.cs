@@ -10,6 +10,11 @@ public class ConnectorTwoScript : MonoBehaviour
     public bool randomFinished;
     public Sprite spriteOne, spriteTwo;
     public static bool wirePuzzleCompleted;
+    public string SceneName;
+    public bool isNextScene;
+
+    [SerializeField]
+    public SceneInfo SceneInfo;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +43,8 @@ public class ConnectorTwoScript : MonoBehaviour
             {
                 Debug.Log("ChangeNOW");
                 wirePuzzleCompleted = true;
-                SceneManager.LoadScene(0);
+                SceneInfo.isNextScene = isNextScene;
+                SceneManager.LoadScene(2);
 
             }
 
