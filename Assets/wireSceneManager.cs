@@ -14,7 +14,7 @@ public class wireSceneManager : MonoBehaviour
     public GameObject player;
     public string SceneName;
     public bool isNextScene;
-    public Vector3 offset = new Vector3(1, 5, 0);
+    public Vector3 offset = new Vector3(1, 2, 0);
     private Rigidbody2D body;
 
     [SerializeField]
@@ -54,8 +54,8 @@ public class wireSceneManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
 
-                    SceneInfo.isNextScene = isNextScene;
-                    SceneManager.LoadScene(3);
+                    //SceneInfo.isNextScene = isNextScene;
+                    //SceneManager.LoadScene(3);
                 
             }
 
