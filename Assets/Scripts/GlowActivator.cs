@@ -5,7 +5,7 @@ using UnityEngine;
 public class GlowActivator : MonoBehaviour
 {
     public Glow_ProjectileControl glowProjectile;
-    public BoxCollider2D bc;
+    public Collider2D bc;
     GameObject[] camBoxCollider;
 
     private void Start() {

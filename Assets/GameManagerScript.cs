@@ -14,10 +14,7 @@ public class GameManagerScript : MonoBehaviour
         {
             Vector3 distance1 = this.gameObject.transform.position - players[0].transform.position;
             Vector3 distance2 = this.gameObject.transform.position - players[1].transform.position;
-            if (this.gameObject.transform.position.x < distance1.x && this.gameObject.transform.position.y < distance1.y)
-            {
-
-            }
+            
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -27,6 +24,13 @@ public class GameManagerScript : MonoBehaviour
 
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));// sets wirepuzzle scene as active scene 
         }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            SceneManager.LoadSceneAsync("Slide Puzzle 1", LoadSceneMode.Additive);
+
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Slide Puzzle 1"));
+        }
         /*  if (Input.GetKeyDown(KeyCode.Q))
           {
              // SceneManager.UnloadSceneAsync("WirePuzzleScene");
@@ -34,7 +38,6 @@ public class GameManagerScript : MonoBehaviour
 
               SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
           }*/
-
 
 
     }

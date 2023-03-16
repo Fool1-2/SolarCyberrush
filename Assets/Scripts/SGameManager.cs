@@ -11,11 +11,25 @@ public class SGameManager : MonoBehaviour
     public static bool isWin;
     
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake() {
+        
+    }
+
+    private void OnEnable() {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         
     }
+
+    public void OnSceneUnloaded(Scene scene)
+    {
+        
+    }
+    
 
     // Update is called once per frame
     void Update()

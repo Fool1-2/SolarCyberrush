@@ -12,7 +12,9 @@ public class GrateScript : MonoBehaviour
     public string curText = "";
     bool ishere;
     public GameObject player;
-    
+    //public PlaceHolderSaveScript saveManager;
+   
+
     gmScript gm;
 
     public bool delayActive;
