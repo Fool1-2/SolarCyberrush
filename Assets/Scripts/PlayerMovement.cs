@@ -54,12 +54,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 GetComponent<Animator>().Play("SolarCyberrushIdleAnimation");
             }
-            if (Input.GetKeyDown(KeyCode.W) && isGrounded())//checks if player has pressed space and is on the ground before jumping
-            {
-                
-                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-                AudioSource.PlayClipAtPoint(playerJumpUpSound, transform.position);
-            }
+
 
         }
         else
@@ -90,7 +85,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Collider2D inRange = Physics2D.OverlapCircle(transform.position, possessedrangeNum, possessedLayer);
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded())//checks if player has pressed space and is on the ground before jumping
+        {
 
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            AudioSource.PlayClipAtPoint(playerJumpUpSound, transform.position);
+        }
     }
     
     bool isGrounded()
