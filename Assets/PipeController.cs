@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LR_Controller : MonoBehaviour
+public class PipeController : MonoBehaviour
 {
     public Transform[] points;
-    public PipeControllerScript[] pipeCon;
+    public PipeConnectScript[] pipeCon;
     public Transform OPoint;
     public Transform CPoint;
-    public List<LR_Controller> lr;
+    public List<PipeController> lr;
     public int pointsAmount;
     public float pointSize;
     public bool iscon;
@@ -25,11 +25,11 @@ public class LR_Controller : MonoBehaviour
 
         if (TS != null)
         {
-            if (TS.GetComponent<TestScrpt>().LR == this.GetComponent<LR_Controller>())
+            if (TS.GetComponent<PlayerPipePuzzle>().LR == this.GetComponent<PipeController>())
             {
                 if (pipeCon[0].isSnapped)
                 {
-                    if (!pipeCon[0].snappableParent.GetComponentInParent<LR_Controller>().isDone)
+                    if (!pipeCon[0].snappableParent.GetComponentInParent<PipeController>().isDone)
                     {
                         OPoint = pipeCon[0].transform;
                         CPoint = pipeCon[0].snappableParent.transform;
@@ -38,7 +38,7 @@ public class LR_Controller : MonoBehaviour
 
                 if (pipeCon[1].isSnapped)
                 {
-                    if (!pipeCon[1].snappableParent.GetComponentInParent<LR_Controller>().isDone)
+                    if (!pipeCon[1].snappableParent.GetComponentInParent<PipeController>().isDone)
                     {
                         OPoint = pipeCon[1].transform;
                         CPoint = pipeCon[1].snappableParent.transform;

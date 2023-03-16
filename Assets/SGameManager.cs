@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using SceneSwitcher = SwichScenes; 
+using SceneSwitcher = SwichScenes;
+using UnityEngine.SceneManagement; 
 
 public class SGameManager : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class SGameManager : MonoBehaviour
         if (Input.GetKey(KeyCode.T)) 
         { 
             isWin = true; 
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(2);
         } 
  
  

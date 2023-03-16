@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 //[RequireComponent(typeof(BoxCollider2D))]
-public class PipeControllerScript : MonoBehaviour
+public class PipeConnectScript : MonoBehaviour
 {
     public bool isSnapped;
     public bool once;
@@ -32,7 +32,7 @@ public class PipeControllerScript : MonoBehaviour
 
         if (snappableParent != null)
         {
-            if (isSnapped && snappableParent.GetComponent<PipeControllerScript>().isSnapped)
+            if (isSnapped && snappableParent.GetComponent<PipeConnectScript>().isSnapped)
             {
                 if (!once)
                 {
@@ -46,7 +46,7 @@ public class PipeControllerScript : MonoBehaviour
                 if (movePipe.mouseOn || snappableParent.GetComponentInParent<MovePipe>().mouseOn)
                 {
                     isSnapped = false;
-                    snappableParent.GetComponent<PipeControllerScript>().isSnapped = false;
+                    snappableParent.GetComponent<PipeConnectScript>().isSnapped = false;
                 }
             }
             
@@ -56,7 +56,7 @@ public class PipeControllerScript : MonoBehaviour
                 if (movePipe.mouseOn)
                 {
                     isSnapped = false;
-                    snappableParent.GetComponent<PipeControllerScript>().isSnapped = false;
+                    snappableParent.GetComponent<PipeConnectScript>().isSnapped = false;
                 }
             }
             
