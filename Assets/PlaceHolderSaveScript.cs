@@ -20,19 +20,19 @@ public class PlaceHolderSaveScript : MonoBehaviour
             } 
         }
 
-       /* if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.UnloadSceneAsync("L2F1L1F2");
-            SceneManager.LoadSceneAsync("WirePuzzleScene", LoadSceneMode.Additive);
+          //  SceneManager.UnloadSceneAsync("L1F2");
+            SceneManager.LoadSceneAsync("WirePuzzleScene", LoadSceneMode.Additive);// Loads the wire puzzle scene addative to the main scene
 
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));// sets wirepuzzle scene as active scene 
         }
-        if (Input.GetKey(KeyCode.Q))
+      /*  if (Input.GetKeyDown(KeyCode.Q))
         {
-            SceneManager.UnloadSceneAsync("WirePuzzleScene");
-            SceneManager.LoadSceneAsync("L2F1L1F2", LoadSceneMode.Additive);
+           // SceneManager.UnloadSceneAsync("WirePuzzleScene");
+            SceneManager.LoadSceneAsync("L1F2", LoadSceneMode.Additive);
 
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("L2F1L1F2"));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
         }*/
 
 
@@ -41,18 +41,18 @@ public class PlaceHolderSaveScript : MonoBehaviour
 
     public void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);// this object doesnt die
 
     }
 
     public void ShowPopup()
     {
-        SceneManager.LoadSceneAsync("WirePuzzleScene", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("WirePuzzleScene", LoadSceneMode.Additive);// loads wire puzzle scene
     }
 
     public void ClosePopup()
     {
-        SceneManager.UnloadSceneAsync("WirePuzzleScene");
+        SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
     }
 }
 
