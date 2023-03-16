@@ -44,7 +44,7 @@ public class ConnectorTwoScript : MonoBehaviour
                 Debug.Log("ChangeNOW");
                 wirePuzzleCompleted = true;
                 SceneInfo.isNextScene = isNextScene;
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(1);
 
             }
 

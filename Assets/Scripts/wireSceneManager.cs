@@ -54,7 +54,7 @@ public class wireSceneManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
 
-                    //SceneInfo.isNextScene = isNextScene;
+                   // SceneInfo.isNextScene = isNextScene;
                     //SceneManager.LoadScene(3);
                 
             }
