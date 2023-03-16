@@ -16,11 +16,17 @@ public class GrateScript : MonoBehaviour
     public PlaceHolderSaveScript saveManager;
    
 
+    gmScript gm;
+
+    public bool delayActive;
+    public float timer;
+
     // Start is called before the first frame update
     void Start()
     {
         saveManager = GameObject.Find("SaveSceneGM").GetComponent<PlaceHolderSaveScript>();
         bc = gameObject.GetComponent<BoxCollider2D>();
+        gm = GameObject.Find("GMOb").GetComponent<gmScript>();
     }
 
     // Update is called once per frame
@@ -43,33 +49,49 @@ public class GrateScript : MonoBehaviour
                 curText = "Press E to Clear the Pipe";
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (slidePuzzleCompleted)
-                {
-                    player.GetComponent<Transform>().position = new Vector3(20, -4, 0);
-                }
-                else
-                {
-                    saveManager.Save_Scene();
-                    
-                    SceneManager.LoadScene(2);
-                }
-            }
             
+        }
+        if (delayActive)
+        {
+            timer += Time.deltaTime;
+            if (timer > 1)
+            {
+                delayActive = false;
+                timer = 0;
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ishere = true;
         if (collision.gameObject.tag == "Player")
         {
+            ishere = true;
             player = collision.gameObject;
+            if (gm.objectiveNumber == 0)
+            {
+                gm.objectiveNumber = 1;
+                gm.objectiveText.text = "Current Objective: " + gm.ObjectivesList[1];
+            }
+
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //Bugged
+        if (collision.gameObject.tag == "Player")
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (slidePuzzleCompleted)
+                {
+                    delayActive = true;
+                    player.GetComponent<Transform>().position = new Vector3(20, -4, 0);
+                }
+                else
+                {
+                    SceneManager.LoadScene(2);
+                }
+            }
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
