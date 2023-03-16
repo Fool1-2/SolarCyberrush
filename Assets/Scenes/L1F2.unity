@@ -4611,6 +4611,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1271182410508639764, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.364
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
 --- !u!1 &1023450874
@@ -7197,6 +7201,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e7929bbca2dd546b5b81740fca8a12e8, type: 3}
+    - target: {fileID: 6154585041467018599, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7007172339405312742, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_IsTrigger
       value: 1
