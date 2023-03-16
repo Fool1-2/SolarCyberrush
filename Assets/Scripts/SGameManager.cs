@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SGameManager : MonoBehaviour
 {
-    public PlaceHolderSaveScript saveManager;
+    
     public static bool isWin;
     
 
