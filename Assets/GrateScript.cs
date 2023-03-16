@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 public class GrateScript : MonoBehaviour
 {
     public BoxCollider2D bc;
@@ -12,6 +13,8 @@ public class GrateScript : MonoBehaviour
     public string curText = "";
     bool ishere;
     public GameObject player;
+    public PlaceHolderSaveScript saveManager;
+   
 
     gmScript gm;
 
@@ -21,6 +24,7 @@ public class GrateScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ///saveManager = GameObject.Find("SaveSceneGM").GetComponent<PlaceHolderSaveScript>();
         bc = gameObject.GetComponent<BoxCollider2D>();
         gm = GameObject.Find("GMOb").GetComponent<gmScript>();
     }
@@ -84,6 +88,7 @@ public class GrateScript : MonoBehaviour
                 }
                 else
                 {
+                    DataPersitanceManager.instance.SaveGame();
                     SceneManager.LoadScene(2);
                 }
             }
