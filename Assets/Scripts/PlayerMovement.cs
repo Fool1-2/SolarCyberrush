@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour, IDataPersitance
+public class PlayerMovement : MonoBehaviour
 {
     float horizontal;
     public float speed;
@@ -17,17 +17,6 @@ public class PlayerMovement : MonoBehaviour, IDataPersitance
     public AudioClip playerJumpUpSound;
 
     private SpriteRenderer _renderer;
-
-    
-    public void LoadData(GameData gamedata)
-    {
-        transform.position = gamedata.playerPos;
-    }
-
-    public void SaveData(ref GameData gameData)
-    {
-        gameData.playerPos = transform.position;
-    }
 
     private void Start() {
         

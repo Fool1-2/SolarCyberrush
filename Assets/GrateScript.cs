@@ -88,7 +88,6 @@ public class GrateScript : MonoBehaviour
                 }
                 else
                 {
-                    DataPersitanceManager.instance.SaveGame();
                     SceneManager.LoadScene(2);
                 }
             }
