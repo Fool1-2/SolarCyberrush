@@ -12,7 +12,7 @@ public class Glow_ProjectileControl : MonoBehaviour
     [SerializeField]Rigidbody2D rb;
     [SerializeField]float speed;
     Transform player;
-    Vector3 setScaleForBullet = new Vector3(3, 8, 7);
+    Vector3 setScaleForBullet = new Vector3(1, 1, 1);
     #endregion
 
     [SerializeField]Glow glow;

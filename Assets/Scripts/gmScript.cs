@@ -32,6 +32,11 @@ public class gmScript : MonoBehaviour
         objectiveText.text = "Current Objective: " + ObjectivesList[0];
     }
 
+    private void Awake()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -67,26 +72,9 @@ public class gmScript : MonoBehaviour
             NoteImage.sprite = NoteSprites[4];
             noteCanvas.enabled = true;
         }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            OnLevelWasLoaded(1);
-        }
+        
     }
-    private void OnLevelWasLoaded(int level)
-    {
-        if (level == 1)
-        {
-            if (!GrateScript.slidePuzzleCompleted)
-            {
-                curPlayerPos = instantiatePositions[0];
-            }
-            else
-            {
-                curPlayerPos = instantiatePositions[1];
-            }
-            ReloadPlayer();
-        }
-    }
+    
     void ReloadPlayer()
     {
         //Instantiate(player, curPlayerPos, Quaternion.identity);

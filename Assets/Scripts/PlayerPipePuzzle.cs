@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using SceneSwitcher = SwichScenes; 
 
-public class TestScrpt : MonoBehaviour
+public class PlayerPipePuzzle : MonoBehaviour
 {
-    public LR_Controller LR;
+    public PipeController LR;
     public Transform curPos;
     public float speed;
     public bool startFromLast;
@@ -35,24 +37,33 @@ public class TestScrpt : MonoBehaviour
 
         if (isColliding)
         {
-            if (Vector2.Distance(curPos.position, LR.points[0].position) < 0.2f)
+            if (Vector2.Distance(curPos.position, LR.points[0].position) < 0.01f)
             {
                 startFromLast = false;
             }
 
-            if (Vector2.Distance(curPos.position, LR.points[LR.points.Length - 1].position) < 0.2f)
+            if (Vector2.Distance(curPos.position, LR.points[LR.points.Length - 1].position) < 0.01f)
             {
                 startFromLast = true;
             }
         }
+    }
 
-        if (collision.gameObject.tag == "WinObj")
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "WinObj")
         {
-            collision.GetComponent<SwichScenes>().SceneSwitch("L1F2");
+            GrateScript.slidePuzzleCompleted = true; 
+            SceneSwitcher.SceneSwitch("L1F2");
         }
     }
 
     private void Update() {
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GrateScript.slidePuzzleCompleted = true;
+            SGameManager.isWin = true;
+        }
 
         if (LR != null)
         {
@@ -65,7 +76,7 @@ public class TestScrpt : MonoBehaviour
                     {
                         isColliding = false;
                     }
-                    LR = LR.CPoint.GetComponentInParent<LR_Controller>();
+                    LR = LR.CPoint.GetComponentInParent<PipeController>();
                 }
             }
 
@@ -78,7 +89,7 @@ public class TestScrpt : MonoBehaviour
                     {
                         isColliding = false;
                     }
-                    LR = LR.CPoint.GetComponentInParent<LR_Controller>();
+                    LR = LR.CPoint.GetComponentInParent<PipeController>();
                 }
             }
 
