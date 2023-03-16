@@ -16,11 +16,14 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask possessedLayer;
     public AudioClip playerJumpUpSound;
 
+    private SpriteRenderer _renderer;
+
     
 
     private void Start() {
         
         rb = GetComponent<Rigidbody2D>();
+        _renderer = GetComponent<SpriteRenderer>();
         if (!GrateScript.slidePuzzleCompleted)
         {
             
@@ -37,7 +40,22 @@ public class PlayerMovement : MonoBehaviour
         if (!Glow.isGlowActive)
         {
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
-
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            {
+                GetComponent<Animator>().Play("SolarCyberrushWalkingAnimation");
+                if (Input.GetAxisRaw("Horizontal") > 0)
+                {
+                    _renderer.flipX = true;
+                }
+                else if (Input.GetAxisRaw("Horizontal") < 0)
+                {
+                    _renderer.flipX = false;
+                }
+            }
+            else
+            {
+                GetComponent<Animator>().Play("SolarCyberrushIdleAnimation");
+            }
             if (Input.GetKeyDown(KeyCode.W) && isGrounded())//checks if player has pressed space and is on the ground before jumping
             {
                 
