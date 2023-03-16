@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using SceneSwitcher = SwichScenes; 
 
 public class SGameManager : MonoBehaviour
 {
@@ -12,15 +13,23 @@ public class SGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        saveManager = GameObject.Find("SaveSceneGM").GetComponent<PlaceHolderSaveScript>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isWin)
-        {
-            saveManager.Load_Scene();
-        }
+        if (Input.GetKey(KeyCode.T)) 
+        { 
+            isWin = true; 
+        } 
+ 
+ 
+        if (isWin) 
+        { 
+            GrateScript.slidePuzzleCompleted = true; 
+ 
+            SceneSwitcher.SceneSwitch("L1F2");
+        } 
     }
 }

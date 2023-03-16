@@ -20,7 +20,7 @@ public class SpawnPlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             GrateScript.slidePuzzleCompleted = true;
-            GameObject.FindGameObjectWithTag("WinBox").GetComponent<SwichScenes>().SceneSwitch("L1F2");
+            //GameObject.FindGameObjectWithTag("WinBox").GetComponent<SwichScenes>().SceneSwitch("L1F2");
         }
     }
 }

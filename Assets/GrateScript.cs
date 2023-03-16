@@ -24,7 +24,7 @@ public class GrateScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        saveManager = GameObject.Find("SaveSceneGM").GetComponent<PlaceHolderSaveScript>();
+        ///saveManager = GameObject.Find("SaveSceneGM").GetComponent<PlaceHolderSaveScript>();
         bc = gameObject.GetComponent<BoxCollider2D>();
         gm = GameObject.Find("GMOb").GetComponent<gmScript>();
     }
@@ -88,6 +88,7 @@ public class GrateScript : MonoBehaviour
                 }
                 else
                 {
+                    DataPersitanceManager.instance.SaveGame();
                     SceneManager.LoadScene(2);
                 }
             }

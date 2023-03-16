@@ -49,7 +49,7 @@ public class TestScrpt : MonoBehaviour
 
         if (collision.gameObject.tag == "WinObj")
         {
-            collision.GetComponent<SwichScenes>().SceneSwitch("L1F2");
+            //collision.GetComponent<SwichScenes>().SceneSwitch("L1F2");
         }
     }
 
