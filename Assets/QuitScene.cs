@@ -21,5 +21,6 @@ public class QuitScene : MonoBehaviour
     {
         Debug.Log("HI");
         GameManagerScript.UnloadWirePuzzle();
+
     }
 }

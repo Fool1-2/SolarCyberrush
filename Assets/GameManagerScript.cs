@@ -30,7 +30,9 @@ public class GameManagerScript : MonoBehaviour
 
         if (isSceneLoaded == true)
         {
-           // SwitchCamera.isMoving = true;
+
+
+
         }
 
 

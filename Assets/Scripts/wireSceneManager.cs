@@ -10,6 +10,7 @@ public class wireSceneManager : MonoBehaviour
 {
     public Collider2D bc;
     public static bool wirePuzzleCompleted;
+    public static bool wirePuzzleInProgress;
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
@@ -45,14 +46,31 @@ public class wireSceneManager : MonoBehaviour
             {
                 curText = "Nice Job";
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (wirePuzzleInProgress == false)
             {
-                gameManager.LoadWirePuzzle();
-                Debug.Log("Going");
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    wirePuzzleInProgress = true;
+                    gameManager.LoadWirePuzzle();
+                    Debug.Log("Going");
+                    
+                }
+
+            }
+            if(gameManager.isSceneLoaded == false)
+            {
+                wirePuzzleInProgress = false;
             }
 
 
 
+        }
+        if (!ishere)
+        {
+
+
+
+            wirePuzzleCompleted = false;
         }
         if (delayActive)
         {

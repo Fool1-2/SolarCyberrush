@@ -10,7 +10,7 @@ public class ConnectorTwoScript : MonoBehaviour
     public GameObject connectorOne;
     public bool randomFinished;
     public Sprite spriteOne, spriteTwo;
-    public static bool wirePuzzleCompleted;
+   // public static bool wirePuzzleCompleted;
     public string SceneName;
     public bool isNextScene;
 
@@ -43,7 +43,7 @@ public class ConnectorTwoScript : MonoBehaviour
             if (wireScript.wireCon == true && wireTwoScript.wireCon == true && wireThreeScript.wireCon == true && wireFourScript.wireCon == true && wireFiveScript.wireCon == true)
             {
                 Debug.Log("ChangeNOW");
-                wirePuzzleCompleted = true;
+                
                 SceneInfo.isNextScene = isNextScene;
                 wireSceneManager.wirePuzzleCompleted = true;
                 //SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));
@@ -56,7 +56,7 @@ public class ConnectorTwoScript : MonoBehaviour
             if (Input.GetKey(KeyCode.H))
             {
                 Debug.Log("ChangeNOW");
-                wirePuzzleCompleted = true;
+                //wirePuzzleCompleted = true;
                // wireSceneManager.wirePuzzleCompleted = true;
                 //SceneInfo.isNextScene = isNextScene;
                 // SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)

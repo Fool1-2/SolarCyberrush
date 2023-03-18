@@ -9,7 +9,7 @@ public class DvDScriPt : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector3(Random.Range(18,25), Random.Range(6,15), 0);
+        rb.velocity = new Vector3(Random.Range(180,250), Random.Range(60,15), 0);
     }
 
     // Update is called once per frame
