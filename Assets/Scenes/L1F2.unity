@@ -666,7 +666,6 @@ Transform:
   - {fileID: 340750664}
   - {fileID: 1463934473}
   - {fileID: 2131413263}
-  - {fileID: 1421843357}
   - {fileID: 830587355}
   - {fileID: 1070567504}
   - {fileID: 1421843357}
@@ -2812,6 +2811,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &610873688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610873685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a810efe3165004a678db69ecbfe9e564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerList:
+  - {fileID: 0}
 --- !u!1 &669886616
 GameObject:
   m_ObjectHideFlags: 0
@@ -3638,7 +3651,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 190358464}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &830587356
 BoxCollider2D:
@@ -5672,7 +5685,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 190358464}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1070567505
 BoxCollider2D:
@@ -7692,7 +7705,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 190358464}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1421843358
 MonoBehaviour:
@@ -9816,7 +9829,6 @@ GameObject:
   - component: {fileID: 1817259954}
   - component: {fileID: 1817259953}
   - component: {fileID: 1817259952}
-  - component: {fileID: 1817259956}
   m_Layer: 6
   m_Name: LowerStackBlock (5)
   m_TagString: TeleObj
