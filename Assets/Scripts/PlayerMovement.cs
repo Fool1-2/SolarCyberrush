@@ -15,10 +15,13 @@ public class PlayerMovement : MonoBehaviour
     public float possessedrangeNum;
     public LayerMask possessedLayer;
     public AudioClip playerJumpUpSound;
+    
 
     private SpriteRenderer _renderer;
 
-    private void Start() {
+    private void Start()
+    {
+
         
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
@@ -33,6 +36,18 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             GrateScript.slidePuzzleCompleted = true;
+        }
+        if(GameManagerScript.isSceneLoaded == true)
+        {
+
+        }
+        if(GameManagerScript.isSceneLoaded == true)
+        {
+            Glow.isGlowActive = true;
+        }
+        if (GameManagerScript.isSceneLoaded == false)
+        {
+            Glow.isGlowActive = false;
         }
         rb.bodyType = RigidbodyType2D.Dynamic;
         if (!Glow.isGlowActive)

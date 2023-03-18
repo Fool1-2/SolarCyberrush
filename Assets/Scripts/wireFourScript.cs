@@ -45,7 +45,7 @@ public class wireFourScript : MonoBehaviour
         wireCon = false;// if 1 port is false the wire is not connected 
         wireSelected = false;
         gameObject.GetComponent<SpriteRenderer>();
-        boxSize.x = 5.338786f;
+        //boxSize.x = 5.338786f;
         canStretchUp = true;
         canStretchDown = true;
         canRotate = true;
