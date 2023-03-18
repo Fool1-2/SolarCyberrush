@@ -5,6 +5,7 @@ using UnityEngine;
 public class ButtonScript : MonoBehaviour
 {
     public bool isPressed;
+    [SerializeField]private bool onePress;
     public AudioClip buttonPressSound;
     Vector2 pressedPos, unpressedPos;
 
@@ -41,14 +42,21 @@ public class ButtonScript : MonoBehaviour
     }
     IEnumerator Press()
     {
-        yield return new WaitForSeconds(.1f);
-        if (!isPressed)
+        onePress = false;
+        if (!onePress)
         {
-            //tf.localScale -= ScaleChange;
+            yield return new WaitForSeconds(.1f);
+            isPressed = true;
+            transform.localPosition = pressedPos;
+            onePress = true;
         }
-        isPressed = true;
-        transform.localPosition = pressedPos;
-
+        
+        if (onePress)
+        {
+            yield return new WaitForSeconds(15f);
+            isPressed = false;
+            transform.localPosition = unpressedPos;
+        }
     }
     IEnumerator Unpress()
     {
@@ -60,6 +68,7 @@ public class ButtonScript : MonoBehaviour
 
         }
         isPressed = false;
+        onePress = false;
         transform.localPosition = unpressedPos;
     }
 }

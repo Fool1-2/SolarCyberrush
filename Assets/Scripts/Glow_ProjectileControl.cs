@@ -18,6 +18,7 @@ public class Glow_ProjectileControl : MonoBehaviour
     [SerializeField]Glow glow;
     public Light2D glowLight;
     public static bool isShot;
+    bool oneShot = false;
     [SerializeField]Color[] diffGlowColors;
     
     private void OnEnable() {
@@ -32,10 +33,12 @@ public class Glow_ProjectileControl : MonoBehaviour
 
     public void AutoReloadBullet()
     {
+
         Destroy(currentGlowBullet);
         currentGlowBullet = Instantiate(glowProjectiles[curProjNum], (Vector2)transform.position, Quaternion.identity);//Spawn a new bullet replacing the old bullet
         currentGlowBullet.transform.parent = gameObject.transform;//Puts the bullet under the controller as a child
         currentGlowBullet.transform.localScale = setScaleForBullet;//Fixes the scaling of the bullet
+        oneShot = false;
         isShot = false;//turns isshot back off
     }
     
@@ -99,7 +102,11 @@ public class Glow_ProjectileControl : MonoBehaviour
     void Shooting()
     {
         isShot = true;//turns is shot on
-        rb.AddForce(currentGlowBullet.transform.up * speed, ForceMode2D.Impulse);//Shoots the bullet in the direction its facing multiplied by speed
+        if(!oneShot) 
+        {
+            rb.AddForce(currentGlowBullet.transform.up * speed, ForceMode2D.Impulse);//Shoots the bullet in the direction its facing multiplied by speed
+            oneShot = true;
+        }
         currentGlowBullet.GetComponent<FollowMouse>().enabled = false;//Turns followmouse script off
         StartCoroutine(respawnItem(3f));//starts the respawn function
     }
@@ -111,6 +118,7 @@ public class Glow_ProjectileControl : MonoBehaviour
         currentGlowBullet = Instantiate(glowProjectiles[curProjNum], (Vector2)transform.position, Quaternion.identity);//Spawn a new bullet replacing the old bullet
         currentGlowBullet.transform.parent = gameObject.transform;//Puts the bullet under the controller as a child
         currentGlowBullet.transform.localScale = setScaleForBullet;//Fixes the scaling of the bullet
+        oneShot = false;
         isShot = false;//turns isshot back off
     }
 }

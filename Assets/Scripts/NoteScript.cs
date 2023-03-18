@@ -21,14 +21,13 @@ public class NoteScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            gm.hasNote[noteNumber - 1] = true;
+            gm.hasNote[noteNumber] = true;
             gm.noteNumber++;
-            if (gm.noteNumber == 5 && gm.objectiveNumber == 2)
-            {
-                gm.objectiveNumber = 3;
-                gm.objectiveText.text = "Current Objective: " + gm.ObjectivesList[3];
-            }
-            Destroy(gameObject);            
+            Debug.Log("2");
+            gm.noteUIUp(noteNumber);
+            Debug.Log("1");
+            Destroy(gameObject);
+
         }
     }
 }

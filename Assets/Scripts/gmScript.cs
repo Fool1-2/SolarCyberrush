@@ -21,13 +21,17 @@ public class gmScript : MonoBehaviour
     public List<bool> hasNote;
     //The note displays
     public List<Sprite> NoteSprites;
-    Image NoteImage;
+    public Sprite noteImageSprite;
+    public Sprite noteSol1;
 
     //
 
     // Start is called before the first frame update
     void Start()
     {
+        //Note you cannot set the sprite on a disabled object
+        noteImageSprite = GameObject.Find("NoteImage").GetComponent<Sprite>();
+        noteImageSprite = noteSol1;
         noteCanvas.enabled = false;
         objectiveText.text = "Current Objective: " + ObjectivesList[0];
     }
@@ -40,39 +44,31 @@ public class gmScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (objectiveNumber == 1 && GrateScript.slidePuzzleCompleted)
-        {
-            objectiveNumber++;
-            objectiveText.text = "Current Objective: " + ObjectivesList[objectiveNumber] + "(" + noteNumber + "/5).";
-        }
         //Note displays
         if (Input.GetKeyDown(KeyCode.Alpha1) && hasNote[0] == true)
         {
-            NoteImage.sprite = NoteSprites[0];
-            Debug.Log("I Did a thing");
-            noteCanvas.enabled = true;
+            noteUIUp(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && hasNote[1] == true)
         {
-            NoteImage.sprite = NoteSprites[1];
-            noteCanvas.enabled = true;
+            noteUIUp(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && hasNote[2] == true)
         {
-            NoteImage.sprite = NoteSprites[2];
-            noteCanvas.enabled = true;
+            noteUIUp(3);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4) && hasNote[3] == true)
         {
-            NoteImage.sprite = NoteSprites[3];
-            noteCanvas.enabled = true;
+            noteUIUp(4);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5) && hasNote[4] == true)
         {
-            NoteImage.sprite = NoteSprites[4];
-            noteCanvas.enabled = true;
+            noteUIUp(5);
         }
-        
+        if (!ExitDoorScript.wirePuzzleCompleted)
+        {
+            objectiveText.text = "Find the locker and retrieve the keys";
+        }
     }
     
     void ReloadPlayer()
@@ -83,5 +79,9 @@ public class gmScript : MonoBehaviour
     {
         noteCanvas.enabled = false;
     }
-
+    public void noteUIUp(int noteNumber)
+    {
+        noteCanvas.enabled = true;
+        noteImageSprite = NoteSprites[noteNumber - 1];
+    }
 }
