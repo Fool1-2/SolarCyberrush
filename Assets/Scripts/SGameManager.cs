@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using SceneSwitcher = SwichScenes;
+using gameManager = GameManagerScript;
 using UnityEngine.SceneManagement; 
 
 public class SGameManager : MonoBehaviour
 {
     
     public static bool isWin;
-    
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable() {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         
     }
+
+    public void OnSceneUnloaded(Scene scene)
+    {
+        
+    }
+    
 
     // Update is called once per frame
     void Update()
@@ -27,15 +36,15 @@ public class SGameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(2);
+            gameManager.LoadSlidePuzzle("SlidePuzzle");
         } 
  
  
         if (isWin) 
         { 
             GrateScript.slidePuzzleCompleted = true; 
- 
-            SceneSwitcher.SceneSwitch("L1F2");
+
+            gameManager.UnLoadSlidePuzzle("SlidePuzzle");
         } 
     }
 }

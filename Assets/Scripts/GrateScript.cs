@@ -4,15 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using gameManager = GameManagerScript;//Turns the gamemanagerscript into a using state to be able to use a static function
+
 public class GrateScript : MonoBehaviour
 {
-    public BoxCollider2D bc;
+    public Collider2D bc;
     public static bool slidePuzzleCompleted;
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
     public GameObject player;
-    
+    //public PlaceHolderSaveScript saveManager;
+   
+
     gmScript gm;
 
     public bool delayActive;
@@ -21,7 +25,7 @@ public class GrateScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bc = gameObject.GetComponent<BoxCollider2D>();
+        bc = gameObject.GetComponent<Collider2D>();
         gm = GameObject.Find("GMOb").GetComponent<gmScript>();
     }
 
@@ -68,7 +72,6 @@ public class GrateScript : MonoBehaviour
                 gm.objectiveNumber = 1;
                 gm.objectiveText.text = "Current Objective: " + gm.ObjectivesList[1];
             }
-
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -84,7 +87,7 @@ public class GrateScript : MonoBehaviour
                 }
                 else
                 {
-                    SceneManager.LoadScene(2);
+                    gameManager.LoadSlidePuzzle("SlidePuzzle");//Loads SlidePuzzle if slidePuzzle is not completed
                 }
             }
         }

@@ -7,7 +7,7 @@ public class Glow_ProjectileControl : MonoBehaviour
 {
     #region Bullet Variables
     public List<GameObject> glowProjectiles;
-    public int curProjNum;
+    public static int curProjNum;
     [SerializeField] GameObject currentGlowBullet;
     [SerializeField]Rigidbody2D rb;
     [SerializeField]float speed;
@@ -22,7 +22,7 @@ public class Glow_ProjectileControl : MonoBehaviour
     
     private void OnEnable() {
         AutoReloadBullet();
-        currentGlowBullet = transform.GetChild(0).gameObject;//When the script starts finds the controllers child and makes that the current bullet
+        //currentGlowBullet = transform.GetChild(0).gameObject;//When the script starts finds the controllers child and makes that the current bullet
         currentGlowBullet.GetComponent<FollowMouse>().enabled = true;//turns on follow mouse script
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();//finds the player through its tag
         glow = GameObject.FindGameObjectWithTag("Player").GetComponent<Glow>();//Finds the script in playe called Glow
@@ -41,27 +41,13 @@ public class Glow_ProjectileControl : MonoBehaviour
     
     void Update()
     {
+        currentGlowBullet = transform.GetChild(0).gameObject;
+
         #region Glow bool
         if (Glow.isGlowActive)//Checks if the glow ability has changed and turns on the projectile
         {
             currentGlowBullet.SetActive(true);
             glowLight.enabled = true;
-            /*switch (glow.glowAB)
-            {
-                
-                case Glow.glowAbility.Light:
-                    curProjNum = 0;
-                    glowLight.color = diffGlowColors[0];
-                    break;
-                case Glow.glowAbility.Telekinesis:
-                    curProjNum = 1;
-                    glowLight.color = diffGlowColors[1];
-                    break;
-                case Glow.glowAbility.Growth:
-                    curProjNum = 2;
-                    glowLight.color = diffGlowColors[2];
-                    break;
-            }*/
         }
         else
         {
@@ -76,20 +62,23 @@ public class Glow_ProjectileControl : MonoBehaviour
         #endregion
 
         #region arrowKeys
-        //Change to shift to change glow
+        //Change to shift to change glow - Made it where it can only be switched when the arrow has not been shot and glow is active
         //Changed to remove plant growth
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Glow.isGlowActive && !isShot)
         {
-            if (curProjNum < 1)
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                curProjNum += 1;
+                if (curProjNum < 1)
+                {
+                    curProjNum += 1;
+                }
+                else
+                {
+                    curProjNum = 0;
+                }
+                glowLight.color = diffGlowColors[curProjNum];
+                AutoReloadBullet();
             }
-            else
-            {
-                curProjNum = 0;
-            }
-            glowLight.color = diffGlowColors[curProjNum];
-            AutoReloadBullet();
         }
 
 
