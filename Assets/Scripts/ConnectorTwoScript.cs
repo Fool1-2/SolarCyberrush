@@ -45,6 +45,7 @@ public class ConnectorTwoScript : MonoBehaviour
                 Debug.Log("ChangeNOW");
                 wirePuzzleCompleted = true;
                 SceneInfo.isNextScene = isNextScene;
+                wireSceneManager.wirePuzzleCompleted = true;
                 //SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));
                 //SceneManager.UnloadSceneAsync("WirePuzzleScene");
                 // SceneManager.LoadScene(1);
@@ -56,6 +57,7 @@ public class ConnectorTwoScript : MonoBehaviour
             {
                 Debug.Log("ChangeNOW");
                 wirePuzzleCompleted = true;
+                wireSceneManager.wirePuzzleCompleted = true;
                 SceneInfo.isNextScene = isNextScene;
                 // SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
                 // SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));

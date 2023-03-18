@@ -63,6 +63,7 @@ public class GameManagerScript : MonoBehaviour
     {
         //  SceneManager.UnloadSceneAsync("L1F2");
         isSceneLoaded = true;
+        Glow.isGlowActive = true;
         SceneManager.LoadSceneAsync("WirePuzzleScene", LoadSceneMode.Additive);// Loads the wire puzzle scene addative to the main scene
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));// sets wirepuzzle scene as active scene 
@@ -71,6 +72,7 @@ public class GameManagerScript : MonoBehaviour
     public static void UnloadWirePuzzle()
     {
         isSceneLoaded = false;
+        Glow.isGlowActive = false;
         SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
     }

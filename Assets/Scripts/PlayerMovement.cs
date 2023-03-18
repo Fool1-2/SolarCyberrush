@@ -37,18 +37,7 @@ public class PlayerMovement : MonoBehaviour
         {
             GrateScript.slidePuzzleCompleted = true;
         }
-        if(GameManagerScript.isSceneLoaded == true)
-        {
 
-        }
-        if(GameManagerScript.isSceneLoaded == true)
-        {
-            Glow.isGlowActive = true;
-        }
-        if (GameManagerScript.isSceneLoaded == false)
-        {
-            Glow.isGlowActive = false;
-        }
         rb.bodyType = RigidbodyType2D.Dynamic;
         if (!Glow.isGlowActive)
         {
