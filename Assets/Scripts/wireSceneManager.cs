@@ -3,76 +3,93 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using gameManager = GameManagerScript;//Turns the gamemanagerscript into a using state to be able to use a static function
+
 public class wireSceneManager : MonoBehaviour
 {
-    public BoxCollider2D bc;
-    public static bool slidePuzzleCompleted;
+    public Collider2D bc;
+    public static bool wirePuzzleCompleted;
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
     public GameObject player;
-    public string SceneName;
-    public bool isNextScene;
-    public Vector3 offset = new Vector3(1, 2, 0);
-    private Rigidbody2D body;
+    //public PlaceHolderSaveScript saveManager;
 
-    [SerializeField]
-    public SceneInfo SceneInfo;
+
+    gmScript gm;
+
+    public bool delayActive;
+    public float timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        bc = gameObject.GetComponent<BoxCollider2D>();
+        bc = gameObject.GetComponent<Collider2D>();
+        gm = GameObject.Find("GMOb").GetComponent<gmScript>();
+        wirePuzzleCompleted = false;
+    }
 
-        body.position = transform.position + offset;
-    }
-    private void Awake()
-    {
-        body = gameObject.GetComponent<Rigidbody2D>();
-    }
     // Update is called once per frame
     void Update()
     {
         promptText.text = curText;
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKey(KeyCode.M))
         {
-            slidePuzzleCompleted = true;
+            wirePuzzleCompleted = true;
         }
         if (ishere)
         {
             Debug.Log("Here");
-            if (slidePuzzleCompleted)
+            if (wirePuzzleCompleted)
             {
-                curText = "Press E to Crawl to the Exit";
-            }
-            else
-            {
-                curText = "Press E to Clear the Pipe";
+                curText = "Nice Job";
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
+
+
+        }
+        if (delayActive)
+        {
+            timer += Time.deltaTime;
+            if (timer > 1)
             {
-
-                   // SceneInfo.isNextScene = isNextScene;
-                    //SceneManager.LoadScene(3);
-                
+                delayActive = false;
+                timer = 0;
             }
-
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ishere = true;
         if (collision.gameObject.tag == "Player")
         {
+            ishere = true;
+            curText = "Press E to do wires";
             player = collision.gameObject;
+            if (gm.objectiveNumber == 0)
+            {
+                gm.objectiveNumber = 1;
+                gm.objectiveText.text = "Current Objective: " + gm.ObjectivesList[1];
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                gameManager.LoadWirePuzzle();
+                Debug.Log("Going");
+            }
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        //Bugged
+        if (other.gameObject.tag == "Player")
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                gameManager.LoadWirePuzzle();
+                Debug.Log("Going");
+            }
+        }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         Debug.Log("left");
