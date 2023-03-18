@@ -52,8 +52,7 @@ public class PlayerPipePuzzle : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "WinObj")
         {
-            GrateScript.slidePuzzleCompleted = true; 
-            SceneSwitcher.SceneSwitch("L1F2");
+            SGameManager.isWin = true;
         }
     }
 

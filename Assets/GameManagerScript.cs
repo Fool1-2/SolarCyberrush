@@ -3,21 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[CreateAssetMenu(fileName = "PlaceHolderSaveScript", menuName = "Persistence")]
+
 public class GameManagerScript : MonoBehaviour
 {
-    public List<GameObject> players;
+    public List<GameObject> playerList;
+    public static bool isSceneLoaded;
 
     private void Update()
     {
-        if (players.Count == 2)
+
+        if (playerList[0] == null)
         {
-            Vector3 distance1 = this.gameObject.transform.position - players[0].transform.position;
-            Vector3 distance2 = this.gameObject.transform.position - players[1].transform.position;
-            
+            playerList[0] = GameObject.FindGameObjectWithTag("Player");//finds the player
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (isSceneLoaded)//turns off the player in the original scene if we have loaded into another scene
+        {
+            playerList[0].SetActive(false);
+        }
+        else
+        {
+            playerList[0].SetActive(true);
+        }
+
+        
+        
+        if (Input.GetKeyDown(KeyCode.K))
         {
             //  SceneManager.UnloadSceneAsync("L1F2");
             SceneManager.LoadSceneAsync("WirePuzzleScene", LoadSceneMode.Additive);// Loads the wire puzzle scene addative to the main scene
@@ -25,12 +36,7 @@ public class GameManagerScript : MonoBehaviour
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));// sets wirepuzzle scene as active scene 
         }
 
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            SceneManager.LoadSceneAsync("Slide Puzzle 1", LoadSceneMode.Additive);
-
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("Slide Puzzle 1"));
-        }
+        
         /*  if (Input.GetKeyDown(KeyCode.Q))
           {
              // SceneManager.UnloadSceneAsync("WirePuzzleScene");
@@ -56,6 +62,19 @@ public class GameManagerScript : MonoBehaviour
     public void ClosePopup()
     {
         SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
+    }
+
+    public static void LoadSlidePuzzle(string SceneName)
+    {
+        isSceneLoaded = true;
+        SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);//Loads the scene by the string
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
+    }
+
+    public static void UnLoadSlidePuzzle(string SceneName)
+    {
+        isSceneLoaded = false;
+        SceneManager.UnloadSceneAsync(SceneName);//Unloads the scene by string
     }
 }
 

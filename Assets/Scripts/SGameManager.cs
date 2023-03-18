@@ -2,18 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using SceneSwitcher = SwichScenes;
+using gameManager = GameManagerScript;
 using UnityEngine.SceneManagement; 
 
 public class SGameManager : MonoBehaviour
 {
     
     public static bool isWin;
-    
-
-    private void Awake() {
-        
-    }
 
     private void OnEnable() {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -41,15 +36,15 @@ public class SGameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(2);
+            gameManager.LoadSlidePuzzle("SlidePuzzle");
         } 
  
  
         if (isWin) 
         { 
             GrateScript.slidePuzzleCompleted = true; 
- 
-            SceneSwitcher.SceneSwitch("L1F2");
+
+            gameManager.UnLoadSlidePuzzle("SlidePuzzle");
         } 
     }
 }

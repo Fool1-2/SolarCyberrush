@@ -9,6 +9,9 @@ public class Glow : MonoBehaviour
     public int glowAB; 
     public static GameObject currentPossessedObj;
 
+    private void OnEnable() {
+        PlayerMovement.isPossessing = false;
+    }
     
     void Update()
     {
@@ -19,13 +22,8 @@ public class Glow : MonoBehaviour
             if (PlayerMovement.isPossessing == true)
             {
                 Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
-                PlayerMovement.isPossessing = true;
+                PlayerMovement.isPossessing = false;
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-
         }
     }
 }
