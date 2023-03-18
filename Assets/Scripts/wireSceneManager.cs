@@ -45,6 +45,11 @@ public class wireSceneManager : MonoBehaviour
             {
                 curText = "Nice Job";
             }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                gameManager.LoadWirePuzzle();
+                Debug.Log("Going");
+            }
 
 
 
@@ -63,7 +68,7 @@ public class wireSceneManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            ishere = true;
+            
             curText = "Press E to do wires";
             player = collision.gameObject;
             if (gm.objectiveNumber == 0)
@@ -71,22 +76,14 @@ public class wireSceneManager : MonoBehaviour
                 gm.objectiveNumber = 1;
                 gm.objectiveText.text = "Current Objective: " + gm.ObjectivesList[1];
             }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                gameManager.LoadWirePuzzle();
-                Debug.Log("Going");
-            }
+
         }
     }
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                gameManager.LoadWirePuzzle();
-                Debug.Log("Going");
-            }
+            ishere = true;
         }
     }
 
