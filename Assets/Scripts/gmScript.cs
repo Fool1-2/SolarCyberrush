@@ -23,7 +23,7 @@ public class gmScript : MonoBehaviour
     public List<Sprite> NoteSprites;
     public Sprite noteImageSprite;
     public Sprite noteSol1;
-
+    public Image noteImage;
     //
 
     // Start is called before the first frame update
@@ -83,5 +83,6 @@ public class gmScript : MonoBehaviour
     {
         noteCanvas.enabled = true;
         noteImageSprite = NoteSprites[noteNumber - 1];
+        noteImage.sprite = noteImageSprite;
     }
 }
