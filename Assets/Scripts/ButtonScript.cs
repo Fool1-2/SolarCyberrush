@@ -60,6 +60,7 @@ public class ButtonScript : MonoBehaviour
     }
     IEnumerator Unpress()
     {
+        StopCoroutine(Press());
         yield return new WaitForSeconds(.1f);
         if (isPressed)
         {
