@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -26,6 +27,7 @@ public class TeleObj : MonoBehaviour
     float yShake;
     public float yDif = 1f;
     Vector2 shakeVector;
+    private Light2D teleObjLight;
 
     //Notes: Make it so that when the object collides with something it turns off the telekinesis
 
@@ -33,13 +35,14 @@ public class TeleObj : MonoBehaviour
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
-        xMagnitude = gameObject.transform.localScale.y * .5f;
-        yMagnitude = gameObject.transform.localScale.x;
+        xMagnitude = 1;
+        yMagnitude = 1;
         speed = 11;
         duration = .1f;
         yDif = 1;
         shakeForce = 3;
         isNotRunningShake = true;
+        teleObjLight = GetComponent<Light2D>();
     }
     // Update is called once per frame
     void Update()
@@ -58,6 +61,16 @@ public class TeleObj : MonoBehaviour
         {
             rb.gravityScale = 5;
         }
+
+        if (Glow_ProjectileControl.curProjNum == 1 && Glow.isGlowActive)//if glow is on and telekensis is active then light2D will turn on the objects lights
+        {
+            teleObjLight.enabled = true;
+        }
+        else
+        {
+            teleObjLight.enabled = false;
+        }
+
     }
 
     private void FixedUpdate()
@@ -126,7 +139,14 @@ public class TeleObj : MonoBehaviour
         isNotRunningShake = true;
         yield return null;
     }
+    //These two combined break telekinesis when you're touching somethimg
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        isPoss = false;
+        PlayerMovement.isPossessing = false;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         isPoss = false;
         PlayerMovement.isPossessing = false;

@@ -15,15 +15,19 @@ public class PlayerMovement : MonoBehaviour
     public float possessedrangeNum;
     public LayerMask possessedLayer;
     public AudioClip playerJumpUpSound;
-
     
 
-    private void Start() {
+    private SpriteRenderer _renderer;
+
+    private void Start()
+    {
+
         
         rb = GetComponent<Rigidbody2D>();
+        _renderer = GetComponent<SpriteRenderer>();
         if (!GrateScript.slidePuzzleCompleted)
         {
-            DontDestroyOnLoad(this.gameObject);
+            
         }
     }
     // Update is called once per frame
@@ -33,17 +37,28 @@ public class PlayerMovement : MonoBehaviour
         {
             GrateScript.slidePuzzleCompleted = true;
         }
+
         rb.bodyType = RigidbodyType2D.Dynamic;
         if (!Glow.isGlowActive)
         {
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
-
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded())//checks if player has pressed space and is on the ground before jumping
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
-                
-                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-                AudioSource.PlayClipAtPoint(playerJumpUpSound, transform.position);
+                GetComponent<Animator>().Play("SolarCyberrushWalkingAnimation");
+                if (Input.GetAxisRaw("Horizontal") > 0)
+                {
+                    _renderer.flipX = true;
+                }
+                else if (Input.GetAxisRaw("Horizontal") < 0)
+                {
+                    _renderer.flipX = false;
+                }
             }
+            else
+            {
+                GetComponent<Animator>().Play("SolarCyberrushIdleAnimation");
+            }
+
 
         }
         else
@@ -74,7 +89,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Collider2D inRange = Physics2D.OverlapCircle(transform.position, possessedrangeNum, possessedLayer);
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded())//checks if player has pressed space and is on the ground before jumping
+        {
 
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            AudioSource.PlayClipAtPoint(playerJumpUpSound, transform.position);
+        }
     }
     
     bool isGrounded()

@@ -9,18 +9,22 @@ public class Glow : MonoBehaviour
     public int glowAB; 
     public static GameObject currentPossessedObj;
 
+    private void OnEnable() {
+        PlayerMovement.isPossessing = false;
+    }
     
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.G) && !PlayerMovement.isPossessing)//Turns on glow when G is pressed
+        if (Input.GetKeyDown(KeyCode.Space))//Turns on glow when G is pressed
         {
             isGlowActive = !isGlowActive;//Turns the bool off and on
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
+            if (PlayerMovement.isPossessing == true)
+            {
+                Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
+                PlayerMovement.isPossessing = false;
+            }
         }
     }
 }
+

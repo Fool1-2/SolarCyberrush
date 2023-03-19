@@ -7,22 +7,23 @@ public class Glow_ProjectileControl : MonoBehaviour
 {
     #region Bullet Variables
     public List<GameObject> glowProjectiles;
-    public int curProjNum;
+    public static int curProjNum;
     [SerializeField] GameObject currentGlowBullet;
     [SerializeField]Rigidbody2D rb;
     [SerializeField]float speed;
     Transform player;
-    Vector3 setScaleForBullet = new Vector3(3, 8, 7);
+    Vector3 setScaleForBullet = new Vector3(1, 1, 1);
     #endregion
 
     [SerializeField]Glow glow;
     public Light2D glowLight;
     public static bool isShot;
+    bool oneShot = false;
     [SerializeField]Color[] diffGlowColors;
     
     private void OnEnable() {
         AutoReloadBullet();
-        currentGlowBullet = transform.GetChild(0).gameObject;//When the script starts finds the controllers child and makes that the current bullet
+        //currentGlowBullet = transform.GetChild(0).gameObject;//When the script starts finds the controllers child and makes that the current bullet
         currentGlowBullet.GetComponent<FollowMouse>().enabled = true;//turns on follow mouse script
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();//finds the player through its tag
         glow = GameObject.FindGameObjectWithTag("Player").GetComponent<Glow>();//Finds the script in playe called Glow
@@ -32,36 +33,24 @@ public class Glow_ProjectileControl : MonoBehaviour
 
     public void AutoReloadBullet()
     {
+
         Destroy(currentGlowBullet);
         currentGlowBullet = Instantiate(glowProjectiles[curProjNum], (Vector2)transform.position, Quaternion.identity);//Spawn a new bullet replacing the old bullet
         currentGlowBullet.transform.parent = gameObject.transform;//Puts the bullet under the controller as a child
         currentGlowBullet.transform.localScale = setScaleForBullet;//Fixes the scaling of the bullet
+        oneShot = false;
         isShot = false;//turns isshot back off
     }
     
     void Update()
     {
+        currentGlowBullet = transform.GetChild(0).gameObject;
+
         #region Glow bool
         if (Glow.isGlowActive)//Checks if the glow ability has changed and turns on the projectile
         {
             currentGlowBullet.SetActive(true);
             glowLight.enabled = true;
-            /*switch (glow.glowAB)
-            {
-                
-                case Glow.glowAbility.Light:
-                    curProjNum = 0;
-                    glowLight.color = diffGlowColors[0];
-                    break;
-                case Glow.glowAbility.Telekinesis:
-                    curProjNum = 1;
-                    glowLight.color = diffGlowColors[1];
-                    break;
-                case Glow.glowAbility.Growth:
-                    curProjNum = 2;
-                    glowLight.color = diffGlowColors[2];
-                    break;
-            }*/
         }
         else
         {
@@ -76,34 +65,26 @@ public class Glow_ProjectileControl : MonoBehaviour
         #endregion
 
         #region arrowKeys
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        //Change to shift to change glow - Made it where it can only be switched when the arrow has not been shot and glow is active
+        //Changed to remove plant growth
+        if (Glow.isGlowActive && !isShot)
         {
-            if (curProjNum > 0)
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                curProjNum -= 1;
+                if (curProjNum < 1)
+                {
+                    curProjNum += 1;
+                }
+                else
+                {
+                    curProjNum = 0;
+                }
+                glowLight.color = diffGlowColors[curProjNum];
+                AutoReloadBullet();
             }
-            else
-            {
-                curProjNum = 2;
-            }
-            glowLight.color = diffGlowColors[curProjNum];
-            AutoReloadBullet();
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            if (curProjNum < 2)
-            {
-                curProjNum += 1;
-            }
-            else
-            {
-                curProjNum = 0;
-            }
-            glowLight.color = diffGlowColors[curProjNum];
-            AutoReloadBullet();
-        }
+
         #endregion
 
         if (!isShot)
@@ -121,7 +102,11 @@ public class Glow_ProjectileControl : MonoBehaviour
     void Shooting()
     {
         isShot = true;//turns is shot on
-        rb.AddForce(currentGlowBullet.transform.up * speed, ForceMode2D.Impulse);//Shoots the bullet in the direction its facing multiplied by speed
+        if(!oneShot) 
+        {
+            rb.AddForce(currentGlowBullet.transform.up * speed, ForceMode2D.Impulse);//Shoots the bullet in the direction its facing multiplied by speed
+            oneShot = true;
+        }
         currentGlowBullet.GetComponent<FollowMouse>().enabled = false;//Turns followmouse script off
         StartCoroutine(respawnItem(3f));//starts the respawn function
     }
@@ -133,6 +118,7 @@ public class Glow_ProjectileControl : MonoBehaviour
         currentGlowBullet = Instantiate(glowProjectiles[curProjNum], (Vector2)transform.position, Quaternion.identity);//Spawn a new bullet replacing the old bullet
         currentGlowBullet.transform.parent = gameObject.transform;//Puts the bullet under the controller as a child
         currentGlowBullet.transform.localScale = setScaleForBullet;//Fixes the scaling of the bullet
+        oneShot = false;
         isShot = false;//turns isshot back off
     }
 }

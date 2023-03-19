@@ -5,6 +5,7 @@ using UnityEngine;
 public class ButtonScript : MonoBehaviour
 {
     public bool isPressed;
+    [SerializeField]private bool onePress;
     public AudioClip buttonPressSound;
     Vector2 pressedPos, unpressedPos;
 
@@ -16,9 +17,9 @@ public class ButtonScript : MonoBehaviour
     void Start()
     {
         tf = gameObject.transform;
-        pressedPos = new Vector2(0, 0.5f);
-        unpressedPos = new Vector2(0, 0.6f);
-        ScaleChange = new Vector3(0, 0.1f, 0);
+        pressedPos = new Vector2(0, 0.07f);
+        unpressedPos = new Vector2(0, 0.1f);
+        //ScaleChange = new Vector3(0, 0.03f, 0);
         //buttonPressSound = GetComponent<AudioClip>();
     }
 
@@ -29,17 +30,37 @@ public class ButtonScript : MonoBehaviour
     }
     public void Pressed()
     {
+
         //Fix so it only gets called once with the lerp
-        if (!isPressed)
-        {
-            tf.localScale -= ScaleChange;
-        }
-        isPressed = true;
-        transform.localPosition = pressedPos;
+        StartCoroutine(Press());
         
     }
     public void notPressed()
     {
+        StartCoroutine(Unpress());
+        
+    }
+    IEnumerator Press()
+    {
+        onePress = false;
+        if (!onePress)
+        {
+            yield return new WaitForSeconds(.1f);
+            isPressed = true;
+            transform.localPosition = pressedPos;
+            onePress = true;
+        }
+        
+        if (onePress)
+        {
+            yield return new WaitForSeconds(15f);
+            isPressed = false;
+            transform.localPosition = unpressedPos;
+        }
+    }
+    IEnumerator Unpress()
+    {
+        yield return new WaitForSeconds(.1f);
         if (isPressed)
         {
             tf.localScale += ScaleChange;
@@ -47,8 +68,8 @@ public class ButtonScript : MonoBehaviour
 
         }
         isPressed = false;
+        onePress = false;
         transform.localPosition = unpressedPos;
-        
     }
 }
  

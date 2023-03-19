@@ -9,7 +9,8 @@ public class MovePipe : MonoBehaviour
     //Turn the positon of in constraints in rigidbody to limit the axis its on
     
     public bool mouseOn;
-    [SerializeField]Rigidbody2D rb;
+    [SerializeField]private Rigidbody2D rb;
+    [SerializeField]private Camera cam;
     Vector2 mousePos;
     
 
@@ -21,7 +22,7 @@ public class MovePipe : MonoBehaviour
 
     private void Update()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
 
         if (!mouseOn)//If the mouse is off turn the movement off. Also turns the body type from kinematic(still state) to dynamic(move state)
         {

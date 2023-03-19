@@ -17,7 +17,8 @@ public class SwichScenes : MonoBehaviour
         
     }
 
-    public void SceneSwitch(string scene){
+    public static void SceneSwitch(string scene){
         SceneManager.LoadScene(scene);
+
     }
 }
