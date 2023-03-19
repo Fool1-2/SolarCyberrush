@@ -15,10 +15,13 @@ public class PlayerMovement : MonoBehaviour
     public float possessedrangeNum;
     public LayerMask possessedLayer;
     public AudioClip playerJumpUpSound;
+    
 
     private SpriteRenderer _renderer;
 
-    private void Start() {
+    private void Start()
+    {
+
         
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
@@ -34,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         {
             GrateScript.slidePuzzleCompleted = true;
         }
+
         rb.bodyType = RigidbodyType2D.Dynamic;
         if (!Glow.isGlowActive)
         {
