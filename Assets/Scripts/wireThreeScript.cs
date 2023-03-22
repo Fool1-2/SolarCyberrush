@@ -206,10 +206,15 @@ public class wireThreeScript : MonoBehaviour
             wireCon = true;
             Debug.Log("Wire3 Connected");
         }
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wire")
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            Debug.Log("Collision");
+            boxCollider.isTrigger = true;
+            GameManagerScript.UnloadWirePuzzle();
+           // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
+            Debug.Log("Collision");// test collision works with log message
+            conFive = false;
+            wireCon = false;
+            conSix = false;
         }
 
 
@@ -230,10 +235,11 @@ public class wireThreeScript : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
+            GameManagerScript.UnloadWirePuzzle();
+        //    GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
             Debug.Log("Collision");// test collision works with log message
             conFive = false;
             wireCon = false;

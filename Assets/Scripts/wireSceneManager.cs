@@ -41,7 +41,12 @@ public class wireSceneManager : MonoBehaviour
         }
         if (ishere)
         {
+            
             Debug.Log("Here");
+            if (!wirePuzzleCompleted)
+            {
+               // curText = "Press E to do wires";
+            }
             if (wirePuzzleCompleted)
             {
                 curText = "Nice Job";
@@ -88,6 +93,7 @@ public class wireSceneManager : MonoBehaviour
         {
             
             curText = "Press E to do wires";
+            Debug.Log("HEY");
             player = collision.gameObject;
             if (gm.objectiveNumber == 0)
             {
