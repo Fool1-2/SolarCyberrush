@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float horizontal;
+    [HideInInspector]public float horizontal;
     public float speed;
     public float jumpPower;
     [SerializeField]private Rigidbody2D rb;
@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer _renderer;
 
+    private SpriteRenderer _renderer;
+    
+
     private void Start()
     {
 
@@ -31,11 +34,6 @@ public class PlayerMovement : MonoBehaviour
       //  playerRunSound = GetComponent<AudioClip>();
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
-        if (!GrateScript.slidePuzzleCompleted)
-        {
-            
-        }
-        running = false;
     }
     // Update is called once per frame
     void Update()
@@ -57,26 +55,22 @@ public class PlayerMovement : MonoBehaviour
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
-                
-
-
-                GetComponent<Animator>().Play("SolarCyberrushWalkingAnimation");
-                if (Input.GetAxisRaw("Horizontal") > 0)
+                if (horizontal > 0)
                 {
                     _renderer.flipX = true;
                     //playerRunSound.Play();
                 }
-                else if (Input.GetAxisRaw("Horizontal") < 0)
+                else if (horizontal < 0)
                 {
                     _renderer.flipX = false;
                 }
             }
-            else
-            {
-                GetComponent<Animator>().Play("SolarCyberrushIdleAnimation");
-                //playerRunSound.Stop();
 
-                 
+            if (Input.GetKeyDown(KeyCode.W) && isGrounded())//checks if player has pressed space and is on the ground before jumping
+            {
+                //rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                rb.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
+                AudioSource.PlayClipAtPoint(playerJumpUpSound, transform.position);
             }
 
 
@@ -107,27 +101,13 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by 
         }
-        else
-        {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-
-        }
         //Collider2D inRange = Physics2D.OverlapCircle(transform.position, possessedrangeNum, possessedLayer);
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded() && !Glow.isGlowActive)//checks if player has pressed space and is on the ground before jumping
-        {
-
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-            playerJumpUpSound.Play();
-           // AudioClip.Stop();
-        }
     }
-    
+
     bool isGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
-        
     }
-
 
     private void OnDrawGizmos() 
     {
@@ -135,4 +115,5 @@ public class PlayerMovement : MonoBehaviour
         
         //Gizmos.DrawWireSphere(transform.position, possessedrangeNum);
     }
+
 }
