@@ -107,9 +107,13 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by 
         }
+        else
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
 
+        }
         //Collider2D inRange = Physics2D.OverlapCircle(transform.position, possessedrangeNum, possessedLayer);
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded())//checks if player has pressed space and is on the ground before jumping
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded() && !Glow.isGlowActive)//checks if player has pressed space and is on the ground before jumping
         {
 
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
