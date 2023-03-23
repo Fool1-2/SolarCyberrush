@@ -14,8 +14,15 @@ public class PlayerMovement : MonoBehaviour
     public static bool isPossessing;
     public float possessedrangeNum;
     public LayerMask possessedLayer;
-    public AudioClip playerJumpUpSound;
+    public AudioSource playerJumpUpSound;
+    //public AudioSource playerRunSound;
+    public AudioSource playerRunSound;
+    public AudioSource glowActivate;
     
+    public bool running;
+
+
+    private SpriteRenderer _renderer;
 
     private SpriteRenderer _renderer;
     
@@ -23,19 +30,26 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
 
-        
+      //  playerJumpUpSound = GetComponent<AudioSource>();
+      //  playerRunSound = GetComponent<AudioClip>();
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
     }
     // Update is called once per frame
     void Update()
     {
+     
         if (Input.GetKeyDown(KeyCode.M))
         {
             GrateScript.slidePuzzleCompleted = true;
         }
 
         rb.bodyType = RigidbodyType2D.Dynamic;
+        
+        if (Glow.isGlowActive)
+        {
+            glowActivate.Play();
+        }
         if (!Glow.isGlowActive)
         {
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
@@ -44,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
                 if (horizontal > 0)
                 {
                     _renderer.flipX = true;
+                    //playerRunSound.Play();
                 }
                 else if (horizontal < 0)
                 {

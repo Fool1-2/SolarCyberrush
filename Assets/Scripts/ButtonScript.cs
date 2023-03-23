@@ -6,7 +6,7 @@ public class ButtonScript : MonoBehaviour
 {
     public bool isPressed;
     [SerializeField]private bool onePress;
-    public AudioClip buttonPressSound;
+    public AudioSource buttonPressSound;
     Vector2 pressedPos, unpressedPos;
 
     Transform tf;
@@ -16,6 +16,7 @@ public class ButtonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       // buttonPressSound = GetComponent<AudioSource>();
         tf = gameObject.transform;
         pressedPos = new Vector2(0, 0.07f);
         unpressedPos = new Vector2(0, 0.1f);
@@ -49,6 +50,7 @@ public class ButtonScript : MonoBehaviour
             isPressed = true;
             transform.localPosition = pressedPos;
             onePress = true;
+            buttonPressSound.Play();
         }
         
         if (onePress)
@@ -65,7 +67,7 @@ public class ButtonScript : MonoBehaviour
         if (isPressed)
         {
             tf.localScale += ScaleChange;
-            AudioSource.PlayClipAtPoint(buttonPressSound, ScaleChange);
+            
 
         }
         isPressed = false;

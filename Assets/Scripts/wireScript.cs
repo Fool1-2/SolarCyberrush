@@ -212,10 +212,15 @@ public class wireScript : MonoBehaviour
             wireCon = true;// wire is connected
             Debug.Log("Wire Connected");
         }
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFour")// if collides with other wires
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
+            boxCollider.isTrigger = true;
+            GameManagerScript.UnloadWirePuzzle();
+            //       GameManagerScript.LoadWirePuzzle();// reload scene
             Debug.Log("Collision");// test collision works with log message
+            conOne = false;// no longer connected to  port
+            conTwo = false;
+            wireCon = false;// if 1 port is false the wire is not connected 
         }
 
         if (collision.gameObject.tag == "wall")
@@ -252,7 +257,8 @@ public class wireScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
+            GameManagerScript.UnloadWirePuzzle();
+     //       GameManagerScript.LoadWirePuzzle();// reload scene
             Debug.Log("Collision");// test collision works with log message
             conOne = false;// no longer connected to  port
             conTwo = false;

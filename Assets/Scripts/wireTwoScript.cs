@@ -213,6 +213,16 @@ public class wireTwoScript : MonoBehaviour
             //transform.rotation = Quaternion.Euler(0, 0, 0);
 
         }
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
+        {
+            boxCollider.isTrigger = true;
+            GameManagerScript.UnloadWirePuzzle();
+        //    GameManagerScript.LoadWirePuzzle();
+            Debug.Log("Collision");// test collision works with log message
+            conThree = false;
+            conFour = false;
+            wireCon = false;
+        }
 
     }
     IEnumerator ColCoroutine()
@@ -229,10 +239,11 @@ public class wireTwoScript : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
+            GameManagerScript.UnloadWirePuzzle();
+          //  GameManagerScript.LoadWirePuzzle();
             Debug.Log("Collision");// test collision works with log message
             conThree = false;
             conFour = false;
