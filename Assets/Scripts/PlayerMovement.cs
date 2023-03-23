@@ -16,7 +16,10 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask possessedLayer;
     public AudioSource playerJumpUpSound;
     //public AudioSource playerRunSound;
-    public AudioClip playerRunSound;
+    public AudioSource playerRunSound;
+    public AudioSource glowActivate;
+    
+    public bool running;
 
 
     private SpriteRenderer _renderer;
@@ -24,34 +27,44 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
 
-        playerJumpUpSound = GetComponent<AudioSource>();
-        playerRunSound = GetComponent<AudioClip>();
+      //  playerJumpUpSound = GetComponent<AudioSource>();
+      //  playerRunSound = GetComponent<AudioClip>();
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         if (!GrateScript.slidePuzzleCompleted)
         {
             
         }
+        running = false;
     }
     // Update is called once per frame
     void Update()
     {
+     
         if (Input.GetKeyDown(KeyCode.M))
         {
             GrateScript.slidePuzzleCompleted = true;
         }
 
         rb.bodyType = RigidbodyType2D.Dynamic;
+        
+        if (Glow.isGlowActive)
+        {
+            glowActivate.Play();
+        }
         if (!Glow.isGlowActive)
         {
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
-                AudioSource.PlayClipAtPoint(playerRunSound, transform.position);
-               // GetComponent<Animator>().Play("SolarCyberrushWalkingAnimation");
+                
+
+
+                GetComponent<Animator>().Play("SolarCyberrushWalkingAnimation");
                 if (Input.GetAxisRaw("Horizontal") > 0)
                 {
                     _renderer.flipX = true;
+                    //playerRunSound.Play();
                 }
                 else if (Input.GetAxisRaw("Horizontal") < 0)
                 {
@@ -61,6 +74,9 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 GetComponent<Animator>().Play("SolarCyberrushIdleAnimation");
+                //playerRunSound.Stop();
+
+                 
             }
 
 
