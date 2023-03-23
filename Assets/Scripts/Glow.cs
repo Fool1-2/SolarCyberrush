@@ -8,6 +8,7 @@ public class Glow : MonoBehaviour
     //public enum glowAbility{Light, Telekinesis, Growth}// An enum is also converted to ints kinda of like an array
     public int glowAB; 
     public static GameObject currentPossessedObj;
+
     
     private void OnEnable() {
         PlayerMovement.isPossessing = false;
