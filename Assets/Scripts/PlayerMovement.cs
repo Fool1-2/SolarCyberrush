@@ -48,12 +48,14 @@ public class PlayerMovement : MonoBehaviour
 
         rb.bodyType = RigidbodyType2D.Dynamic;
         
-        if (Glow.isGlowActive)
-        {
-            glowActivate.Play();
-        }
+        
         if (!Glow.isGlowActive)
         {
+
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+            {
+                playerRunSound.Play();
+            }
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
@@ -64,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetAxisRaw("Horizontal") > 0)
                 {
                     _renderer.flipX = true;
-                    //playerRunSound.Play();
+                    
                 }
                 else if (Input.GetAxisRaw("Horizontal") < 0)
                 {
@@ -74,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 GetComponent<Animator>().Play("SolarCyberrushIdleAnimation");
-                //playerRunSound.Stop();
+                playerRunSound.Stop();
 
                  
             }
@@ -86,8 +88,13 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(0,-1);
             rb.inertia = 0;
         }
+        if (Input.GetKeyDown(KeyCode.Space) &&(Glow.isGlowActive))//Turns on glow when G is pressed
+        {
 
-        if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
+            glowActivate.Play();
+
+        }
+            if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
         {
             if (Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss)//if the current possessedObj isPoss bool on then it will trun on isPossessing
             {
