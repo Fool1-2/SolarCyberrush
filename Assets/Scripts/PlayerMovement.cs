@@ -22,9 +22,7 @@ public class PlayerMovement : MonoBehaviour
     
     public bool running;
 
-    private SpriteRenderer _renderer;
 
-    //private SpriteRenderer _renderer;
     
 
     private void Start()
