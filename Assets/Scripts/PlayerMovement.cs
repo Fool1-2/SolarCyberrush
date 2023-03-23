@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.Audio;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,10 +22,9 @@ public class PlayerMovement : MonoBehaviour
     
     public bool running;
 
-
     private SpriteRenderer _renderer;
 
-    private SpriteRenderer _renderer;
+    //private SpriteRenderer _renderer;
     
 
     private void Start()
@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 //rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 rb.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
-                AudioSource.PlayClipAtPoint(playerJumpUpSound, transform.position);
+                playerJumpUpSound.Play();
             }
 
 
