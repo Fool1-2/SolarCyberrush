@@ -204,8 +204,13 @@ public class wireFourScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
+            GameManagerScript.UnloadWirePuzzle();
+           // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
             Debug.Log("Collision");// test collision works with log message
+            conSev = false;// no longer connected to  port
+            conEig = false;
+            wireCon = false;// if 1 port is false the wire is not connected
+
         }
 
         if (collision.gameObject.tag == "wall")
@@ -228,7 +233,8 @@ public class wireFourScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
+            GameManagerScript.UnloadWirePuzzle();
+           // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
             Debug.Log("Collision");// test collision works with log message
             conSev = false;// no longer connected to  port
             conEig = false;

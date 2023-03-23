@@ -38,10 +38,10 @@ public class GameManagerScript : MonoBehaviour
 
 
 
-            if (Input.GetKeyDown(KeyCode.K))
+           /* if (Input.GetKeyDown(KeyCode.K))
             {
              LoadWirePuzzle();
-            }
+            }*/
 
         
         /*  if (Input.GetKeyDown(KeyCode.Q))
