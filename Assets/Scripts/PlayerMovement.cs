@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     
     public bool running;
 
-
+    private SpriteRenderer _renderer;
     
 
     private void Start()
@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerRunSound.Play();
             }
+            //Seperating out the sound Not the same
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
@@ -65,23 +66,20 @@ public class PlayerMovement : MonoBehaviour
                     _renderer.flipX = false;
                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.W) && isGrounded())//checks if player has pressed space and is on the ground before jumping
+            else
             {
-                GetComponent<Animator>().Play("SolarCyberrushIdleAnimation");
-                playerRunSound.Stop();
-
-                 
+                playerRunSound.Stop();                 
             }
 
 
         }
         else
         {
+            playerRunSound.Stop();
             rb.velocity = new Vector2(0,-1);
             rb.inertia = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Space) &&(Glow.isGlowActive))//Turns on glow when G is pressed
+        if (Input.GetKeyDown(KeyCode.Space) && (Glow.isGlowActive))//Turns on glow when G is pressed
         {
 
             glowActivate.Play();
@@ -108,6 +106,11 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by 
         }
         //Collider2D inRange = Physics2D.OverlapCircle(transform.position, possessedrangeNum, possessedLayer);
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded() && !Glow.isGlowActive)//checks if player has pressed space and is on the ground before jumping
+        {
+            rb.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
+            playerJumpUpSound.Play();
+        }
     }
 
     bool isGrounded()
