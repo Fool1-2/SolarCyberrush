@@ -36,7 +36,7 @@ public class SGameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            gameManager.LoadSlidePuzzle("SlidePuzzle");
+            gameManager.LoadPuzzle("SlidePuzzle");
         } 
  
  
@@ -44,7 +44,7 @@ public class SGameManager : MonoBehaviour
         { 
             GrateScript.slidePuzzleCompleted = true; 
 
-            gameManager.UnLoadSlidePuzzle("SlidePuzzle");
+            gameManager.UnLoadPuzzle("SlidePuzzle");
         } 
     }
 }

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.Audio;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float horizontal;
+    [HideInInspector]public float horizontal;
     public float speed;
     public float jumpPower;
     [SerializeField]private Rigidbody2D rb;
@@ -21,8 +22,8 @@ public class PlayerMovement : MonoBehaviour
     
     public bool running;
 
-
     private SpriteRenderer _renderer;
+    
 
     private void Start()
     {
@@ -31,11 +32,6 @@ public class PlayerMovement : MonoBehaviour
       //  playerRunSound = GetComponent<AudioClip>();
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
-        if (!GrateScript.slidePuzzleCompleted)
-        {
-            
-        }
-        running = false;
     }
     // Update is called once per frame
     void Update()
@@ -56,39 +52,34 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerRunSound.Play();
             }
+            //Seperating out the sound Not the same
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
-                
-
-
-                GetComponent<Animator>().Play("SolarCyberrushWalkingAnimation");
-                if (Input.GetAxisRaw("Horizontal") > 0)
+                if (horizontal > 0)
                 {
                     _renderer.flipX = true;
                     
                 }
-                else if (Input.GetAxisRaw("Horizontal") < 0)
+                else if (horizontal < 0)
                 {
                     _renderer.flipX = false;
                 }
             }
             else
             {
-                GetComponent<Animator>().Play("SolarCyberrushIdleAnimation");
-                playerRunSound.Stop();
-
-                 
+                playerRunSound.Stop();                 
             }
 
 
         }
         else
         {
+            playerRunSound.Stop();
             rb.velocity = new Vector2(0,-1);
             rb.inertia = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Space) &&(Glow.isGlowActive))//Turns on glow when G is pressed
+        if (Input.GetKeyDown(KeyCode.Space) && (Glow.isGlowActive))//Turns on glow when G is pressed
         {
 
             glowActivate.Play();
@@ -114,23 +105,18 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by 
         }
-
         //Collider2D inRange = Physics2D.OverlapCircle(transform.position, possessedrangeNum, possessedLayer);
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded())//checks if player has pressed space and is on the ground before jumping
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded() && !Glow.isGlowActive)//checks if player has pressed space and is on the ground before jumping
         {
-
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            rb.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
             playerJumpUpSound.Play();
-           // AudioClip.Stop();
         }
     }
-    
+
     bool isGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
-        
     }
-
 
     private void OnDrawGizmos() 
     {
@@ -138,4 +124,5 @@ public class PlayerMovement : MonoBehaviour
         
         //Gizmos.DrawWireSphere(transform.position, possessedrangeNum);
     }
+
 }

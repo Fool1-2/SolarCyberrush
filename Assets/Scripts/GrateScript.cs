@@ -87,7 +87,7 @@ public class GrateScript : MonoBehaviour
                 }
                 else
                 {
-                    gameManager.LoadSlidePuzzle("SlidePuzzle");//Loads SlidePuzzle if slidePuzzle is not completed
+                    gameManager.LoadPuzzle("SlidePuzzle");//Loads SlidePuzzle if slidePuzzle is not completed
                 }
             }
         }
