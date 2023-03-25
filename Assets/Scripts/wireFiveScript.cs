@@ -200,30 +200,36 @@ public class wireFiveScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "ConnectorNine")// if its connectorONe
         {
-            Debug.Log("Connecting 9");// say connecting(this is more for the devs)
+            //Debug.Log("Connecting 9");// say connecting(this is more for the devs)
             conNin = true;// is connected to port
         }
         if (collision.gameObject.tag == "ConnectorTen")
         {
-            Debug.Log("Connecting 10");
+            //Debug.Log("Connecting 10");
             conTen = true;
         }
         if (conNin && conTen == true)// if both ports connection is true
         {
             wireCon = true;// wire is connected
-            Debug.Log("Wire Connected");
+            //Debug.Log("Wire Connected");
         }
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireOne")// if collides with other wires
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
-            Debug.Log("Collision");// test collision works with log message
+            boxCollider.isTrigger = true;
+            GameManagerScript.UnloadWirePuzzle();
+            //GameManagerScript.LoadWirePuzzle();// reload scene
+            //Debug.Log("Collision");// test collision works with log message
+            wireCon = false;
+            conNin = false;// no longer connected to  port
+            conTen = false;
+            //HingeJoint2D.enabled = true;
         }
 
         if (collision.gameObject.tag == "wall")
         {
             StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
             canRotate = false;
             // rotate = 0;
             canStretchUp = false;
@@ -251,8 +257,9 @@ public class wireFiveScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);// reload scene
-            Debug.Log("Collision");// test collision works with log message
+            GameManagerScript.UnloadWirePuzzle();
+           // GameManagerScript.LoadWirePuzzle();// reload scene
+            ///Debug.Log("Collision");// test collision works with log message
             wireCon = false;
             conNin = false;// no longer connected to  port
             conTen = false;
@@ -263,7 +270,7 @@ public class wireFiveScript : MonoBehaviour
         {
             StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
             canRotate = false;
             // rotate = 0;
             canStretchUp = false;
@@ -294,24 +301,24 @@ public class wireFiveScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "ConnectorNine")// if exit port 1 collision box
         {
-            Debug.Log("Disconnecting 9");// print disconnect message
+            //Debug.Log("Disconnecting 9");// print disconnect message
             conNin = false;// no longer connected to  port
             conTen = false;
             wireCon = false;// if 1 port is false the wire is not connected 
-            Debug.Log("Wire Disconnected");
+            //Debug.Log("Wire Disconnected");
         }
         if (collision.gameObject.tag == "ConnectorTen")
         {
-            Debug.Log("Disconnecting 10");
+            //Debug.Log("Disconnecting 10");
             conTen = false;
             wireCon = false;
-            Debug.Log("Wire Disconnected");
+            //Debug.Log("Wire Disconnected");
         }
         if (collision.gameObject.tag == "wall")
         {
             hitWall = false;
             boxCollider.isTrigger = true;
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
             canRotate = true;
             canStretchUp = true;
             canStretchDown = true;

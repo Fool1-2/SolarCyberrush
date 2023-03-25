@@ -57,7 +57,7 @@ public class GlowActivator : MonoBehaviour
                 glowProjectile.AutoReloadBullet();
             }
             //Add something so that object is destroyed on all collisions so that it cannot go through walls
-            else if (Glow_ProjectileControl.isShot)
+            else if (Glow_ProjectileControl.isShot && other.tag != "IgnoreCollide")
             {
                 //Test this
                 glowProjectile.AutoReloadBullet();

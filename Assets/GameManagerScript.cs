@@ -38,10 +38,10 @@ public class GameManagerScript : MonoBehaviour
 
 
 
-            if (Input.GetKeyDown(KeyCode.K))
+           /* if (Input.GetKeyDown(KeyCode.K))
             {
              LoadWirePuzzle();
-            }
+            }*/
 
         
         /*  if (Input.GetKeyDown(KeyCode.Q))
@@ -79,14 +79,14 @@ public class GameManagerScript : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
     }
 
-    public static void LoadSlidePuzzle(string SceneName)
+    public static void LoadPuzzle(string SceneName)
     {
         isSceneLoaded = true;
         SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);//Loads the scene by the string
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
     }
 
-    public static void UnLoadSlidePuzzle(string SceneName)
+    public static void UnLoadPuzzle(string SceneName)
     {
         isSceneLoaded = false;
         SceneManager.UnloadSceneAsync(SceneName);//Unloads the scene by string

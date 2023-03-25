@@ -30,6 +30,7 @@ public class TeleObj : MonoBehaviour
     private Light2D teleObjLight;
 
     //Notes: Make it so that when the object collides with something it turns off the telekinesis
+    float teleWaitTimer = 0;
 
 
 
@@ -78,6 +79,7 @@ public class TeleObj : MonoBehaviour
         PossessionMovement(isPoss);
         if (isPoss && isNotRunningShake)
         {
+            teleWaitTimer += Time.deltaTime;
             StartCoroutine(shake());
         }
     }
@@ -142,13 +144,21 @@ public class TeleObj : MonoBehaviour
     //These two combined break telekinesis when you're touching somethimg
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isPoss = false;
-        PlayerMovement.isPossessing = false;
+        if (teleWaitTimer > 1)
+        {
+            isPoss = false;
+            PlayerMovement.isPossessing = false;
+            teleWaitTimer = 0;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        isPoss = false;
-        PlayerMovement.isPossessing = false;
+        if (teleWaitTimer > 1)
+        {
+            isPoss = false;
+            PlayerMovement.isPossessing = false;
+            teleWaitTimer = 0;
+        }
     }
 }
