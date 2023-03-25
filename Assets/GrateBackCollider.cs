@@ -29,18 +29,4 @@ public class GrateBackCollider : MonoBehaviour
     {
         ishere = false;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("here");
-        ishere = true;
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        ishere = true;
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        ishere = false;
-        Debug.Log("Not here");
-    }
 }
