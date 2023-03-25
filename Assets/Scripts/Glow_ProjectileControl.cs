@@ -69,9 +69,20 @@ public class Glow_ProjectileControl : MonoBehaviour
         //Changed to remove plant growth
         if (Glow.isGlowActive && !isShot)
         {
+
+            glowLight.color = diffGlowColors[curProjNum];
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                glowLight.color = diffGlowColors[curProjNum];
+                /*
+                if (curProjNum < 0)
+                {
+                    curProjNum += 1;
+                }   
+                else
+                {
+                    curProjNum = 0;
+                }
+                */
                 AutoReloadBullet();
             }
         }
