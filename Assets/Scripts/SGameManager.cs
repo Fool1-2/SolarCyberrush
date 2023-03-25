@@ -9,26 +9,19 @@ public class SGameManager : MonoBehaviour
 {
     
     public static bool isWin;
+    public static bool isPlayerBallOut;
+    private GameObject playerBall;
+    private Vector2 locator;
 
-    private void OnEnable() {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
-    }
-
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        
-    }
-
-    public void OnSceneUnloaded(Scene scene)
-    {
-        
-    }
     
+    private void OnEnable() {
+        //locator = new Vector2(163.2843f, -106.2213f);
+    }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKey(KeyCode.T)) 
         { 
             isWin = true; 
@@ -36,6 +29,7 @@ public class SGameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            gameManager.UnLoadPuzzle("SlidePuzzle");
             gameManager.LoadPuzzle("SlidePuzzle");
         } 
  
