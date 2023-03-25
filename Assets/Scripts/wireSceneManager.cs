@@ -92,7 +92,7 @@ public class wireSceneManager : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             
-            curText = "Press E to do wires";
+            curText = "Press E to unlock the wires";
             //Debug.Log("HEY");
             player = collision.gameObject;
             if (gm.objectiveNumber == 0)
