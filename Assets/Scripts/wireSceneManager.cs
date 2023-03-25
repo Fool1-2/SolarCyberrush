@@ -14,7 +14,7 @@ public class wireSceneManager : MonoBehaviour
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
-    public GameObject player;
+    public GameObject player;// this is the player
     //public PlaceHolderSaveScript saveManager;
 
 
@@ -42,7 +42,7 @@ public class wireSceneManager : MonoBehaviour
         if (ishere)
         {
             
-            Debug.Log("Here");
+            //Debug.Log("Here");
             if (!wirePuzzleCompleted)
             {
                // curText = "Press E to do wires";
@@ -57,7 +57,7 @@ public class wireSceneManager : MonoBehaviour
                 {
                     wirePuzzleInProgress = true;
                     gameManager.LoadWirePuzzle();
-                    Debug.Log("Going");
+                    //Debug.Log("Going");
                     
                 }
 
@@ -92,8 +92,8 @@ public class wireSceneManager : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             
-            curText = "Press E to do wires";
-            Debug.Log("HEY");
+            curText = "Press E to unlock the wires";
+            //Debug.Log("HEY");
             player = collision.gameObject;
             if (gm.objectiveNumber == 0)
             {
@@ -113,7 +113,7 @@ public class wireSceneManager : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("left");
+        //Debug.Log("left");
         ishere = false;
         promptText.text = "";
 

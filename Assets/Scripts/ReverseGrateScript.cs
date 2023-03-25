@@ -26,7 +26,7 @@ public class ReverseGrateScript : MonoBehaviour
             {
                 gs.delayActive = true;
                 collision.gameObject.GetComponent<Transform>().position = gratePosition;
-                Debug.Log("thing");
+                //Debug.Log("thing");
             }
         }
     }

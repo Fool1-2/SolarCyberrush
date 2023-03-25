@@ -23,9 +23,8 @@ public class NoteScript : MonoBehaviour
         {
             gm.hasNote[noteNumber - 1] = true;
             gm.noteNumber++;
-            Debug.Log("2");
+            //Debug.Log("2");
             gm.noteUIUp(noteNumber);
-            Debug.Log("1");
             Destroy(gameObject);
 
         }

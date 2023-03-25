@@ -10,6 +10,7 @@ public class GrateScript : MonoBehaviour
 {
     public Collider2D bc;
     public static bool slidePuzzleCompleted;
+    public static bool slidePuzzleInProgress;
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
@@ -39,7 +40,6 @@ public class GrateScript : MonoBehaviour
         }
         if (ishere)
         { 
-            Debug.Log("Here");
             if (slidePuzzleCompleted)
             {
                 curText = "Press E to Crawl to the Exit";
@@ -48,8 +48,32 @@ public class GrateScript : MonoBehaviour
             {
                 curText = "Press E to Clear the Pipe";
             }
+            if (slidePuzzleInProgress == false)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (!slidePuzzleCompleted)
+                    {
+                        slidePuzzleInProgress = true;
+                        gameManager.LoadPuzzle("SlidePuzzle");
+                        Debug.Log("Going");
+                    }
+                    else if (!delayActive)
+                    {
+                        delayActive = true;
+                        player.GetComponent<Transform>().position = new Vector3(20, -4, 0);
+                    }
 
-            
+                }
+                
+
+            }
+            if (gameManager.isSceneLoaded == false)
+            {
+                slidePuzzleInProgress = false;
+            }
+
+
         }
         if (delayActive)
         {
@@ -78,7 +102,7 @@ public class GrateScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.E))
+           /* if (Input.GetKeyDown(KeyCode.E))
             {
                 if (slidePuzzleCompleted)
                 {
@@ -89,12 +113,11 @@ public class GrateScript : MonoBehaviour
                 {
                     gameManager.LoadPuzzle("SlidePuzzle");//Loads SlidePuzzle if slidePuzzle is not completed
                 }
-            }
+            }*/
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("left");
         ishere = false;
         promptText.text = "";
 

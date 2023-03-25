@@ -105,7 +105,8 @@ public class Glow_ProjectileControl : MonoBehaviour
     void Shooting()
     {
         isShot = true;//turns is shot on
-        if(!oneShot) 
+        
+        if (!oneShot) 
         {
             rb.AddForce(currentGlowBullet.transform.up * speed, ForceMode2D.Impulse);//Shoots the bullet in the direction its facing multiplied by speed
             oneShot = true;

@@ -193,25 +193,25 @@ public class wireThreeScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "ConnectorFive")
         {
-            Debug.Log("Connecting 5");
+            //Debug.Log("Connecting 5");
             conFive = true;
         }
         if (collision.gameObject.tag == "ConnectorSix")
         {
-            Debug.Log("Connecting 6");
+            ///Debug.Log("Connecting 6");
             conSix = true;
         }
         if (conFive && conSix == true)
         {
             wireCon = true;
-            Debug.Log("Wire3 Connected");
+            //Debug.Log("Wire3 Connected");
         }
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
         {
             boxCollider.isTrigger = true;
             GameManagerScript.UnloadWirePuzzle();
            // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
-            Debug.Log("Collision");// test collision works with log message
+            //Debug.Log("Collision");// test collision works with log message
             conFive = false;
             wireCon = false;
             conSix = false;
@@ -222,7 +222,7 @@ public class wireThreeScript : MonoBehaviour
         {
             StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
             canRotate = false;
             // rotate = 0;
             canStretchUp = false;
@@ -240,7 +240,7 @@ public class wireThreeScript : MonoBehaviour
             boxCollider.isTrigger = true;
             GameManagerScript.UnloadWirePuzzle();
         //    GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
-            Debug.Log("Collision");// test collision works with log message
+            //Debug.Log("Collision");// test collision works with log message
             conFive = false;
             wireCon = false;
             conSix = false;
@@ -285,23 +285,23 @@ public class wireThreeScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "ConnectorFive")
         {
-            Debug.Log("Disconnecting 5");
+            //Debug.Log("Disconnecting 5");
             conFive = false;
             wireCon = false;
-            Debug.Log("Wire3 Disconnected");
+            //Debug.Log("Wire3 Disconnected");
         }
         if (collision.gameObject.tag == "ConnectorSix")
         {
-            Debug.Log("Disconnecting 6");
+            //Debug.Log("Disconnecting 6");
             conSix = false;
             wireCon = false;
-            Debug.Log("Wire3 Disconnected");
+            //Debug.Log("Wire3 Disconnected");
         }
         if (collision.gameObject.tag == "wall")
         {
             hitWall = false;
             boxCollider.isTrigger = true;
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
             canRotate = true;
             canStretchUp = true;
             canStretchDown = true;
