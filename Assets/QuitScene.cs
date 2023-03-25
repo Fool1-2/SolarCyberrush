@@ -19,7 +19,7 @@ public class QuitScene : MonoBehaviour
 
     public void buttonPressed()
     {
-        Debug.Log("HI");
+        //Debug.Log("HI");
         GameManagerScript.UnloadWirePuzzle();
 
     }

@@ -53,13 +53,13 @@ public class CameraScript : MonoBehaviour
         if (GameManagerScript.isSceneLoaded == true)
         {
             cam.enabled = false;// disables main camera when scene is loaded
-            Debug.Log("OFF");
+          //  Debug.Log("OFF");
         }
 
         if (GameManagerScript.isSceneLoaded == false)
         {
             cam.enabled = true; // brings camera back
-            Debug.Log("ON");
+            //Debug.Log("ON");
         }
 
     }

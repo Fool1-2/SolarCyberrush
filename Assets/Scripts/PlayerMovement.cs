@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource playerJumpUpSound;
     //public AudioSource playerRunSound;
     public AudioSource playerRunSound;
+
     public AudioSource glowActivate;
     public AudioSource glowChangeSound;
 
@@ -73,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.W) && isGrounded())
             {
                 jumped = true;
+                playerJumpUpSound.Play();
             }
 
 

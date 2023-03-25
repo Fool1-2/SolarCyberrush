@@ -36,7 +36,7 @@ public class FileHandler : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.LogError("Error trying to load game" + fullPath + "\n" + e);
+                //Debug.LogError("Error trying to load game" + fullPath + "\n" + e);
                 throw;
             }
         }
@@ -63,7 +63,7 @@ public class FileHandler : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogError("Error trying to save game" + fullPath + "\n" + e);
+            //Debug.LogError("Error trying to save game" + fullPath + "\n" + e);
             throw;
         } 
     }
