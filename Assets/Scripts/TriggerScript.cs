@@ -24,6 +24,8 @@ public class TriggerScript : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        buttonscript.timerOn = false;
+        buttonscript.timeUp = false;
         buttonscript.notPressed();
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -35,7 +37,11 @@ public class TriggerScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag != "Telekinesis" || other.gameObject.tag != "Light")
         {
-            buttonscript.Pressed();
+            if (!buttonscript.timeUp)
+            {
+                buttonscript.Pressed();
+            }
+            
         }
     }
 }

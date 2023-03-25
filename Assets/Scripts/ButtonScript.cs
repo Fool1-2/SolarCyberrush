@@ -10,6 +10,9 @@ public class ButtonScript : MonoBehaviour
     Vector2 pressedPos, unpressedPos;
 
     Transform tf;
+    float timerWoah;
+    public bool timerOn;
+    public bool timeUp;
 
    
     Vector3 ScaleChange;
@@ -27,7 +30,25 @@ public class ButtonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timerOn)
+        {
+            timerWoah += Time.deltaTime;
+            if (timerWoah >= 15f)
+            {
+                timeUp = true;
+            }
+        }
 
+        if (timeUp)
+        {
+            isPressed = false;
+            transform.localPosition = unpressedPos;
+        }
+
+        if (!timerOn)
+        {
+            timerWoah = 0;
+        }
     }
     public void Pressed()
     {
@@ -43,29 +64,26 @@ public class ButtonScript : MonoBehaviour
     }
     IEnumerator Press()
     {
-        onePress = false;
-        if (!onePress)
+        if (!timeUp)
         {
-            yield return new WaitForSeconds(.1f);
-            isPressed = true;
-            transform.localPosition = pressedPos;
-            onePress = true;
-            buttonPressSound.Play();
-        }
-        
-        if (onePress)
-        {
-            yield return new WaitForSeconds(15f);
-            isPressed = false;
-            transform.localPosition = unpressedPos;
+            onePress = false;
+            if (!onePress)
+            {
+                yield return new WaitForSeconds(.1f);
+                isPressed = true;
+                transform.localPosition = pressedPos;
+                timerOn = true;
+                onePress = true;
+                buttonPressSound.Play();
+            }
         }
     }
     IEnumerator Unpress()
     {
-        StopCoroutine(Press());
         yield return new WaitForSeconds(.1f);
         if (isPressed)
         {
+            StopCoroutine(Press());
             tf.localScale += ScaleChange;
             
 
