@@ -122,4 +122,13 @@ public class GrateScript : MonoBehaviour
         promptText.text = "";
 
     }
+
+    public void sendPlayerBack()
+    {
+        if (!delayActive)
+        {
+            delayActive = true;
+            player.GetComponent<Transform>().position = new Vector3(11, 8.25f, 0);
+        }
+    }
 }
