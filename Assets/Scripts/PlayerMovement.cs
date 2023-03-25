@@ -20,7 +20,8 @@ public class PlayerMovement : MonoBehaviour
     //public AudioSource playerRunSound;
     public AudioSource playerRunSound;
     public AudioSource glowActivate;
-    
+    public AudioSource glowChangeSound;
+
     public bool running;
 
     private SpriteRenderer _renderer;
@@ -83,6 +84,18 @@ public class PlayerMovement : MonoBehaviour
             rb.inertia = 0;
         }
         if (Input.GetKeyDown(KeyCode.Space) && (Glow.isGlowActive))//Turns on glow when G is pressed
+        {
+
+            glowActivate.Play();
+
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && (Glow.isGlowActive))//Turns on glow when G is pressed
+        {
+
+            glowChangeSound.Play();
+
+        }
+        if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
         {
 
             glowActivate.Play();

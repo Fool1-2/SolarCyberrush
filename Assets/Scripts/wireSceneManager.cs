@@ -14,7 +14,7 @@ public class wireSceneManager : MonoBehaviour
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
-    public GameObject player;
+    public GameObject player;// this is the player
     //public PlaceHolderSaveScript saveManager;
 
 
