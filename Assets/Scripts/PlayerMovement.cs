@@ -19,7 +19,8 @@ public class PlayerMovement : MonoBehaviour
     //public AudioSource playerRunSound;
     public AudioSource playerRunSound;
     public AudioSource glowActivate;
-    
+    public AudioSource glowChangeSound;
+
     public bool running;
 
     private SpriteRenderer _renderer;
@@ -85,7 +86,13 @@ public class PlayerMovement : MonoBehaviour
             glowActivate.Play();
 
         }
-            if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && (Glow.isGlowActive))//Turns on glow when G is pressed
+        {
+
+            glowChangeSound.Play();
+
+        }
+        if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
         {
             if (Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss)//if the current possessedObj isPoss bool on then it will trun on isPossessing
             {
