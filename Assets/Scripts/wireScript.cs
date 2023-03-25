@@ -199,25 +199,25 @@ public class wireScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "ConnecterOne")// if its connectorONe
         {
-            Debug.Log("Connecting 1");// say connecting(this is more for the devs)
+            //Debug.Log("Connecting 1");// say connecting(this is more for the devs)
             conOne = true;// is connected to port
         }
         if (collision.gameObject.tag == "ConnectorTwo")
         {
-            Debug.Log("Connecting 2");
+            //Debug.Log("Connecting 2");
             conTwo = true;
         }
         if ( conOne && conTwo == true)// if both ports connection is true
         {
             wireCon = true;// wire is connected
-            Debug.Log("Wire Connected");
+            //Debug.Log("Wire Connected");
         }
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             boxCollider.isTrigger = true;
             GameManagerScript.UnloadWirePuzzle();
             //       GameManagerScript.LoadWirePuzzle();// reload scene
-            Debug.Log("Collision");// test collision works with log message
+            //Debug.Log("Collision");// test collision works with log message
             conOne = false;// no longer connected to  port
             conTwo = false;
             wireCon = false;// if 1 port is false the wire is not connected 
@@ -227,7 +227,7 @@ public class wireScript : MonoBehaviour
         {
             StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
             canRotate = false;
            // rotate = 0;
             canStretchUp = false;
@@ -259,7 +259,7 @@ public class wireScript : MonoBehaviour
             boxCollider.isTrigger = true;
             GameManagerScript.UnloadWirePuzzle();
      //       GameManagerScript.LoadWirePuzzle();// reload scene
-            Debug.Log("Collision");// test collision works with log message
+            //Debug.Log("Collision");// test collision works with log message
             conOne = false;// no longer connected to  port
             conTwo = false;
             wireCon = false;// if 1 port is false the wire is not connected 
@@ -292,24 +292,24 @@ public class wireScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "ConnecterOne")// if exit port 1 collision box
         {
-            Debug.Log("Disconnecting 1");// print disconnect message
+            //Debug.Log("Disconnecting 1");// print disconnect message
             conOne = false;// no longer connected to  port
             conTwo = false;
             wireCon = false;// if 1 port is false the wire is not connected 
-            Debug.Log("Wire Disconnected");
+            //Debug.Log("Wire Disconnected");
         }
         if (collision.gameObject.tag == "ConnectorTwo")
         {
-            Debug.Log("Disconnecting 2");
+            //Debug.Log("Disconnecting 2");
             conTwo = false;
             wireCon = false;
-            Debug.Log("Wire Disconnected");
+            //Debug.Log("Wire Disconnected");
         }
         if (collision.gameObject.tag == "wall")
         {
             hitWall = false;
             boxCollider.isTrigger = true;
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
             canRotate = true;
             canStretchUp = true;
             canStretchDown = true;

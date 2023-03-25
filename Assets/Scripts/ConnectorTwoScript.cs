@@ -42,7 +42,7 @@ public class ConnectorTwoScript : MonoBehaviour
 
             if (wireScript.wireCon == true && wireTwoScript.wireCon == true && wireThreeScript.wireCon == true && wireFourScript.wireCon == true && wireFiveScript.wireCon == true)
             {
-                Debug.Log("ChangeNOW");
+                //Debug.Log("ChangeNOW");
                 
                 SceneInfo.isNextScene = isNextScene;
                 wireSceneManager.wirePuzzleCompleted = true;
@@ -55,7 +55,6 @@ public class ConnectorTwoScript : MonoBehaviour
 
             if (Input.GetKey(KeyCode.H))
             {
-                Debug.Log("ChangeNOW");
                 //wirePuzzleCompleted = true;
                // wireSceneManager.wirePuzzleCompleted = true;
                 //SceneInfo.isNextScene = isNextScene;

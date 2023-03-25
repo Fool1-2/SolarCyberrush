@@ -186,25 +186,25 @@ public class wireTwoScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "ConnectorThree")
         {
-            Debug.Log("Connecting 3");
+            //Debug.Log("Connecting 3");
             conThree = true;
         }
         if (collision.gameObject.tag == "ConnectorFour")
         {
-            Debug.Log("Connecting 4");
+            //Debug.Log("Connecting 4");
             conFour = true;
         }
         if (conThree && conFour == true)
         {
             wireCon = true;
-            Debug.Log("Wire2 Connected");
+            //Debug.Log("Wire2 Connected");
         }
 
         if (collision.gameObject.tag == "wall")
         {
             StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
-            Debug.Log("Collision");
+        //    Debug.Log("Collision");
             canRotate = false;
             // rotate = 0;
             canStretchUp = false;
@@ -218,7 +218,7 @@ public class wireTwoScript : MonoBehaviour
             boxCollider.isTrigger = true;
             GameManagerScript.UnloadWirePuzzle();
         //    GameManagerScript.LoadWirePuzzle();
-            Debug.Log("Collision");// test collision works with log message
+        //    Debug.Log("Collision");// test collision works with log message
             conThree = false;
             conFour = false;
             wireCon = false;
@@ -244,7 +244,7 @@ public class wireTwoScript : MonoBehaviour
             boxCollider.isTrigger = true;
             GameManagerScript.UnloadWirePuzzle();
           //  GameManagerScript.LoadWirePuzzle();
-            Debug.Log("Collision");// test collision works with log message
+      //      Debug.Log("Collision");// test collision works with log message
             conThree = false;
             conFour = false;
             wireCon = false;
@@ -277,19 +277,19 @@ public class wireTwoScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "ConnectorThree")
         {
-            Debug.Log("Disconnecting 3");
+      //      Debug.Log("Disconnecting 3");
             conThree = false;
           
             wireCon = false;
-            Debug.Log("Wire2 Disconnected");
+      //      Debug.Log("Wire2 Disconnected");
         }
         if (collision.gameObject.tag == "ConnectorFour")
         {
-            Debug.Log("Disconnecting 4");
+      //      Debug.Log("Disconnecting 4");
             conFour = false;
            
             wireCon = false;
-            Debug.Log("Wire2 Disconnected");
+      //      Debug.Log("Wire2 Disconnected");
         }
         if (collision.gameObject.tag == "wall")
         {

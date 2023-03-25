@@ -40,7 +40,7 @@ public class GrateScript : MonoBehaviour
         }
         if (ishere)
         { 
-            Debug.Log("Here");
+            //Debug.Log("Here");
             if (slidePuzzleCompleted)
             {
                 curText = "Press E to Crawl to the Exit";
@@ -55,7 +55,7 @@ public class GrateScript : MonoBehaviour
                 {
                     slidePuzzleInProgress = true;
                     gameManager.LoadPuzzle("SlidePuzzle");
-                    Debug.Log("Going");
+                    //Debug.Log("Going");
 
                 }
 
@@ -110,7 +110,7 @@ public class GrateScript : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("left");
+      //  Debug.Log("left");
         ishere = false;
         promptText.text = "";
 
