@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.Audio;
 
 public class PlayerMovement : MonoBehaviour
 {
     [HideInInspector]public float horizontal;
     public float speed;
     public float jumpPower;
+    private bool jumped;
     [SerializeField]private Rigidbody2D rb;
     [SerializeField]private Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;
@@ -27,9 +27,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-
-      //  playerJumpUpSound = GetComponent<AudioSource>();
-      //  playerRunSound = GetComponent<AudioClip>();
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
     }
@@ -42,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             GrateScript.slidePuzzleCompleted = true;
         }
 
-        rb.bodyType = RigidbodyType2D.Dynamic;
+        //rb.bodyType = RigidbodyType2D.Dynamic;
         
         
         if (!Glow.isGlowActive)
@@ -71,6 +68,11 @@ public class PlayerMovement : MonoBehaviour
                 playerRunSound.Stop();                 
             }
 
+            if (Input.GetKeyDown(KeyCode.W) && isGrounded())
+            {
+                jumped = true;
+            }
+
 
         }
         else
@@ -85,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
             glowActivate.Play();
 
         }
-            if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
+        if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
         {
             if (Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss)//if the current possessedObj isPoss bool on then it will trun on isPossessing
             {
@@ -105,12 +107,13 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by 
         }
-        //Collider2D inRange = Physics2D.OverlapCircle(transform.position, possessedrangeNum, possessedLayer);
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded() && !Glow.isGlowActive)//checks if player has pressed space and is on the ground before jumping
+        if (jumped)
         {
-            rb.AddForce(transform.up * jumpPower, ForceMode2D.Impulse);
-            playerJumpUpSound.Play();
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            jumped = false;
         }
+        //Collider2D inRange = Physics2D.OverlapCircle(transform.position, possessedrangeNum, possessedLayer);
+        
     }
 
     bool isGrounded()
