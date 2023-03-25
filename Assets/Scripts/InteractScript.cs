@@ -10,17 +10,21 @@ public class InteractScript : MonoBehaviour
     Collider2D col;
     public bool isplayerNear;
     public LayerMask objectToInteract;
+    //public string gameObjectToFind;
+    public GameObject player;
 
     private void Update() {
 
+
         if (isplayerNear)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && !SGameManager.isPlayerBallOut)
             {
-                interactEvent.Invoke();
-                PlayerMovement.isPossessing = true;
+                SGameManager.isPlayerBallOut = true;
+                player.SetActive(true);
             }
         }
+        
     }
 
     private void FixedUpdate() {

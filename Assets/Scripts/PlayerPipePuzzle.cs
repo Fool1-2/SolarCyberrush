@@ -8,6 +8,8 @@ public class PlayerPipePuzzle : MonoBehaviour
 {
     public PipeController LR;
     public Transform curPos;
+    [SerializeField]Transform curPosHolder;
+    [SerializeField]PipeController LRHolder;
     public float speed;
     public bool startFromLast;
     public bool isColliding;
@@ -26,8 +28,17 @@ public class PlayerPipePuzzle : MonoBehaviour
         }
     }
 
+    private void OnEnable() {
+
+        startFromLast = false;
+        LR = LRHolder;
+        curPos = curPosHolder;
+        LR.isDone = false;
+        transform.position = GameObject.Find("PlayerBallSpawn").transform.position;
+    }
+
     private void Start() {
-        findCurPos();
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -149,13 +160,17 @@ public class PlayerPipePuzzle : MonoBehaviour
             if (LR.OPoint == null && LR.CPoint == null)
             {
                 print("working??");
-                Destroy(this.gameObject);
+                SGameManager.isPlayerBallOut = false;
+                curPos = null;
+                this.transform.gameObject.SetActive(false);
             }
 
             if (curPos == null)
             {
                 print("working??");
-                Destroy(this.gameObject);
+                SGameManager.isPlayerBallOut = false;
+                curPos = null;
+                this.transform.gameObject.SetActive(false);
             }
         }
     }
