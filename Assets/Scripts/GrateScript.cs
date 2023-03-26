@@ -56,7 +56,6 @@ public class GrateScript : MonoBehaviour
                     {
                         slidePuzzleInProgress = true;
                         gameManager.LoadPuzzle("SlidePuzzle");
-                        Debug.Log("Going");
                     }
                     else if (!delayActive)
                     {
@@ -91,11 +90,6 @@ public class GrateScript : MonoBehaviour
         {
             ishere = true;
             player = collision.gameObject;
-            if (gm.objectiveNumber == 0)
-            {
-                gm.objectiveNumber = 1;
-                gm.objectiveText.text = "Current Objective: " + gm.ObjectivesList[1];
-            }
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -119,7 +113,7 @@ public class GrateScript : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         ishere = false;
-        promptText.text = "";
+        curText = "";
 
     }
 
