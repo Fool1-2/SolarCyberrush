@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GlowActivator : MonoBehaviour
 {
     public Glow_ProjectileControl glowProjectile;
@@ -17,12 +18,16 @@ public class GlowActivator : MonoBehaviour
     }
 
     private void OnEnable() {
+        this.transform.position = glowProjectile.gameObject.transform.position;
         glowProjectile = GameObject.FindGameObjectWithTag("ProjectileController").GetComponent<Glow_ProjectileControl>();
         bc = gameObject.GetComponent<Collider2D>();
+        GetComponent<FollowMouse>().enabled = true;
+        glowProjectile.isShot = false;
+        glowProjectile.oneShot = false;
     }
     private void Update()
     {
-        if (Glow_ProjectileControl.isShot != true)
+        if (glowProjectile.isShot != true)
         {
             bc.enabled = false;
         }
@@ -34,13 +39,13 @@ public class GlowActivator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         //Checks this is a tele arrow and other object is a teleob
-        if (Glow_ProjectileControl.isShot)
+        if (glowProjectile.isShot)
         {
             if (other.gameObject.tag == "TeleObj" && gameObject.tag == "Telekinesis")
             {
-                if (Glow_ProjectileControl.isShot)
+                if (glowProjectile.isShot)
                 {
-                    glowProjectile.AutoReloadBullet();
+                    //glowProjectile.respawnItem(0f);
                     Glow.currentPossessedObj = other.gameObject;
                     Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = true;
                     PlayerMovement.isPossessing = true;
@@ -54,13 +59,13 @@ public class GlowActivator : MonoBehaviour
             else if (other.gameObject.tag == "LightObj" && gameObject.tag == "Light")
             {
                 other.gameObject.GetComponent<ILightAbility>().ActivatePower();
-                glowProjectile.AutoReloadBullet();
+                glowProjectile.respawnItem(.1f);
             }
             //Add something so that object is destroyed on all collisions so that it cannot go through walls
-            else if (Glow_ProjectileControl.isShot && other.tag != "IgnoreCollide")
+            else if (glowProjectile.isShot && other.tag != "IgnoreCollide")
             {
                 //Test this
-                glowProjectile.AutoReloadBullet();
+                glowProjectile.respawnItem(.1f);
             }
         }
     }

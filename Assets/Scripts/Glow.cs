@@ -19,8 +19,6 @@ public class Glow : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))//Turns on glow when G is pressed
         {
-           // 
-
             isGlowActive = !isGlowActive;//Turns the bool off and on
             
             if (PlayerMovement.isPossessing == true)
