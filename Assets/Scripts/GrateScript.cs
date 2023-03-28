@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 using gameManager = GameManagerScript;//Turns the gamemanagerscript into a using state to be able to use a static function
 
 public class GrateScript : MonoBehaviour
@@ -16,7 +17,7 @@ public class GrateScript : MonoBehaviour
     bool ishere;
     public GameObject player;
     //public PlaceHolderSaveScript saveManager;
-   
+    Light2D l2d;
 
     gmScript gm;
 
@@ -28,6 +29,7 @@ public class GrateScript : MonoBehaviour
     {
         bc = gameObject.GetComponent<Collider2D>();
         gm = GameObject.Find("GMOb").GetComponent<gmScript>();
+        l2d = gameObject.GetComponent<Light2D>();
     }
 
     // Update is called once per frame
@@ -82,6 +84,14 @@ public class GrateScript : MonoBehaviour
                 delayActive = false;
                 timer = 0;
             }
+        }
+        if (ishere)
+        {
+            l2d.enabled = true;
+        }
+        else
+        {
+            l2d.enabled = false;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
