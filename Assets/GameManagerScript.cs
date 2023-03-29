@@ -9,6 +9,8 @@ public class GameManagerScript : MonoBehaviour
 {
     public List<GameObject> playerList;
     public static bool isSceneLoaded;
+    public AudioSource OST1;
+    public AudioSource OST2;
 
 
     private void Update()
@@ -21,7 +23,7 @@ public class GameManagerScript : MonoBehaviour
 
         if (isSceneLoaded)//turns off the player in the original scene if we have loaded into another scene
         {
-            //playerList[0].SetActive(false);
+
         }
         else
         {
@@ -31,7 +33,8 @@ public class GameManagerScript : MonoBehaviour
         if (isSceneLoaded == true)
         {
 
-
+            //OST2.Play();
+            OST1.Stop();
 
         }
 
@@ -58,6 +61,8 @@ public class GameManagerScript : MonoBehaviour
     public void Start()
     {
         DontDestroyOnLoad(this.gameObject);// this object doesnt die
+      OST1.Play();
+       // OST2.Play();
 
     }
 
@@ -84,6 +89,8 @@ public class GameManagerScript : MonoBehaviour
         isSceneLoaded = true;
         SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);//Loads the scene by the string
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
+        
+        
     }
 
     public static void UnLoadPuzzle(string SceneName)

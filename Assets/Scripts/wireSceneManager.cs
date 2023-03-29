@@ -15,6 +15,7 @@ public class wireSceneManager : MonoBehaviour
     public string curText = "";
     bool ishere;
     public GameObject player;// this is the player
+    
     //public PlaceHolderSaveScript saveManager;
 
 
@@ -57,6 +58,7 @@ public class wireSceneManager : MonoBehaviour
                 {
                     wirePuzzleInProgress = true;
                     gameManager.LoadWirePuzzle();
+                    
                     //Debug.Log("Going");
                     
                 }

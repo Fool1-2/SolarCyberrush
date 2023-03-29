@@ -15,6 +15,7 @@ public class GrateScript : MonoBehaviour
     public string curText = "";
     bool ishere;
     public GameObject player;
+    public AudioSource OST2;
     //public PlaceHolderSaveScript saveManager;
    
 
@@ -57,6 +58,7 @@ public class GrateScript : MonoBehaviour
                         slidePuzzleInProgress = true;
                         gameManager.LoadPuzzle("SlidePuzzle");
                         Debug.Log("Going");
+                        OST2.Play();
                     }
                     else if (!delayActive)
                     {
