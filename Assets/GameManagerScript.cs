@@ -11,11 +11,15 @@ public class GameManagerScript : MonoBehaviour
     public static bool isSceneLoaded;
     public AudioSource OST1;
     public AudioSource OST2;
+    public AudioSource puzzleWinSound;
 
 
     private void Update()
     {
-
+        if(wireSceneManager.wirePuzzleCompleted == true)
+        {
+            puzzleWinSound.Play();
+        }
         if (playerList[0] == null)
         {
             playerList[0] = GameObject.FindGameObjectWithTag("Player");//finds the player

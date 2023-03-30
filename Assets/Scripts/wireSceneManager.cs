@@ -11,6 +11,7 @@ public class wireSceneManager : MonoBehaviour
     public Collider2D bc;
     public static bool wirePuzzleCompleted;
     public static bool wirePuzzleInProgress;
+    public AudioSource puzzleWinSound;
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
@@ -40,19 +41,21 @@ public class wireSceneManager : MonoBehaviour
         {
             wirePuzzleCompleted = true;
         }
+
         if (ishere)
         {
             
             //Debug.Log("Here");
-            if (!wirePuzzleCompleted)
-            {
-               // curText = "Press E to do wires";
-            }
+
             if (wirePuzzleCompleted)
             {
+
+                puzzleWinSound.Play();
                 curText = "Nice Job";
+                
+
             }
-            if (wirePuzzleInProgress == false)
+            if (wirePuzzleInProgress == false && wirePuzzleCompleted == false)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -60,7 +63,7 @@ public class wireSceneManager : MonoBehaviour
                     gameManager.LoadWirePuzzle();
                     
                     //Debug.Log("Going");
-                    
+
                 }
 
             }
@@ -77,7 +80,7 @@ public class wireSceneManager : MonoBehaviour
 
 
 
-            wirePuzzleCompleted = false;
+           // wirePuzzleCompleted = false;
         }
         if (delayActive)
         {
@@ -93,8 +96,11 @@ public class wireSceneManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            
-            curText = "Press E to unlock the wires";
+
+            if (!wirePuzzleCompleted)
+            {
+                curText = "Press E to unlock the wires";
+            }
             //Debug.Log("HEY");
             player = collision.gameObject;
             if (gm.objectiveNumber == 0)
