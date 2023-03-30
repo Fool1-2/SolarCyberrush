@@ -32,6 +32,8 @@ TagManager:
   - Snappable
   - LrObjects
   - WinObj
+  - PlayerSpawn
+  - IgnoreCollide
   layers:
   - Default
   - TransparentFX

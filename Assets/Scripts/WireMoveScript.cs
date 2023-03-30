@@ -25,7 +25,7 @@ public class WireMoveScript : MonoBehaviour
         mouseOn = false;
         boxSize = transform.localScale;
         hingeJoint2D = gameObject.GetComponent<HingeJoint2D>();
-        // Debug.Log("Hello world");
+        // //Debug.Log("Hello world");
         conOne = false;
         conTwo = false;
     }
@@ -41,7 +41,7 @@ public class WireMoveScript : MonoBehaviour
 
         if (conOne && conTwo == true)
         {
-            Debug.Log("Wire is connected");
+            //Debug.Log("Wire is connected");
         }
 
     }
@@ -83,12 +83,12 @@ public class WireMoveScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "ConnecterOne")
         {
-            Debug.Log("Connecting 1");
+            //Debug.Log("Connecting 1");
             conOne = true;
         }
         if (collision.gameObject.tag == "ConnectorTwo")
         {
-            Debug.Log("Connecting 2");
+            //Debug.Log("Connecting 2");
             conTwo = true;
         }
     }

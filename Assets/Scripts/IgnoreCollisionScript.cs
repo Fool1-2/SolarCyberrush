@@ -8,7 +8,11 @@ public class IgnoreCollisionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Physics2D.IgnoreCollision(ignoredCollider, GetComponent<Collider2D>());//ignores the collider
+        
+    }
+
+    private void FixedUpdate() {
+        Physics2D.IgnoreCollision(ignoredCollider, GetComponent<Collider2D>());
     }
 }
 

@@ -5,27 +5,50 @@ using UnityEngine;
 public class ButtonScript : MonoBehaviour
 {
     public bool isPressed;
-    public AudioClip buttonPressSound;
+    [SerializeField]private bool onePress;
+    public AudioSource buttonPressSound;
     Vector2 pressedPos, unpressedPos;
 
     Transform tf;
+    float timerWoah;
+    public bool timerOn;
+    public bool timeUp;
 
    
     Vector3 ScaleChange;
     // Start is called before the first frame update
     void Start()
     {
+       // buttonPressSound = GetComponent<AudioSource>();
         tf = gameObject.transform;
-        pressedPos = new Vector2(0, 0.5f);
-        unpressedPos = new Vector2(0, 0.6f);
-        ScaleChange = new Vector3(0, 0.1f, 0);
+        pressedPos = new Vector2(0, 0.07f);
+        unpressedPos = new Vector2(0, 0.1f);
+        //ScaleChange = new Vector3(0, 0.03f, 0);
         //buttonPressSound = GetComponent<AudioClip>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (timerOn)
+        {
+            timerWoah += Time.deltaTime;
+            if (timerWoah >= 15f)
+            {
+                timeUp = true;
+            }
+        }
 
+        if (timeUp)
+        {
+            isPressed = false;
+            transform.localPosition = unpressedPos;
+        }
+
+        if (!timerOn)
+        {
+            timerWoah = 0;
+        }
     }
     public void Pressed()
     {
@@ -41,25 +64,32 @@ public class ButtonScript : MonoBehaviour
     }
     IEnumerator Press()
     {
-        yield return new WaitForSeconds(.1f);
-        if (!isPressed)
+        if (!timeUp)
         {
-            tf.localScale -= ScaleChange;
+            onePress = false;
+            if (!onePress)
+            {
+                yield return new WaitForSeconds(.1f);
+                isPressed = true;
+                transform.localPosition = pressedPos;
+                timerOn = true;
+                onePress = true;
+                buttonPressSound.Play();
+            }
         }
-        isPressed = true;
-        transform.localPosition = pressedPos;
-
     }
     IEnumerator Unpress()
     {
         yield return new WaitForSeconds(.1f);
         if (isPressed)
         {
+            StopCoroutine(Press());
             tf.localScale += ScaleChange;
-            AudioSource.PlayClipAtPoint(buttonPressSound, ScaleChange);
+            
 
         }
         isPressed = false;
+        onePress = false;
         transform.localPosition = unpressedPos;
     }
 }

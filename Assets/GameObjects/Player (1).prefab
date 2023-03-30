@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1271182409550023014}
   - component: {fileID: 1271182409550023015}
   - component: {fileID: 1271182409550023008}
+  - component: {fileID: 567604618}
+  - component: {fileID: 638449564}
   m_Layer: 9
   m_Name: Player (1)
   m_TagString: Player
@@ -30,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 1271182409550023009}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.88, y: -6.71, z: 0}
-  m_LocalScale: {x: 0.6267, y: 0.6596, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1271182411014784821}
@@ -81,12 +83,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e35ce194e43ad42cd89e3d3bff9be35e, type: 3}
+  m_Sprite: {fileID: -1272894334, guid: 4ea2e1e30bebb0b45bb6c64827e28319, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.47, y: 7.2}
+  m_Size: {x: 0.4, y: 0.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,18 +107,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1835818, y: 0.059590816}
+  m_Offset: {x: -0.038454875, y: 0.0027999878}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.47, y: 7.2}
-    newSize: {x: 3.47, y: 7.2}
+    oldSize: {x: 0.4, y: 0.8}
+    newSize: {x: 0.4, y: 0.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.1508346, y: 6.4683676}
+  m_Size: {x: 0.3484188, y: 0.7124413}
   m_EdgeRadius: 0
 --- !u!50 &1271182409550023014
 Rigidbody2D:
@@ -151,8 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f764363902e1746a31d3c582d5a005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontal: 0
   speed: 10
-  jumpPower: 6
+  jumpPower: 8.1
   rb: {fileID: 0}
   groundCheck: {fileID: 1271182410508639764}
   groundLayer:
@@ -163,7 +166,7 @@ MonoBehaviour:
   possessedLayer:
     serializedVersion: 2
     m_Bits: 128
-  playerJumpUpSound: {fileID: 0}
+  playerJumpUpSound: {fileID: 8300000, guid: 49c5f7ccb3b994371b74ae27b411132b, type: 3}
 --- !u!114 &1271182409550023008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +180,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glowAB: 0
+--- !u!114 &567604618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271182409550023009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898ab278921a975429ccc9ec938b29c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+--- !u!95 &638449564
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271182409550023009}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f09ee8e104dabdd41af699844d5150e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1271182410179945596
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271182410508639765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.2, z: 0}
+  m_LocalPosition: {x: 0, y: -0.364, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -344,7 +380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271182410896208103}
   m_LocalRotation: {x: -0, y: -0, z: -0.32589433, w: 0.9454062}
-  m_LocalPosition: {x: -0.05, y: 0.84, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -479,7 +515,6 @@ MonoBehaviour:
   - {fileID: 7653752798712699213, guid: 7d226e1c0d7ef4a4f96019e06923ad6e, type: 3}
   - {fileID: 7653752798712699213, guid: d2419a46b2f50aa419e7469842175260, type: 3}
   - {fileID: 7653752798712699213, guid: 770a70bedbb088a4a915fd20e110df84, type: 3}
-  curProjNum: 0
   currentGlowBullet: {fileID: 0}
   rb: {fileID: 0}
   speed: 5

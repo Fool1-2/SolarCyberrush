@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using gameManager = GameManagerScript;
 
 
 public class ConnectorTwoScript : MonoBehaviour
@@ -9,7 +10,7 @@ public class ConnectorTwoScript : MonoBehaviour
     public GameObject connectorOne;
     public bool randomFinished;
     public Sprite spriteOne, spriteTwo;
-    public static bool wirePuzzleCompleted;
+   // public static bool wirePuzzleCompleted;
     public string SceneName;
     public bool isNextScene;
 
@@ -41,10 +42,26 @@ public class ConnectorTwoScript : MonoBehaviour
 
             if (wireScript.wireCon == true && wireTwoScript.wireCon == true && wireThreeScript.wireCon == true && wireFourScript.wireCon == true && wireFiveScript.wireCon == true)
             {
-                Debug.Log("ChangeNOW");
-                wirePuzzleCompleted = true;
+                //Debug.Log("ChangeNOW");
+                
                 SceneInfo.isNextScene = isNextScene;
-                SceneManager.LoadScene(2);
+                wireSceneManager.wirePuzzleCompleted = true;
+                //SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));
+                //SceneManager.UnloadSceneAsync("WirePuzzleScene");
+                // SceneManager.LoadScene(1);
+                GameManagerScript.UnloadWirePuzzle();
+
+            }
+
+            if (Input.GetKey(KeyCode.H))
+            {
+                //wirePuzzleCompleted = true;
+               // wireSceneManager.wirePuzzleCompleted = true;
+                //SceneInfo.isNextScene = isNextScene;
+                // SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
+                // SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
+                // SceneManager.LoadScene(1);
+                GameManagerScript.UnloadWirePuzzle();
 
             }
 

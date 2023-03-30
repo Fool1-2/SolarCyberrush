@@ -5,26 +5,29 @@ using UnityEngine;
 public class Glow : MonoBehaviour
 {
     public static bool isGlowActive;
+    public bool glowboolthing;
     //public enum glowAbility{Light, Telekinesis, Growth}// An enum is also converted to ints kinda of like an array
     public int glowAB; 
     public static GameObject currentPossessedObj;
 
     
+    private void OnEnable() {
+        PlayerMovement.isPossessing = false;
+    }
+    
     void Update()
     {
+        glowboolthing = isGlowActive;
 
-        if (Input.GetKeyDown(KeyCode.Space) && !PlayerMovement.isPossessing)//Turns on glow when G is pressed
+        if (Input.GetKeyDown(KeyCode.Space))//Turns on glow when G is pressed
         {
             isGlowActive = !isGlowActive;//Turns the bool off and on
+            
             if (PlayerMovement.isPossessing == true)
             {
                 Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
+                PlayerMovement.isPossessing = false;
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-
         }
     }
 }
