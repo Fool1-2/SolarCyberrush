@@ -7,8 +7,7 @@ public class Glow_ProjectileControl : MonoBehaviour
 {
     #region Bullet Variables
     public List<GameObject> glowProjectiles;
-    public static int curProjNum;
-    
+    public static int curProjNum = 1;
     [SerializeField] GameObject currentGlowBullet;
     [SerializeField]Rigidbody2D rb;
     [SerializeField]float speed;
@@ -70,17 +69,20 @@ public class Glow_ProjectileControl : MonoBehaviour
         //Changed to remove plant growth
         if (Glow.isGlowActive && !isShot)
         {
+
+            glowLight.color = diffGlowColors[curProjNum];
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                if (curProjNum < 1)
+                /*
+                if (curProjNum < 0)
                 {
                     curProjNum += 1;
-                }
+                }   
                 else
                 {
                     curProjNum = 0;
                 }
-                glowLight.color = diffGlowColors[curProjNum];
+                */
                 AutoReloadBullet();
             }
         }
