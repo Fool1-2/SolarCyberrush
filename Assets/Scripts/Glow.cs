@@ -5,6 +5,7 @@ using UnityEngine;
 public class Glow : MonoBehaviour
 {
     public static bool isGlowActive;
+    public bool glowboolthing;
     //public enum glowAbility{Light, Telekinesis, Growth}// An enum is also converted to ints kinda of like an array
     public int glowAB; 
     public static GameObject currentPossessedObj;
@@ -16,6 +17,7 @@ public class Glow : MonoBehaviour
     
     void Update()
     {
+        glowboolthing = isGlowActive;
 
         if (Input.GetKeyDown(KeyCode.Space))//Turns on glow when G is pressed
         {

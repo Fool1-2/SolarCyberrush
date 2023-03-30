@@ -17,13 +17,14 @@ public class Glow_ProjectileControl : MonoBehaviour
     public Light2D glowLight;
     public bool isShot;
     public bool oneShot = false;
-    private bool canBulletReload;
+    [SerializeField]private bool canBulletReload;
+    private float reloadTimer;
 
     [SerializeField]Color[] diffGlowColors;
     
     private void OnEnable() {
         glowProjectiles[curProjNum].GetComponent<FollowMouse>().enabled = true;//turns on follow mouse script
-        respawnItem(.1f);
+        StartCoroutine(RespawnItem(.1f));
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();//finds the player through its tag
         glow = GameObject.FindGameObjectWithTag("Player").GetComponent<Glow>();//Finds the script in playe called Glow
         rb = glowProjectiles[curProjNum].GetComponent<Rigidbody2D>();//finds its childs rigidbody2D
@@ -39,11 +40,11 @@ public class Glow_ProjectileControl : MonoBehaviour
             glowProjectiles[curProjNum].SetActive(true);
             glowLight.enabled = true;
         }
-        else
+        
+        if (!Glow.isGlowActive)
         {
-            respawnItem(0);
-            //glowProjectiles[curProjNum].SetActive(false);
-            glowLight.enabled = false;
+            glowProjectiles[curProjNum].SetActive(false);
+            glowLight.enabled = false;   
         }
 
         if (PlayerMovement.isPossessing)
@@ -71,7 +72,7 @@ public class Glow_ProjectileControl : MonoBehaviour
                     curProjNum = 0;
                 }
                 */
-                respawnItem(.1f);
+                StartCoroutine(RespawnItem(.1f));
             }
         }
         #endregion
@@ -92,34 +93,35 @@ public class Glow_ProjectileControl : MonoBehaviour
         {
             rb.AddForce(glowProjectiles[curProjNum].transform.up * speed, ForceMode2D.Impulse);//Shoots the bullet in the direction its facing multiplied by speed
             glowProjectiles[curProjNum].GetComponent<FollowMouse>().enabled = false;//Turns followmouse script off
-            respawnItem(3f);
+            StartCoroutine(RespawnItem(3f));
             oneShot = true;
         }
         
     }
 
-    public void respawnItem(float time)
+    public IEnumerator RespawnItem(float time)
     {
-        canBulletReload = true;//the bullet is now able to reload
+        yield return new WaitForSeconds(time);
+        canBulletReload = true;
         if (canBulletReload)
         {
-            float reloadTimer = 0f;//restarts the timer
-            reloadTimer += Time.deltaTime;//equals it to time.delta
-            if (reloadTimer >= time)
+            rb = glowProjectiles[curProjNum].GetComponent<Rigidbody2D>();//gets the current bullets rigidbody
+            glowProjectiles[curProjNum].SetActive(false);//turns it off
+            if (Glow.isGlowActive)
             {
-                rb = glowProjectiles[curProjNum].GetComponent<Rigidbody2D>();//gets the current bullets rigidbody
-                glowProjectiles[curProjNum].SetActive(false);//turns it off
-                //glowProjectiles[curProjNum].transform.position = transform.position;//resets the position
-                if (Glow.isGlowActive)
-                {
-                    glowProjectiles[curProjNum].SetActive(true);//turns it back on
-                }
-                glowProjectiles[curProjNum].GetComponent<FollowMouse>().enabled = true;
-                oneShot = false;
-                isShot = false;
-                canBulletReload = false;
+                glowProjectiles[curProjNum].SetActive(true);//turns it back on
             }
+            glowProjectiles[curProjNum].GetComponent<FollowMouse>().enabled = true;
+            oneShot = false;
+            isShot = false;
+            canBulletReload = false;
         }
+    }
+
+    public void respawnItem(float time)
+    {
+        
+        
     }
 
     

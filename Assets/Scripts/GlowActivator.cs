@@ -19,6 +19,7 @@ public class GlowActivator : MonoBehaviour
 
     private void OnEnable() {
         this.transform.position = glowProjectile.gameObject.transform.position;
+        print("reset");
         glowProjectile = GameObject.FindGameObjectWithTag("ProjectileController").GetComponent<Glow_ProjectileControl>();
         bc = gameObject.GetComponent<Collider2D>();
         GetComponent<FollowMouse>().enabled = true;
@@ -27,7 +28,7 @@ public class GlowActivator : MonoBehaviour
     }
     private void Update()
     {
-        if (glowProjectile.isShot != true)
+        if (glowProjectile.isShot != true)//bro who did this...
         {
             bc.enabled = false;
         }
@@ -59,13 +60,13 @@ public class GlowActivator : MonoBehaviour
             else if (other.gameObject.tag == "LightObj" && gameObject.tag == "Light")
             {
                 other.gameObject.GetComponent<ILightAbility>().ActivatePower();
-                glowProjectile.respawnItem(.1f);
+                StartCoroutine(glowProjectile.RespawnItem(.1f));
             }
             //Add something so that object is destroyed on all collisions so that it cannot go through walls
             else if (glowProjectile.isShot && other.tag != "IgnoreCollide")
             {
                 //Test this
-                glowProjectile.respawnItem(.1f);
+                StartCoroutine(glowProjectile.RespawnItem(.1f));
             }
         }
     }
