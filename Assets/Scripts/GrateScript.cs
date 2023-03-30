@@ -16,6 +16,8 @@ public class GrateScript : MonoBehaviour
     public string curText = "";
     bool ishere;
     public GameObject player;
+    public AudioSource OST2;
+    public AudioSource puzzleWinSound;
     //public PlaceHolderSaveScript saveManager;
     Light2D l2d;
 
@@ -45,10 +47,12 @@ public class GrateScript : MonoBehaviour
             if (slidePuzzleCompleted)
             {
                 curText = "Press E to Crawl to the Exit";
+
             }
             else
             {
                 curText = "Press E to Clear the Pipe";
+                puzzleWinSound.Play();
             }
             if (slidePuzzleInProgress == false)
             {
@@ -58,6 +62,8 @@ public class GrateScript : MonoBehaviour
                     {
                         slidePuzzleInProgress = true;
                         gameManager.LoadPuzzle("SlidePuzzle");
+                        Debug.Log("Going");
+                        OST2.Play(); 
                     }
                     else if (!delayActive)
                     {
