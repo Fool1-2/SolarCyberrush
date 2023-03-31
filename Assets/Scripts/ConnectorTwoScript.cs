@@ -14,6 +14,7 @@ public class ConnectorTwoScript : MonoBehaviour
     public string SceneName;
     public bool isNextScene;
     public AudioSource puzzleWinSound;
+    
     [SerializeField]
     public SceneInfo SceneInfo;
 
@@ -47,10 +48,11 @@ public class ConnectorTwoScript : MonoBehaviour
                 //SceneInfo.isNextScene = isNextScene;
                 wireSceneManager.wirePuzzleCompleted = true;
                 
+
                 //SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));
                 //SceneManager.UnloadSceneAsync("WirePuzzleScene");
                 // SceneManager.LoadScene(1);
-                
+
                 StartCoroutine(CCoroutine());
 
             }
@@ -59,6 +61,7 @@ public class ConnectorTwoScript : MonoBehaviour
             {
                 //wirePuzzleCompleted = true;
                 wireSceneManager.wirePuzzleCompleted = true;
+                
 
                 //SceneInfo.isNextScene = isNextScene;
                 // SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)

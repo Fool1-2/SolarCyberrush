@@ -16,6 +16,7 @@ public class wireScript : MonoBehaviour
     public Vector2 boxSize;
     public Transform StartObject;
     public Transform EndObject;
+    public AudioSource deathSound;
     HingeJoint2D hingeJoint2D;
     Collider2D boxCollider;
     Rotat rotat;// rotate script is rotate
@@ -214,13 +215,15 @@ public class wireScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
+            deathSound.Play();
             boxCollider.isTrigger = true;
             GameManagerScript.UnloadWirePuzzle();
             //       GameManagerScript.LoadWirePuzzle();// reload scene
             //Debug.Log("Collision");// test collision works with log message
             conOne = false;// no longer connected to  port
             conTwo = false;
-            wireCon = false;// if 1 port is false the wire is not connected 
+            wireCon = false;// if 1 port is false the wire is not connected
+           
         }
 
         if (collision.gameObject.tag == "wall")
@@ -262,7 +265,8 @@ public class wireScript : MonoBehaviour
             //Debug.Log("Collision");// test collision works with log message
             conOne = false;// no longer connected to  port
             conTwo = false;
-            wireCon = false;// if 1 port is false the wire is not connected 
+            wireCon = false;// if 1 port is false the wire is not connected
+            deathSound.Play();
         }
         if (collision.gameObject.tag == "wall")
         {
