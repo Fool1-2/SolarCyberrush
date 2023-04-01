@@ -288,7 +288,7 @@ public class wireFourScript : MonoBehaviour
             canStretchDown = true;
             hitWall = false;
 
-
+             
         }
 
     }

@@ -225,7 +225,7 @@ public class wireScript : MonoBehaviour
             conOne = false;// no longer connected to  port
             conTwo = false;
             wireCon = false;// if 1 port is false the wire is not connected
-           
+            
         }
 
         if (collision.gameObject.tag == "wall")
