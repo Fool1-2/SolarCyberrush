@@ -165,7 +165,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f0312df219a7646298b28da66e358951, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2bad8bcb3a018411f843677e843c781b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -803,6 +803,7 @@ MonoBehaviour:
   canStretchUp: 0
   canStretchDown: 0
   hitWall: 0
+  deathSound: {fileID: 24932926}
 --- !u!114 &347769884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2138,6 +2139,7 @@ MonoBehaviour:
   canStretchDown: 0
   hitWall: 0
   xScale: 0
+  deathSound: {fileID: 24932926}
 --- !u!1001 &899344736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2864,6 +2866,7 @@ MonoBehaviour:
   canStretchDown: 0
   hitWall: 0
   xScale: 0
+  deathSound: {fileID: 24932926}
 --- !u!4 &1389772649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
@@ -3559,6 +3562,7 @@ MonoBehaviour:
   canStretchDown: 0
   hitWall: 0
   offset: {x: 0, y: 0, z: 0}
+  deathSound: {fileID: 24932926}
 --- !u!114 &1752639733
 MonoBehaviour:
   m_ObjectHideFlags: 0

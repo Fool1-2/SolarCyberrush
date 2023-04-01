@@ -61,6 +61,7 @@ public class wireSceneManager : MonoBehaviour
                 {
                     wirePuzzleInProgress = true;
                     gameManager.LoadWirePuzzle();
+                    wireScript.died = false;
                     
                     //Debug.Log("Going");
 

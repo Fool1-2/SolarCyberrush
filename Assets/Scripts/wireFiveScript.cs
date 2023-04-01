@@ -28,6 +28,7 @@ public class wireFiveScript : MonoBehaviour
     public bool canStretchDown;
     public bool hitWall;
     public float xScale;
+    public AudioSource deathSound;
     SpriteRenderer SR;
     
 
@@ -216,7 +217,8 @@ public class wireFiveScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            GameManagerScript.UnloadWirePuzzle();
+            deathSound.Play();
+            //GameManagerScript.UnloadWirePuzzle();
             //GameManagerScript.LoadWirePuzzle();// reload scene
             //Debug.Log("Collision");// test collision works with log message
             wireCon = false;
@@ -257,8 +259,9 @@ public class wireFiveScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            GameManagerScript.UnloadWirePuzzle();
-           // GameManagerScript.LoadWirePuzzle();// reload scene
+            deathSound.Play();
+            // GameManagerScript.UnloadWirePuzzle();
+            // GameManagerScript.LoadWirePuzzle();// reload scene
             ///Debug.Log("Collision");// test collision works with log message
             wireCon = false;
             conNin = false;// no longer connected to  port
@@ -294,6 +297,16 @@ public class wireFiveScript : MonoBehaviour
 
         }
 
+    }
+    public IEnumerator CCoroutine()
+    {
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+
+        yield return new WaitForSeconds(0.5f);// wait for a secound and change color
+        GameManagerScript.UnloadWirePuzzle();
+
+        yield return null;
     }
 
     // 

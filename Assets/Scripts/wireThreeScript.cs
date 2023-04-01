@@ -31,6 +31,7 @@ public class wireThreeScript : MonoBehaviour
     public bool hitWall;
     public Vector3 offset;
     SpriteRenderer SR;
+    public AudioSource deathSound;
 
 
 
@@ -209,8 +210,9 @@ public class wireThreeScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            GameManagerScript.UnloadWirePuzzle();
-           // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
+            deathSound.Play();
+            // GameManagerScript.UnloadWirePuzzle();
+            // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
             //Debug.Log("Collision");// test collision works with log message
             conFive = false;
             wireCon = false;
@@ -238,7 +240,8 @@ public class wireThreeScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            GameManagerScript.UnloadWirePuzzle();
+            deathSound.Play();
+            //GameManagerScript.UnloadWirePuzzle();
         //    GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
             //Debug.Log("Collision");// test collision works with log message
             conFive = false;
@@ -280,6 +283,16 @@ public class wireThreeScript : MonoBehaviour
 
         }
 
+    }
+    public IEnumerator CCoroutine()
+    {
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+
+        yield return new WaitForSeconds(0.5f);// wait for a secound and change color
+        GameManagerScript.UnloadWirePuzzle();
+
+        yield return null;
     }
     void OnTriggerExit2D(Collider2D collision)
     {
