@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using gameManager = SwitchCamera;
 
 
@@ -13,6 +14,7 @@ public class GameManagerScript : MonoBehaviour
     public AudioSource OST2;
     public AudioSource puzzleWinSound;
 
+    public Canvas pauseMenuCanvas;
 
     private void Update()
     {
@@ -41,7 +43,10 @@ public class GameManagerScript : MonoBehaviour
             OST1.Stop();
 
         }
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenuCanvas.enabled = true;
+        }
 
 
 
@@ -66,6 +71,7 @@ public class GameManagerScript : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);// this object doesnt die
       OST1.Play();
+        pauseMenuCanvas.enabled = false;
        // OST2.Play();
 
     }
@@ -101,6 +107,15 @@ public class GameManagerScript : MonoBehaviour
     {
         isSceneLoaded = false;
         SceneManager.UnloadSceneAsync(SceneName);//Unloads the scene by string
+    }
+
+    public void closePauseMenu()
+    {
+        pauseMenuCanvas.enabled = false;
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }
 
