@@ -58,6 +58,7 @@ public class wireScript : MonoBehaviour
 
     private void Update()
     {
+        deathSound.volume = GameManagerScript.volume;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
 
         if (!mouseOn)//If the mouse is off turn the movement off.

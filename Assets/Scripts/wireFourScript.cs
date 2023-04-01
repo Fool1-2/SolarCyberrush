@@ -60,7 +60,7 @@ public class wireFourScript : MonoBehaviour
     private void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
-
+        deathSound.volume = GameManagerScript.volume;
         if (!mouseOn)//If the mouse is off turn the movement off.
         {
             rb.velocity = Vector2.zero;
@@ -205,7 +205,7 @@ public class wireFourScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            deathSound.Play();
+            StartCoroutine(CCoroutine());
             // GameManagerScript.UnloadWirePuzzle();
             // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
             //Debug.Log("Collision");// test collision works with log message
@@ -235,7 +235,7 @@ public class wireFourScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            deathSound.Play();
+            StartCoroutine(CCoroutine());
             //GameManagerScript.UnloadWirePuzzle();
             // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
             //Debug.Log("Collision");// test collision works with log message
@@ -272,7 +272,7 @@ public class wireFourScript : MonoBehaviour
     {
 
         //yield on a new YieldInstruction that waits for 5 seconds.
-
+        deathSound.Play();
         yield return new WaitForSeconds(0.5f);// wait for a secound and change color
         GameManagerScript.UnloadWirePuzzle();
 

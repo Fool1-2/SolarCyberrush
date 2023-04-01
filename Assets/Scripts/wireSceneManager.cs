@@ -12,12 +12,14 @@ public class wireSceneManager : MonoBehaviour
     public static bool wirePuzzleCompleted;
     public static bool wirePuzzleInProgress;
     // public AudioSource puzzleWinSound;
-    public AudioClip impact;
+   // public AudioClip impact;
     public AudioSource audioSource;
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
+    public bool hasPlayed;
     public GameObject player;// this is the player
+    
     
     //public PlaceHolderSaveScript saveManager;
 
@@ -42,7 +44,12 @@ public class wireSceneManager : MonoBehaviour
         if (wirePuzzleCompleted)
         {
             //StartCoroutine(PlayWinSoundAfterPuzzleCompletionCoroutine());
-            audioSource.PlayOneShot(impact, 1F);
+            
+            if (!hasPlayed)
+            {
+                audioSource.Play();
+                hasPlayed = true;
+            }
             curText = "Nice Job";
 
 
@@ -131,15 +138,5 @@ public class wireSceneManager : MonoBehaviour
         promptText.text = "";
 
     }
-    public IEnumerator PlayWinSoundAfterPuzzleCompletionCoroutine()
-    {
 
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        
-        yield return new WaitForSeconds(0.5f);// wait for a secound and change color
-        
-
-
-
-    }
 }

@@ -61,7 +61,8 @@ public class wireThreeScript : MonoBehaviour
 
     private void Update()
     {
-         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
+        deathSound.volume = GameManagerScript.volume;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
 
         if (!mouseOn)//If the mouse is off turn the movement off.
         {
@@ -288,7 +289,7 @@ public class wireThreeScript : MonoBehaviour
     {
 
         //yield on a new YieldInstruction that waits for 5 seconds.
-
+        deathSound.Play();
         yield return new WaitForSeconds(0.5f);// wait for a secound and change color
         GameManagerScript.UnloadWirePuzzle();
 
