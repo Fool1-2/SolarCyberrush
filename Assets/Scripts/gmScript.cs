@@ -30,7 +30,6 @@ public class gmScript : MonoBehaviour
     void Start()
     {
         //Note you cannot set the sprite on a disabled object
-        noteImageSprite = GameObject.Find("NoteImage").GetComponent<Sprite>();
         noteImageSprite = noteSol1;
         noteCanvas.enabled = false;
         objectiveText.text = "Current Objective: " + ObjectivesList[0];
