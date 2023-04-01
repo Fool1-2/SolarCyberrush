@@ -279,7 +279,7 @@
             canStretchDown = true;
             hitWall = false;
 
-
+             
         }
 
     }

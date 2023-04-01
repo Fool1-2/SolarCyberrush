@@ -262,7 +262,7 @@ public class wireTwoScript : MonoBehaviour
             canStretchDown = false;
             hitWall = true;
 
-
+             
         }
     }
 

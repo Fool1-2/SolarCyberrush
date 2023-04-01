@@ -42,10 +42,6 @@ public class PlayerMovement : MonoBehaviour
             GrateScript.slidePuzzleCompleted = true;
         }
 
-        if (wireScript.died == true)
-        {
-            glowActivate.Play();
-        }
 
         //rb.bodyType = RigidbodyType2D.Dynamic;
         
