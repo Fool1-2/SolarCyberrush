@@ -39,27 +39,28 @@ public class GameManagerScript : MonoBehaviour
         {
             //playerList[0].SetActive(true);
         }
-
+        OST1.volume = volume;
         if (isSceneLoaded == true)
         {
-
+            
             //OST2.Play();
             OST1.Stop();
 
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseMenuCanvas.enabled = true;
+            openPauseMenu();
         }
         volume = volumeSlider.value;
+        sliderText.text = "Volume: " + Mathf.Round(volumeSlider.value * 100);
 
 
-           /* if (Input.GetKeyDown(KeyCode.K))
-            {
-             LoadWirePuzzle();
-            }*/
+        /* if (Input.GetKeyDown(KeyCode.K))
+         {
+          LoadWirePuzzle();
+         }*/
 
-        
+
         /*  if (Input.GetKeyDown(KeyCode.Q))
           {
              // SceneManager.UnloadSceneAsync("WirePuzzleScene");
@@ -74,9 +75,9 @@ public class GameManagerScript : MonoBehaviour
     public void Start()
     {
         DontDestroyOnLoad(this.gameObject);// this object doesnt die
-      OST1.Play();
+        OST1.Play();
         pauseMenuCanvas.enabled = false;
-        
+        volumeSlider.value = volume;
        // OST2.Play();
 
     }
@@ -113,14 +114,19 @@ public class GameManagerScript : MonoBehaviour
         isSceneLoaded = false;
         SceneManager.UnloadSceneAsync(SceneName);//Unloads the scene by string
     }
-
+    public void openPauseMenu()
+    {
+        pauseMenuCanvas.enabled = true;
+        Time.timeScale = 0;
+    }
     public void closePauseMenu()
     {
         pauseMenuCanvas.enabled = false;
+        Time.timeScale = 1;
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene(0);
     }
 }
 
