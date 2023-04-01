@@ -282,7 +282,7 @@ public class wireThreeScript : MonoBehaviour
 
 
         }
-
+         
     }
     public IEnumerator CCoroutine()
     {

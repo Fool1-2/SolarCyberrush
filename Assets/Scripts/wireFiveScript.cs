@@ -294,7 +294,7 @@ public class wireFiveScript : MonoBehaviour
             canStretchDown = true;
             hitWall = false;
 
-
+             
         }
 
     }
