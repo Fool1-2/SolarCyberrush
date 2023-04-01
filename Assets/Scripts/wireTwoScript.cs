@@ -152,14 +152,14 @@ public class wireTwoScript : MonoBehaviour
                     //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
                     // rotate_Z -= 90;
                     transform.rotation = Quaternion.Euler(0, 0, rotate);
-                    rotate += 0.6f;
+                    rotate += 0.9f;
                 }
                 if (Input.GetKey(KeyCode.E))
                 {
                     //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
                     // rotate_Z -= 90;
                     transform.rotation = Quaternion.Euler(0, 0, rotate);
-                    rotate -= 0.6f;
+                    rotate -= 0.9f;
                 }
             }
         }
@@ -216,7 +216,7 @@ public class wireTwoScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
         {
-            deathSound.Play();
+           // deathSound.Play();
             boxCollider.isTrigger = true;
            // GameManagerScript.UnloadWirePuzzle();
         //    GameManagerScript.LoadWirePuzzle();
@@ -244,7 +244,7 @@ public class wireTwoScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
         {
-            deathSound.Play();
+          //  deathSound.Play();
             boxCollider.isTrigger = true;
             StartCoroutine(CCoroutine());
             // GameManagerScript.UnloadWirePuzzle();
@@ -269,7 +269,7 @@ public class wireTwoScript : MonoBehaviour
     {
 
         //yield on a new YieldInstruction that waits for 5 seconds.
-
+        deathSound.Play();
         yield return new WaitForSeconds(0.5f);// wait for a secound and change color
         GameManagerScript.UnloadWirePuzzle();
 

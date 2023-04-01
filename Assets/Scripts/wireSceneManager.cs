@@ -11,7 +11,9 @@ public class wireSceneManager : MonoBehaviour
     public Collider2D bc;
     public static bool wirePuzzleCompleted;
     public static bool wirePuzzleInProgress;
-    public AudioSource puzzleWinSound;
+    // public AudioSource puzzleWinSound;
+    public AudioClip impact;
+    public AudioSource audioSource;
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
@@ -31,11 +33,20 @@ public class wireSceneManager : MonoBehaviour
         bc = gameObject.GetComponent<Collider2D>();
         gm = GameObject.Find("GMOb").GetComponent<gmScript>();
         wirePuzzleCompleted = false;
+        //audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (wirePuzzleCompleted)
+        {
+            //StartCoroutine(PlayWinSoundAfterPuzzleCompletionCoroutine());
+            audioSource.PlayOneShot(impact, 1F);
+            curText = "Nice Job";
+
+
+        }
         promptText.text = curText;
         if (Input.GetKey(KeyCode.M))
         {
@@ -47,14 +58,7 @@ public class wireSceneManager : MonoBehaviour
             
             //Debug.Log("Here");
 
-            if (wirePuzzleCompleted)
-            {
-
-                puzzleWinSound.Play();
-                curText = "Nice Job";
-                
-
-            }
+   
             if (wirePuzzleInProgress == false && wirePuzzleCompleted == false)
             {
                 if (Input.GetKeyDown(KeyCode.E))
@@ -125,6 +129,17 @@ public class wireSceneManager : MonoBehaviour
         //Debug.Log("left");
         ishere = false;
         promptText.text = "";
+
+    }
+    public IEnumerator PlayWinSoundAfterPuzzleCompletionCoroutine()
+    {
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        
+        yield return new WaitForSeconds(0.5f);// wait for a secound and change color
+        
+
+
 
     }
 }
