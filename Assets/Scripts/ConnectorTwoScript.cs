@@ -89,16 +89,7 @@ public class ConnectorTwoScript : MonoBehaviour
         randomFinished = true;
         yield return null;
     }
-    public IEnumerator CCoroutine()
-    {
 
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        puzzleWinSound.Play();
-        yield return new WaitForSeconds(1);// wait for a secound and change color
-        GameManagerScript.UnloadWirePuzzle();
-        randomFinished = true;
-        yield return null;
-    }
     void FixedUpdate()
     {
 

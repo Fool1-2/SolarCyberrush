@@ -17,13 +17,13 @@ public class wireSceneManager : MonoBehaviour
     bool ishere;
     public GameObject player;// this is the player
     
-    //public PlaceHolderSaveScript saveManager;
-
+    public List<GameObject> wiresInScene;
 
     gmScript gm;
 
     public bool delayActive;
     public float timer;
+    public static bool allWiresConnected;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +36,11 @@ public class wireSceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (wiresInScene.Contains(GameObject.FindGameObjectWithTag("Wires")))
+        {
+            wiresInScene.Add(GameObject.FindGameObjectWithTag("Wires"));
+        }
+
         promptText.text = curText;
         if (Input.GetKey(KeyCode.M))
         {
@@ -44,16 +49,11 @@ public class wireSceneManager : MonoBehaviour
 
         if (ishere)
         {
-            
-            //Debug.Log("Here");
 
             if (wirePuzzleCompleted)
             {
-
                 puzzleWinSound.Play();
                 curText = "Nice Job";
-                
-
             }
             if (wirePuzzleInProgress == false && wirePuzzleCompleted == false)
             {
@@ -73,16 +73,35 @@ public class wireSceneManager : MonoBehaviour
                 wirePuzzleInProgress = false;
             }
 
+            //Master Piece
+            if (wiresInScene[0].GetComponent<wireScript>().isWireConnected && wiresInScene[1].GetComponent<wireScript>().isWireConnected && wiresInScene[2].GetComponent<wireScript>().isWireConnected && wiresInScene[3].GetComponent<wireScript>().isWireConnected && wiresInScene[4].GetComponent<wireScript>().isWireConnected)
+            {
+                //Debug.Log("ChangeNOW");
+                
+                //SceneInfo.isNextScene = isNextScene;
+                wireSceneManager.wirePuzzleCompleted = true;
+                
+                //SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));
+                //SceneManager.UnloadSceneAsync("WirePuzzleScene");
+                // SceneManager.LoadScene(1);
+                
+                StartCoroutine(CCoroutine());
 
+            }
 
+            if (Input.GetKey(KeyCode.H))
+            {
+                //wirePuzzleCompleted = true;
+                wireSceneManager.wirePuzzleCompleted = true;
+
+                //SceneInfo.isNextScene = isNextScene;
+                // SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
+                // SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
+                // SceneManager.LoadScene(1);
+                StartCoroutine(CCoroutine());
+            }
         }
-        if (!ishere)
-        {
-
-
-
-           // wirePuzzleCompleted = false;
-        }
+        
         if (delayActive)
         {
             timer += Time.deltaTime;
@@ -93,6 +112,17 @@ public class wireSceneManager : MonoBehaviour
             }
         }
     }
+    public IEnumerator CCoroutine()
+    {
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        puzzleWinSound.Play();
+        yield return new WaitForSeconds(1);// wait for a secound and change color
+        GameManagerScript.UnloadWirePuzzle();
+        //randomFinished = true;
+        yield return null;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

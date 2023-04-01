@@ -38,21 +38,26 @@ public class wireScript : MonoBehaviour
     private void Start()
     {
         mouseOn = false;
-        boxSize = transform.localScale;
-        hingeJoint2D = gameObject.GetComponent<HingeJoint2D>();
+
+        #region Components
         boxCollider = GetComponent<Collider2D>();
-        rotat = gameObject.GetComponent<Rotat>();
-        // Debug.Log("Hello world");
-        conOne = false;// wire is not connected to port
-        conTwo = false;// wire is not connected to port
-        wireCon = false;// if 1 port is false the wire is not connected
-        boxSize.x = 5.338786f;
+        rb = GetComponent<Rigidbody2D>();
+
+        #endregion
+
+        isConOneConnected = false;
+        isConTwoConnected = false;
+        isWireConnected = false;// if 1 port is false the wire is not connected
+        
+        #region WireComponent???(Rename this section)
         canStretchUp = true;
-        rotate = -89.549f;
         canStretchDown = true;
         canRotate = true;
+        boxSize.x = transform.localScale.x;
+        rotate = transform.rotation.z;
         yScale = transform.localScale.y;
         xScale = transform.localScale.x;
+        #endregion
 
     }
 
@@ -65,10 +70,7 @@ public class wireScript : MonoBehaviour
             wireSelected = false;
             if (wireSelected == false)
             {
-
-
                 GetComponent<SpriteRenderer>().color = Color.white;
-
             }
         }
 
@@ -83,38 +85,22 @@ public class wireScript : MonoBehaviour
             {
                 canStretchUp = false;
 
-
             }
             if (yScale < 5 || hitWall == true)
             {
                 canStretchDown = false;
-
 
             }
             if (yScale < 10 && hitWall == false)
             {
                 canStretchUp = true;
 
-
             }
             if (yScale >= 5 && hitWall == false)
             {
                 canStretchDown = true;
 
-
-            }
-           /* if(hitWall == true)
-            {
-                canStretchDown = false;
-                canStretchUp = false;
-            }
-            if (hitWall == false)
-            {
-                canStretchDown = true;
-                canStretchUp = true;
-            }*/
-
-            
+            }            
 
             if (canStretchUp == true)
             {
@@ -138,20 +124,9 @@ public class wireScript : MonoBehaviour
 
             }
 
-
-
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                //checks if the script is enabled or disabled
-                rotat.enabled = !rotat.enabled;
-
-            }
             if (wireSelected == true)
             {
-
-
-                GetComponent<SpriteRenderer>().color = Color.yellow;
+                GetComponent<SpriteRenderer>().color = highlightedColor;
 
             }
 
@@ -160,36 +135,27 @@ public class wireScript : MonoBehaviour
             {
                 if (Input.GetKey(KeyCode.Q))
                 {
-                    //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
-                    // rotate_Z -= 90;
                     transform.rotation = Quaternion.Euler(0, 0, rotate);
                     rotate += 0.6f;
                 }
                 if (Input.GetKey(KeyCode.E))
                 {
-                    //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
-                    // rotate_Z -= 90;
                     transform.rotation = Quaternion.Euler(0, 0, rotate);
                     rotate -= 0.6f;
                 }
             }
-
-
-
         }
-
-    }
-
-    private void FixedUpdate()
-    {
-
-
     }
 
     private void OnMouseDrag()
     {
         mouseOn = true;//checks if player is clicking the object
 
+    }
+    private void OnMouseDown() {
+        canRotate = true;
+        ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
+        CursorControl.SetLocalCursorPos(ObjectCamPos);
     }
 
     private void OnMouseUp()
@@ -199,20 +165,20 @@ public class wireScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)// when wire collides with object
     {
-        if (collision.gameObject.tag == "ConnecterOne")// if its connectorONe
+        if (collision.gameObject.tag == con1Tag)// if its connectorONe
         {
-            //Debug.Log("Connecting 1");// say connecting(this is more for the devs)
-            conOne = true;// is connected to port
+            isConOneConnected = true;// is connected to port
+
         }
-        if (collision.gameObject.tag == "ConnectorTwo")
+        if (collision.gameObject.tag == con2Tag)
         {
-            //Debug.Log("Connecting 2");
-            conTwo = true;
+            isConTwoConnected = true;
+
         }
-        if ( conOne && conTwo == true)// if both ports connection is true
+        if ( isConOneConnected && isConOneConnected == true)// if both ports connection is true
         {
-            wireCon = true;// wire is connected
-            //Debug.Log("Wire Connected");
+            isWireConnected = true;// wire is connected
+
         }
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
@@ -232,13 +198,10 @@ public class wireScript : MonoBehaviour
         {
             StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
-            //Debug.Log("Collision");
             canRotate = false;
-           // rotate = 0;
             canStretchUp = false;
             canStretchDown = false;
             hitWall = true;
-            //transform.rotation = Quaternion.Euler(0, 0, 0);
 
         }
 
@@ -270,7 +233,7 @@ public class wireScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
+        if (collision.gameObject.tag == "Wires")// if collides with other wires
         {
             deathSound.Play();
             boxCollider.isTrigger = true;
@@ -309,26 +272,23 @@ public class wireScript : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D collision)// when wire exits collision box
     {
-        if (collision.gameObject.tag == "ConnecterOne")// if exit port 1 collision box
+        if (collision.gameObject.tag == con1Tag)// if exit port 1 collision box
         {
-            //Debug.Log("Disconnecting 1");// print disconnect message
-            conOne = false;// no longer connected to  port
-            conTwo = false;
-            wireCon = false;// if 1 port is false the wire is not connected 
-            //Debug.Log("Wire Disconnected");
+            isConOneConnected = false;// no longer connected to  port
+            isConTwoConnected = false;
+            isWireConnected = false;// if 1 port is false the wire is not connected 
+            
         }
-        if (collision.gameObject.tag == "ConnectorTwo")
+        if (collision.gameObject.tag == con2Tag)
         {
-            //Debug.Log("Disconnecting 2");
-            conTwo = false;
-            wireCon = false;
-            //Debug.Log("Wire Disconnected");
+            isConTwoConnected = false;
+            isWireConnected = false;
+
         }
         if (collision.gameObject.tag == "wall")
         {
             hitWall = false;
             boxCollider.isTrigger = true;
-            //Debug.Log("Collision");
             canRotate = true;
             canStretchUp = true;
             canStretchDown = true;

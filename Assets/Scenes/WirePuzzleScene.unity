@@ -337,26 +337,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 49404564}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &49404566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49404565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bcabfde3932884a9738b2911302d41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectorOne: {fileID: 49404565}
-  randomFinished: 0
-  spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
-  spriteTwo: {fileID: 21300000, guid: 568e531339a7d40d6a151b82abf78387, type: 3}
-  SceneName: 
-  isNextScene: 0
-  puzzleWinSound: {fileID: 0}
-  SceneInfo: {fileID: 0}
 --- !u!61 &49404567
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -388,6 +368,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 49404564}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &49404570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49404565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1c4538ca6ffbb4080d5a4c2c756fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireToConnect: {fileID: 666505491}
+  randomFinished: 0
+  spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
+  spriteTwo: {fileID: 21300000, guid: 568e531339a7d40d6a151b82abf78387, type: 3}
 --- !u!1001 &59913245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -486,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1c4538ca6ffbb4080d5a4c2c756fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectorTwo: {fileID: 59913246}
+  wireToConnect: {fileID: 347769882}
   randomFinished: 0
   spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
   spriteTwo: {fileID: 21300000, guid: 462d79fd527034008897ed515f46b5c2, type: 3}
@@ -689,11 +685,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_Name
-      value: Block (9)
+      value: GreenWire
       objectReference: {fileID: 0}
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_TagString
-      value: wireTwo
+      value: Wires
       objectReference: {fileID: 0}
     - target: {fileID: 2490544299736315167, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_IsActive
@@ -705,7 +701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.462021
+      value: 7.46202
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalScale.y
@@ -713,11 +709,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -123.209984
+      value: -121.95
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -157.66292
+      value: -156.97
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1336,11 +1332,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_Name
-      value: Block (4)
+      value: RedWire
       objectReference: {fileID: 0}
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_TagString
-      value: wireOne
+      value: Wires
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_RootOrder
@@ -1356,11 +1352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -128.68999
+      value: -128.05
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -157.18292
+      value: -157.94
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1440,50 +1436,7 @@ MonoBehaviour:
   EndObject: {fileID: 0}
   deathSound: {fileID: 24932926}
   wireSelected: 0
-  yScale: 0
-  xScale: 0
-  rotate: 0
-  canRotate: 0
-  canStretchUp: 0
-  hitWall: 0
-  canStretchDown: 0
---- !u!114 &666505493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666505491}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a634a22b40ef294dadf1ec8d3cb1184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotat: 0
---- !u!233 &666505494
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666505491}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.0000000064361174, y: 0}
-  m_ConnectedAnchor: {x: 4.0125, y: 0}
-  m_UseMotor: 1
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 100
+  highlightedColor: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 1}
 --- !u!61 &666505495
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1738,7 +1691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1c4538ca6ffbb4080d5a4c2c756fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectorTwo: {fileID: 731077132}
+  wireToConnect: {fileID: 347769882}
   randomFinished: 0
   spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
   spriteTwo: {fileID: 21300000, guid: 462d79fd527034008897ed515f46b5c2, type: 3}
@@ -1804,7 +1757,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6262708, y: 0.3272872}
   m_EdgeRadius: 0
---- !u!114 &847407786
+--- !u!114 &847407788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1813,10 +1766,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 847407781}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32fe28fbe4c7c3d4ca91b758ab0484ed, type: 3}
+  m_Script: {fileID: 11500000, guid: ac1c4538ca6ffbb4080d5a4c2c756fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectorFive: {fileID: 847407781}
+  wireToConnect: {fileID: 893468240}
   randomFinished: 0
   spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
   spriteTwo: {fileID: 21300000, guid: 0400ed24747414a76a0e24d6bab00b7c, type: 3}
@@ -1940,11 +1893,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_Name
-      value: Block (17)
+      value: PinkWire
       objectReference: {fileID: 0}
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_TagString
-      value: wireFive
+      value: Wires
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_RootOrder
@@ -2030,43 +1983,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 875011394}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &893468241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 893468240}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a634a22b40ef294dadf1ec8d3cb1184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotat: 0
---- !u!233 &893468243
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 893468240}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.0000000064361174, y: 0}
-  m_ConnectedAnchor: {x: 5.18, y: -2.43}
-  m_UseMotor: 1
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 100
 --- !u!61 &893468244
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2114,7 +2030,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &893468248
+--- !u!114 &893468250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2123,14 +2039,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 893468240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31884109ee34f2046bd4fd5df08b5743, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a8125a2646194642a2c535c442686e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOn: 0
-  rb: {fileID: 893468245}
+  rb: {fileID: 0}
   boxSize: {x: 0, y: 0}
-  StartObject: {fileID: 0}
-  EndObject: {fileID: 0}
+  con1Tag: ConnectorNine
+  con2Tag: ConnectorTen
+  isWireConnected: 0
   wireSelected: 0
   yScale: 0
   rotate: 0
@@ -2226,22 +2143,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 899344736}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &899344738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 899344737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85df0936cb2e8bf4e9bdec692f82dbcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectorThree: {fileID: 899344737}
-  randomFinished: 0
-  spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
-  spriteTwo: {fileID: 21300000, guid: 2a55801c35e1a4139b16aa2109616e3a, type: 3}
 --- !u!61 &899344739
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2273,6 +2174,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 899344736}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &899344742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899344737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1c4538ca6ffbb4080d5a4c2c756fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireToConnect: {fileID: 1752639731}
+  randomFinished: 0
+  spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
+  spriteTwo: {fileID: 21300000, guid: 2a55801c35e1a4139b16aa2109616e3a, type: 3}
 --- !u!1 &957853116 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
@@ -2304,22 +2221,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6262708, y: 0.3272872}
   m_EdgeRadius: 0
---- !u!114 &957853121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957853116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d054eb5fbbd28949ae18a4c29c8f68c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectorFour: {fileID: 957853116}
-  randomFinished: 0
-  spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
-  spriteTwo: {fileID: 21300000, guid: c3eb5d7c82060433c900f57a7645e807, type: 3}
 --- !u!1001 &1012602439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2533,6 +2434,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 347769881}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1252372330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347769882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a8125a2646194642a2c535c442686e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOn: 0
+  rb: {fileID: 0}
+  boxSize: {x: 0, y: 0}
+  con1Tag: ConnectorFour
+  con2Tag: ConnectorThree
+  isWireConnected: 0
+  wireSelected: 0
+  highlightedColor: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 1}
 --- !u!1001 &1272535040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2628,11 +2549,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_Name
-      value: Block (18)
+      value: YellowWire
       objectReference: {fileID: 0}
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_TagString
-      value: wireFour
+      value: Wires
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_RootOrder
@@ -2757,43 +2678,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 1303961691}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1359692555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359692554}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a634a22b40ef294dadf1ec8d3cb1184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotat: 0
---- !u!233 &1359692557
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359692554}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.0000000064361174, y: 0}
-  m_ConnectedAnchor: {x: 4.0125, y: 0}
-  m_UseMotor: 1
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 100
 --- !u!61 &1359692558
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2841,7 +2725,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1359692562
+--- !u!114 &1359692564
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2850,14 +2734,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1359692554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fb2a2e583a17ee4694c68ee7d41348b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a8125a2646194642a2c535c442686e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOn: 0
-  rb: {fileID: 1359692559}
+  rb: {fileID: 0}
   boxSize: {x: 0, y: 0}
-  StartObject: {fileID: 0}
-  EndObject: {fileID: 0}
+  con1Tag: ConnectorEight
+  con2Tag: ConnectorSeven
+  isWireConnected: 0
   wireSelected: 0
   yScale: 0
   rotate: 0
@@ -2958,6 +2843,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 1428568048}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1428568051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957853116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1c4538ca6ffbb4080d5a4c2c756fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireToConnect: {fileID: 1359692554}
+  randomFinished: 0
+  spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
+  spriteTwo: {fileID: 21300000, guid: c3eb5d7c82060433c900f57a7645e807, type: 3}
 --- !u!1 &1490704569
 GameObject:
   m_ObjectHideFlags: 0
@@ -3035,8 +2936,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490704569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -106.974, y: -150.7581, z: 0}
-  m_LocalScale: {x: 6.867284, y: 5.5992413, z: 1}
+  m_LocalPosition: {x: -106.36, y: -150.7581, z: 0}
+  m_LocalScale: {x: 6.5, y: 5.5992413, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3350,22 +3251,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 1694203317}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1694203319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694203318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85df0936cb2e8bf4e9bdec692f82dbcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectorThree: {fileID: 1694203318}
-  randomFinished: 0
-  spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
-  spriteTwo: {fileID: 21300000, guid: 2a55801c35e1a4139b16aa2109616e3a, type: 3}
 --- !u!61 &1694203320
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3397,6 +3282,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 1694203317}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1694203323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694203318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1c4538ca6ffbb4080d5a4c2c756fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireToConnect: {fileID: 1752639731}
+  randomFinished: 0
+  spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
+  spriteTwo: {fileID: 21300000, guid: 2a55801c35e1a4139b16aa2109616e3a, type: 3}
 --- !u!1 &1741635951
 GameObject:
   m_ObjectHideFlags: 0
@@ -3447,11 +3348,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_Name
-      value: Block (10)
+      value: BlueWire
       objectReference: {fileID: 0}
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_TagString
-      value: wireThree
+      value: Wires
       objectReference: {fileID: 0}
     - target: {fileID: 2490544299736315167, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_IsActive
@@ -3471,15 +3372,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -126.34999
+      value: -128.81
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -162.14293
+      value: -161.79
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.7171459
+      value: -0.71
       objectReference: {fileID: 0}
     - target: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3647,6 +3548,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1752639738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752639731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a8125a2646194642a2c535c442686e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOn: 0
+  rb: {fileID: 0}
+  boxSize: {x: 0, y: 0}
+  con1Tag: ConnectorSix
+  con2Tag: ConnectorFive
+  isWireConnected: 0
+  wireSelected: 0
+  highlightedColor: {r: 0.77254903, g: 0.77254903, b: 0.77254903, a: 1}
 --- !u!1 &1768485145
 GameObject:
   m_ObjectHideFlags: 0
@@ -3780,7 +3701,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6262708, y: 0.3272872}
   m_EdgeRadius: 0
---- !u!114 &1781060043
+--- !u!114 &1781060045
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3789,13 +3710,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 1781060038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32fe28fbe4c7c3d4ca91b758ab0484ed, type: 3}
+  m_Script: {fileID: 11500000, guid: ac1c4538ca6ffbb4080d5a4c2c756fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectorFive: {fileID: 1781060038}
+  wireToConnect: {fileID: 893468240}
   randomFinished: 0
   spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
   spriteTwo: {fileID: 21300000, guid: 0400ed24747414a76a0e24d6bab00b7c, type: 3}
+--- !u!1 &1856433716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856433718}
+  - component: {fileID: 1856433717}
+  m_Layer: 0
+  m_Name: ;'kljfdjfdsgjksfdgsfd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1856433717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856433716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a634a22b40ef294dadf1ec8d3cb1184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wiresInScene:
+  - {fileID: 347769882}
+  - {fileID: 666505491}
+  - {fileID: 1752639731}
+  - {fileID: 1359692554}
+  - {fileID: 893468240}
+--- !u!4 &1856433718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856433716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -105.07549, y: -145.01503, z: -0.08995198}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1881570322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3891,7 +3862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_TagString
-      value: ConnecterOne
+      value: ConnectorOne
       objectReference: {fileID: 0}
     - target: {fileID: 2490544299736315167, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
       propertyPath: m_IsActive
@@ -3964,26 +3935,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1900997375935988308, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 1980343815}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1980343817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1980343816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bcabfde3932884a9738b2911302d41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connectorOne: {fileID: 1980343816}
-  randomFinished: 0
-  spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
-  spriteTwo: {fileID: 21300000, guid: 568e531339a7d40d6a151b82abf78387, type: 3}
-  SceneName: WireScene
-  isNextScene: 0
-  puzzleWinSound: {fileID: 217664950}
-  SceneInfo: {fileID: 11400000, guid: 1a9d54c70dfc1492bb96cd4e2e4626cc, type: 2}
 --- !u!61 &1980343818
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4015,6 +3966,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 1980343815}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1980343821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980343816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1c4538ca6ffbb4080d5a4c2c756fbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireToConnect: {fileID: 666505491}
+  randomFinished: 0
+  spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
+  spriteTwo: {fileID: 21300000, guid: 568e531339a7d40d6a151b82abf78387, type: 3}
 --- !u!1 &1992146186
 GameObject:
   m_ObjectHideFlags: 0
@@ -4149,7 +4116,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6262708, y: 0.3272872}
   m_EdgeRadius: 0
---- !u!114 &2054491999
+--- !u!114 &2054492001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4158,10 +4125,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2054491994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d054eb5fbbd28949ae18a4c29c8f68c, type: 3}
+  m_Script: {fileID: 11500000, guid: ac1c4538ca6ffbb4080d5a4c2c756fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectorFour: {fileID: 2054491994}
+  wireToConnect: {fileID: 1359692554}
   randomFinished: 0
   spriteOne: {fileID: 21300000, guid: 6cc986683cc8e40e587bdd910dfd5958, type: 3}
   spriteTwo: {fileID: 21300000, guid: c3eb5d7c82060433c900f57a7645e807, type: 3}

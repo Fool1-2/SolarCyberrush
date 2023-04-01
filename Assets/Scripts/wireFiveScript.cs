@@ -1,12 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-[RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
-[RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
-public class wireFiveScript : MonoBehaviour
-{
-    //Turn the positon of in constraints in rigidbody to limit the axis its on
 
     [SerializeField] bool mouseOn;
     [SerializeField] Rigidbody2D rb;
