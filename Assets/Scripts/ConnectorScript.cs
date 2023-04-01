@@ -3,17 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConnectorOneScript : MonoBehaviour
+public class ConnectorScript : MonoBehaviour
 {
-    public GameObject connectorTwo;
+    public GameObject wireToConnect;
     public bool randomFinished;
     public Sprite spriteOne, spriteTwo;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(ColorCoroutine());// starts time for color time
-        connectorTwo = GameObject.FindWithTag("wireTwo"); // find gameobject with tag wireTwo
-        connectorTwo.GetComponent<wireTwoScript>();// find wireTwo script
         randomFinished = false;
         GetComponent<SpriteRenderer>().sprite = spriteOne;
     }
@@ -23,18 +21,17 @@ public class ConnectorOneScript : MonoBehaviour
     {
         if (randomFinished == true)
         {
-            if (wireTwoScript.wireCon == true)
+            if (wireToConnect.GetComponent<wireScript>().isWireConnected == true)
             {
                 GetComponent<SpriteRenderer>().sprite = spriteTwo;
-
 
             }
 
 
-            if (wireTwoScript.wireCon == false)
+            if (wireToConnect.GetComponent<wireScript>().isWireConnected == false)
             {
-
                 GetComponent<SpriteRenderer>().sprite = spriteOne;
+
             }
         }
     }

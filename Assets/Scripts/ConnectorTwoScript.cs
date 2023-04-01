@@ -33,48 +33,7 @@ public class ConnectorTwoScript : MonoBehaviour
     {
         if (randomFinished == true)
         {
-            if (wireScript.wireCon == true)
-            {
-                GetComponent<SpriteRenderer>().sprite = spriteTwo;
-               
-
-            }
-
-            if (wireScript.wireCon == true && wireTwoScript.wireCon == true && wireThreeScript.wireCon == true && wireFourScript.wireCon == true && wireFiveScript.wireCon == true)
-            {
-                //Debug.Log("ChangeNOW");
-                
-                //SceneInfo.isNextScene = isNextScene;
-                wireSceneManager.wirePuzzleCompleted = true;
-                
-                //SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));
-                //SceneManager.UnloadSceneAsync("WirePuzzleScene");
-                // SceneManager.LoadScene(1);
-                
-                StartCoroutine(CCoroutine());
-
-            }
-
-            if (Input.GetKey(KeyCode.H))
-            {
-                //wirePuzzleCompleted = true;
-                wireSceneManager.wirePuzzleCompleted = true;
-
-                //SceneInfo.isNextScene = isNextScene;
-                // SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
-                // SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
-                // SceneManager.LoadScene(1);
-                StartCoroutine(CCoroutine());
-
-
-            }
-
-
-            if (wireScript.wireCon == false)
-            {
-
-                GetComponent<SpriteRenderer>().sprite = spriteOne;
-            }
+            
         }
     }
     public IEnumerator ColorCoroutine()
@@ -86,16 +45,7 @@ public class ConnectorTwoScript : MonoBehaviour
         randomFinished = true;
         yield return null;
     }
-    public IEnumerator CCoroutine()
-    {
 
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        puzzleWinSound.Play();
-        yield return new WaitForSeconds(1);// wait for a secound and change color
-        GameManagerScript.UnloadWirePuzzle();
-        randomFinished = true;
-        yield return null;
-    }
     void FixedUpdate()
     {
 

@@ -60,9 +60,10 @@ public class Glow_ProjectileControl : MonoBehaviour
         {
 
             glowLight.color = diffGlowColors[curProjNum];
+            /*
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                /*
+                
                 if (curProjNum < 0)
                 {
                     curProjNum += 1;
@@ -71,9 +72,10 @@ public class Glow_ProjectileControl : MonoBehaviour
                 {
                     curProjNum = 0;
                 }
-                */
+                
                 StartCoroutine(RespawnItem(.1f));
             }
+            */
         }
         #endregion
 
@@ -116,12 +118,6 @@ public class Glow_ProjectileControl : MonoBehaviour
             isShot = false;
             canBulletReload = false;
         }
-    }
-
-    public void respawnItem(float time)
-    {
-        
-        
     }
 
     

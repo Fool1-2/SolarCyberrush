@@ -22,6 +22,7 @@ public class wireTwoScript : MonoBehaviour
     public static bool conFour;
     public static bool wireCon;
     public bool wireSelected;
+    public bool isWireConnected;
     public float yScale;
     public float xScale;
     public float rotate;
@@ -44,11 +45,11 @@ public class wireTwoScript : MonoBehaviour
         conThree = false;
         conFour = false;
         wireCon = false;// if 1 port is false the wire is not connected
-        boxSize.x = 7.46202f;
+        boxSize.x = transform.localScale.x;
         canStretchUp = true;
         canStretchDown = true;
         canRotate = true;
-        rotate = 47.7097015f;
+        rotate = transform.rotation.z;
         yScale = transform.localScale.y;
         xScale = transform.localScale.x;
     }

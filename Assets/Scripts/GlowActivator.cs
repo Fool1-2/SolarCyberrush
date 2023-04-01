@@ -38,6 +38,8 @@ public class GlowActivator : MonoBehaviour
         }
     }
 
+    
+
     private void OnTriggerEnter2D(Collider2D other) {
         //Checks this is a tele arrow and other object is a teleob
         if (glowProjectile.isShot)

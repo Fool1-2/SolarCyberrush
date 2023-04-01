@@ -9,7 +9,6 @@ TagManager:
   - Light
   - Telekinesis
   - ProjectileController
-  - ConnecterOne
   - ConnectorTwo
   - ConnectorThree
   - ConnectorFour
@@ -34,6 +33,8 @@ TagManager:
   - WinObj
   - PlayerSpawn
   - IgnoreCollide
+  - ConnectorOne
+  - Wires
   layers:
   - Default
   - TransparentFX

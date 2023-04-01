@@ -4,31 +4,13 @@ using UnityEngine;
 
 public class Rotat : MonoBehaviour
 {
-    public float rotat;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public List<GameObject> wiresInScene;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Vector2 mouse_Pos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-
-        if (Input.GetKey(KeyCode.Q))
+    private void Update() {
+        //Diabolical...
+        if (wiresInScene[0].GetComponent<wireScript>().isWireConnected && wiresInScene[1].GetComponent<wireScript>().isWireConnected && wiresInScene[2].GetComponent<wireScript>().isWireConnected && wiresInScene[3].GetComponent<wireScript>().isWireConnected && wiresInScene[4].GetComponent<wireScript>().isWireConnected)
         {
-            //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
-           // rotate_Z -= 90;
-            transform.rotation = Quaternion.Euler(0, 0, rotat);
-            rotat += 1;
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
-            // rotate_Z -= 90;
-            transform.rotation = Quaternion.Euler(0, 0, rotat);
-            rotat -= 1;
+            print("Why oh god why...");
         }
     }
 }

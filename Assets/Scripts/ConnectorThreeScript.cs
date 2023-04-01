@@ -12,7 +12,7 @@ public class ConnectorThreeScript : MonoBehaviour
     {
         StartCoroutine(ColorCoroutine());
         connectorThree = GameObject.FindWithTag("wireThree");
-        connectorThree.GetComponent<wireThreeScript>();
+        
         randomFinished = false;
         GetComponent<SpriteRenderer>().sprite = spriteOne;
     }
@@ -22,19 +22,7 @@ public class ConnectorThreeScript : MonoBehaviour
     {
         if (randomFinished == true)
         {
-            if (wireThreeScript.wireCon == true)
-            {
-                GetComponent<SpriteRenderer>().sprite = spriteTwo;
-
-
-            }
-
-
-            if (wireThreeScript.wireCon == false)
-            {
-
-                GetComponent<SpriteRenderer>().sprite = spriteOne;
-            }
+            
         }
 
     }

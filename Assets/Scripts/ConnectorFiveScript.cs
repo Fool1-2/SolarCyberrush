@@ -12,7 +12,7 @@ public class ConnectorFiveScript : MonoBehaviour
     {
         StartCoroutine(ColorCoroutine());
         connectorFive = GameObject.FindWithTag("wireFive");
-        connectorFive.GetComponent<wireFiveScript>();
+        //connectorFive.GetComponent<wireFiveScript>();
         GetComponent<SpriteRenderer>().sprite = spriteOne;
         randomFinished = false;
     }
@@ -22,19 +22,7 @@ public class ConnectorFiveScript : MonoBehaviour
     {
         if (randomFinished == true)
         {
-            if (wireFiveScript.wireCon == true)
-            {
-                GetComponent<SpriteRenderer>().sprite = spriteTwo;
-
-
-            }
-
-
-            if (wireFiveScript.wireCon == false)
-            {
-
-                GetComponent<SpriteRenderer>().sprite = spriteOne;
-            }
+            
         }
 
     }
