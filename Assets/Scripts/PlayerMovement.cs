@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private Rigidbody2D rb;
     [SerializeField]private Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;
-    [SerializeField]private float groundCheckNum;
+    [SerializeField]private Vector2 groundCheckNum;
     public static bool isPossessing;
     public float possessedrangeNum;
     public LayerMask possessedLayer;
@@ -134,12 +134,12 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
+        return Physics2D.OverlapBox(groundCheck.position, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
     }
 
     private void OnDrawGizmos() 
     {
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckNum);//Shows the outline of it in scene
+        Gizmos.DrawWireCube(groundCheck.position, groundCheckNum);//Shows the outline of it in scene
         
         //Gizmos.DrawWireSphere(transform.position, possessedrangeNum);
     }

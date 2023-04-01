@@ -161,12 +161,16 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  groundCheckNum: 0.12
+  groundCheckNum: {x: 2.6, y: 1}
   possessedrangeNum: 2.45
   possessedLayer:
     serializedVersion: 2
     m_Bits: 128
   playerJumpUpSound: {fileID: 8300000, guid: 49c5f7ccb3b994371b74ae27b411132b, type: 3}
+  playerRunSound: {fileID: 0}
+  glowActivate: {fileID: 0}
+  glowChangeSound: {fileID: 0}
+  running: 0
 --- !u!114 &1271182409550023008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271182410508639765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.364, z: 0}
+  m_LocalPosition: {x: -0.053, y: -0.363, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
