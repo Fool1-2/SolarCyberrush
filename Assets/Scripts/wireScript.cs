@@ -31,6 +31,7 @@ public class wireScript : MonoBehaviour
     public bool canStretchUp;
     public bool hitWall;
     public bool canStretchDown;
+    public static bool died;
     SpriteRenderer SR;
 
 
@@ -216,8 +217,9 @@ public class wireScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             deathSound.Play();
+
             boxCollider.isTrigger = true;
-            GameManagerScript.UnloadWirePuzzle();
+            StartCoroutine(CCoroutine());
             //       GameManagerScript.LoadWirePuzzle();// reload scene
             //Debug.Log("Collision");// test collision works with log message
             conOne = false;// no longer connected to  port
@@ -255,18 +257,31 @@ public class wireScript : MonoBehaviour
 
     }
 
+    public IEnumerator CCoroutine()
+    {
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        
+        yield return new WaitForSeconds(0.5f);// wait for a secound and change color
+        GameManagerScript.UnloadWirePuzzle();
+        
+        yield return null;
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
+            deathSound.Play();
             boxCollider.isTrigger = true;
-            GameManagerScript.UnloadWirePuzzle();
-     //       GameManagerScript.LoadWirePuzzle();// reload scene
+            StartCoroutine(CCoroutine());
+            //GameManagerScript.UnloadWirePuzzle();
+            //       GameManagerScript.LoadWirePuzzle();// reload scene
             //Debug.Log("Collision");// test collision works with log message
             conOne = false;// no longer connected to  port
             conTwo = false;
             wireCon = false;// if 1 port is false the wire is not connected
-            deathSound.Play();
+            
         }
         if (collision.gameObject.tag == "wall")
         {

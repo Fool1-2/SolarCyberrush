@@ -28,6 +28,7 @@ public class wireFourScript : MonoBehaviour
     public bool canStretchDown;
     public bool hitWall;
     public float xScale;
+    public AudioSource deathSound;
     SpriteRenderer SR;
 
 
@@ -204,8 +205,9 @@ public class wireFourScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            GameManagerScript.UnloadWirePuzzle();
-           // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
+            deathSound.Play();
+            // GameManagerScript.UnloadWirePuzzle();
+            // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
             //Debug.Log("Collision");// test collision works with log message
             conSev = false;// no longer connected to  port
             conEig = false;
@@ -233,8 +235,9 @@ public class wireFourScript : MonoBehaviour
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
             boxCollider.isTrigger = true;
-            GameManagerScript.UnloadWirePuzzle();
-           // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
+            deathSound.Play();
+            //GameManagerScript.UnloadWirePuzzle();
+            // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
             //Debug.Log("Collision");// test collision works with log message
             conSev = false;// no longer connected to  port
             conEig = false;
@@ -264,6 +267,16 @@ public class wireFourScript : MonoBehaviour
             yield return null;
         }
 
+    }
+    public IEnumerator CCoroutine()
+    {
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+
+        yield return new WaitForSeconds(0.5f);// wait for a secound and change color
+        GameManagerScript.UnloadWirePuzzle();
+
+        yield return null;
     }
     void OnCollisionExit2D(Collision2D collision)
     {
