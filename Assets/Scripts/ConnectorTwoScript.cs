@@ -13,7 +13,8 @@ public class ConnectorTwoScript : MonoBehaviour
    // public static bool wirePuzzleCompleted;
     public string SceneName;
     public bool isNextScene;
-
+    public AudioSource puzzleWinSound;
+    
     [SerializeField]
     public SceneInfo SceneInfo;
 
@@ -44,24 +45,30 @@ public class ConnectorTwoScript : MonoBehaviour
             {
                 //Debug.Log("ChangeNOW");
                 
-                SceneInfo.isNextScene = isNextScene;
+                //SceneInfo.isNextScene = isNextScene;
                 wireSceneManager.wirePuzzleCompleted = true;
+                
+
                 //SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));
                 //SceneManager.UnloadSceneAsync("WirePuzzleScene");
                 // SceneManager.LoadScene(1);
-                GameManagerScript.UnloadWirePuzzle();
+
+                StartCoroutine(CCoroutine());
 
             }
 
             if (Input.GetKey(KeyCode.H))
             {
                 //wirePuzzleCompleted = true;
-               // wireSceneManager.wirePuzzleCompleted = true;
+                wireSceneManager.wirePuzzleCompleted = true;
+                
+
                 //SceneInfo.isNextScene = isNextScene;
                 // SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
                 // SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
                 // SceneManager.LoadScene(1);
-                GameManagerScript.UnloadWirePuzzle();
+                StartCoroutine(CCoroutine());
+
 
             }
 
@@ -73,17 +80,28 @@ public class ConnectorTwoScript : MonoBehaviour
             }
         }
     }
-    void FixedUpdate()
-    {
-
-    }
-    IEnumerator ColorCoroutine()
+    public IEnumerator ColorCoroutine()
     {
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(1);// wait for a secound and change color
-
-        randomFinished = true; 
+        
+        randomFinished = true;
         yield return null;
     }
+    public IEnumerator CCoroutine()
+    {
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        puzzleWinSound.Play();
+        yield return new WaitForSeconds(1);// wait for a secound and change color
+        GameManagerScript.UnloadWirePuzzle();
+        randomFinished = true;
+        yield return null;
+    }
+    void FixedUpdate()
+    {
+
+    }
+
 }
