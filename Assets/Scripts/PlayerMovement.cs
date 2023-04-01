@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioSource glowActivate;
     public AudioSource glowChangeSound;
+    public static bool canMove;
 
     public bool running;
 
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
+        canMove = true;
     }
     // Update is called once per frame
     void Update()
@@ -49,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         //rb.bodyType = RigidbodyType2D.Dynamic;
         
         
-        if (!Glow.isGlowActive)
+        if (!Glow.isGlowActive && canMove == true)
         {
 
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
