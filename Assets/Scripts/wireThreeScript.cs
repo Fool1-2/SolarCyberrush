@@ -160,14 +160,14 @@ public class wireThreeScript : MonoBehaviour
                     //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
                     // rotate_Z -= 90;
                     transform.rotation = Quaternion.Euler(0, 0, rotate);
-                    rotate += 0.6f;
+                    rotate += 0.9f;
                 }
                 if (Input.GetKey(KeyCode.E))
                 {
                     //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
                     // rotate_Z -= 90;
                     transform.rotation = Quaternion.Euler(0, 0, rotate);
-                    rotate -= 0.6f;
+                    rotate -= 0.9f;
                 }
             }
         }
