@@ -36,7 +36,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
+        playerJumpUpSound.volume = GameManagerScript.volume;
+        playerRunSound.volume = GameManagerScript.volume;
+        glowActivate.volume = GameManagerScript.volume;
+        glowChangeSound.volume = GameManagerScript.volume;
         if (Input.GetKeyDown(KeyCode.M))
         {
             GrateScript.slidePuzzleCompleted = true;
