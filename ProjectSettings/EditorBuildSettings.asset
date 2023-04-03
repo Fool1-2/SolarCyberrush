@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 95a3a835b4214864689136d45727d90e
   - enabled: 1
-    path: Assets/Scenes/dadad.unity
+    path: Assets/Scenes/L1F2.unity
     guid: b45f2cf64a0544da8b968c316c03879f
   - enabled: 1
     path: Assets/Scenes/WirePuzzleScene.unity
