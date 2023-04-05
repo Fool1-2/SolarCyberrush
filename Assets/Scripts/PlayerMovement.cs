@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]public float horizontal;
     public float speed;
     public float jumpPower;
-    private bool jumped;
+    public bool jumped;
     [SerializeField]private Rigidbody2D rb;
     [SerializeField]private Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;
@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public bool running;
 
     private SpriteRenderer _renderer;
+    public Vector2 testVec;
     
 
     private void Start()
@@ -134,12 +135,12 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
+        return Physics2D.OverlapBox(groundCheck.position, testVec, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
     }
 
     private void OnDrawGizmos() 
     {
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckNum);//Shows the outline of it in scene
+        Gizmos.DrawWireCube(groundCheck.position, testVec);//Shows the outline of it in scene
         
         //Gizmos.DrawWireSphere(transform.position, possessedrangeNum);
     }
