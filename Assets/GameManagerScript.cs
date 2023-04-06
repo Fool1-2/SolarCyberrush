@@ -31,9 +31,14 @@ public class GameManagerScript : MonoBehaviour
             playerList[0] = GameObject.FindGameObjectWithTag("Player");//finds the player
         }
 
-        if (isSceneLoaded)//turns off the player in the original scene if we have loaded into another scene
+        if (isSceneLoaded)//turns off the playermovement in the original scene if we have loaded into another scene
         {
+            PlayerMovement.canMove = false;
+        }
 
+        if (!isSceneLoaded)//turns on the playermovement in the original scene if we have loaded into another scene
+        {
+            PlayerMovement.canMove = true;
         }
         else
         {
@@ -86,7 +91,7 @@ public class GameManagerScript : MonoBehaviour
     {
         //  SceneManager.UnloadSceneAsync("L1F2");
         isSceneLoaded = true;
-        Glow.isGlowActive = true;
+        //PlayerMovement/can = true;
         SceneManager.LoadSceneAsync("WirePuzzleScene", LoadSceneMode.Additive);// Loads the wire puzzle scene addative to the main scene
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));// sets wirepuzzle scene as active scene 
@@ -95,7 +100,7 @@ public class GameManagerScript : MonoBehaviour
     public static void UnloadWirePuzzle()
     {
         isSceneLoaded = false;
-        Glow.isGlowActive = false;
+        //Glow.isGlowActive = false;
         SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
     }

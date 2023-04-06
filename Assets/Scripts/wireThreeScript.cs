@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class wireThreeScript : MonoBehaviour
     public bool hitWall;
     public Vector3 offset;
     SpriteRenderer SR;
+    public Vector2 ObjectCamPos;
     public AudioSource deathSound;
 
 
@@ -61,7 +63,8 @@ public class wireThreeScript : MonoBehaviour
 
     private void Update()
     {
-         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
+        deathSound.volume = GameManagerScript.volume;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
 
         if (!mouseOn)//If the mouse is off turn the movement off.
         {
@@ -179,6 +182,12 @@ public class wireThreeScript : MonoBehaviour
 
     }
 
+    private void OnMouseDown()
+    {
+        ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
+        CursorControl.SetLocalCursorPos(ObjectCamPos);
+    }
+
     private void OnMouseDrag()
     {
         mouseOn = true;//checks if player is clicking the object
@@ -288,7 +297,7 @@ public class wireThreeScript : MonoBehaviour
     {
 
         //yield on a new YieldInstruction that waits for 5 seconds.
-
+        deathSound.Play();
         yield return new WaitForSeconds(0.5f);// wait for a secound and change color
         GameManagerScript.UnloadWirePuzzle();
 
