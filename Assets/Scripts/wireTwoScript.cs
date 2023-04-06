@@ -29,6 +29,7 @@ public class wireTwoScript : MonoBehaviour
     public bool canStretchUp;
     public bool canStretchDown;
     public bool hitWall;
+    public Vector2 ObjectCamPos;
     SpriteRenderer SR;
     public AudioSource deathSound;
 
@@ -171,6 +172,12 @@ public class wireTwoScript : MonoBehaviour
     {
 
 
+    }
+
+    private void OnMouseDown()
+    {
+        ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
+        CursorControl.SetLocalCursorPos(ObjectCamPos);
     }
 
     private void OnMouseDrag()

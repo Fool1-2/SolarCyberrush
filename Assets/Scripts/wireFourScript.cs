@@ -30,6 +30,7 @@ public class wireFourScript : MonoBehaviour
     public float xScale;
     public AudioSource deathSound;
     SpriteRenderer SR;
+    public Vector2 ObjectCamPos;
 
 
     private void Start()
@@ -170,6 +171,12 @@ public class wireFourScript : MonoBehaviour
     {
 
 
+    }
+
+    private void OnMouseDown()
+    {
+        ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
+        CursorControl.SetLocalCursorPos(ObjectCamPos);
     }
 
     private void OnMouseDrag()

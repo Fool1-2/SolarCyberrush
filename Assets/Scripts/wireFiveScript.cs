@@ -29,6 +29,7 @@ public class wireFiveScript : MonoBehaviour
     public bool hitWall;
     public float xScale;
     public AudioSource deathSound;
+    public Vector2 ObjectCamPos;
     SpriteRenderer SR;
     
 
@@ -190,6 +191,12 @@ public class wireFiveScript : MonoBehaviour
     {
         mouseOn = true;//checks if player is clicking the object
 
+    }
+
+    private void OnMouseDown()
+    {
+        ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
+        CursorControl.SetLocalCursorPos(ObjectCamPos);
     }
 
     private void OnMouseUp()

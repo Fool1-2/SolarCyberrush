@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class wireThreeScript : MonoBehaviour
     public bool hitWall;
     public Vector3 offset;
     SpriteRenderer SR;
+    public Vector2 ObjectCamPos;
     public AudioSource deathSound;
 
 
@@ -178,6 +180,12 @@ public class wireThreeScript : MonoBehaviour
     private void FixedUpdate()
     {
 
+    }
+
+    private void OnMouseDown()
+    {
+        ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
+        CursorControl.SetLocalCursorPos(ObjectCamPos);
     }
 
     private void OnMouseDrag()
