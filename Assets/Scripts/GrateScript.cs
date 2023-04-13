@@ -50,7 +50,7 @@ public class GrateScript : MonoBehaviour
             else
             {
                 curText = "Press E to Clear the Pipe";
-                puzzleWinSound.Play();
+                
             }
             if (slidePuzzleInProgress == false)
             {
@@ -61,7 +61,7 @@ public class GrateScript : MonoBehaviour
                         slidePuzzleInProgress = true;
                         gameManager.LoadPuzzle("SlidePuzzle");
                         Debug.Log("Going");
-                        OST2.Play(); 
+                        
                     }
                     else if (!delayActive)
                     {

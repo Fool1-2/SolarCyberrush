@@ -50,6 +50,7 @@ public class GameManagerScript : MonoBehaviour
             
             //OST2.Play();
             OST1.Stop();
+           // OST2.Play();
 
         }
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -101,6 +102,7 @@ public class GameManagerScript : MonoBehaviour
     {
         isSceneLoaded = false;
         //Glow.isGlowActive = false;
+        
         SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
     }
@@ -131,7 +133,9 @@ public class GameManagerScript : MonoBehaviour
     }
     public void MainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
+        Destroy(this.gameObject);
     }
 }
 
