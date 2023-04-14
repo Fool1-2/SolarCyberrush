@@ -30,19 +30,17 @@ public class Glow_ProjectileControl : MonoBehaviour
 
     void Update()
     {
-        foreach (GameObject allBullets in glowProjectiles)
-        {
-            if (!allBullets.activeInHierarchy)
-            {
-                allBullets.transform.position = transform.position;
-            }
-        }
         
+        if (isShot)
+        {
+            print("isshot is on");
+        }
         #region Glow bool
         if (Glow.isGlowActive)//Checks if glow is on, if so then activate the glow arrow plus the light it emits
         {
             glowProjectiles[curProjNum].SetActive(true);
             glowLight.enabled = true;
+            print("Glow is on");
         }
         else
         {
@@ -108,13 +106,10 @@ public class Glow_ProjectileControl : MonoBehaviour
     public void ReloadBullet()
     {
         glowProjectiles[curProjNum].SetActive(false);
-        glowProjectiles[curProjNum].transform.position = transform.position;
+        //glowProjectiles[curProjNum].transform.position = transform.position;
         glowProjectiles[curProjNum].SetActive(true);
         isShot = false;
         oneShot = false;
         
     }
-
-    
-    
 }

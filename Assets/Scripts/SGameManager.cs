@@ -9,29 +9,33 @@ public class SGameManager : MonoBehaviour
 {
     
     public static bool isWin;
+    public static bool playerLose;
     public static bool isPlayerBallOut;
     private GameObject playerBall;
     private Vector2 locator;
+    [SerializeField]private GameObject[] pipes;
 
     
     private void OnEnable() {
-        //locator = new Vector2(163.2843f, -106.2213f);
+        pipes = GameObject.FindGameObjectsWithTag("Pipes");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isPlayerBallOut)
+        {
+            foreach (GameObject pipe in pipes)
+            {
+                pipe.GetComponent<PipeController>().isDone = false;
+            }
+        }
 
         if (Input.GetKey(KeyCode.T)) 
         { 
             isWin = true; 
         }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            gameManager.UnLoadPuzzle("SlidePuzzle");
-            gameManager.LoadPuzzle("SlidePuzzle");
-        } 
  
  
         if (isWin) 

@@ -19,9 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float possessedrangeNum;
     public LayerMask possessedLayer;
     public AudioSource playerJumpUpSound;
-    //public AudioSource playerRunSound;
-    public AudioSource playerRunSound;
-
+    public AudioSource playerRunSound;//public AudioSource playerRunSound;
     public AudioSource glowActivate;
     public AudioSource glowChangeSound;
 
@@ -29,9 +27,17 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer _renderer;
     
+    private void OnEnable() {
+        playerJumpUpSound = GameObject.Find("PlayerJumpSound").GetComponent<AudioSource>();
+        playerRunSound = GameObject.Find("PlayerRunSound").GetComponent<AudioSource>();
+        glowActivate = GameObject.Find("GlowActivateSound").GetComponent<AudioSource>();
+        glowChangeSound = GameObject.Find("GlowChangeSound").GetComponent<AudioSource>();
+    }
 
     private void Start()
     {
+
+        
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         canMove = true;
@@ -104,6 +110,9 @@ public class PlayerMovement : MonoBehaviour
         {
 
             glowActivate.Play();
+
+            
+            
 
         }
         if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)

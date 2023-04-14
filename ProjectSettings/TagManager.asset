@@ -34,6 +34,7 @@ TagManager:
   - WinObj
   - PlayerSpawn
   - IgnoreCollide
+  - Pipes
   layers:
   - Default
   - TransparentFX

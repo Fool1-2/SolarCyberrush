@@ -40,6 +40,7 @@ public class GlowActivator : MonoBehaviour
         if (!glowProjectile.isShot)
         {
             bc.enabled = false;
+            transform.position = glowProjectile.transform.position;
         }
         else
         {
@@ -51,6 +52,8 @@ public class GlowActivator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         //Checks this is a tele arrow and other object is a teleob
+
+        
         if (glowProjectile.isShot)
         {
             if (other.gameObject.tag == "TeleObj" && gameObject.tag == "Telekinesis")
