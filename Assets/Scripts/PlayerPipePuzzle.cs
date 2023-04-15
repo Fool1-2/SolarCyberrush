@@ -9,6 +9,7 @@ public class PlayerPipePuzzle : MonoBehaviour
     public PipeController LR;
     public Transform curPos;
     [SerializeField]Transform curPosHolder;
+    [SerializeField]PipeController originalLRHolder;
     [SerializeField]PipeController LRHolder;
     public float speed;
     public bool startFromLast;
@@ -30,11 +31,16 @@ public class PlayerPipePuzzle : MonoBehaviour
 
     private void OnEnable() {
 
+        transform.position = GameObject.Find("PlayerBallSpawn").transform.position;
         startFromLast = false;
         LR = LRHolder;
         curPos = curPosHolder;
         LR.isDone = false;
-        transform.position = GameObject.Find("PlayerBallSpawn").transform.position;
+    }
+    private void OnDisable() {
+        curPos = curPosHolder;
+        startFromLast = false;
+        LRHolder = originalLRHolder;
     }
 
     private void Start() {
@@ -159,7 +165,6 @@ public class PlayerPipePuzzle : MonoBehaviour
         {
             if (LR.OPoint == null && LR.CPoint == null)
             {
-                print("working??");
                 SGameManager.isPlayerBallOut = false;
                 curPos = null;
                 this.transform.gameObject.SetActive(false);
@@ -167,7 +172,6 @@ public class PlayerPipePuzzle : MonoBehaviour
 
             if (curPos == null)
             {
-                print("working??");
                 SGameManager.isPlayerBallOut = false;
                 curPos = null;
                 this.transform.gameObject.SetActive(false);

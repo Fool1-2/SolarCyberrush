@@ -10,7 +10,6 @@ public class InteractScript : MonoBehaviour
     Collider2D col;
     public bool isplayerNear;
     public LayerMask objectToInteract;
-    //public string gameObjectToFind;
     public GameObject player;//The pipe player not the real one
     public GameObject actualPlayer;
 
@@ -24,6 +23,7 @@ public class InteractScript : MonoBehaviour
         {
             actualPlayer.SetActive(true);
         }
+
         if (isplayerNear)
         {
             if (Input.GetKeyDown(KeyCode.E) && !SGameManager.isPlayerBallOut)
