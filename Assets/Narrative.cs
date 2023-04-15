@@ -10,25 +10,33 @@ public class Narrative : MonoBehaviour
     public float characterSpeed;
     private int index;
     public GameObject SewerBackground;
-    public GameObject StreetBackground;
-    public GameObject StreetBackground2;
-    public GameObject StreetBackground3;
+    public GameObject StreetBackgroundPlayer;
+    public GameObject StreetBackgroundGrate;
     public bool autoText;
+    public GameObject npc;
+    public Vector2 npcPos;
+
     // Start is called before the first frame update
     void Start()
     {
         autoText = true;
-        StreetBackground.SetActive(false);
-        StreetBackground2.SetActive(false);
-        StreetBackground3.SetActive(false);
+        StreetBackgroundPlayer.SetActive(false);
+        StreetBackgroundGrate.SetActive(false);
+        npc.SetActive(false);
         textComponent.text = string.Empty;
-        StartSpeaking();
+        //StartSpeaking();
+        StartCoroutine(BackgroundScroll());
     }
 
     // Update is called once per frame
     void Update()
     {
+        //The background section
+        if (index == 2)
+        {
 
+        }
+        //The text section
         if (Input.GetKeyDown(KeyCode.Space))
         {
             autoText = false;
@@ -45,11 +53,6 @@ public class Narrative : MonoBehaviour
             }
         }
 
-        if(index == 2)
-        {
-            SewerBackground.SetActive(false);
-            StreetBackground.SetActive(true);
-        }
     }
 
     void StartSpeaking()
@@ -88,5 +91,17 @@ public class Narrative : MonoBehaviour
             gameObject.SetActive(false);
             SceneManager.LoadScene(1);
         }
+    }
+    //Temporary scroll of backgrounds to make it seem like player came out of sewer
+    IEnumerator BackgroundScroll()
+    {
+        yield return new WaitForSeconds(2);
+        SewerBackground.SetActive(false);
+        StreetBackgroundGrate.SetActive(true);
+        yield return new WaitForSeconds(2);
+        StreetBackgroundPlayer.SetActive(true);
+        StreetBackgroundGrate.SetActive(false);
+        npc.SetActive(true);
+        StartSpeaking();
     }
 }
