@@ -48,6 +48,7 @@ public class Glow_ProjectileControl : MonoBehaviour
             glowLight.enabled = false;
             isShot = false;
             oneShot = false;   
+            PlayerMovement.isPossessing = false;
         }
 
         if (PlayerMovement.isPossessing)
