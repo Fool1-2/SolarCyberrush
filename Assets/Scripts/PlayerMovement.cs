@@ -5,25 +5,41 @@ using gamemanager = GameManagerScript;
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region Basic Movement Elements
     [HideInInspector]public float horizontal;
     public static bool canMove;
     public float speed;
     public float jumpPower;
     public bool jumped;
+    public bool running;
     [SerializeField]private Rigidbody2D rb;
+    #endregion
+
+    #region groundChecks
     [SerializeField]private Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;
     [SerializeField]private float groundCheckNum;
     [SerializeField]private Vector2 groundVec;
+    #endregion
+
+    #region telekensis
     public static bool isPossessing;
     public float possessedrangeNum;
     public LayerMask possessedLayer;
+    #endregion
+
+    #region PlayerSounds
     public AudioSource playerJumpUpSound;
     public AudioSource playerRunSound;//public AudioSource playerRunSound;
     public AudioSource glowActivate;
     public AudioSource glowChangeSound;
+    #endregion
 
-    public bool running;
+    #region Interactables
+    [SerializeField]private Vector2 interactArea;
+    private float interactAreaNum;
+    [SerializeField]Collider2D[] interactCol;
+    #endregion
 
     private SpriteRenderer _renderer;
     
@@ -35,9 +51,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Start()
-    {
-
-        
+    {   
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         canMove = true;
@@ -45,14 +59,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
-        if (Input.GetKeyDown(KeyCode.M))
+        /*
+        if (interactCol != null)
         {
-            GrateScript.slidePuzzleCompleted = true;
-        }
+            //var interactedObj;
+            for (int i = 0; i < interactCol.Length; i++)
+            {
+                //interactedObj = interactCol[i].GetComponent<IInteractableScript>();
+                if (interactedObj != null)
+                {
+                    return;
+                }
+            }
 
-        //rb.bodyType = RigidbodyType2D.Dynamic;
-        
+            if (Input.GetKeyDown(KeyCode.E) && !Glow.isGlowActive)
+            {
+                interactedObj.Interact();
+            }
+        }
+        */
         
         if (!Glow.isGlowActive && canMove)
         {
@@ -85,8 +110,6 @@ public class PlayerMovement : MonoBehaviour
                 jumped = true;
                 playerJumpUpSound.Play();
             }
-
-
         }
         else
         {
@@ -111,9 +134,6 @@ public class PlayerMovement : MonoBehaviour
 
             glowActivate.Play();
 
-            
-            
-
         }
         if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
         {
@@ -131,6 +151,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        interactCol = Physics2D.OverlapBoxAll(transform.position, interactArea, interactAreaNum);
+
         if (!isPossessing && !Glow.isGlowActive)
         {
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by 
@@ -140,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             jumped = false;
         }
-        //Collider2D inRange = Physics2D.OverlapCircle(transform.position, possessedrangeNum, possessedLayer);
+        
         
     }
 
@@ -152,8 +174,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos() 
     {
         Gizmos.DrawWireCube(groundCheck.position, groundVec);//Shows the outline of it in scene
-        
-        //Gizmos.DrawWireSphere(transform.position, possessedrangeNum);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(transform.position, interactArea);
     }
 
 }
