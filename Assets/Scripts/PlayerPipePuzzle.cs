@@ -9,7 +9,6 @@ public class PlayerPipePuzzle : MonoBehaviour
     public PipeController LR;
     public Transform curPos;
     [SerializeField]Transform curPosHolder;
-    [SerializeField]PipeController originalLRHolder;
     [SerializeField]PipeController LRHolder;
     public float speed;
     public bool startFromLast;
@@ -40,7 +39,7 @@ public class PlayerPipePuzzle : MonoBehaviour
     private void OnDisable() {
         curPos = curPosHolder;
         startFromLast = false;
-        LRHolder = originalLRHolder;
+        LR = LRHolder;
     }
 
     private void Start() {
