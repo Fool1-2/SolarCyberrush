@@ -31,35 +31,42 @@ public class GameManagerScript : MonoBehaviour
             playerList[0] = GameObject.FindGameObjectWithTag("Player");//finds the player
         }
 
-        if (isSceneLoaded)//turns off the player in the original scene if we have loaded into another scene
+        if (isSceneLoaded)//turns off the playermovement in the original scene if we have loaded into another scene
         {
+            PlayerMovement.canMove = false;
+        }
 
+        if (!isSceneLoaded)//turns on the playermovement in the original scene if we have loaded into another scene
+        {
+            PlayerMovement.canMove = true;
         }
         else
         {
             //playerList[0].SetActive(true);
         }
-
+        OST1.volume = volume;
         if (isSceneLoaded == true)
         {
-
+            
             //OST2.Play();
             OST1.Stop();
+           // OST2.Play();
 
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseMenuCanvas.enabled = true;
+            openPauseMenu();
         }
         volume = volumeSlider.value;
+        sliderText.text = "Volume: " + Mathf.Round(volumeSlider.value * 100);
 
 
-           /* if (Input.GetKeyDown(KeyCode.K))
-            {
-             LoadWirePuzzle();
-            }*/
+        /* if (Input.GetKeyDown(KeyCode.K))
+         {
+          LoadWirePuzzle();
+         }*/
 
-        
+
         /*  if (Input.GetKeyDown(KeyCode.Q))
           {
              // SceneManager.UnloadSceneAsync("WirePuzzleScene");
@@ -74,9 +81,9 @@ public class GameManagerScript : MonoBehaviour
     public void Start()
     {
         DontDestroyOnLoad(this.gameObject);// this object doesnt die
-      OST1.Play();
+        OST1.Play();
         pauseMenuCanvas.enabled = false;
-        
+        volumeSlider.value = volume;
        // OST2.Play();
 
     }
@@ -85,7 +92,7 @@ public class GameManagerScript : MonoBehaviour
     {
         //  SceneManager.UnloadSceneAsync("L1F2");
         isSceneLoaded = true;
-        Glow.isGlowActive = true;
+        //PlayerMovement/can = true;
         SceneManager.LoadSceneAsync("WirePuzzleScene", LoadSceneMode.Additive);// Loads the wire puzzle scene addative to the main scene
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));// sets wirepuzzle scene as active scene 
@@ -94,7 +101,8 @@ public class GameManagerScript : MonoBehaviour
     public static void UnloadWirePuzzle()
     {
         isSceneLoaded = false;
-        Glow.isGlowActive = false;
+        //Glow.isGlowActive = false;
+        
         SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
     }
@@ -113,14 +121,21 @@ public class GameManagerScript : MonoBehaviour
         isSceneLoaded = false;
         SceneManager.UnloadSceneAsync(SceneName);//Unloads the scene by string
     }
-
+    public void openPauseMenu()
+    {
+        pauseMenuCanvas.enabled = true;
+        Time.timeScale = 0;
+    }
     public void closePauseMenu()
     {
         pauseMenuCanvas.enabled = false;
+        Time.timeScale = 1;
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+        Destroy(this.gameObject);
     }
 }
 

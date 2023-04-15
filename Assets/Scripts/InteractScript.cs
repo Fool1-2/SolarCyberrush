@@ -10,11 +10,19 @@ public class InteractScript : MonoBehaviour
     Collider2D col;
     public bool isplayerNear;
     public LayerMask objectToInteract;
-    //public string gameObjectToFind;
-    public GameObject player;
+    public GameObject player;//The pipe player not the real one
+    public GameObject actualPlayer;
 
     private void Update() {
 
+        if (player.activeInHierarchy)
+        {
+            actualPlayer.SetActive(false);
+        }
+        else
+        {
+            actualPlayer.SetActive(true);
+        }
 
         if (isplayerNear)
         {

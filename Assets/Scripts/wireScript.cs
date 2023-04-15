@@ -32,6 +32,7 @@ public class wireScript : MonoBehaviour
     public bool hitWall;
     public bool canStretchDown;
     public static bool died;
+    public Vector2 ObjectCamPos;
     SpriteRenderer SR;
 
 
@@ -58,6 +59,7 @@ public class wireScript : MonoBehaviour
 
     private void Update()
     {
+        deathSound.volume = GameManagerScript.volume;
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
 
         if (!mouseOn)//If the mouse is off turn the movement off.
@@ -76,6 +78,8 @@ public class wireScript : MonoBehaviour
         {
             // float distance = Vector2.Distance(boxSize, mousePos);
             rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
+            //ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
+           // CursorControl.SetLocalCursorPos(ObjectCamPos);
             //transform.position = new Vector2(mousePos.x, mousePos.y);
 
 
@@ -184,6 +188,11 @@ public class wireScript : MonoBehaviour
     {
 
 
+    }
+    private void OnMouseDown()
+    {
+        ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
+        CursorControl.SetLocalCursorPos(ObjectCamPos);
     }
 
     private void OnMouseDrag()

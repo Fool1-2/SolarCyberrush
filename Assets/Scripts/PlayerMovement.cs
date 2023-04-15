@@ -6,20 +6,20 @@ using gamemanager = GameManagerScript;
 public class PlayerMovement : MonoBehaviour
 {
     [HideInInspector]public float horizontal;
+    public static bool canMove;
     public float speed;
     public float jumpPower;
-    private bool jumped;
+    public bool jumped;
     [SerializeField]private Rigidbody2D rb;
     [SerializeField]private Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;
-    [SerializeField]private Vector2 groundCheckVec;
+    [SerializeField]private float groundCheckNum;
+    [SerializeField]private Vector2 groundVec;
     public static bool isPossessing;
     public float possessedrangeNum;
     public LayerMask possessedLayer;
     public AudioSource playerJumpUpSound;
-    //public AudioSource playerRunSound;
-    public AudioSource playerRunSound;
-
+    public AudioSource playerRunSound;//public AudioSource playerRunSound;
     public AudioSource glowActivate;
     public AudioSource glowChangeSound;
 
@@ -27,29 +27,34 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer _renderer;
     
+    private void OnEnable() {
+        playerJumpUpSound = GameObject.Find("PlayerJumpSound").GetComponent<AudioSource>();
+        playerRunSound = GameObject.Find("PlayerRunSound").GetComponent<AudioSource>();
+        glowActivate = GameObject.Find("GlowActivateSound").GetComponent<AudioSource>();
+        glowChangeSound = GameObject.Find("GlowChangeSound").GetComponent<AudioSource>();
+    }
 
     private void Start()
     {
+
+        
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
+        canMove = true;
     }
     // Update is called once per frame
     void Update()
     {
-        playerJumpUpSound.volume = GameManagerScript.volume;
-        playerRunSound.volume = GameManagerScript.volume;
-        glowActivate.volume = GameManagerScript.volume;
-        glowChangeSound.volume = GameManagerScript.volume;
+     
         if (Input.GetKeyDown(KeyCode.M))
         {
             GrateScript.slidePuzzleCompleted = true;
         }
 
-
         //rb.bodyType = RigidbodyType2D.Dynamic;
         
         
-        if (!Glow.isGlowActive)
+        if (!Glow.isGlowActive && canMove)
         {
 
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
@@ -106,6 +111,9 @@ public class PlayerMovement : MonoBehaviour
 
             glowActivate.Play();
 
+            
+            
+
         }
         if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
         {
@@ -138,12 +146,12 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded()
     {
-        return Physics2D.OverlapBox(groundCheck.position, groundCheckVec, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
+        return Physics2D.OverlapBox(groundCheck.position, groundVec, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
     }
 
     private void OnDrawGizmos() 
     {
-        Gizmos.DrawWireCube(groundCheck.position, groundCheckVec);//Shows the outline of it in scene
+        Gizmos.DrawWireCube(groundCheck.position, groundVec);//Shows the outline of it in scene
         
         //Gizmos.DrawWireSphere(transform.position, possessedrangeNum);
     }

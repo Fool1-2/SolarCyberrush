@@ -29,6 +29,7 @@ public class wireFiveScript : MonoBehaviour
     public bool hitWall;
     public float xScale;
     public AudioSource deathSound;
+    public Vector2 ObjectCamPos;
     SpriteRenderer SR;
     
 
@@ -65,7 +66,7 @@ public class wireFiveScript : MonoBehaviour
 
     private void Update()
     {
-
+        deathSound.volume = GameManagerScript.volume;
         if (Input.GetKeyDown(KeyCode.E))
         {
            // SceneManager.LoadScene(1);
@@ -192,6 +193,12 @@ public class wireFiveScript : MonoBehaviour
 
     }
 
+    private void OnMouseDown()
+    {
+        ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
+        CursorControl.SetLocalCursorPos(ObjectCamPos);
+    }
+
     private void OnMouseUp()
     {
         mouseOn = false;//when player clicks off object.
@@ -304,7 +311,7 @@ public class wireFiveScript : MonoBehaviour
     {
 
         //yield on a new YieldInstruction that waits for 5 seconds.
-
+        deathSound.Play();
         yield return new WaitForSeconds(0.5f);// wait for a secound and change color
         GameManagerScript.UnloadWirePuzzle();
 
