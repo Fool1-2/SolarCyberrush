@@ -12,6 +12,7 @@ public class Narrative : MonoBehaviour
     public GameObject SewerBackground;
     public GameObject StreetBackgroundPlayer;
     public GameObject StreetBackgroundGrate;
+    public bool backgroundFinished;
     public bool autoText;
     public GameObject npc;
     public Vector2 npcPos;
@@ -20,6 +21,7 @@ public class Narrative : MonoBehaviour
     void Start()
     {
         autoText = true;
+        backgroundFinished = false;
         StreetBackgroundPlayer.SetActive(false);
         StreetBackgroundGrate.SetActive(false);
         npc.SetActive(false);
@@ -37,13 +39,14 @@ public class Narrative : MonoBehaviour
 
         }
         //The text section
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && backgroundFinished == true)
         {
             autoText = false;
             if (textComponent.text == lines[index])
             {
                 NextLine();
                 
+
 
             }
             else
@@ -102,6 +105,7 @@ public class Narrative : MonoBehaviour
         StreetBackgroundPlayer.SetActive(true);
         StreetBackgroundGrate.SetActive(false);
         npc.SetActive(true);
+        backgroundFinished = true;
         StartSpeaking();
     }
 }
