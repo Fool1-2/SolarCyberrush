@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
                 playerRunSound.Stop();                 
             }
 
-            if (Input.GetKeyDown(KeyCode.W) && isGrounded())
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
             {
                 jumped = true;
                 playerJumpUpSound.Play();
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(0,-1);
             rb.inertia = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && (Glow.isGlowActive))//Turns on glow when G is pressed
+        if (Input.GetKeyDown(KeyCode.Q) && (Glow.isGlowActive))//Turns on glow when G is pressed
         {
 
             glowActivate.Play();
