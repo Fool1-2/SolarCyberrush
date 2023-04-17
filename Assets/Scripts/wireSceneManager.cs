@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using gameManager = GameManagerScript;//Turns the gamemanagerscript into a using state to be able to use a static function
 
-public class wireSceneManager : MonoBehaviour
+public class wireSceneManager : MonoBehaviour, IInteractableScript
 {
     public Collider2D bc;
     public static bool wirePuzzleCompleted;
@@ -55,45 +55,15 @@ public class wireSceneManager : MonoBehaviour
 
         }
         promptText.text = curText;
-        if (Input.GetKey(KeyCode.M))
-        {
-            wirePuzzleCompleted = true;
-        }
 
         if (ishere)
         {
-            
-            //Debug.Log("Here");
-
-   
-            if (wirePuzzleInProgress == false && wirePuzzleCompleted == false)
-            {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    wirePuzzleInProgress = true;
-                    gameManager.LoadWirePuzzle();
-                    wireScript.died = false;
-                    
-                    //Debug.Log("Going");
-
-                }
-
-            }
             if(gameManager.isSceneLoaded == false)
             {
                 wirePuzzleInProgress = false;
             }
-
-
-
         }
-        if (!ishere)
-        {
 
-
-
-           // wirePuzzleCompleted = false;
-        }
         if (delayActive)
         {
             timer += Time.deltaTime;
@@ -104,6 +74,17 @@ public class wireSceneManager : MonoBehaviour
             }
         }
     }
+
+    public void Interact()
+    {
+        if (wirePuzzleInProgress == false && wirePuzzleCompleted == false)
+        {
+            wirePuzzleInProgress = true;
+            gameManager.LoadWirePuzzle();
+            wireScript.died = false;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

@@ -157,6 +157,7 @@ MonoBehaviour:
   speed: 10
   jumpPower: 15
   jumped: 0
+  running: 0
   rb: {fileID: 0}
   groundCheck: {fileID: 1271182410508639764}
   groundLayer:
@@ -172,7 +173,8 @@ MonoBehaviour:
   playerRunSound: {fileID: 0}
   glowActivate: {fileID: 0}
   glowChangeSound: {fileID: 0}
-  running: 0
+  interactArea: {x: 3.5, y: 5.2}
+  interactCol: []
 --- !u!114 &1271182409550023008
 MonoBehaviour:
   m_ObjectHideFlags: 0

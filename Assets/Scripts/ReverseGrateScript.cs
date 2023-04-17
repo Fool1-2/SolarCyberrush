@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ReverseGrateScript : MonoBehaviour
+public class ReverseGrateScript : MonoBehaviour, IInteractableScript
 {
     public Vector2 gratePosition;
     [SerializeField]GrateScript gs;
@@ -24,40 +24,17 @@ public class ReverseGrateScript : MonoBehaviour
         if (GrateScript.slidePuzzleCompleted)
         {
             curText.text = "Press E to Climb Back";
-            if (ishere && Input.GetKeyDown(KeyCode.E))
-            {
-                player.transform.position = gratePosition;
-            }
         }
         else
         {
             curText.text = "";
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            ishere = true;
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                gs.delayActive = true;
-                collision.gameObject.GetComponent<Transform>().position = gratePosition;
-            }
-        }
-    }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    public void Interact()
     {
-        if (other.gameObject.tag == "Player")
-        {
-            ishere = true;
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                gs.delayActive = true;
-                other.gameObject.GetComponent<Transform>().position = gratePosition;
-            }
-        }
+        gs.delayActive = true;
+        player.transform.position = gratePosition;
     }
 
     private void OnTriggerExit2D(Collider2D other) {

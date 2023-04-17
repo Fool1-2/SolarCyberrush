@@ -38,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
     #region Interactables
     [SerializeField]private Vector2 interactArea;
     private float interactAreaNum;
-    [SerializeField]Collider2D[] interactCol;
+    [SerializeField]Collider2D interactCol;
+    [SerializeField]LayerMask interactMask;
     #endregion
 
     private SpriteRenderer _renderer;
@@ -59,25 +60,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (interactCol != null)
+        
+        if (interactCol != null)//checks if interactcol is equal to anything
         {
-            //var interactedObj;
-            for (int i = 0; i < interactCol.Length; i++)
+            var interactable = interactCol.GetComponent<IInteractableScript>();//equals the object to a variable
+            if (interactable != null && Input.GetKeyDown(KeyCode.E))//checks again if its not null and if the player pressed E
             {
-                //interactedObj = interactCol[i].GetComponent<IInteractableScript>();
-                if (interactedObj != null)
-                {
-                    return;
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.E) && !Glow.isGlowActive)
-            {
-                interactedObj.Interact();
+                interactable.Interact();//Activates the function
             }
         }
-        */
+        
         
         if (!Glow.isGlowActive && canMove)
         {
@@ -151,11 +143,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        interactCol = Physics2D.OverlapBoxAll(transform.position, interactArea, interactAreaNum);
+        interactCol = Physics2D.OverlapBox(transform.position, interactArea, interactAreaNum, interactMask);//Checks if the object has a collider + the layermask interactable
 
         if (!isPossessing && !Glow.isGlowActive)
         {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by 
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by
         }
         if (jumped)
         {
@@ -174,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos() 
     {
         Gizmos.DrawWireCube(groundCheck.position, groundVec);//Shows the outline of it in scene
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.blue;//changes the color of the interactable box
         Gizmos.DrawWireCube(transform.position, interactArea);
     }
 

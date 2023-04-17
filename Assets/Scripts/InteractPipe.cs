@@ -33,8 +33,7 @@ public class InteractPipe : MonoBehaviour, IInteractableScript
                 player.SetActive(true);
             }
         }
-
-
+        
     }
 
     private void FixedUpdate() {
