@@ -27,7 +27,11 @@ public class InteractPipe : MonoBehaviour, IInteractableScript
 
         if (isplayerNear)
         {
-            
+            if (Input.GetKeyDown(KeyCode.E) && !SGameManager.isPlayerBallOut)
+            {
+                SGameManager.isPlayerBallOut = true;
+                player.SetActive(true);
+            }
         }
         
     }

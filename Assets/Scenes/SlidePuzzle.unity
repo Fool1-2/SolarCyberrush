@@ -3781,14 +3781,6 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1271182409550023015, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
-      propertyPath: interactArea.x
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1271182409550023015, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
-      propertyPath: interactArea.y
-      value: 5.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
 --- !u!1 &1753992535

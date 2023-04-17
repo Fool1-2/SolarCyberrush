@@ -18,6 +18,7 @@ public class SGameManager : MonoBehaviour
     
     private void OnEnable() {
         pipes = GameObject.FindGameObjectsWithTag("Pipes");
+        isWin = false;
         
     }
 

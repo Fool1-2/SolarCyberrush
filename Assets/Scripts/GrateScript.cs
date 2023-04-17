@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using gameManager = GameManagerScript;//Turns the gamemanagerscript into a using state to be able to use a static function
 
-public class GrateScript : MonoBehaviour
+public class GrateScript : MonoBehaviour, IInteractableScript
 {
     public Collider2D bc;
     public static bool slidePuzzleCompleted;
@@ -36,10 +36,7 @@ public class GrateScript : MonoBehaviour
     void Update()
     {
         promptText.text = curText;
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            slidePuzzleCompleted = true;
-        }
+        
         if (ishere)
         { 
             if (slidePuzzleCompleted)
@@ -52,33 +49,11 @@ public class GrateScript : MonoBehaviour
                 curText = "Press E to Clear the Pipe";
                 
             }
-            if (slidePuzzleInProgress == false)
-            {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    if (!slidePuzzleCompleted)
-                    {
-                        slidePuzzleInProgress = true;
-                        gameManager.LoadPuzzle("SlidePuzzle");
-                        Debug.Log("Going");
-                        
-                    }
-                    else if (!delayActive)
-                    {
-                        delayActive = true;
-                        player.GetComponent<Transform>().position = new Vector3(20, -4, 0);
-                    }
-
-                }
-                
-
-            }
+            
             if (gameManager.isSceneLoaded == false)
             {
                 slidePuzzleInProgress = false;
             }
-
-
         }
         if (delayActive)
         {
@@ -90,12 +65,28 @@ public class GrateScript : MonoBehaviour
             }
         }
     }
+
+    public void Interact()
+    {
+        if (!slidePuzzleInProgress)
+        {
+            if (slidePuzzleCompleted)
+            {
+                delayActive = true;
+                player.GetComponent<Transform>().position = new Vector3(20, -4, 0);
+            }
+            else
+            {
+                slidePuzzleInProgress = true;
+                gameManager.LoadPuzzle("SlidePuzzle");
+            }
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             ishere = true;
-            player = collision.gameObject;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

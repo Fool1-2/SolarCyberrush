@@ -135,6 +135,9 @@ public class GameManagerScript : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
+        GrateScript.slidePuzzleCompleted = false;
+        GrateScript.slidePuzzleInProgress = false;
+        
         Destroy(this.gameObject);
     }
 }
