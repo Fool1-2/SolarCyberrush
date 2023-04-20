@@ -29,4 +29,9 @@ public class OptionsMenuScript : MonoBehaviour
     {
         settingsCanvas.enabled = true;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

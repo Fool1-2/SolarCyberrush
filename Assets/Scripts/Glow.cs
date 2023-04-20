@@ -17,7 +17,7 @@ public class Glow : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))//Turns on glow when G is pressed
+        if (Input.GetKeyDown(KeyCode.Q))//Turns on glow when G is pressed
         {
            // 
 

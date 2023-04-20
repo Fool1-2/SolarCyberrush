@@ -61,7 +61,7 @@ public class TeleObj : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 5;
+            rb.gravityScale = 60;
         }
 
         if (Glow_ProjectileControl.curProjNum == 1 && Glow.isGlowActive)//if glow is on and telekensis is active then light2D will turn on the objects lights
