@@ -36,7 +36,7 @@ public class wireFourScript : MonoBehaviour
     private void Start()
     {
         mouseOn = false;
-      
+
         boxSize = transform.localScale;
         hingeJoint2D = gameObject.GetComponent<HingeJoint2D>();
         boxCollider = GetComponent<Collider2D>();
@@ -295,7 +295,7 @@ public class wireFourScript : MonoBehaviour
             canStretchDown = true;
             hitWall = false;
 
-             
+
         }
 
     }
