@@ -178,11 +178,13 @@ public class wireTwoScript : MonoBehaviour
     {
         ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
         CursorControl.SetLocalCursorPos(ObjectCamPos);
+
     }
 
     private void OnMouseDrag()
     {
-        mouseOn = true;//checks if player is clicking the object
+
+        // mouseOn = true;//checks if player is clicking the object
 
     }
 
@@ -213,7 +215,7 @@ public class wireTwoScript : MonoBehaviour
         {
             StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
-        //    Debug.Log("Collision");
+            //    Debug.Log("Collision");
             canRotate = false;
             // rotate = 0;
             canStretchUp = false;
@@ -224,11 +226,11 @@ public class wireTwoScript : MonoBehaviour
         }
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
         {
-           // deathSound.Play();
+            // deathSound.Play();
             boxCollider.isTrigger = true;
-           // GameManagerScript.UnloadWirePuzzle();
-        //    GameManagerScript.LoadWirePuzzle();
-        //    Debug.Log("Collision");// test collision works with log message
+            // GameManagerScript.UnloadWirePuzzle();
+            //    GameManagerScript.LoadWirePuzzle();
+            //    Debug.Log("Collision");// test collision works with log message
             conThree = false;
             conFour = false;
             wireCon = false;
@@ -252,7 +254,7 @@ public class wireTwoScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
         {
-          //  deathSound.Play();
+            //  deathSound.Play();
             boxCollider.isTrigger = true;
             StartCoroutine(CCoroutine());
             // GameManagerScript.UnloadWirePuzzle();
@@ -269,7 +271,7 @@ public class wireTwoScript : MonoBehaviour
             canStretchDown = false;
             hitWall = true;
 
-             
+
         }
     }
 
@@ -301,19 +303,19 @@ public class wireTwoScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "ConnectorThree")
         {
-      //      Debug.Log("Disconnecting 3");
+            //      Debug.Log("Disconnecting 3");
             conThree = false;
-          
+
             wireCon = false;
-      //      Debug.Log("Wire2 Disconnected");
+            //      Debug.Log("Wire2 Disconnected");
         }
         if (collision.gameObject.tag == "ConnectorFour")
         {
-      //      Debug.Log("Disconnecting 4");
+            //      Debug.Log("Disconnecting 4");
             conFour = false;
-           
+
             wireCon = false;
-      //      Debug.Log("Wire2 Disconnected");
+            //      Debug.Log("Wire2 Disconnected");
         }
         if (collision.gameObject.tag == "wall")
         {

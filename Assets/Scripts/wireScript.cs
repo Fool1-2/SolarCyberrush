@@ -79,7 +79,7 @@ public class wireScript : MonoBehaviour
             // float distance = Vector2.Distance(boxSize, mousePos);
             rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
             //ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
-           // CursorControl.SetLocalCursorPos(ObjectCamPos);
+            // CursorControl.SetLocalCursorPos(ObjectCamPos);
             //transform.position = new Vector2(mousePos.x, mousePos.y);
 
 
@@ -107,18 +107,18 @@ public class wireScript : MonoBehaviour
 
 
             }
-           /* if(hitWall == true)
-            {
-                canStretchDown = false;
-                canStretchUp = false;
-            }
-            if (hitWall == false)
-            {
-                canStretchDown = true;
-                canStretchUp = true;
-            }*/
+            /* if(hitWall == true)
+             {
+                 canStretchDown = false;
+                 canStretchUp = false;
+             }
+             if (hitWall == false)
+             {
+                 canStretchDown = true;
+                 canStretchUp = true;
+             }*/
 
-            
+
 
             if (canStretchUp == true)
             {
@@ -218,7 +218,7 @@ public class wireScript : MonoBehaviour
             //Debug.Log("Connecting 2");
             conTwo = true;
         }
-        if ( conOne && conTwo == true)// if both ports connection is true
+        if (conOne && conTwo == true)// if both ports connection is true
         {
             wireCon = true;// wire is connected
             //Debug.Log("Wire Connected");
@@ -234,7 +234,7 @@ public class wireScript : MonoBehaviour
             conOne = false;// no longer connected to  port
             conTwo = false;
             wireCon = false;// if 1 port is false the wire is not connected
-            
+
         }
 
         if (collision.gameObject.tag == "wall")
@@ -243,7 +243,7 @@ public class wireScript : MonoBehaviour
             boxCollider.isTrigger = false;
             //Debug.Log("Collision");
             canRotate = false;
-           // rotate = 0;
+            // rotate = 0;
             canStretchUp = false;
             canStretchDown = false;
             hitWall = true;
@@ -273,7 +273,7 @@ public class wireScript : MonoBehaviour
         deathSound.Play();
         yield return new WaitForSeconds(0.5f);// wait for a secound and change color
         GameManagerScript.UnloadWirePuzzle();
-        
+
         yield return null;
     }
 
@@ -281,7 +281,7 @@ public class wireScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
-           // deathSound.Play();
+            // deathSound.Play();
             boxCollider.isTrigger = true;
             StartCoroutine(CCoroutine());
             //GameManagerScript.UnloadWirePuzzle();
@@ -290,7 +290,7 @@ public class wireScript : MonoBehaviour
             conOne = false;// no longer connected to  port
             conTwo = false;
             wireCon = false;// if 1 port is false the wire is not connected
-            
+
         }
         if (collision.gameObject.tag == "wall")
         {

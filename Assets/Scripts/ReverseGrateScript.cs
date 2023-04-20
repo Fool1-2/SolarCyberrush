@@ -1,34 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class ReverseGrateScript : MonoBehaviour
+public class ReverseGrateScript : MonoBehaviour, IInteractableScript
 {
     public Vector2 gratePosition;
-    GrateScript gs;
+    [SerializeField]GrateScript gs;
+    bool ishere;
+    public TMP_Text curText;
+    [SerializeField]GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        gratePosition = new Vector2(11, 8);
+        //gratePosition = new Vector2(11, 8);
         gs = GameObject.Find("GrateManager").GetComponent<GrateScript>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        if (GrateScript.slidePuzzleCompleted)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                gs.delayActive = true;
-                collision.gameObject.GetComponent<Transform>().position = gratePosition;
-                //Debug.Log("thing");
-            }
+            curText.text = "Press E to Climb Back";
         }
+        else
+        {
+            curText.text = "";
+        }
+    }
+
+    public void Interact()
+    {
+        gs.delayActive = true;
+        player.transform.position = gratePosition;
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        ishere = false;
     }
 
 }

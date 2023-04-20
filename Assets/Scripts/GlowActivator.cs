@@ -20,11 +20,13 @@ public class GlowActivator : MonoBehaviour
             Physics2D.IgnoreCollision(col.GetComponent<Collider2D>(), GetComponent<Collider2D>());//ignores all the gameObjects collison with the tag CamSwitcher
         }
         bulletTimer = 0f;
-        this.transform.position = glowProjectile.gameObject.transform.position;
         glowProjectile = GameObject.FindGameObjectWithTag("ProjectileController").GetComponent<Glow_ProjectileControl>();
         bc = gameObject.GetComponent<Collider2D>();
         GetComponent<FollowMouse>().enabled = true;
         
+    }
+    private void OnDisable() {
+        this.transform.position = glowProjectile.gameObject.transform.position;
     }
     private void Update()
     {   
@@ -40,6 +42,7 @@ public class GlowActivator : MonoBehaviour
         if (!glowProjectile.isShot)
         {
             bc.enabled = false;
+            transform.position = glowProjectile.transform.position;
         }
         else
         {
@@ -50,7 +53,7 @@ public class GlowActivator : MonoBehaviour
     
 
     private void OnTriggerEnter2D(Collider2D other) {
-        //Checks this is a tele arrow and other object is a teleob
+        //Checks this is a tele arrow and other object is a teleob   
         if (glowProjectile.isShot)
         {
             if (other.gameObject.tag == "TeleObj" && gameObject.tag == "Telekinesis")

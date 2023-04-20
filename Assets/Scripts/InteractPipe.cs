@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InteractScript : MonoBehaviour
+public class InteractPipe : MonoBehaviour, IInteractableScript
 {
     public float interactArea;
     public UnityEvent interactEvent;
     Collider2D col;
     public bool isplayerNear;
     public LayerMask objectToInteract;
-    //public string gameObjectToFind;
+
     public GameObject player;//The pipe player not the real one
     public GameObject actualPlayer;
 
@@ -24,6 +24,7 @@ public class InteractScript : MonoBehaviour
         {
             actualPlayer.SetActive(true);
         }
+
         if (isplayerNear)
         {
             if (Input.GetKeyDown(KeyCode.E) && !SGameManager.isPlayerBallOut)
@@ -52,5 +53,11 @@ public class InteractScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, interactArea);
     }
 
+    public void Interact()
+    {
+        print("Test, this is from the pipe");
+    }
+
 
 }
+

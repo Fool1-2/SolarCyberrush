@@ -639,10 +639,11 @@ MonoBehaviour:
   - "With this, you\u2019ll be able to navigate the warehouse with ease. Just don\u2019t
     hit the boxes on each other! You\u2019ll drop it."
   - "Gato. Just leave my locker open and you\u2019re free to go!"
-  characterSpeed: 0.1
+  characterSpeed: 0.01
   SewerBackground: {fileID: 79903589}
   StreetBackgroundPlayer: {fileID: 1792399287}
   StreetBackgroundGrate: {fileID: 680663666}
+  backgroundFinished: 0
   autoText: 0
   npc: {fileID: 2102456332}
   npcPos: {x: -3.39, y: -2.84}

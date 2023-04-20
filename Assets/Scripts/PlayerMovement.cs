@@ -5,33 +5,54 @@ using gamemanager = GameManagerScript;
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region Basic Movement Elements
     [HideInInspector]public float horizontal;
     public static bool canMove;
     public float speed;
     public float jumpPower;
     public bool jumped;
+    public bool running;
     [SerializeField]private Rigidbody2D rb;
+    #endregion
+
+    #region groundChecks
     [SerializeField]private Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;
     [SerializeField]private float groundCheckNum;
     [SerializeField]private Vector2 groundVec;
+    #endregion
+
+    #region telekensis
     public static bool isPossessing;
     public float possessedrangeNum;
     public LayerMask possessedLayer;
-    public AudioSource playerJumpUpSound;
-    //public AudioSource playerRunSound;
-    public AudioSource playerRunSound;
+    #endregion
 
+    #region PlayerSounds
+    public AudioSource playerJumpUpSound;
+    public AudioSource playerRunSound;//public AudioSource playerRunSound;
     public AudioSource glowActivate;
     public AudioSource glowChangeSound;
+    #endregion
 
-    public bool running;
+    #region Interactables
+    [SerializeField]private Vector2 interactArea;
+    private float interactAreaNum;
+    [SerializeField]Collider2D interactCol;
+    [SerializeField]LayerMask interactMask;
+    #endregion
 
     private SpriteRenderer _renderer;
     
+    private void OnEnable() {
+        playerJumpUpSound = GameObject.Find("PlayerJumpSound").GetComponent<AudioSource>();
+        playerRunSound = GameObject.Find("PlayerRunSound").GetComponent<AudioSource>();
+        glowActivate = GameObject.Find("GlowActivateSound").GetComponent<AudioSource>();
+        glowChangeSound = GameObject.Find("GlowChangeSound").GetComponent<AudioSource>();
+    }
 
     private void Start()
-    {
+    {   
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         canMove = true;
@@ -39,13 +60,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
-        if (Input.GetKeyDown(KeyCode.M))
+        
+        if (interactCol != null)//checks if interactcol is equal to anything
         {
-            GrateScript.slidePuzzleCompleted = true;
+            var interactable = interactCol.GetComponent<IInteractableScript>();//equals the object to a variable
+            if (interactable != null && Input.GetKeyDown(KeyCode.E))//checks again if its not null and if the player pressed E
+            {
+                interactable.Interact();//Activates the function
+            }
         }
-
-        //rb.bodyType = RigidbodyType2D.Dynamic;
         
         
         if (!Glow.isGlowActive && canMove)
@@ -74,13 +97,11 @@ public class PlayerMovement : MonoBehaviour
                 playerRunSound.Stop();                 
             }
 
-            if (Input.GetKeyDown(KeyCode.W) && isGrounded())
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
             {
                 jumped = true;
                 playerJumpUpSound.Play();
             }
-
-
         }
         else
         {
@@ -88,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(0,-1);
             rb.inertia = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && (Glow.isGlowActive))//Turns on glow when G is pressed
+        if (Input.GetKeyDown(KeyCode.Q) && (Glow.isGlowActive))//Turns on glow when G is pressed
         {
 
             glowActivate.Play();
@@ -122,16 +143,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        interactCol = Physics2D.OverlapBox(transform.position, interactArea, interactAreaNum, interactMask);//Checks if the object has a collider + the layermask interactable
+
         if (!isPossessing && !Glow.isGlowActive)
         {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by 
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by
         }
         if (jumped)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             jumped = false;
         }
-        //Collider2D inRange = Physics2D.OverlapCircle(transform.position, possessedrangeNum, possessedLayer);
+        
         
     }
 
@@ -143,8 +166,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos() 
     {
         Gizmos.DrawWireCube(groundCheck.position, groundVec);//Shows the outline of it in scene
-        
-        //Gizmos.DrawWireSphere(transform.position, possessedrangeNum);
+        Gizmos.color = Color.blue;//changes the color of the interactable box
+        Gizmos.DrawWireCube(transform.position, interactArea);
     }
 
 }
