@@ -15,10 +15,11 @@ public class PipeController : MonoBehaviour
     public bool isDone;
     bool isColliding;
     [SerializeField]GameObject TS;
+    Material pipeMaterial;
 
     private void Start() {
         pointsAmount = points.Length - 1;
-        
+        pipeMaterial = GetComponent<SpriteRenderer>().material;
     }
 
     private void Update() {

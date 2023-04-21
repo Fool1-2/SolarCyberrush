@@ -1,23 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 //[RequireComponent(typeof(BoxCollider2D))]
 public class PipeConnectScript : MonoBehaviour
 {
     public bool isSnapped;
-    public bool once;
     public GameObject snappableParent;
     public Vector2 offSet;
     MovePipe movePipe;
     MovePipe snapObjMovePipe;
     public Transform parentsTransform;
-    Animation anim;
 
     private void Start() {
         movePipe = GetComponentInParent<MovePipe>();
-        anim = GetComponentInParent<Animation>();
     }
     private void Update() {
 
@@ -25,22 +21,9 @@ public class PipeConnectScript : MonoBehaviour
         {
             parentsTransform.position = (Vector2)snappableParent.transform.position + offSet;
         }
-        else
-        {
-            once = false;
-        }
 
         if (snappableParent != null)
         {
-            if (isSnapped && snappableParent.GetComponent<PipeConnectScript>().isSnapped)
-            {
-                if (!once)
-                {
-                    anim.Play();
-                    once = true;
-                }
-            }
-
             if (movePipe != null && snappableParent.GetComponentInParent<MovePipe>() != null)
             {
                 if (movePipe.mouseOn || snappableParent.GetComponentInParent<MovePipe>().mouseOn)
