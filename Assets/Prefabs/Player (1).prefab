@@ -157,7 +157,6 @@ MonoBehaviour:
   speed: 10
   jumpPower: 15
   jumped: 0
-  running: 0
   rb: {fileID: 0}
   groundCheck: {fileID: 1271182410508639764}
   groundLayer:
@@ -174,7 +173,9 @@ MonoBehaviour:
   glowActivate: {fileID: 0}
   glowChangeSound: {fileID: 0}
   interactArea: {x: 3.5, y: 5.2}
-  interactCol: []
+  interactMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1271182409550023008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +189,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glowAB: 0
+  lightCon1: {fileID: 0}
+  lightCon2: {fileID: 0}
+  lightBridgePrefab: {fileID: 3950644625081003051, guid: 0faafb2a6033a254081a9cc3a9bbba3f, type: 3}
+  isConnected: 0
+  bridgeEndTime: 20
 --- !u!114 &567604618
 MonoBehaviour:
   m_ObjectHideFlags: 0

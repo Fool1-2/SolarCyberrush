@@ -44,7 +44,6 @@ public class MovePipe : MonoBehaviour
 
         if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
-            
             rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
         }
     }

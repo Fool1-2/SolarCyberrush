@@ -2,70 +2,80 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 [RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
 [RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
-public class wireTwoScript : MonoBehaviour
+public class wireFiveScript : MonoBehaviour
 {
     //Turn the positon of in constraints in rigidbody to limit the axis its on
 
-    [SerializeField] bool mouseOn;
+    [SerializeField]MovePipe moveWires;
     [SerializeField] Rigidbody2D rb;
     Vector2 mousePos;
     public Vector2 boxSize;
     public Transform StartObject;
     public Transform EndObject;
     HingeJoint2D hingeJoint2D;
-    Rotat rotat;
     Collider2D boxCollider;
-    public static bool conThree;
-    public static bool conFour;
-    public static bool wireCon;
+    Rotat rotat;// rotate script is rotate
+    public static bool conNin;// connector one
+    public static bool conTen;// connector two
+    public static bool wireCon;// is wire connected
     public bool wireSelected;
     public float yScale;
-    public float xScale;
     public float rotate;
     public bool canRotate;
     public bool canStretchUp;
     public bool canStretchDown;
     public bool hitWall;
+    public float xScale;
+    public AudioSource deathSound;
     public Vector2 ObjectCamPos;
     SpriteRenderer SR;
-    public AudioSource deathSound;
+    
+
 
 
 
     private void Start()
     {
-        mouseOn = false;
+        moveWires = GetComponent<MovePipe>();
         boxSize = transform.localScale;
         hingeJoint2D = gameObject.GetComponent<HingeJoint2D>();
-        rotat = gameObject.GetComponent<Rotat>();
         boxCollider = GetComponent<Collider2D>();
+        rotat = gameObject.GetComponent<Rotat>();
         // Debug.Log("Hello world");
-        conThree = false;
-        conFour = false;
+        conNin = false;// wire is not connected to port
+        conTen = false;// wire is not connected to port
         wireCon = false;// if 1 port is false the wire is not connected
-        boxSize.x = 7.46202f;
+        wireSelected = false;
+        gameObject.GetComponent<SpriteRenderer>();
+        boxSize.x = 5.338786f;
         canStretchUp = true;
         canStretchDown = true;
         canRotate = true;
-        rotate = 47.7097015f;
+        rotate = -213.609f;
         yScale = transform.localScale.y;
         xScale = transform.localScale.x;
+
+        //gameObject.GetComponent<transform.localScale.y>();
+        yScale = transform.localScale.y;
+        
+        //Debug.Log(yScale);
+
     }
 
-    public void LoadGame()
-    {
-
-    }
     private void Update()
     {
         deathSound.volume = GameManagerScript.volume;
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+           // SceneManager.LoadScene(1);
+        }
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
 
-        if (!mouseOn)//If the mouse is off turn the movement off.
+        if (!moveWires.mouseOn)//If the mouse is off turn the movement off.
         {
+            rb.velocity = Vector2.zero;
             wireSelected = false;
             if (wireSelected == false)
             {
@@ -76,7 +86,7 @@ public class wireTwoScript : MonoBehaviour
             }
         }
 
-        if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
+        if (moveWires.mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
             // float distance = Vector2.Distance(boxSize, mousePos);
             rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
@@ -164,6 +174,9 @@ public class wireTwoScript : MonoBehaviour
                     rotate -= 0.9f;
                 }
             }
+
+
+
         }
 
     }
@@ -174,48 +187,42 @@ public class wireTwoScript : MonoBehaviour
 
     }
 
-    private void OnMouseDown()
+    void OnTriggerEnter2D(Collider2D collision)// when wire collides with object
     {
-        ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
-        CursorControl.SetLocalCursorPos(ObjectCamPos);
-
-    }
-
-    private void OnMouseDrag()
-    {
-
-        // mouseOn = true;//checks if player is clicking the object
-
-    }
-
-    private void OnMouseUp()
-    {
-        mouseOn = false;//when player clicks off object.
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "ConnectorThree")
+        if (collision.gameObject.tag == "ConnectorNine")// if its connectorONe
         {
-            //Debug.Log("Connecting 3");
-            conThree = true;
+            //Debug.Log("Connecting 9");// say connecting(this is more for the devs)
+            conNin = true;// is connected to port
         }
-        if (collision.gameObject.tag == "ConnectorFour")
+        if (collision.gameObject.tag == "ConnectorTen")
         {
-            //Debug.Log("Connecting 4");
-            conFour = true;
+            //Debug.Log("Connecting 10");
+            conTen = true;
         }
-        if (conThree && conFour == true)
+        if (conNin && conTen == true)// if both ports connection is true
         {
-            wireCon = true;
-            //Debug.Log("Wire2 Connected");
+            wireCon = true;// wire is connected
+            //Debug.Log("Wire Connected");
+        }
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
+        {
+            boxCollider.isTrigger = true;
+            StartCoroutine(CCoroutine());
+            deathSound.Play();
+            //GameManagerScript.UnloadWirePuzzle();
+            //GameManagerScript.LoadWirePuzzle();// reload scene
+            //Debug.Log("Collision");// test collision works with log message
+            wireCon = false;
+            conNin = false;// no longer connected to  port
+            conTen = false;
+            //HingeJoint2D.enabled = true;
         }
 
         if (collision.gameObject.tag == "wall")
         {
             StartCoroutine(ColCoroutine());
             boxCollider.isTrigger = false;
-            //    Debug.Log("Collision");
+            //Debug.Log("Collision");
             canRotate = false;
             // rotate = 0;
             canStretchUp = false;
@@ -223,18 +230,6 @@ public class wireTwoScript : MonoBehaviour
             hitWall = true;
             //transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        }
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
-        {
-            // deathSound.Play();
-            boxCollider.isTrigger = true;
-            // GameManagerScript.UnloadWirePuzzle();
-            //    GameManagerScript.LoadWirePuzzle();
-            //    Debug.Log("Collision");// test collision works with log message
-            conThree = false;
-            conFour = false;
-            wireCon = false;
-            StartCoroutine(CCoroutine());
         }
 
     }
@@ -252,39 +247,35 @@ public class wireTwoScript : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
-            //  deathSound.Play();
             boxCollider.isTrigger = true;
             StartCoroutine(CCoroutine());
+            deathSound.Play();
             // GameManagerScript.UnloadWirePuzzle();
-            //  GameManagerScript.LoadWirePuzzle();
-            //      Debug.Log("Collision");// test collision works with log message
-            conThree = false;
-            conFour = false;
+            // GameManagerScript.LoadWirePuzzle();// reload scene
+            ///Debug.Log("Collision");// test collision works with log message
             wireCon = false;
+            conNin = false;// no longer connected to  port
+            conTen = false;
+            //HingeJoint2D.enabled = true;
         }
+
         if (collision.gameObject.tag == "wall")
         {
+            StartCoroutine(ColCoroutine());
+            boxCollider.isTrigger = false;
+            //Debug.Log("Collision");
             canRotate = false;
+            // rotate = 0;
             canStretchUp = false;
             canStretchDown = false;
             hitWall = true;
-
+            //transform.rotation = Quaternion.Euler(0, 0, 0);
 
         }
     }
 
-    public IEnumerator CCoroutine()
-    {
-
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        deathSound.Play();
-        yield return new WaitForSeconds(0.5f);// wait for a secound and change color
-        GameManagerScript.UnloadWirePuzzle();
-
-        yield return null;
-    }
     void OnCollisionExit2D(Collision2D collision)
     {
 
@@ -295,38 +286,49 @@ public class wireTwoScript : MonoBehaviour
             canStretchDown = true;
             hitWall = false;
 
-
+             
         }
 
     }
-    void OnTriggerExit2D(Collider2D collision)
+    public IEnumerator CCoroutine()
     {
-        if (collision.gameObject.tag == "ConnectorThree")
-        {
-            //      Debug.Log("Disconnecting 3");
-            conThree = false;
 
-            wireCon = false;
-            //      Debug.Log("Wire2 Disconnected");
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        deathSound.Play();
+        yield return new WaitForSeconds(0.5f);// wait for a secound and change color
+        GameManagerScript.UnloadWirePuzzle();
+
+        yield return null;
+    }
+
+    // 
+    void OnTriggerExit2D(Collider2D collision)// when wire exits collision box
+    {
+        if (collision.gameObject.tag == "ConnectorNine")// if exit port 1 collision box
+        {
+            //Debug.Log("Disconnecting 9");// print disconnect message
+            conNin = false;// no longer connected to  port
+            conTen = false;
+            wireCon = false;// if 1 port is false the wire is not connected 
+            //Debug.Log("Wire Disconnected");
         }
-        if (collision.gameObject.tag == "ConnectorFour")
+        if (collision.gameObject.tag == "ConnectorTen")
         {
-            //      Debug.Log("Disconnecting 4");
-            conFour = false;
-
+            //Debug.Log("Disconnecting 10");
+            conTen = false;
             wireCon = false;
-            //      Debug.Log("Wire2 Disconnected");
+            //Debug.Log("Wire Disconnected");
         }
         if (collision.gameObject.tag == "wall")
         {
             hitWall = false;
             boxCollider.isTrigger = true;
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
             canRotate = true;
             canStretchUp = true;
             canStretchDown = true;
         }
 
-    }
 
+    }
 }

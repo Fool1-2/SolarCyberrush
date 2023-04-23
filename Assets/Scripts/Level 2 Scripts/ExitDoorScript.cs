@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class ExitDoorScript : MonoBehaviour
+public class ExitDoorScript : MonoBehaviour, IInteractableScript
 {
     public static bool wirePuzzleCompleted = false;
     public TMP_Text doorText;
@@ -31,18 +31,19 @@ public class ExitDoorScript : MonoBehaviour
             {
                 curText = "Press E to fix door";
             }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (wirePuzzleCompleted)
-                {
-                    //Level completed loads main menu for now
-                    SceneManager.LoadScene(0);
-                }
-                else
-                {
-                    SceneManager.LoadScene(3);
-                }
-            }
+        }
+    }
+
+    public void Interact()
+    {
+        if (wirePuzzleCompleted)
+        {
+            //Level completed loads main menu for now
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            SceneManager.LoadScene(3);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

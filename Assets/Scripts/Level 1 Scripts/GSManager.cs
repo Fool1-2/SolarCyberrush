@@ -26,7 +26,7 @@ public class GSManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If a note is being played counts down the timer for the player to press space. If they do press space notesSuceeded goes up. Then notes completedgoes up and timer is reset
+        //If a note is being played counts down the timer for the player to press space. If they do press space notesSuceeded goes up. Then notes completed goes up and timer is reset
         if (isNoteRunning)
         {
             noteTimer += Time.deltaTime;

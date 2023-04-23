@@ -1,72 +1,68 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 [RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
 [RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
-public class wireThreeScript : MonoBehaviour
+public class wireScript : MonoBehaviour
 {
     //Turn the positon of in constraints in rigidbody to limit the axis its on
+    // pro dev note comments may be outdated
 
-    [SerializeField] bool mouseOn;
+
+    [SerializeField]MovePipe moveWires;
     [SerializeField] Rigidbody2D rb;
     Vector2 mousePos;
     public Vector2 boxSize;
     public Transform StartObject;
     public Transform EndObject;
+    public AudioSource deathSound;
     HingeJoint2D hingeJoint2D;
     Collider2D boxCollider;
-    Rotat rotat;
-    public static bool conFive;
-    public static bool conSix;
-    public static bool wireCon;
+    Rotat rotat;// rotate script is rotate
+    public static bool conOne;// connector one
+    public static bool conTwo;// connector two
+    public static bool wireCon;// is wire connected
     public bool wireSelected;
     public float yScale;
     public float xScale;
     public float rotate;
     public bool canRotate;
     public bool canStretchUp;
-    public bool canStretchDown;
     public bool hitWall;
-    public Vector3 offset;
-    SpriteRenderer SR;
+    public bool canStretchDown;
+    public static bool died;
     public Vector2 ObjectCamPos;
-    public AudioSource deathSound;
-
-
+    SpriteRenderer SR;
 
 
     private void Start()
     {
-        mouseOn = false;
+        moveWires = GetComponent<MovePipe>();
         boxSize = transform.localScale;
-        rotat = gameObject.GetComponent<Rotat>();
+        hingeJoint2D = gameObject.GetComponent<HingeJoint2D>();
         boxCollider = GetComponent<Collider2D>();
-        wireSelected = false;
-        gameObject.GetComponent<SpriteRenderer>();
+        rotat = gameObject.GetComponent<Rotat>();
+        // Debug.Log("Hello world");
+        conOne = false;// wire is not connected to port
+        conTwo = false;// wire is not connected to port
+        wireCon = false;// if 1 port is false the wire is not connected
         boxSize.x = 5.338786f;
         canStretchUp = true;
+        rotate = -89.549f;
         canStretchDown = true;
         canRotate = true;
-        rotate = -15.267f;
         yScale = transform.localScale.y;
         xScale = transform.localScale.x;
 
-
-        // Debug.Log("Hello world");
-        conFive = false;
-        wireCon = false;
-        conSix = false;
     }
 
     private void Update()
     {
         deathSound.volume = GameManagerScript.volume;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
 
-        if (!mouseOn)//If the mouse is off turn the movement off.
+        if (!moveWires.mouseOn)//If the mouse is off turn the movement off.
         {
             wireSelected = false;
             if (wireSelected == false)
@@ -78,18 +74,15 @@ public class wireThreeScript : MonoBehaviour
             }
         }
 
-
-        if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
+        if (moveWires.mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
-            
             // float distance = Vector2.Distance(boxSize, mousePos);
-            rb.MovePosition(new Vector3(mousePos.x, mousePos.y));
-            // transform.position = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
+            //ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
+            // CursorControl.SetLocalCursorPos(ObjectCamPos);
+            //transform.position = new Vector2(mousePos.x, mousePos.y);
 
-            
 
-            // Set the new position of the object
-            //rb.MovePosition(newPos);
             if (yScale >= 10)
             {
                 canStretchUp = false;
@@ -114,6 +107,17 @@ public class wireThreeScript : MonoBehaviour
 
 
             }
+            /* if(hitWall == true)
+             {
+                 canStretchDown = false;
+                 canStretchUp = false;
+             }
+             if (hitWall == false)
+             {
+                 canStretchDown = true;
+                 canStretchUp = true;
+             }*/
+
 
 
             if (canStretchUp == true)
@@ -152,7 +156,7 @@ public class wireThreeScript : MonoBehaviour
 
 
                 GetComponent<SpriteRenderer>().color = Color.yellow;
-                
+
             }
 
             wireSelected = true;
@@ -173,6 +177,9 @@ public class wireThreeScript : MonoBehaviour
                     rotate -= 0.9f;
                 }
             }
+
+
+
         }
 
     }
@@ -180,54 +187,39 @@ public class wireThreeScript : MonoBehaviour
     private void FixedUpdate()
     {
 
+
     }
 
-    private void OnMouseDown()
+    void OnTriggerEnter2D(Collider2D collision)// when wire collides with object
     {
-        ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
-        CursorControl.SetLocalCursorPos(ObjectCamPos);
-    }
-
-    private void OnMouseDrag()
-    {
-        mouseOn = true;//checks if player is clicking the object
-       
-    }
-
-    private void OnMouseUp()
-    {
-        mouseOn = false;//when player clicks off object.
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "ConnectorFive")
+        if (collision.gameObject.tag == "ConnecterOne")// if its connectorONe
         {
-            //Debug.Log("Connecting 5");
-            conFive = true;
+            //Debug.Log("Connecting 1");// say connecting(this is more for the devs)
+            conOne = true;// is connected to port
         }
-        if (collision.gameObject.tag == "ConnectorSix")
+        if (collision.gameObject.tag == "ConnectorTwo")
         {
-            ///Debug.Log("Connecting 6");
-            conSix = true;
+            //Debug.Log("Connecting 2");
+            conTwo = true;
         }
-        if (conFive && conSix == true)
+        if (conOne && conTwo == true)// if both ports connection is true
         {
-            wireCon = true;
-            //Debug.Log("Wire3 Connected");
+            wireCon = true;// wire is connected
+            //Debug.Log("Wire Connected");
         }
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
         {
+            //deathSound.Play();
+
             boxCollider.isTrigger = true;
-            deathSound.Play();
-            // GameManagerScript.UnloadWirePuzzle();
-            // GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
+            StartCoroutine(CCoroutine());
+            //       GameManagerScript.LoadWirePuzzle();// reload scene
             //Debug.Log("Collision");// test collision works with log message
-            conFive = false;
-            wireCon = false;
-            conSix = false;
-        }
+            conOne = false;// no longer connected to  port
+            conTwo = false;
+            wireCon = false;// if 1 port is false the wire is not connected
 
+        }
 
         if (collision.gameObject.tag == "wall")
         {
@@ -243,29 +235,7 @@ public class wireThreeScript : MonoBehaviour
 
         }
 
-    }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne" || collision.gameObject.tag == "wireFour")// if collides with other wires
-        {
-            boxCollider.isTrigger = true;
-            deathSound.Play();
-            //GameManagerScript.UnloadWirePuzzle();
-        //    GameManagerScript.LoadWirePuzzle();// reload scene// reload scene
-            //Debug.Log("Collision");// test collision works with log message
-            conFive = false;
-            wireCon = false;
-            conSix = false;
-        }
-        if (collision.gameObject.tag == "wall")
-        {
-            canRotate = false;
-            canStretchUp = false;
-            canStretchDown = false;
-            hitWall = true;
 
-
-        }
     }
     IEnumerator ColCoroutine()
     {
@@ -279,6 +249,43 @@ public class wireThreeScript : MonoBehaviour
         }
 
     }
+
+    public IEnumerator CCoroutine()
+    {
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        deathSound.Play();
+        yield return new WaitForSeconds(0.5f);// wait for a secound and change color
+        GameManagerScript.UnloadWirePuzzle();
+
+        yield return null;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "wireTwo" || collision.gameObject.tag == "wireThree" || collision.gameObject.tag == "wireFive" || collision.gameObject.tag == "wireOne")// if collides with other wires
+        {
+            // deathSound.Play();
+            boxCollider.isTrigger = true;
+            StartCoroutine(CCoroutine());
+            //GameManagerScript.UnloadWirePuzzle();
+            //       GameManagerScript.LoadWirePuzzle();// reload scene
+            //Debug.Log("Collision");// test collision works with log message
+            conOne = false;// no longer connected to  port
+            conTwo = false;
+            wireCon = false;// if 1 port is false the wire is not connected
+
+        }
+        if (collision.gameObject.tag == "wall")
+        {
+            canRotate = false;
+            canStretchUp = false;
+            canStretchDown = false;
+            hitWall = true;
+
+
+        }
+    }
     void OnCollisionExit2D(Collision2D collision)
     {
 
@@ -291,33 +298,24 @@ public class wireThreeScript : MonoBehaviour
 
 
         }
-         
-    }
-    public IEnumerator CCoroutine()
-    {
 
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        deathSound.Play();
-        yield return new WaitForSeconds(0.5f);// wait for a secound and change color
-        GameManagerScript.UnloadWirePuzzle();
-
-        yield return null;
     }
-    void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)// when wire exits collision box
     {
-        if (collision.gameObject.tag == "ConnectorFive")
+        if (collision.gameObject.tag == "ConnecterOne")// if exit port 1 collision box
         {
-            //Debug.Log("Disconnecting 5");
-            conFive = false;
-            wireCon = false;
-            //Debug.Log("Wire3 Disconnected");
+            //Debug.Log("Disconnecting 1");// print disconnect message
+            conOne = false;// no longer connected to  port
+            conTwo = false;
+            wireCon = false;// if 1 port is false the wire is not connected 
+            //Debug.Log("Wire Disconnected");
         }
-        if (collision.gameObject.tag == "ConnectorSix")
+        if (collision.gameObject.tag == "ConnectorTwo")
         {
-            //Debug.Log("Disconnecting 6");
-            conSix = false;
+            //Debug.Log("Disconnecting 2");
+            conTwo = false;
             wireCon = false;
-            //Debug.Log("Wire3 Disconnected");
+            //Debug.Log("Wire Disconnected");
         }
         if (collision.gameObject.tag == "wall")
         {
@@ -328,6 +326,8 @@ public class wireThreeScript : MonoBehaviour
             canStretchUp = true;
             canStretchDown = true;
         }
-    }
 
+
+
+    }
 }
