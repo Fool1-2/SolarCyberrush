@@ -9,6 +9,7 @@ using gameManager = GameManagerScript;//Turns the gamemanagerscript into a using
 public class wireSceneManager : MonoBehaviour, IInteractableScript
 {
     public Collider2D bc;
+    public static Camera Mcamera;
     public static bool wirePuzzleCompleted;
     public static bool wirePuzzleInProgress;
     // public AudioSource puzzleWinSound;
@@ -18,6 +19,7 @@ public class wireSceneManager : MonoBehaviour, IInteractableScript
     public string curText = "";
     bool ishere;
     public bool hasPlayed;
+    public Camera camera2;
     public GameObject player;// this is the player
     
     
@@ -32,6 +34,8 @@ public class wireSceneManager : MonoBehaviour, IInteractableScript
     // Start is called before the first frame update
     void Start()
     {
+        Mcamera = camera2;
+        Mcamera.enabled = true;
         bc = gameObject.GetComponent<Collider2D>();
         gm = GameObject.Find("GMOb").GetComponent<gmScript>();
         wirePuzzleCompleted = false;
@@ -58,10 +62,13 @@ public class wireSceneManager : MonoBehaviour, IInteractableScript
 
         if (ishere)
         {
+            
             if(gameManager.isSceneLoaded == false)
             {
                 wirePuzzleInProgress = false;
+                Mcamera.enabled = true;
             }
+
         }
 
         if (delayActive)
@@ -80,9 +87,20 @@ public class wireSceneManager : MonoBehaviour, IInteractableScript
         if (wirePuzzleInProgress == false && wirePuzzleCompleted == false)
         {
             wirePuzzleInProgress = true;
+            
             gameManager.LoadWirePuzzle();
             wireScript.died = false;
+
         }
+        if (QuitScene.Camera.enabled == false)
+        {
+
+                QuitScene.Camera.enabled = true;
+                Mcamera.enabled = false;
+            
+
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
