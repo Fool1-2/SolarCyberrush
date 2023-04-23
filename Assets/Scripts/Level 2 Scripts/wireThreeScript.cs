@@ -83,7 +83,7 @@ public class wireThreeScript : MonoBehaviour
         {
             
             // float distance = Vector2.Distance(boxSize, mousePos);
-            rb.MovePosition(new Vector3(mousePos.x, mousePos.y));
+            //rb.MovePosition(new Vector3(mousePos.x, mousePos.y));
             // transform.position = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
             

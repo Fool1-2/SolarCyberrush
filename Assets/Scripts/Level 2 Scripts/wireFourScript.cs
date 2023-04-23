@@ -77,7 +77,7 @@ public class wireFourScript : MonoBehaviour
         if (moveWires.mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
             // float distance = Vector2.Distance(boxSize, mousePos);
-            rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
+            //rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
             //   transform.localScale = new Vector2(distance,boxSize.y);
             if (yScale >= 10)
             {
