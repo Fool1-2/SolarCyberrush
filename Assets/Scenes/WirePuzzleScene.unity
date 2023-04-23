@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8125a2646194642a2c535c442686e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveWires: {fileID: 0}
+  moveWires: {fileID: 1252372329}
   rb: {fileID: 666505496}
   boxSize: {x: 0, y: 0}
   StartObject: {fileID: 0}
@@ -1472,7 +1472,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666505491}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -2051,7 +2051,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893468240}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31884109ee34f2046bd4fd5df08b5743, type: 3}
   m_Name: 

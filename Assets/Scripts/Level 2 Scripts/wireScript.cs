@@ -10,7 +10,7 @@ public class wireScript : MonoBehaviour
     // pro dev note comments may be outdated
 
 
-    [SerializeField]MovePipe moveWires;
+    [SerializeField] MovePipe moveWires;
     [SerializeField] Rigidbody2D rb;
     Vector2 mousePos;
     public Vector2 boxSize;
@@ -33,7 +33,7 @@ public class wireScript : MonoBehaviour
     public bool canStretchDown;
     public static bool died;
     public Vector2 ObjectCamPos;
-    SpriteRenderer SR;
+    SpriteRenderer SR; 
 
 
     private void Start()
@@ -77,7 +77,7 @@ public class wireScript : MonoBehaviour
         if (moveWires.mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
             // float distance = Vector2.Distance(boxSize, mousePos);
-            rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
+            //rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
             //ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
             // CursorControl.SetLocalCursorPos(ObjectCamPos);
             //transform.position = new Vector2(mousePos.x, mousePos.y);
