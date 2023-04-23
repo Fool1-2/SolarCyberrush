@@ -790,7 +790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f861a2b6896244fb0c14385f35ac02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseOn: 0
+  moveWires: {fileID: 0}
   rb: {fileID: 347769887}
   boxSize: {x: 0, y: 0}
   StartObject: {fileID: 0}
@@ -818,30 +818,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotat: 0
---- !u!233 &347769885
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347769882}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.0000000064361174, y: 0}
-  m_ConnectedAnchor: {x: 4.0125, y: 0}
-  m_UseMotor: 1
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 100
 --- !u!61 &347769886
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1434,7 +1410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8125a2646194642a2c535c442686e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseOn: 0
+  moveWires: {fileID: 0}
   rb: {fileID: 666505496}
   boxSize: {x: 0, y: 0}
   StartObject: {fileID: 0}
@@ -1462,30 +1438,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotat: 0
---- !u!233 &666505494
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666505491}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.0000000064361174, y: 0}
-  m_ConnectedAnchor: {x: 4.0125, y: 0}
-  m_UseMotor: 1
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 100
 --- !u!61 &666505495
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2045,30 +1997,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotat: 0
---- !u!233 &893468243
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 893468240}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.0000000064361174, y: 0}
-  m_ConnectedAnchor: {x: 5.18, y: -2.43}
-  m_UseMotor: 1
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 100
 --- !u!61 &893468244
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2128,7 +2056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31884109ee34f2046bd4fd5df08b5743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseOn: 0
+  moveWires: {fileID: 0}
   rb: {fileID: 893468245}
   boxSize: {x: 0, y: 0}
   StartObject: {fileID: 0}
@@ -2537,6 +2465,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 347769881}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1252372329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347769882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35bbeee1a8e26a42a2dbd39314ad9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOn: 0
+  rb: {fileID: 0}
+  cam: {fileID: 490745376}
+  ObjectCamPos: {x: 0, y: 0}
 --- !u!1001 &1272535040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2774,30 +2718,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotat: 0
---- !u!233 &1359692557
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359692554}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.0000000064361174, y: 0}
-  m_ConnectedAnchor: {x: 4.0125, y: 0}
-  m_UseMotor: 1
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 100
 --- !u!61 &1359692558
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2857,7 +2777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb2a2e583a17ee4694c68ee7d41348b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseOn: 0
+  moveWires: {fileID: 0}
   rb: {fileID: 1359692559}
   boxSize: {x: 0, y: 0}
   StartObject: {fileID: 0}
@@ -2877,6 +2797,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
   m_PrefabInstance: {fileID: 666505490}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1389772651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666505491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35bbeee1a8e26a42a2dbd39314ad9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOn: 0
+  rb: {fileID: 0}
+  cam: {fileID: 490745376}
+  ObjectCamPos: {x: 0, y: 0}
 --- !u!1001 &1428568048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3553,7 +3489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d037070d0e3c9234ea6c25abb21a2493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseOn: 0
+  moveWires: {fileID: 0}
   rb: {fileID: 1752639736}
   boxSize: {x: 0, y: 0}
   StartObject: {fileID: 0}
@@ -3582,30 +3518,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotat: 0
---- !u!233 &1752639734
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752639731}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.0000000064361174, y: 0}
-  m_ConnectedAnchor: {x: 4.0125, y: 0}
-  m_UseMotor: 1
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 100
 --- !u!61 &1752639735
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3653,6 +3565,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1752639738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752639731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35bbeee1a8e26a42a2dbd39314ad9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOn: 0
+  rb: {fileID: 0}
+  cam: {fileID: 490745376}
+  ObjectCamPos: {x: 0, y: 0}
 --- !u!1 &1768485145
 GameObject:
   m_ObjectHideFlags: 0
