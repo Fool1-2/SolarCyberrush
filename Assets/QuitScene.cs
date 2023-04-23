@@ -32,8 +32,8 @@ public class QuitScene : MonoBehaviour
     }
     public void cameraControl()
     {
-        Camera.enabled = false;
-        
+       // Camera.enabled = false;
+        GameManagerScript.CameraControl();
 
     }
 }

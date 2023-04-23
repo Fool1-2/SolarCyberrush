@@ -66,7 +66,7 @@ public class wireSceneManager : MonoBehaviour, IInteractableScript
             if(gameManager.isSceneLoaded == false)
             {
                 wirePuzzleInProgress = false;
-                Mcamera.enabled = true;
+                
             }
 
         }
@@ -89,17 +89,24 @@ public class wireSceneManager : MonoBehaviour, IInteractableScript
             wirePuzzleInProgress = true;
             
             gameManager.LoadWirePuzzle();
+            
             wireScript.died = false;
 
         }
-        if (QuitScene.Camera.enabled == false)
+        if(wirePuzzleInProgress == true)
+        {
+            QuitScene.Camera.enabled = true;
+            wireSceneManager.Mcamera.enabled = false;
+
+        }
+       /* if (QuitScene.Camera.enabled == false)
         {
 
                 QuitScene.Camera.enabled = true;
                 Mcamera.enabled = false;
             
 
-        }
+        }*/
 
     }
 
