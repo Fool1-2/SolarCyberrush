@@ -31,14 +31,16 @@ public class GameManagerScript : MonoBehaviour
             playerList[0] = GameObject.FindGameObjectWithTag("Player");//finds the player
         }
 
+   
 
-        if (wireSceneManager.Mcamera.enabled == false)//turns off the playermovement in the original scene if we have loaded into another scene
+
+        if (wireSceneManager.Mcamera.enabled == false || GrateScript.slidePuzzleInProgress == true)//turns off the playermovement in the original scene if we have loaded into another scene
         {
 
             PlayerMovement.canMove = false;
         }
 
-        if (wireSceneManager.Mcamera.enabled == true)//turns on the playermovement in the original scene if we have loaded into another scene
+        if (wireSceneManager.Mcamera.enabled == true && GrateScript.slidePuzzleInProgress == false)//turns on the playermovement in the original scene if we have loaded into another scene
         {
             PlayerMovement.canMove = true;
 
