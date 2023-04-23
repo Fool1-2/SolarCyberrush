@@ -171,12 +171,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -239,7 +239,6 @@ GameObject:
   - component: {fileID: 115553529}
   - component: {fileID: 115553528}
   - component: {fileID: 115553527}
-  - component: {fileID: 115553526}
   m_Layer: 0
   m_Name: StraightPipe (8)
   m_TagString: Pipes
@@ -247,22 +246,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!111 &115553526
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 115553525}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 459f71b8f20765d438d97ca0533951c5, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 459f71b8f20765d438d97ca0533951c5, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &115553527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +436,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 00e70d70124bfb641a2c517dc2097679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -793,7 +776,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 00e70d70124bfb641a2c517dc2097679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -990,25 +973,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 269660191}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4997bd0d97f12e4c9db64e43a466dc9, type: 3}
+  m_Script: {fileID: 11500000, guid: 91abae29d08093c44aca2f3f840b0768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactArea: 2.94
+  interactArea: 6
   interactEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2079982634}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   isplayerNear: 0
   objectToInteract:
     serializedVersion: 2
@@ -1484,7 +1455,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 00e70d70124bfb641a2c517dc2097679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1580,7 +1551,6 @@ GameObject:
   - component: {fileID: 592673074}
   - component: {fileID: 592673073}
   - component: {fileID: 592673072}
-  - component: {fileID: 592673071}
   m_Layer: 0
   m_Name: StraightPipe (7)
   m_TagString: Pipes
@@ -1588,22 +1558,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!111 &592673071
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 592673070}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 459f71b8f20765d438d97ca0533951c5, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 459f71b8f20765d438d97ca0533951c5, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &592673072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1794,7 +1748,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 00e70d70124bfb641a2c517dc2097679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1985,7 +1939,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 332686497}
@@ -2169,7 +2122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 332686497}
@@ -2266,7 +2218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 1871775460}
@@ -2332,7 +2283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 269660195}
@@ -2398,7 +2348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 1232448698}
@@ -2680,7 +2629,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 00e70d70124bfb641a2c517dc2097679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3062,7 +3011,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 00e70d70124bfb641a2c517dc2097679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3142,7 +3091,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 592673078}
@@ -3208,7 +3156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 1885371389}
@@ -3305,7 +3252,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 115553533}
@@ -3550,7 +3496,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 1232448698}
@@ -3747,7 +3692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1271182409550023003, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 162.41447
+      value: 162.62
       objectReference: {fileID: 0}
     - target: {fileID: 1271182409550023003, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3789,6 +3734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1271182409550023012, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
 --- !u!1 &1753992535
@@ -3806,7 +3755,6 @@ GameObject:
   - component: {fileID: 1753992539}
   - component: {fileID: 1753992538}
   - component: {fileID: 1753992537}
-  - component: {fileID: 1753992536}
   m_Layer: 0
   m_Name: StraightPipe (10)
   m_TagString: Pipes
@@ -3814,22 +3762,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!111 &1753992536
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753992535}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 459f71b8f20765d438d97ca0533951c5, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 459f71b8f20765d438d97ca0533951c5, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &1753992537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4020,7 +3952,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 00e70d70124bfb641a2c517dc2097679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4100,7 +4032,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 1871775460}
@@ -4171,7 +4102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 592673078}
@@ -4237,7 +4167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 1753992543}
@@ -4501,7 +4430,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 00e70d70124bfb641a2c517dc2097679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4581,7 +4510,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 269660195}
@@ -4829,7 +4757,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 00e70d70124bfb641a2c517dc2097679, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4925,7 +4853,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 1169469240}
@@ -4991,7 +4918,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 1753992543}
@@ -5057,7 +4983,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 1169469240}
@@ -5123,7 +5048,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 115553533}
@@ -5264,7 +5188,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -382, y: 236}
+  m_AnchoredPosition: {x: -333.1, y: 202.9}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2001967274
@@ -5395,7 +5319,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSnapped: 0
-  once: 0
   snappableParent: {fileID: 0}
   offSet: {x: 0, y: 0}
   parentsTransform: {fileID: 1885371389}

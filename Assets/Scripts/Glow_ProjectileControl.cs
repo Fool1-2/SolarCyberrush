@@ -48,6 +48,7 @@ public class Glow_ProjectileControl : MonoBehaviour
             glowLight.enabled = false;
             isShot = false;
             oneShot = false;   
+            PlayerMovement.isPossessing = false;
         }
 
         if (PlayerMovement.isPossessing)
@@ -64,11 +65,11 @@ public class Glow_ProjectileControl : MonoBehaviour
         {
 
             glowLight.color = diffGlowColors[curProjNum];
-            /*
+            
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                
-                if (curProjNum < 0)
+                glowProjectiles[curProjNum].SetActive(false);
+                if (curProjNum < 1)
                 {
                     curProjNum += 1;
                 }   
@@ -77,9 +78,9 @@ public class Glow_ProjectileControl : MonoBehaviour
                     curProjNum = 0;
                 }
                 
-                StartCoroutine(RespawnItem(.1f));
+                ReloadBullet();
             }
-            */
+            
         }
         #endregion
 
@@ -107,6 +108,7 @@ public class Glow_ProjectileControl : MonoBehaviour
     {
         glowProjectiles[curProjNum].SetActive(false);
         //glowProjectiles[curProjNum].transform.position = transform.position;
+        rb = glowProjectiles[curProjNum].GetComponent<Rigidbody2D>();
         glowProjectiles[curProjNum].SetActive(true);
         isShot = false;
         oneShot = false;

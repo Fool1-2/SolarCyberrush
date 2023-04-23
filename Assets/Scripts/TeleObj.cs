@@ -27,7 +27,8 @@ public class TeleObj : MonoBehaviour
     float yShake;
     public float yDif = 1f;
     Vector2 shakeVector;
-    private Light2D teleObjLight;
+    [SerializeField]Material outLine;
+    [SerializeField]Vector2 outLineVec;
 
     //Notes: Make it so that when the object collides with something it turns off the telekinesis
     float teleWaitTimer = 0;
@@ -43,7 +44,7 @@ public class TeleObj : MonoBehaviour
         yDif = 1;
         shakeForce = 3;
         isNotRunningShake = true;
-        teleObjLight = GetComponent<Light2D>();
+        outLine = GetComponent<SpriteRenderer>().material;
     }
     // Update is called once per frame
     void Update()
@@ -60,16 +61,18 @@ public class TeleObj : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 5;
+            rb.gravityScale = 60;
         }
 
         if (Glow_ProjectileControl.curProjNum == 1 && Glow.isGlowActive)//if glow is on and telekensis is active then light2D will turn on the objects lights
         {
-            teleObjLight.enabled = true;
+            outLine.SetVector("_Thickness", outLineVec);
+            outLineVec = new Vector2(0.03f, 0.03f);
         }
         else
         {
-            teleObjLight.enabled = false;
+            outLine.SetVector("_Thickness", outLineVec);
+            outLineVec = Vector2.zero;
         }
 
     }
