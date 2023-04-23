@@ -10,16 +10,26 @@ public class PipeConnectScript : MonoBehaviour
     public Vector2 offSet;
     MovePipe movePipe;
     MovePipe snapObjMovePipe;
+    PipeController pipeController;
     public Transform parentsTransform;
+    Vector2 outlineVector;
 
     private void Start() {
         movePipe = GetComponentInParent<MovePipe>();
+        pipeController = GetComponentInParent<PipeController>();
     }
     private void Update() {
 
         if (isSnapped)
         {
             parentsTransform.position = (Vector2)snappableParent.transform.position + offSet;
+            pipeController.pipeMaterial.SetVector("_Thickness", outlineVector);
+            outlineVector = new Vector2(0.03f, 0);
+        }
+        else
+        {
+            pipeController.pipeMaterial.SetVector("_Thickness", outlineVector);
+            outlineVector = new Vector2(0, 0);
         }
 
         if (snappableParent != null)
