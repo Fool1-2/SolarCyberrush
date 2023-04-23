@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+
 
 [RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
 //[RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
@@ -59,7 +62,8 @@ public class MovePipe : MonoBehaviour
 
     private void OnMouseDown() {
         ObjectCamPos = cam.WorldToScreenPoint(transform.position);
-        CursorControl.SetLocalCursorPos(ObjectCamPos);
+        var mouse = Mouse.current;
+        mouse.WarpCursorPosition(ObjectCamPos);
     }
 
     

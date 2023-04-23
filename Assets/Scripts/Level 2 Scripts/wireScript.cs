@@ -77,7 +77,7 @@ public class wireScript : MonoBehaviour
         if (moveWires.mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
         {
             // float distance = Vector2.Distance(boxSize, mousePos);
-            rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
+            //rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
             //ObjectCamPos = Camera.main.WorldToScreenPoint(transform.position);
             // CursorControl.SetLocalCursorPos(ObjectCamPos);
             //transform.position = new Vector2(mousePos.x, mousePos.y);
