@@ -2071,6 +2071,22 @@ MonoBehaviour:
   xScale: 0
   deathSound: {fileID: 24932926}
   ObjectCamPos: {x: 0, y: 0}
+--- !u!114 &893468249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893468240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35bbeee1a8e26a42a2dbd39314ad9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOn: 0
+  rb: {fileID: 0}
+  cam: {fileID: 490745376}
+  ObjectCamPos: {x: 0, y: 0}
 --- !u!1001 &899344736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2791,6 +2807,22 @@ MonoBehaviour:
   hitWall: 0
   xScale: 0
   deathSound: {fileID: 24932926}
+  ObjectCamPos: {x: 0, y: 0}
+--- !u!114 &1359692563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359692554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35bbeee1a8e26a42a2dbd39314ad9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseOn: 0
+  rb: {fileID: 0}
+  cam: {fileID: 490745376}
   ObjectCamPos: {x: 0, y: 0}
 --- !u!4 &1389772649 stripped
 Transform:
