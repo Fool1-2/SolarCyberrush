@@ -2071,22 +2071,6 @@ MonoBehaviour:
   xScale: 0
   deathSound: {fileID: 24932926}
   ObjectCamPos: {x: 0, y: 0}
---- !u!114 &893468250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 893468240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35bbeee1a8e26a42a2dbd39314ad9f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseOn: 0
-  rb: {fileID: 0}
-  cam: {fileID: 490745376}
-  ObjectCamPos: {x: 0, y: 0}
 --- !u!1001 &899344736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2460,6 +2444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131c11492b38f4fa680263fc2249ecb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera1: {fileID: 490745376}
 --- !u!4 &1197533515
 Transform:
   m_ObjectHideFlags: 0
@@ -2807,22 +2792,6 @@ MonoBehaviour:
   xScale: 0
   deathSound: {fileID: 24932926}
   ObjectCamPos: {x: 0, y: 0}
---- !u!114 &1359692564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359692554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35bbeee1a8e26a42a2dbd39314ad9f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseOn: 0
-  rb: {fileID: 0}
-  cam: {fileID: 490745376}
-  ObjectCamPos: {x: 0, y: 0}
 --- !u!4 &1389772649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3027826898970835141, guid: b3b6aaf7576f9431c9773b661c7c60eb, type: 3}
@@ -3057,7 +3026,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1150, y: 672}
+  m_AnchoredPosition: {x: -493, y: 265}
   m_SizeDelta: {x: 129.3298, y: 99.7048}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1554930237
@@ -3106,7 +3075,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1197533514}
         m_TargetAssemblyTypeName: QuitScene, Assembly-CSharp
-        m_MethodName: buttonPressed
+        m_MethodName: cameraControl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -14,7 +14,7 @@ public class GameManagerScript : MonoBehaviour
     public AudioSource OST1;
     public AudioSource OST2;
     public AudioSource puzzleWinSound;
-
+    public static bool cameraControl;
     public static float volume;
     [SerializeField] Slider volumeSlider;
     public Canvas pauseMenuCanvas;
@@ -31,14 +31,17 @@ public class GameManagerScript : MonoBehaviour
             playerList[0] = GameObject.FindGameObjectWithTag("Player");//finds the player
         }
 
-        if (isSceneLoaded)//turns off the playermovement in the original scene if we have loaded into another scene
+
+        if (wireSceneManager.Mcamera.enabled == false)//turns off the playermovement in the original scene if we have loaded into another scene
         {
+
             PlayerMovement.canMove = false;
         }
 
-        if (!isSceneLoaded)//turns on the playermovement in the original scene if we have loaded into another scene
+        if (wireSceneManager.Mcamera.enabled == true)//turns on the playermovement in the original scene if we have loaded into another scene
         {
             PlayerMovement.canMove = true;
+
         }
         else
         {
@@ -53,6 +56,8 @@ public class GameManagerScript : MonoBehaviour
            // OST2.Play();
 
         }
+
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             openPauseMenu();
@@ -92,12 +97,21 @@ public class GameManagerScript : MonoBehaviour
     {
         //  SceneManager.UnloadSceneAsync("L1F2");
         isSceneLoaded = true;
+        wireSceneManager.Mcamera.enabled = false;
         //PlayerMovement/can = true;
         SceneManager.LoadSceneAsync("WirePuzzleScene", LoadSceneMode.Additive);// Loads the wire puzzle scene addative to the main scene
+       //cameraControl = true;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));// sets wirepuzzle scene as active scene
 
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));// sets wirepuzzle scene as active scene 
     }
+    public static void CameraControl()
+    {
+        QuitScene.Camera.enabled = false;
+        wireSceneManager.Mcamera.enabled = true;
+        
+        // isSceneLoaded = false;
 
+    }
     public static void UnloadWirePuzzle()
     {
         isSceneLoaded = false;
@@ -105,6 +119,7 @@ public class GameManagerScript : MonoBehaviour
         
         SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
+        wireSceneManager.Mcamera.enabled = true;
     }
 
     public static void LoadPuzzle(string SceneName)
