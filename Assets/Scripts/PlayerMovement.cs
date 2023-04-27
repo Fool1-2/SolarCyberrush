@@ -5,29 +5,32 @@ using gamemanager = GameManagerScript;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("-----Movement-----")]
     #region Basic Movement Elements
     [HideInInspector]public float horizontal;
     public static bool canMove;
     public float speed;
     public float jumpPower;
-    public bool jumped;
-    public bool running;
+    private bool jumped;
     [SerializeField]private Rigidbody2D rb;
     #endregion
 
+    [Header("-----GroundChecks-----")]
     #region groundChecks
     [SerializeField]private Transform groundCheck;
     [SerializeField]private LayerMask groundLayer;
-    [SerializeField]private float groundCheckNum;
     [SerializeField]private Vector2 groundVec;
+    private float groundCheckNum;
     #endregion
 
+    [Header("-----Telekensis-----")]
     #region telekensis
     public static bool isPossessing;
     public float possessedrangeNum;
     public LayerMask possessedLayer;
     #endregion
 
+    [Header("-----PlayerSounds-----")]
     #region PlayerSounds
     public AudioSource playerJumpUpSound;
     public AudioSource playerRunSound;//public AudioSource playerRunSound;
@@ -35,10 +38,11 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource glowChangeSound;
     #endregion
 
+    [Header("-----Interact-----")]
     #region Interactables
     [SerializeField]private Vector2 interactArea;
     private float interactAreaNum;
-    [SerializeField]Collider2D interactCol;
+    Collider2D interactCol;
     [SerializeField]LayerMask interactMask;
     #endregion
 
