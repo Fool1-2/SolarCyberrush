@@ -17,6 +17,9 @@ public class GSManager : MonoBehaviour
     bool gameFinished;
     bool didPlayerwin;
     int generatorNumber;
+
+    public List<GameObject> NoteObjects;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +66,7 @@ public class GSManager : MonoBehaviour
         }
     }
 
-    public void notePlayed()
+    public void noteSucessCheck()
     {
         isNoteRunning = true;
     }
@@ -81,5 +84,13 @@ public class GSManager : MonoBehaviour
         }
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(0);
+    }
+
+    public void reset()
+    {
+        for (int i = 0; i < NoteObjects.Capacity; i++)
+        {
+            NoteObjects[i].GetComponent<TimerObjectScript>().reset();
+        }
     }
 }
