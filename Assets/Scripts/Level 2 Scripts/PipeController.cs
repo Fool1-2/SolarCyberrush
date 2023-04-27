@@ -15,7 +15,7 @@ public class PipeController : MonoBehaviour
     public bool isDone;
     bool isColliding;
     [SerializeField]GameObject TS;
-    Material pipeMaterial;
+    [HideInInspector]public Material pipeMaterial;
 
     private void Start() {
         pointsAmount = points.Length - 1;
