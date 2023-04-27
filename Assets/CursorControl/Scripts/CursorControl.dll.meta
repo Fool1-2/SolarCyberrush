@@ -21,6 +21,7 @@ PluginImporter:
     second:
       enabled: 0
       settings:
+        CPU: AnyCPU
         DefaultValueInitialized: true
   - first:
       Windows Store Apps: WindowsStoreApps

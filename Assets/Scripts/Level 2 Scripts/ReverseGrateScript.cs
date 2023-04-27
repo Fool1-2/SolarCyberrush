@@ -24,6 +24,7 @@ public class ReverseGrateScript : MonoBehaviour, IInteractableScript
         if (GrateScript.slidePuzzleCompleted)
         {
             curText.text = "Press E to Climb Back";
+            
         }
         else
         {
