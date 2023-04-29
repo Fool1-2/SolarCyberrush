@@ -4,47 +4,93 @@ using UnityEngine;
 
 public class RythemScriptTest : MonoBehaviour
 {
-    public GameObject[] leftObjects;
-    public GameObject[] rigthObjects;
+    public GameObject[] leftNotes;
+    public GameObject[] rightNotes;
     public GameObject finalObject;
-    public bool isActivated;
-
-    public float timerSong;
-    public float beatTime;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool isActivated = false;
+    [SerializeField]private bool restartNote = false;
+    [SerializeField]private float timerObj;
+    [SerializeField]private GSManager gsManager;
+    [SerializeField]Color orginalColor;
+    [SerializeField]Color activatedColor;
 
     // Update is called once per frame
     void Update()
     {
-        if (isActivated)
+        if (gsManager.hasGameStarted)
         {
-            //StartCoroutine(RythemBeat());
+            if (!isActivated)
+            {
+                StartCoroutine(RythemBeat(gsManager.secPerBeat));
+            }
+            else
+            {
+                timerObj += Time.deltaTime;
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    if (timerObj >= 0.01)
+                    {
+                        gsManager.NotesCompleted += 1;
+                        print(gsManager.NotesCompleted);
+                        RestartNotes();
+                    }
+                    else if(timerObj <= 1)
+                    {
+                        gsManager.NotesCompleted += 1;
+                        print(gsManager.NotesCompleted);
+                        RestartNotes();
+                    }
+                }
+
+                if(timerObj >= 1.5f)
+                {
+                    print("Failed");
+                    RestartNotes();
+                    isActivated = false;
+                }
+            }
+
+            if (restartNote)
+            {
+                StopCoroutine(RythemBeat(gsManager.secPerBeat));
+            }
         }
+
+
+    }
+
+    void RestartNotes()
+    {
+        isActivated = false;
+        timerObj = 0f;
+        foreach (GameObject leftNote in leftNotes)
+        {
+            leftNote.SetActive(false);
+        }
+        foreach (GameObject rightNote in rightNotes)
+        {
+            rightNote.SetActive(false);
+        }
+        restartNote = false;
     }
 
     public IEnumerator RythemBeat(float timedBeat)
     {
-        for (int i = 0; i < leftObjects.Length; i++)    
+        if (!restartNote)
         {
-            leftObjects[i].SetActive(true);
-            rigthObjects[i].SetActive(true);
-            yield return new WaitForSeconds(1f);
+            for (int i = 0; i < leftNotes.Length; i++)    
+            {
+                leftNotes[i].SetActive(true);
+                rightNotes[i].SetActive(true);
+                yield return new WaitForSeconds(timedBeat);
+            }
+            isActivated = true;
         }
 
-        isActivated = false;
-        foreach (GameObject leftObj in leftObjects)
-        {
-            leftObj.SetActive(false);
-        }
-        foreach (GameObject rightObj in rigthObjects)
-        {
-            rightObj.SetActive(false);
-        }
+
+
+        
 
                                                    
     }

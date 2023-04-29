@@ -10,7 +10,7 @@ public class GSManager : MonoBehaviour
     public int Timedifficulty;
     public int accuracyDifficulty;
     float noteTimer;
-    int NotesCompleted;
+    public int NotesCompleted;
     int NotesSuceeded;
     bool isNoteRunning;
     [SerializeField] int totalNotes;
@@ -19,16 +19,31 @@ public class GSManager : MonoBehaviour
     int generatorNumber;
 
     public List<GameObject> NoteObjects;
+
+    public AudioClip song;
+    [SerializeField]AudioSource songProducer;
+    public float songTime;
+    public float songBPM;
+    public float secPerBeat;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        songTime = song.length;
+        secPerBeat = songBPM/60f;
+        isNoteRunning = true;
+        hasGameStarted = true;
+        if (isNoteRunning)
+        {
+            songProducer.PlayOneShot(song);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        /*
         //If a note is being played counts down the timer for the player to press space. If they do press space notesSuceeded goes up. Then notes completed goes up and timer is reset
         if (isNoteRunning)
         {
@@ -64,6 +79,7 @@ public class GSManager : MonoBehaviour
             }
             EndPuzzle();
         }
+        */
     }
 
     public void noteSucessCheck()
