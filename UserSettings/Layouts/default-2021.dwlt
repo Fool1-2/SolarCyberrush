@@ -404,7 +404,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_SearchFilter:
-    m_NameFilter: 
+    m_NameFilter: cursor
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -418,7 +418,7 @@ MonoBehaviour:
     m_Folders:
     - Assets/Level 1 Platforms
     m_Globs: []
-    m_OriginalText: 
+    m_OriginalText: cursor
   m_ViewMode: 1
   m_StartGridSize: 46
   m_LastFolders:
