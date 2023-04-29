@@ -10,7 +10,7 @@ public class wireScript : MonoBehaviour
     // pro dev note comments may be outdated
 
 
-    [SerializeField]MovePipe moveWires;
+    [SerializeField] MovePipe moveWires;
     [SerializeField] Rigidbody2D rb;
     Vector2 mousePos;
     public Vector2 boxSize;
@@ -33,7 +33,7 @@ public class wireScript : MonoBehaviour
     public bool canStretchDown;
     public static bool died;
     public Vector2 ObjectCamPos;
-    SpriteRenderer SR;
+    SpriteRenderer SR; 
 
 
     private void Start()

@@ -24,11 +24,20 @@ public class MovePipe : MonoBehaviour
     {
         mouseOn = false;
         rb = GetComponent<Rigidbody2D>();
+         ObjectCamPos = cam.WorldToScreenPoint(transform.position);
+         CursorControl.SetLocalCursorPos(ObjectCamPos);
     }
 
     private void Update()
     {
 
+
+        if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
+        {
+           // ObjectCamPos = cam.WorldToScreenPoint(transform.position);
+           // CursorControl.SetLocalCursorPos(ObjectCamPos);
+            rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
+        }
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
         
         if (!mouseOn)//If the mouse is off turn the movement off. Also turns the body type from kinematic(still state) to dynamic(move state)
@@ -41,14 +50,13 @@ public class MovePipe : MonoBehaviour
             //CursorControl.SetPosition(0, 0);
             rb.bodyType = RigidbodyType2D.Dynamic;
         }
-    }
+    }/// <summary>
+     /// edit->project settings->player->other settings->API compability level: from .NET 2.0 to .NET 4.x
+
+     /// </summary>
 
     private void FixedUpdate() {
 
-        if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
-        {
-            rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
-        }
     }
 
     private void OnMouseDrag()
