@@ -89,7 +89,6 @@ public class GSManager : MonoBehaviour
 
     IEnumerator EndPuzzle()
     {
-        //Need to change to load the first level
         if (didPlayerwin)
         {
             //Display win or lose
@@ -99,6 +98,7 @@ public class GSManager : MonoBehaviour
             //idk flash all the lights or something to show you goofed
         }
         yield return new WaitForSeconds(5);
+        //Need to change to load the first level
         SceneManager.LoadScene(0);
     }
 
