@@ -63,8 +63,7 @@ public class PlayerMovement : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
-    {
-        
+    {   
         if (interactCol != null)//checks if interactcol is equal to anything
         {
             var interactable = interactCol.GetComponent<IInteractableScript>();//equals the object to a variable
@@ -103,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
             {
+                Debug.Log("jumped");
                 jumped = true;
                 playerJumpUpSound.Play();
             }
@@ -174,4 +174,9 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, interactArea);
     }
 
+
 }
+
+
+
+

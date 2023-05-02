@@ -17,6 +17,9 @@ public class GSManager : MonoBehaviour
     bool gameFinished;
     bool didPlayerwin;
     int generatorNumber;
+
+    public List<GameObject> NoteObjects;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -63,14 +66,13 @@ public class GSManager : MonoBehaviour
         }
     }
 
-    public void notePlayed()
+    public void noteSucessCheck()
     {
         isNoteRunning = true;
     }
 
     IEnumerator EndPuzzle()
     {
-        //Need to change to load the first level
         if (didPlayerwin)
         {
             //Display win or lose
@@ -80,6 +82,15 @@ public class GSManager : MonoBehaviour
             //idk flash all the lights or something to show you goofed
         }
         yield return new WaitForSeconds(5);
+        //Need to change to load the first level
         SceneManager.LoadScene(0);
+    }
+
+    public void reset()
+    {
+        for (int i = 0; i < NoteObjects.Capacity; i++)
+        {
+            NoteObjects[i].GetComponent<TimerObjectScript>().reset();
+        }
     }
 }

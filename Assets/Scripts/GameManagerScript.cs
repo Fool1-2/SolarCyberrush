@@ -62,10 +62,10 @@ public class GameManagerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            openPauseMenu();
+           // openPauseMenu();
         }
-        volume = volumeSlider.value;
-        sliderText.text = "Volume: " + Mathf.Round(volumeSlider.value * 100);
+        //volume = volumeSlider.value;
+        //sliderText.text = "Volume: " + Mathf.Round(volumeSlider.value * 100);
 
 
         /* if (Input.GetKeyDown(KeyCode.K))
@@ -88,9 +88,9 @@ public class GameManagerScript : MonoBehaviour
     public void Start()
     {
         DontDestroyOnLoad(this.gameObject);// this object doesnt die
-        OST1.Play();
+       // OST1.Play();
         pauseMenuCanvas.enabled = false;
-        volumeSlider.value = volume;
+       // volumeSlider.value = volume;
        // OST2.Play();
 
     }
@@ -138,7 +138,7 @@ public class GameManagerScript : MonoBehaviour
         isSceneLoaded = false;
         SceneManager.UnloadSceneAsync(SceneName);//Unloads the scene by string
     }
-    public void openPauseMenu()
+   /* public void openPauseMenu()
     {
         pauseMenuCanvas.enabled = true;
         Time.timeScale = 0;
@@ -147,7 +147,7 @@ public class GameManagerScript : MonoBehaviour
     {
         pauseMenuCanvas.enabled = false;
         Time.timeScale = 1;
-    }
+    }*/
     public void MainMenu()
     {
         Time.timeScale = 1;
