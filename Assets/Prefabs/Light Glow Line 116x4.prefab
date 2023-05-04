@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3950644625081003049}
   - component: {fileID: 3950644625081003050}
   - component: {fileID: 4643963416103580225}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Light Glow Line 116x4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
