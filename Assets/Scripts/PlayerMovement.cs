@@ -72,6 +72,11 @@ public class PlayerMovement : MonoBehaviour
                 interactable.Interact();//Activates the function
             }
         }
+
+        if(OptionsMenuScript.settingsCanvasEnabled == true)
+        {
+            canMove = false;
+        }
         
         
         if (!Glow.isGlowActive && canMove)

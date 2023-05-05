@@ -7,11 +7,13 @@ using UnityEngine.UI;
 public class OptionsMenuScript : MonoBehaviour
 {
     public Canvas settingsCanvas;
+    public static bool settingsCanvasEnabled;
     public Slider slider;
     public TMP_Text sliderText;
     [SerializeField] Slider volumeSlider;
     public AudioSource mainMenuMusic;
     public static float volume;
+    
    // public bool menuOpen;
     
     // Start is called before the first frame update
@@ -20,6 +22,7 @@ public class OptionsMenuScript : MonoBehaviour
         settingsCanvas.enabled = false;
         volumeSlider.value = 0.5f;
         mainMenuMusic.Play();
+        
         //DontDestroyOnLoad(this.gameObject);
        // menuOpen = false;
     }
@@ -53,12 +56,27 @@ public class OptionsMenuScript : MonoBehaviour
 
         }
 
+        if(settingsCanvas.enabled == true)
+        {
+            Time.timeScale = 0;
+           // Time.fixedDeltaTime = 0;
+            
+
+        }
+        else
+        {
+
+            Time.timeScale = 1;
+           // Time.fixedDeltaTime = 1;
+            
+        }
+
 
     }
     public void close()
     {
         settingsCanvas.enabled = false;
-        Time.fixedDeltaTime = 1;
+
 
     }
 
@@ -66,7 +84,7 @@ public class OptionsMenuScript : MonoBehaviour
     public void open()
     {
         settingsCanvas.enabled = true;
-        Time.fixedDeltaTime = 0;
+
 
     }
 
