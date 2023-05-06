@@ -29,7 +29,7 @@ public class Glow : MonoBehaviour
     void Update()
     {
         #region activatingGlow
-        if (PlayerMovement.canMove )
+        if (PlayerMovement.canMove && !PlayerMovement.isPaused)
         {
             if (Input.GetKeyDown(KeyCode.Q))//Turns on glow when G is pressed
             {

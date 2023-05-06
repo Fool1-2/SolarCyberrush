@@ -41,8 +41,8 @@ public class ButtonScript : MonoBehaviour
 
         if (timeUp)
         {
-            isPressed = false;
-            transform.localPosition = unpressedPos;
+            //isPressed = false;
+            //transform.localPosition = unpressedPos;
         }
 
         if (!timerOn)
@@ -54,13 +54,15 @@ public class ButtonScript : MonoBehaviour
     {
 
         //Fix so it only gets called once with the lerp
-        StartCoroutine(Press());
-        
+          StartCoroutine(Press());
+
+
     }
     public void notPressed()
     {
-        StartCoroutine(Unpress());
-        
+         StartCoroutine(Unpress());
+
+
     }
     IEnumerator Press()
     {

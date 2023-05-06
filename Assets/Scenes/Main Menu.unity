@@ -1831,6 +1831,7 @@ GameObject:
   - component: {fileID: 486369805}
   - component: {fileID: 486369804}
   - component: {fileID: 486369806}
+  - component: {fileID: 486369807}
   m_Layer: 0
   m_Name: GmScript
   m_TagString: Untagged
@@ -1881,7 +1882,23 @@ MonoBehaviour:
   slider: {fileID: 1641277843}
   sliderText: {fileID: 367073887}
   volumeSlider: {fileID: 1641277843}
+  playerJumpUpSound: {fileID: 0}
+  playerRunSound: {fileID: 0}
+  glowActivate: {fileID: 0}
+  glowChangeSound: {fileID: 0}
   mainMenuMusic: {fileID: 1929791979}
+--- !u!114 &486369807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486369803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f77f4c13bdac547917d244727bf928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &502588071
 GameObject:
   m_ObjectHideFlags: 0
