@@ -7,19 +7,28 @@ using UnityEngine.UI;
 public class OptionsMenuScript : MonoBehaviour
 {
     public Canvas settingsCanvas;
+    public static bool settingsCanvasEnabled;
     public Slider slider;
     public TMP_Text sliderText;
     [SerializeField] Slider volumeSlider;
+    public AudioSource playerJumpUpSound;
+    public AudioSource playerRunSound; 
+    public AudioSource glowActivate;
+    public AudioSource glowChangeSound;
     public AudioSource mainMenuMusic;
     public static float volume;
+    
    // public bool menuOpen;
     
     // Start is called before the first frame update
     void Start()
     {
+        
         settingsCanvas.enabled = false;
-        volumeSlider.value = 0.5f;
+        volumeSlider.value = OptionsMenuScript.volume;
+       // volumeSlider.value = 0.5f;
         mainMenuMusic.Play();
+        
         //DontDestroyOnLoad(this.gameObject);
        // menuOpen = false;
     }
@@ -27,10 +36,14 @@ public class OptionsMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameManagerScript.volume = slider.value;
+        //OptionsMenuScript.volume = slider.value;
         sliderText.text = "Volume: " + Mathf.Round(slider.value * 100);
         volume = volumeSlider.value;
         mainMenuMusic.volume = volume;
+        playerJumpUpSound.volume = volume;
+        playerRunSound.volume = volume;
+        glowActivate.volume = volume;
+        glowChangeSound.volume = volume;
         /* if (Input.GetKeyDown(KeyCode.W))
          {
              Screen.SetResolution(800, 600, false);
@@ -53,12 +66,29 @@ public class OptionsMenuScript : MonoBehaviour
 
         }
 
+        if(settingsCanvas.enabled == true)
+        {
+            Time.timeScale = 0;
+            PlayerMovement.isPaused = true;
+           // Time.fixedDeltaTime = 0;
+
+
+        }
+        else
+        {
+
+            Time.timeScale = 1;
+            PlayerMovement.isPaused = false;
+            // Time.fixedDeltaTime = 1;
+
+        }
+
 
     }
     public void close()
     {
         settingsCanvas.enabled = false;
-        Time.fixedDeltaTime = 1;
+
 
     }
 
@@ -66,7 +96,7 @@ public class OptionsMenuScript : MonoBehaviour
     public void open()
     {
         settingsCanvas.enabled = true;
-        Time.fixedDeltaTime = 0;
+
 
     }
 

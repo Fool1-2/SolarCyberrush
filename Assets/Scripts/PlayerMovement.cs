@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float jumpPower;
     private bool jumped;
+    public static bool isPaused;
     [SerializeField]private Rigidbody2D rb;
     #endregion
 
@@ -60,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         canMove = true;
+        isPaused = false;
     }
     // Update is called once per frame
     void Update()
@@ -74,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         
-        if (!Glow.isGlowActive && canMove)
+        if (!Glow.isGlowActive && canMove && !isPaused)
         {
 
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
@@ -166,6 +168,7 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.OverlapBox(groundCheck.position, groundVec, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
     }
+
 
     private void OnDrawGizmos() 
     {

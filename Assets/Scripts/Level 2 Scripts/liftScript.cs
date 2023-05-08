@@ -8,7 +8,10 @@ public class liftScript : MonoBehaviour
     float motionSpeed = 5f;
     Transform liftTransform;
     public ButtonScript buttonScript;
-    
+    public bool goingUp;
+    public bool goingDown;
+    public float timer;
+
     //This will be triggered to true when the lift button is being pressed
     public static bool buttonPressed = false;
 
@@ -16,10 +19,12 @@ public class liftScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
         liftTransform = gameObject.transform;
         VectorDown = new Vector2(-6.5f, -8.8f);
         VectorUp = new Vector2(-6.5f, 4.3f);
+        goingUp = false;
+        goingDown = false;
     }
 
     // Update is called once per frame
@@ -28,12 +33,29 @@ public class liftScript : MonoBehaviour
         //If the lift button is pressed the lift will go to the up position else go to down position
         if (buttonScript.isPressed)
         {
-            transform.position = Vector3.MoveTowards(transform.position, VectorUp, motionSpeed * Time.deltaTime);
-            
+            if (timer < 500f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, VectorUp, motionSpeed * Time.deltaTime);
+            }
+            if (timer >= 1000f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, VectorDown, motionSpeed * Time.deltaTime);
+                //
+            }
+            if (timer >= 1800f)
+            {
+                timer = 0;
+            }
+            timer++;
         }
-        else
+
+        if (!buttonScript.isPressed)
         {
             transform.position = Vector3.MoveTowards(transform.position, VectorDown, motionSpeed * Time.deltaTime);
+            timer = 0;
         }
+
     }
+
+
 }
