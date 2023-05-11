@@ -9,6 +9,7 @@ public class GlowActivator : MonoBehaviour
     public Collider2D bc;
     [SerializeField]GameObject[] camBoxCollider;
     public float bulletTimer;
+    
 
     private void Start() {
         camBoxCollider = GameObject.FindGameObjectsWithTag("CamSwitcher");//finds all the gameObjects that have the tag Camswitcher

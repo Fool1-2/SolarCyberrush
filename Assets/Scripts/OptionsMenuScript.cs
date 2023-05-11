@@ -16,6 +16,7 @@ public class OptionsMenuScript : MonoBehaviour
     public AudioSource glowActivate;
     public AudioSource glowChangeSound;
     public AudioSource mainMenuMusic;
+    public AudioSource glowShootSound;
     public static float volume;
     
    // public bool menuOpen;
@@ -44,6 +45,7 @@ public class OptionsMenuScript : MonoBehaviour
         playerRunSound.volume = volume;
         glowActivate.volume = volume;
         glowChangeSound.volume = volume;
+        glowShootSound.volume = volume;
         /* if (Input.GetKeyDown(KeyCode.W))
          {
              Screen.SetResolution(800, 600, false);
