@@ -415,18 +415,18 @@ MonoBehaviour:
       m_ExpandedIDs: 7ea3ffff4ea7ffff4cb2ffffe0b6fffff2b6ffff0cb7ffffc8eaffffaaecfffff4edffffaeefffff62f1ffff9efaffff22b20000e0b40000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: GameManager
+        m_OriginalName: GameManager
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 29126
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 0}
       m_SearchString: 
@@ -506,7 +506,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_SearchFilter:
-    m_NameFilter: 
+    m_NameFilter: glow
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -520,7 +520,7 @@ MonoBehaviour:
     m_Folders:
     - Assets/Scenes
     m_Globs: []
-    m_OriginalText: 
+    m_OriginalText: glow
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
