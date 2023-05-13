@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource playerRunSound;//public AudioSource playerRunSound;
     public AudioSource glowActivate;
     public AudioSource glowChangeSound;
+    public AudioSource glowShootSound;
     #endregion
 
     [Header("-----Interact-----")]
@@ -74,8 +75,13 @@ public class PlayerMovement : MonoBehaviour
                 interactable.Interact();//Activates the function
             }
         }
-        
-        
+
+        if (Glow.isGlowActive && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            glowShootSound.Play();
+            //Debug.Log("Left mouse button");
+        }
+
         if (!Glow.isGlowActive && canMove && !isPaused)
         {
 
@@ -83,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 playerRunSound.Play();
             }
+
             //Seperating out the sound Not the same
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
