@@ -4,48 +4,83 @@ using UnityEngine;
 
 public class RythemScriptTest : MonoBehaviour
 {
-    public GameObject[] leftObjects;
-    public GameObject[] rigthObjects;
-    public GameObject finalObject;
-    public bool isActivated;
+    [SerializeField]private GSManager gSManager;
+    [SerializeField]private GameObject[] leftNotes;
+    [SerializeField]private GameObject[] rightNotes;
+    [SerializeField]private Animation noteAnim;
+    [SerializeField]private Animator anim;
+    [SerializeField]private bool canPlayerPress;
+    private bool resetNotes; 
+    [SerializeField]float circutTimer;
 
-    public float timerSong;
-    public float beatTime;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private void Update() {
+        anim.SetBool("Reset", resetNotes);
+        anim.SetBool("CanPress", canPlayerPress);
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isActivated)
+        if (gSManager.hasGameStarted)
         {
-            //StartCoroutine(RythemBeat());
+            if (!canPlayerPress)
+            {
+                circutTimer = 0;
+                //anim.SetFloat("AnimSpeed", gSManager.secPerBeat);
+                anim.Play("NoteAnim");
+            }
+
+            if (IsAllNotesActivated())
+            {
+                canPlayerPress = true;
+            }
+            else
+            {
+                canPlayerPress = false;
+                resetNotes = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (circutTimer <= 0.1 && circutTimer >= 0.001)
+                {
+                    resetNotes = true;
+                    gSManager.NotesCompleted++;
+                    print("NICE NICE YOOYOYOYO GABAGABA");                  
+                }
+                else if(circutTimer <= 0.3 && circutTimer >= 0.003)
+                {
+                    resetNotes = true;
+                    gSManager.NotesCompleted++;
+                    print("PRETTY GOOD GANGY");   
+                }
+                else if(circutTimer <= 0.6 && circutTimer >= 0.006)
+                {
+                    resetNotes = true;
+                    gSManager.NotesCompleted++;
+                    print("ok I mean, I guess");  
+                }
+            }   
+
+            if (canPlayerPress)
+            {
+                circutTimer += Time.deltaTime;
+                if (circutTimer >= 1f)
+                {
+                    resetNotes = true;
+                }
+            }
+
         }
     }
 
-    public IEnumerator RythemBeat(float timedBeat)
+    bool IsAllNotesActivated()
     {
-        for (int i = 0; i < leftObjects.Length; i++)    
+        for (int i = 0; i < 3; i++)
         {
-            leftObjects[i].SetActive(true);
-            rigthObjects[i].SetActive(true);
-            yield return new WaitForSeconds(1f);
+            if (!leftNotes[i].activeInHierarchy && !rightNotes[i].activeInHierarchy)
+            {
+                return false;
+            }
         }
 
-        isActivated = false;
-        foreach (GameObject leftObj in leftObjects)
-        {
-            leftObj.SetActive(false);
-        }
-        foreach (GameObject rightObj in rigthObjects)
-        {
-            rightObj.SetActive(false);
-        }
-
-                                                   
+        return true;
     }
 }

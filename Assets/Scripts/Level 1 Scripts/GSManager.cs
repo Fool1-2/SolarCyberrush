@@ -6,49 +6,100 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class GSManager : MonoBehaviour
 {
+    [SerializeField]private GameObject[] leftNotes;
+    [SerializeField]private GameObject[] rightNotes;
+    [SerializeField]private Animation noteAnim;
+    [SerializeField]private Animator anim;
+    private bool isNoteRunning;
+    private bool resetNotes;
+    [SerializeField] private int totalNotes;
+    private float noteTimer;
     public bool hasGameStarted = false;
     public int Timedifficulty;
     public int accuracyDifficulty;
-    float noteTimer;
-    int NotesCompleted;
-    int NotesSuceeded;
-    bool isNoteRunning;
-    [SerializeField] int totalNotes;
+    public int NotesCompleted;
+    public int NotesSuceeded;
     bool gameFinished;
     bool didPlayerwin;
-    int generatorNumber;
-
-    public List<GameObject> NoteObjects;
+    int generatorNumber; 
+    public AudioClip song;
+    [SerializeField]AudioSource songProducer;
+    public float songTime;
+    public float songBPM;
+    public float secPerBeat;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        songTime = song.length;
+        secPerBeat = songBPM / 60f;
+        isNoteRunning = false;
+        hasGameStarted = true;
+
+        anim = GetComponent<Animator>();
+        noteAnim = GetComponent<Animation>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        anim.SetBool("Reset", resetNotes);
+        anim.SetBool("CanPress", isNoteRunning);
+        anim.SetFloat("AnimSpeed", secPerBeat);
+        
         //If a note is being played counts down the timer for the player to press space. If they do press space notesSuceeded goes up. Then notes completed goes up and timer is reset
-        if (isNoteRunning)
+        if (hasGameStarted)
         {
-            noteTimer += Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!isNoteRunning)
             {
-                NotesCompleted++;
-                NotesSuceeded++;
-                isNoteRunning = false;
+                noteTimer = 0;
             }
-            else if (noteTimer > Timedifficulty)
+            else
             {
-                NotesCompleted++;
-                isNoteRunning = false;
+                noteTimer += Time.deltaTime;
+                if (noteTimer >= 1f)
+                {
+                    resetNotes = true;
+                }
             }
+
+            if (IsAllNotesActivated())
+            {
+                isNoteRunning = true;
+            }
+            else
+            {
+                isNoteRunning = false;
+                resetNotes = false;
+            }
+
+            if (isNoteRunning)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    if (noteTimer <= 0.1 && noteTimer >= 0.001)
+                    {
+                        resetNotes = true;
+                        NotesCompleted++;
+                        print("NICE NICE YOOYOYOYO GABAGABA");                  
+                    }
+                    else if(noteTimer <= 0.3 && noteTimer >= 0.003)
+                    {
+                        resetNotes = true;
+                        NotesCompleted++;
+                        print("PRETTY GOOD GANGY");   
+                    }
+                    else if(noteTimer <= 0.6 && noteTimer >= 0.006)
+                    {
+                        resetNotes = true;
+                        NotesCompleted++;
+                        print("ok I mean, I guess");  
+                    }
+                }  
+            } 
         }
-        else
-        {
-            noteTimer = 0;
-        }
+
+
         if (NotesCompleted == totalNotes)
         {
             gameFinished = true;
@@ -62,13 +113,21 @@ public class GSManager : MonoBehaviour
             {
                 didPlayerwin = false;
             }
-            EndPuzzle();
+            //EndPuzzle();
         }
+        
     }
 
-    public void noteSucessCheck()
+    bool IsAllNotesActivated()
     {
-        isNoteRunning = true;
+        for (int i = 0; i < 3; i++)
+        {
+            if (!leftNotes[i].activeInHierarchy && !rightNotes[i].activeInHierarchy)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     IEnumerator EndPuzzle()
@@ -88,9 +147,13 @@ public class GSManager : MonoBehaviour
 
     public void reset()
     {
-        for (int i = 0; i < NoteObjects.Capacity; i++)
+        foreach (GameObject note in leftNotes)
         {
-            NoteObjects[i].GetComponent<TimerObjectScript>().reset();
+            note.SetActive(false);
+        }
+        foreach (GameObject note in rightNotes)
+        {
+            note.SetActive(false);
         }
     }
 }
