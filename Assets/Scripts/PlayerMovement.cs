@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float jumpPower;
     private bool jumped;
+    public static bool isPaused;
     [SerializeField]private Rigidbody2D rb;
     #endregion
 
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource playerRunSound;//public AudioSource playerRunSound;
     public AudioSource glowActivate;
     public AudioSource glowChangeSound;
+    public AudioSource glowShootSound;
     #endregion
 
     [Header("-----Interact-----")]
@@ -60,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         canMove = true;
+        isPaused = false;
     }
     // Update is called once per frame
     void Update()
@@ -72,15 +75,21 @@ public class PlayerMovement : MonoBehaviour
                 interactable.Interact();//Activates the function
             }
         }
-        
-        
-        if (!Glow.isGlowActive && canMove)
+
+        if (Glow.isGlowActive && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            glowShootSound.Play();
+            //Debug.Log("Left mouse button");
+        }
+
+        if (!Glow.isGlowActive && canMove && !isPaused)
         {
 
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
             {
                 playerRunSound.Play();
             }
+
             //Seperating out the sound Not the same
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
@@ -166,6 +175,7 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.OverlapBox(groundCheck.position, groundVec, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
     }
+
 
     private void OnDrawGizmos() 
     {
