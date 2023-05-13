@@ -33,7 +33,7 @@ public class TimerObjectScript : MonoBehaviour
         You can change the timer value to make it call earlier before the note. If call a function in this if statement. */
         if (timer < 0)
         {
-            GS.noteSucessCheck();
+            //GS.noteSucessCheck();
             noteHasNotPlayed = false;
 
         }

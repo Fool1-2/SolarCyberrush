@@ -4,94 +4,83 @@ using UnityEngine;
 
 public class RythemScriptTest : MonoBehaviour
 {
-    public GameObject[] leftNotes;
-    public GameObject[] rightNotes;
-    public GameObject finalObject;
-    public bool isActivated = false;
-    [SerializeField]private bool restartNote = false;
-    [SerializeField]private float timerObj;
-    [SerializeField]private GSManager gsManager;
-    [SerializeField]Color orginalColor;
-    [SerializeField]Color activatedColor;
+    [SerializeField]private GSManager gSManager;
+    [SerializeField]private GameObject[] leftNotes;
+    [SerializeField]private GameObject[] rightNotes;
+    [SerializeField]private Animation noteAnim;
+    [SerializeField]private Animator anim;
+    [SerializeField]private bool canPlayerPress;
+    private bool resetNotes; 
+    [SerializeField]float circutTimer;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (gsManager.hasGameStarted)
+
+    private void Update() {
+        anim.SetBool("Reset", resetNotes);
+        anim.SetBool("CanPress", canPlayerPress);
+
+        if (gSManager.hasGameStarted)
         {
-            if (!isActivated)
+            if (!canPlayerPress)
             {
-                StartCoroutine(RythemBeat(gsManager.secPerBeat));
+                circutTimer = 0;
+                //anim.SetFloat("AnimSpeed", gSManager.secPerBeat);
+                anim.Play("NoteAnim");
+            }
+
+            if (IsAllNotesActivated())
+            {
+                canPlayerPress = true;
             }
             else
             {
-                timerObj += Time.deltaTime;
-
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    if (timerObj >= 0.01)
-                    {
-                        gsManager.NotesCompleted += 1;
-                        print(gsManager.NotesCompleted);
-                        RestartNotes();
-                    }
-                    else if(timerObj <= 1)
-                    {
-                        gsManager.NotesCompleted += 1;
-                        print(gsManager.NotesCompleted);
-                        RestartNotes();
-                    }
-                }
-
-                if(timerObj >= 1.5f)
-                {
-                    print("Failed");
-                    RestartNotes();
-                    isActivated = false;
-                }
+                canPlayerPress = false;
+                resetNotes = false;
             }
 
-            if (restartNote)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                StopCoroutine(RythemBeat(gsManager.secPerBeat));
+                if (circutTimer <= 0.1 && circutTimer >= 0.001)
+                {
+                    resetNotes = true;
+                    gSManager.NotesCompleted++;
+                    print("NICE NICE YOOYOYOYO GABAGABA");                  
+                }
+                else if(circutTimer <= 0.3 && circutTimer >= 0.003)
+                {
+                    resetNotes = true;
+                    gSManager.NotesCompleted++;
+                    print("PRETTY GOOD GANGY");   
+                }
+                else if(circutTimer <= 0.6 && circutTimer >= 0.006)
+                {
+                    resetNotes = true;
+                    gSManager.NotesCompleted++;
+                    print("ok I mean, I guess");  
+                }
+            }   
+
+            if (canPlayerPress)
+            {
+                circutTimer += Time.deltaTime;
+                if (circutTimer >= 1f)
+                {
+                    resetNotes = true;
+                }
             }
+
         }
-
-
     }
 
-    void RestartNotes()
+    bool IsAllNotesActivated()
     {
-        isActivated = false;
-        timerObj = 0f;
-        foreach (GameObject leftNote in leftNotes)
+        for (int i = 0; i < 3; i++)
         {
-            leftNote.SetActive(false);
-        }
-        foreach (GameObject rightNote in rightNotes)
-        {
-            rightNote.SetActive(false);
-        }
-        restartNote = false;
-    }
-
-    public IEnumerator RythemBeat(float timedBeat)
-    {
-        if (!restartNote)
-        {
-            for (int i = 0; i < leftNotes.Length; i++)    
+            if (!leftNotes[i].activeInHierarchy && !rightNotes[i].activeInHierarchy)
             {
-                leftNotes[i].SetActive(true);
-                rightNotes[i].SetActive(true);
-                yield return new WaitForSeconds(timedBeat);
+                return false;
             }
-            isActivated = true;
         }
 
-
-
-        
-
-                                                   
+        return true;
     }
 }
