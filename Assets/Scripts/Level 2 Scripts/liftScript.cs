@@ -33,20 +33,24 @@ public class liftScript : MonoBehaviour
         //If the lift button is pressed the lift will go to the up position else go to down position
         if (buttonScript.isPressed)
         {
-            if (timer < 500f)
+            if (timer < 2000f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, VectorUp, motionSpeed * Time.deltaTime);
             }
-            if (timer >= 1000f)
+            if (timer >= 3000f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, VectorDown, motionSpeed * Time.deltaTime);
                 //
             }
-            if (timer >= 1800f)
+            if (timer >= 4000f)
             {
                 timer = 0;
             }
-            timer++;
+            if (!OptionsMenuScript.isPaused)
+            {
+                timer++;
+            }
+            
         }
 
         if (!buttonScript.isPressed)
