@@ -94,12 +94,12 @@ public class PlayerMovement : MonoBehaviour
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
-                if (horizontal > 0)
+                if (horizontal > 0 && !OptionsMenuScript.isPaused)
                 {
                     _renderer.flipX = true;
                     
                 }
-                else if (horizontal < 0)
+                else if (horizontal < 0 && !OptionsMenuScript.isPaused)
                 {
                     _renderer.flipX = false;
                 }

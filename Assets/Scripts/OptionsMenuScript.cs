@@ -18,7 +18,7 @@ public class OptionsMenuScript : MonoBehaviour
     public AudioSource mainMenuMusic;
     public AudioSource glowShootSound;
     public static float volume;
-    
+    public static bool isPaused;
    // public bool menuOpen;
     
     // Start is called before the first frame update
@@ -59,13 +59,20 @@ public class OptionsMenuScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-
             settingsCanvas.enabled = !settingsCanvas.enabled;
-          // Debug.Log("Work");
+        }
 
-
-
-
+        if (settingsCanvas.enabled)
+        {
+            PlayerMovement.canMove = false;
+            isPaused = true;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            PlayerMovement.canMove = true;
+            isPaused = false;
+            Time.timeScale = 1;
         }
 
         if(settingsCanvas.enabled == true)
@@ -84,20 +91,6 @@ public class OptionsMenuScript : MonoBehaviour
             // Time.fixedDeltaTime = 1;
 
         }
-
-
-    }
-    public void close()
-    {
-        settingsCanvas.enabled = false;
-
-
-    }
-
-
-    public void open()
-    {
-        settingsCanvas.enabled = true;
 
 
     }

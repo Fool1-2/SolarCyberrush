@@ -6,34 +6,40 @@ using UnityEngine;
 public class PipeConnectScript : MonoBehaviour
 {
     public bool isSnapped;
+    public bool once;
     public GameObject snappableParent;
     public Vector2 offSet;
     MovePipe movePipe;
     MovePipe snapObjMovePipe;
-    PipeController pipeController;
     public Transform parentsTransform;
-    Vector2 outlineVector;
+    Animation anim;
 
     private void Start() {
         movePipe = GetComponentInParent<MovePipe>();
-        pipeController = GetComponentInParent<PipeController>();
+        anim = GetComponentInParent<Animation>();
     }
     private void Update() {
 
         if (isSnapped)
         {
             parentsTransform.position = (Vector2)snappableParent.transform.position + offSet;
-            pipeController.pipeMaterial.SetVector("_Thickness", outlineVector);
-            outlineVector = new Vector2(0.03f, 0);
         }
         else
         {
-            pipeController.pipeMaterial.SetVector("_Thickness", outlineVector);
-            outlineVector = new Vector2(0, 0);
+            once = false;
         }
 
         if (snappableParent != null)
         {
+            if (isSnapped && snappableParent.GetComponent<PipeConnectScript>().isSnapped)
+            {
+                if (!once)
+                {
+                    anim.Play();
+                    once = true;
+                }
+            }
+
             if (movePipe != null && snappableParent.GetComponentInParent<MovePipe>() != null)
             {
                 if (movePipe.mouseOn || snappableParent.GetComponentInParent<MovePipe>().mouseOn)
