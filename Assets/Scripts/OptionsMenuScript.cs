@@ -95,6 +95,16 @@ public class OptionsMenuScript : MonoBehaviour
 
     }
 
+    public void close()
+    {
+        settingsCanvas.enabled = false;
+    }
+
+    public void open()
+    {
+        settingsCanvas.enabled = true;
+    }
+
     public void QuitGame()
     {
         Application.Quit();
