@@ -8,7 +8,7 @@ public class SwichScenes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+         
     }
 
     // Update is called once per frame
@@ -17,8 +17,9 @@ public class SwichScenes : MonoBehaviour
         
     }
 
-    public static void SceneSwitch(string scene){
-        SceneManager.LoadScene(scene);
-
+    public static void SceneSwitch(string scene)
+    {
+        SceneManager.LoadScene(4);
+       
     }
 }

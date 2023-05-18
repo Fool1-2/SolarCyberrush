@@ -16,11 +16,7 @@ public class TriggerScript : MonoBehaviour
         {
             Physics2D.IgnoreCollision(col.GetComponent<BoxCollider2D>(), GetComponent<Collider2D>());//ignores all the gameObjects collison with the tag CamSwitcher 
         }
-
-        foreach (Collider2D allCol in ignoredCollider)
-        {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), allCol);
-        }
+        buttonscript = GameObject.Find("PressableButton").GetComponent<ButtonScript>();
     }
 
     // Update is called once per frame
