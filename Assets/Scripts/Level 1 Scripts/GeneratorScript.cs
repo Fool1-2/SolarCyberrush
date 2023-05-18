@@ -8,18 +8,7 @@ using UnityEngine.Events;
 public class GeneratorScript : MonoBehaviour, ILightAbility
 {
     public UnityEvent GeneratorEvent;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int generatorNum;
 
     public void ActivatePower(){
         GeneratorEvent.Invoke();
