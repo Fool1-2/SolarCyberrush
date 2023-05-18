@@ -18,7 +18,7 @@ public class GrateBackCollider : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && ishere)
         {
             Debug.Log("hji");
-            gs.sendPlayerBack();
+            //gs.sendPlayerBack();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

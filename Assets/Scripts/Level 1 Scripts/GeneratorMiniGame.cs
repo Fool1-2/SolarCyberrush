@@ -10,7 +10,8 @@ public class GeneratorMiniGame : MonoBehaviour
 
     #region Note section
     [SerializeField]private int _rounds;//How many turns there are in the song
-    [SerializeField]private int _currentRound;
+    [SerializeField]private List<float> _roundSpeed;
+    private int _currentRound;
     [SerializeField]private GameObject[] _leftNotes;
     [SerializeField]private GameObject[] _rightNotes;
     [SerializeField]private Slider _electricitySlider;
@@ -29,7 +30,6 @@ public class GeneratorMiniGame : MonoBehaviour
     #region Customizable Aspect
     [SerializeField]private int _notesNeededToPass;
     [Range(0, 5)][SerializeField]private float _Timedifficulty;
-    [SerializeField]private float[] _roundSpeed;
     [SerializeField]private float _songBPM;
     [SerializeField]private float _secPerBeat;
     #endregion
@@ -40,9 +40,9 @@ public class GeneratorMiniGame : MonoBehaviour
     [SerializeField]private TMP_Text endResultText;
     [SerializeField]private Animation endGameAnim;
     [SerializeField]private GameObject endGamePanel;
-        
+
     #endregion
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +60,6 @@ public class GeneratorMiniGame : MonoBehaviour
     {
         anim.SetBool("Reset", resetNotes);
         anim.SetBool("CanPress", isNoteRunning);
-        anim.SetFloat("AnimSpeed", _secPerBeat);
         
         //If a note is being played counts down the timer for the player to press space. If they do press space notesSuceeded goes up. Then notes completed goes up and timer is reset
         if (hasGameStarted)
@@ -105,6 +104,11 @@ public class GeneratorMiniGame : MonoBehaviour
 
     void GeneratorFunc()
     {
+        for (int i = _currentRound; i < _rounds;)
+        {
+            anim.SetFloat("AnimSpeed", _roundSpeed[_currentRound]);
+            break;
+        }
 
         if (IsAllNotesActivated())
         {

@@ -12,10 +12,6 @@ public class IgnoreCollisionScript : MonoBehaviour
             Physics2D.IgnoreCollision(ignorecol, GetComponent<Collider2D>());
         }
     }
-
-    private void FixedUpdate() {
-        Physics2D.IgnoreCollision(ignoredCollider, GetComponent<Collider2D>());
-    }
 }
 
     
