@@ -23,6 +23,7 @@ public class LightBridgeConnector : MonoBehaviour, ILightAbility
     // Update is called once per frame
     void Update()
     {
+        //Changes the sprite when activated
         if (isActivated)
         {
             spriteRenderer.sprite = activatedSprite;
