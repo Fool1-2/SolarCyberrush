@@ -42,7 +42,8 @@ public class Glow_ProjectileControl : MonoBehaviour
             glowLight.enabled = true;
             print("Glow is on");
         }
-        else
+        
+        if (!Glow.isGlowActive)
         {
             glowProjectiles[curProjNum].SetActive(false);
             glowLight.enabled = false;
@@ -114,4 +115,12 @@ public class Glow_ProjectileControl : MonoBehaviour
         oneShot = false;
         
     }
+
+    public void respawnItem(float time)
+    {
+        
+        
+    }
+
+    
 }

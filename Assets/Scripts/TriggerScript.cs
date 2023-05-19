@@ -6,6 +6,7 @@ public class TriggerScript : MonoBehaviour
 {
     public ButtonScript buttonscript;
     GameObject[] camBoxCollider;
+    public Collider2D[] ignoredCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -28,11 +29,6 @@ public class TriggerScript : MonoBehaviour
         buttonscript.timerOn = false;
         buttonscript.timeUp = false;
         buttonscript.notPressed();
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        
-
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
