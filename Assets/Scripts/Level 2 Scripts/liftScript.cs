@@ -44,7 +44,7 @@ public class liftScript : MonoBehaviour
             }
             if (timer >= 4000f)
             {
-                timer = 0;
+                timer++;
             }
             if (!OptionsMenuScript.isPaused)
             {
