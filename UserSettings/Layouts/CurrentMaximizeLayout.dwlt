@@ -443,7 +443,7 @@ MonoBehaviour:
   m_WindowGUID: fe6aee70c88cba948a64d0821404dda3
   m_Gizmos: 1
   m_OverrideSceneCullingMask: 6917529027641081856
-  m_SceneIsLit: 1
+  m_SceneIsLit: 0
   m_SceneLighting: 1
   m_2DMode: 1
   m_isRotationLocked: 0

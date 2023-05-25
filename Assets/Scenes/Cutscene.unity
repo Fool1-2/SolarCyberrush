@@ -499,8 +499,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 79903589}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0374, y: -0.015, z: 10}
-  m_LocalScale: {x: 3.7598, y: 3.7165, z: 1}
+  m_LocalPosition: {x: 0.2503, y: 2.7189, z: 10}
+  m_LocalScale: {x: 4.988572, y: 5.081854, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1623668400}
@@ -2156,7 +2156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596505737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.39, y: -2.84, z: 0}
+  m_LocalPosition: {x: -3.39, y: 4.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2655,8 +2655,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680663666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 3.713393, y: 3.799517, z: 1}
+  m_LocalPosition: {x: 0.2503, y: 2.7189, z: 10}
+  m_LocalScale: {x: 4.988572, y: 5.081854, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1623668400}
@@ -5169,8 +5169,8 @@ Camera:
   m_GameObject: {fileID: 1518954943}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5187,7 +5187,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10.609233
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6377,8 +6377,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792399287}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 3.713393, y: 3.799517, z: 1}
+  m_LocalPosition: {x: 0.2503, y: 2.7189, z: 10}
+  m_LocalScale: {x: 4.988572, y: 5.081854, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1623668400}
@@ -6895,6 +6895,7 @@ MonoBehaviour:
   glowActivate: {fileID: 0}
   glowChangeSound: {fileID: 0}
   mainMenuMusic: {fileID: 58628334}
+  glowShootSound: {fileID: 0}
 --- !u!114 &1909534164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7526,8 +7527,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102456332}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -3.3823967, y: -2.8748546, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: -3.2766, y: -1.4316, z: 0}
+  m_LocalScale: {x: 5.5579996, y: 5.1183863, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
