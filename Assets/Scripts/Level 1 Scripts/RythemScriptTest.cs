@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RythemScriptTest : MonoBehaviour
 {
-    [SerializeField]private GSManager gSManager;
+    [SerializeField]private GeneratorMiniGame gSManager;
     [SerializeField]private GameObject[] leftNotes;
     [SerializeField]private GameObject[] rightNotes;
     [SerializeField]private Animation noteAnim;
@@ -15,8 +15,8 @@ public class RythemScriptTest : MonoBehaviour
 
 
     private void Update() {
-        anim.SetBool("Reset", resetNotes);
-        anim.SetBool("CanPress", canPlayerPress);
+        //anim.SetBool("Reset", resetNotes);
+        //anim.SetBool("CanPress", canPlayerPress);
 
         if (gSManager.hasGameStarted)
         {
@@ -42,19 +42,19 @@ public class RythemScriptTest : MonoBehaviour
                 if (circutTimer <= 0.1 && circutTimer >= 0.001)
                 {
                     resetNotes = true;
-                    gSManager.NotesCompleted++;
+                    //gSManager.NotesCompleted++;
                     print("NICE NICE YOOYOYOYO GABAGABA");                  
                 }
                 else if(circutTimer <= 0.3 && circutTimer >= 0.003)
                 {
                     resetNotes = true;
-                    gSManager.NotesCompleted++;
+                    //gSManager.NotesCompleted++;
                     print("PRETTY GOOD GANGY");   
                 }
                 else if(circutTimer <= 0.6 && circutTimer >= 0.006)
                 {
                     resetNotes = true;
-                    gSManager.NotesCompleted++;
+                    //gSManager.NotesCompleted++;
                     print("ok I mean, I guess");  
                 }
             }   
