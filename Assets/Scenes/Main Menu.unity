@@ -1887,6 +1887,7 @@ MonoBehaviour:
   glowActivate: {fileID: 0}
   glowChangeSound: {fileID: 0}
   mainMenuMusic: {fileID: 1929791979}
+  glowShootSound: {fileID: 0}
 --- !u!114 &486369807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3914,6 +3915,7 @@ GameObject:
   - component: {fileID: 1078548206}
   - component: {fileID: 1078548209}
   - component: {fileID: 1078548208}
+  - component: {fileID: 1078548210}
   m_Layer: 0
   m_Name: OptionButton
   m_TagString: Untagged
@@ -4086,6 +4088,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6925508, y: 0.48171926}
   m_EdgeRadius: 0
+--- !u!114 &1078548210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078548204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f77f4c13bdac547917d244727bf928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1094314892
 GameObject:
   m_ObjectHideFlags: 0
