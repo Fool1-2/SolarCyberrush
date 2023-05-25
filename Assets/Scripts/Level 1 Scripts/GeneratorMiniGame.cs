@@ -64,7 +64,7 @@ public class GeneratorMiniGame : MonoBehaviour
         //If a note is being played counts down the timer for the player to press space. If they do press space notesSuceeded goes up. Then notes completed goes up and timer is reset
         if (hasGameStarted)
         {
-            _electricitySlider.maxValue = _rounds;
+            _electricitySlider.maxValue = _rounds;//this will equal the max amount of 
             if (_isSliderFilling)
             {
                 FillSlider(NotesSuceeded);
