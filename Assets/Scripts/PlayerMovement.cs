@@ -115,10 +115,6 @@ public class PlayerMovement : MonoBehaviour
                 jumped = true;
                 playerJumpUpSound.Play();
             }
-            else if (!isGrounded())
-            {
-                GetComponent<Animator>().Play("SolarCyberrushIdleAnimation");
-            }
         }
         else
         {
