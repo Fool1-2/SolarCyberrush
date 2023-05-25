@@ -111,9 +111,13 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
             {
-                Debug.Log("jumped");
+                GetComponent<Animator>().Play("SolarCyberrushJumping");
                 jumped = true;
                 playerJumpUpSound.Play();
+            }
+            else if (!isGrounded())
+            {
+                GetComponent<Animator>().Play("SolarCyberrushIdleAnimation");
             }
         }
         else
