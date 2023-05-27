@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
             {
-                Debug.Log("jumped");
+                GetComponent<Animator>().Play("SolarCyberrushJumping");
                 jumped = true;
                 playerJumpUpSound.Play();
             }
@@ -183,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.blue;//changes the color of the interactable box
         Gizmos.DrawWireCube(transform.position, interactArea);
     }
+
 
 
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Glow : MonoBehaviour
 {
     public static bool isGlowActive;
+    public bool glowboolthing;
     //public enum glowAbility{Light, Telekinesis, Growth}// An enum is also converted to ints kinda of like an array
     public int glowAB; 
     public static GameObject currentPossessedObj;
@@ -25,55 +26,61 @@ public class Glow : MonoBehaviour
     private void OnEnable() {
         PlayerMovement.isPossessing = false;
     }
-    
+
     void Update()
     {
-        #region activatingGlow
+        #region activatingGlow 
         if (PlayerMovement.canMove && !PlayerMovement.isPaused)
+
         {
-            if (Input.GetKeyDown(KeyCode.Q))//Turns on glow when G is pressed
+            #endregion activatingGlow 
+            if (Input.GetKeyDown(KeyCode.Q))//Turns on glow when G is pressed 
             {
-                isGlowActive = !isGlowActive;//Turns the bool off and on
-                
+
+                isGlowActive = !isGlowActive;//Turns the bool off and on 
+
                 if (PlayerMovement.isPossessing == true)
                 {
+
+                    isGlowActive = !isGlowActive;//Turns the bool off and on 
                     Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
                     PlayerMovement.isPossessing = false;
                 }
-            }
-        }
-        #endregion
 
-        #region LightBridgeController
-        if (lightCon1 != null && lightCon2 != null)
-        {
-            isConnected = true;
-            if (isConnected)
-            {
-                SpawnLightBridge();
-                bridgeTimer += Time.deltaTime;
-                if (bridgeTimer >= bridgeEndTime)
+                #region LightBridgeController
+                if (lightCon1 != null && lightCon2 != null)
                 {
-                    lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
-                    lightCon2.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
-                    lightCon1 = null;
-                    lightCon2 = null;
-                    Destroy(bridge);
-                    isConnected = false;
+                    // 
+
+                    isGlowActive = !isGlowActive;//Turns the bool off and on
+
+                    if (PlayerMovement.isPossessing == true)
+                    {
+                        SpawnLightBridge();
+                        bridgeTimer += Time.deltaTime;
+                        if (bridgeTimer >= bridgeEndTime)
+                        {
+                            lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
+                            lightCon2.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
+                            lightCon1 = null;
+                            lightCon2 = null;
+                            Destroy(bridge);
+                            isConnected = false;
+                        }
+                    }
                 }
+                #endregion LightBridgeController
+                if (!isConnected)
+                {
+                    bridgeTimer = 0;
+                }
+
             }
         }
-
-        if (!isConnected)
-        {
-            bridgeTimer = 0;
-        }
-        #endregion
-
-
+    
 
     }
-
+    
     void SpawnLightBridge()
     {
 
@@ -86,14 +93,22 @@ public class Glow : MonoBehaviour
         if(bridge == null)
         {
             bridge = Instantiate(lightBridgePrefab, midPoint, Quaternion.identity);
-        }  
-        else
-        {
             bridge.transform.position = midPoint;
             calculatedScale = Vector2.Distance(lightCon1.position, lightCon2.position) - 2;//This calculates the distance between the two points to get the right scale
             bridge.transform.localScale = new Vector2(calculatedScale, 10f);//Adds the scale to the objects x scale
             rotation_Z = Mathf.Atan2(lightCon2.position.y - lightCon1.position.y, lightCon2.position.x - lightCon1.position.x) * Mathf.Rad2Deg;//Gets the rotation needed between the two positions(complicated math dont ever ask me how to explain got it off of pure luck.)
-            bridge.transform.rotation = Quaternion.Euler(0, 0, rotation_Z);//Adds the needed rotaton to the Z axis
+            bridge.transform.rotation = Quaternion.Euler(0, 0, rotation_Z);//Adds the needed rotaton to the Z axis\
+            lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
+            lightCon2.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
+            lightCon1 = null;
+            lightCon2 = null;
+
+        }  
+        else
+        {
+            Destroy(bridge);
+            bridgeTimer = 0;
+            SpawnLightBridge();
         }
     }
 }
