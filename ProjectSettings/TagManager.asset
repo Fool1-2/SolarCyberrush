@@ -35,6 +35,7 @@ TagManager:
   - PlayerSpawn
   - IgnoreCollide
   - Pipes
+  - floatingPlatform
   layers:
   - Default
   - TransparentFX

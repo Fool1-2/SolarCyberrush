@@ -55,7 +55,7 @@ public class TeleObj : MonoBehaviour
         {
             isPoss = false;          
         }
-        if (isPoss)
+        if (isPoss || floatingPlatformObj.floating)
         {
             rb.gravityScale = 0;
         }
@@ -149,7 +149,7 @@ public class TeleObj : MonoBehaviour
     {
         if (teleWaitTimer > 1)
         {
-            isPoss = false;
+           // isPoss = false;
             PlayerMovement.isPossessing = false;
             teleWaitTimer = 0;
         }
@@ -159,7 +159,7 @@ public class TeleObj : MonoBehaviour
     {
         if (teleWaitTimer > 1)
         {
-            isPoss = false;
+           // isPoss = false;
             PlayerMovement.isPossessing = false;
             teleWaitTimer = 0;
         }
