@@ -5,12 +5,12 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
-public class GeneratorScript : MonoBehaviour, ILightAbility
+public class GeneratorScript : MonoBehaviour, IInteractableScript
 {
     public UnityEvent GeneratorEvent;
     public int generatorNum;
 
-    public void ActivatePower(){
+    public void Interact(){
         GeneratorEvent.Invoke();
 
     }

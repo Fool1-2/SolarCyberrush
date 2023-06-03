@@ -440,7 +440,7 @@ MonoBehaviour:
       id: Scene View/Tilemap Focus
       index: 3
       layout: 4
-  m_WindowGUID: fe6aee70c88cba948a64d0821404dda3
+  m_WindowGUID: c16c8665a7e934df983e036806fcb970
   m_Gizmos: 1
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
@@ -540,7 +540,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: 
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -638,7 +638,7 @@ MonoBehaviour:
     m_LockTracker:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
-  m_WindowGUID: c230d93630e9f5741a6cb98ecbc98897
+  m_WindowGUID: 022351253fc7746cfa6a04d6fdf7a145
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
