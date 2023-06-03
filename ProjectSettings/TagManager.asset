@@ -37,6 +37,12 @@ TagManager:
   - Pipes
   - floatingPlatform
   - ground
+  - pinkDoor
+  - pinkKey
+  - purpleKey
+  - blueKey
+  - purpleDoor
+  - blueDoor
   layers:
   - Default
   - TransparentFX

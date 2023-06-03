@@ -56,7 +56,7 @@ public class TeleObj : MonoBehaviour
         {
             isPoss = false;          
         }
-        if (isPoss || floatingPlatformObj.floating)
+        if (isPoss)
         {
             rb.gravityScale = 0;
         }
@@ -148,12 +148,10 @@ public class TeleObj : MonoBehaviour
     //These two combined break telekinesis when you're touching somethimg
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "ground" || collision.gameObject.tag == "wall" || collision.gameObject.tag == "Floor")
+        if(collision.gameObject.tag == "ground" || collision.gameObject.tag == "Floor")
         {
 
-            isPoss = false;
-            PlayerMovement.isPossessing = false;
-            teleWaitTimer = 0;
+
             if (teleWaitTimer > 1)
             {
                 isPoss = false;
@@ -167,12 +165,9 @@ public class TeleObj : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "wall" || collision.gameObject.tag == "floor")
+        if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "floor")
         {
 
-            isPoss = false;
-            PlayerMovement.isPossessing = false;
-            teleWaitTimer = 0;
             if (teleWaitTimer > 1)
             {
                 isPoss = false;
