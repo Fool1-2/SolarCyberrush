@@ -31,7 +31,7 @@ public class TeleObj : MonoBehaviour
     [SerializeField]Vector2 outLineVec;
 
     //Notes: Make it so that when the object collides with something it turns off the telekinesis
-    float teleWaitTimer = 0;
+    public float teleWaitTimer = 0;
 
 
 
@@ -49,6 +49,7 @@ public class TeleObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         if (this.gameObject != Glow.currentPossessedObj)
@@ -147,21 +148,37 @@ public class TeleObj : MonoBehaviour
     //These two combined break telekinesis when you're touching somethimg
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (teleWaitTimer > 1)
+        if(collision.gameObject.tag == "ground" || collision.gameObject.tag == "wall" || collision.gameObject.tag == "Floor")
         {
-           // isPoss = false;
+
+            isPoss = false;
             PlayerMovement.isPossessing = false;
             teleWaitTimer = 0;
+            if (teleWaitTimer > 1)
+            {
+                isPoss = false;
+                PlayerMovement.isPossessing = false;
+                teleWaitTimer = 0;
+            }
         }
+
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (teleWaitTimer > 1)
+        if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "wall" || collision.gameObject.tag == "floor")
         {
-           // isPoss = false;
+
+            isPoss = false;
             PlayerMovement.isPossessing = false;
             teleWaitTimer = 0;
+            if (teleWaitTimer > 1)
+            {
+                isPoss = false;
+                PlayerMovement.isPossessing = false;
+                teleWaitTimer = 0;
+            }
         }
     }
 }

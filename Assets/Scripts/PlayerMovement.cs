@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jumped;
     public static bool isPaused;
     [SerializeField]private Rigidbody2D rb;
+    
     #endregion
 
     [Header("-----GroundChecks-----")]
@@ -63,10 +64,13 @@ public class PlayerMovement : MonoBehaviour
         _renderer = GetComponent<SpriteRenderer>();
         canMove = true;
         isPaused = false;
+        
     }
     // Update is called once per frame
     void Update()
-    {   
+    {
+
+
         if (interactCol != null)//checks if interactcol is equal to anything
         {
             var interactable = interactCol.GetComponent<IInteractableScript>();//equals the object to a variable
@@ -84,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!Glow.isGlowActive && canMove && !isPaused)
         {
-
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.None;
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
             {
                 playerRunSound.Play();
@@ -119,9 +123,12 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             playerRunSound.Stop();
-            rb.velocity = new Vector2(0,-1);
+            rb.velocity = new Vector2(0,0);
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             rb.inertia = 0;
+
         }
+
         if (Input.GetKeyDown(KeyCode.Q) && (Glow.isGlowActive))//Turns on glow when G is pressed
         {
 

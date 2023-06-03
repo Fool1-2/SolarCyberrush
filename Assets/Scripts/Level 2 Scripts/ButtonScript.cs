@@ -8,7 +8,7 @@ public class ButtonScript : MonoBehaviour
     [SerializeField]private bool onePress;
     public AudioSource buttonPressSound;
     Vector2 pressedPos, unpressedPos;
-    public int buttonNumber;
+    public static int buttonNumber;
 
     Transform tf;
     float timerWoah;

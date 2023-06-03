@@ -120,7 +120,7 @@ public class GameManagerScript : MonoBehaviour
         //Glow.isGlowActive = false;
         
         SceneManager.UnloadSceneAsync("WirePuzzleScene");// unload wire puzzle scene(use when finished in scene)
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("L1F2"));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("FinalLevel2"));
         wireSceneManager.Mcamera.enabled = true;
     }
 

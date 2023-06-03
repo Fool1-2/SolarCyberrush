@@ -36,6 +36,7 @@ TagManager:
   - IgnoreCollide
   - Pipes
   - floatingPlatform
+  - ground
   layers:
   - Default
   - TransparentFX
