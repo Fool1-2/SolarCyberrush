@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Left mouse button");
         }
 
-        if (!Glow.isGlowActive && canMove && !isPaused)
+        if (!Glow.isGlowActive && canMove && !isPaused && InsideBuildingManagerScript.atSIA == false)
         {
             rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.None;
             if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))

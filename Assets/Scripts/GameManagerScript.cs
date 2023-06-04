@@ -45,6 +45,14 @@ public class GameManagerScript : MonoBehaviour
             PlayerMovement.canMove = true;
 
         }
+        if (InsideBuildingManagerScript.atSIA)
+        {
+            PlayerMovement.canMove = false;
+        }
+        if (!InsideBuildingManagerScript.atSIA)
+        {
+            PlayerMovement.canMove = true;
+        }
         else
         {
             //playerList[0].SetActive(true);
@@ -106,11 +114,31 @@ public class GameManagerScript : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("WirePuzzleScene"));// sets wirepuzzle scene as active scene
 
     }
+    public static void LoadSIA()
+    {
+        //  SceneManager.UnloadSceneAsync("L1F2");
+        isSceneLoaded = true;
+        InsideBuildingManagerScript.Mcamera.enabled = false;
+        InsideBuildingManagerScript.atSIA = true;
+        //PlayerMovement/can = true;
+        SceneManager.LoadSceneAsync("SIARoomScene", LoadSceneMode.Additive);// Loads the wire puzzle scene addative to the main scene
+                                                                               //cameraControl = true;
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("SIARoomScene"));// sets wirepuzzle scene as active scene
+
+    }
     public static void CameraControl()
     {
         QuitScene.Camera.enabled = false;
         wireSceneManager.Mcamera.enabled = true;
         
+        // isSceneLoaded = false;
+
+    }
+    public static void CameraControl2()
+    {
+        QuitScene.Camera.enabled = false;
+        InsideBuildingManagerScript.Mcamera.enabled = true;
+
         // isSceneLoaded = false;
 
     }
