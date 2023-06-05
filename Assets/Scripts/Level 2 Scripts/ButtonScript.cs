@@ -8,6 +8,7 @@ public class ButtonScript : MonoBehaviour
     [SerializeField]private bool onePress;
     public AudioSource buttonPressSound;
     Vector2 pressedPos, unpressedPos;
+    public static int buttonNumber;
 
     Transform tf;
     float timerWoah;
@@ -30,6 +31,11 @@ public class ButtonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (buttonNumber < 0)
+        {
+            buttonNumber = 0;
+        }
         if (timerOn)
         {
             timerWoah += Time.deltaTime;
@@ -72,10 +78,16 @@ public class ButtonScript : MonoBehaviour
             if (!onePress)
             {
                 yield return new WaitForSeconds(.1f);
-                isPressed = true;
+                
                 transform.localPosition = pressedPos;
+                buttonNumber++;
                 timerOn = true;
-                onePress = true;
+                if(buttonNumber == 3)
+                {
+                    isPressed = true;
+                    onePress = true;
+                }
+                
                 buttonPressSound.Play();
             }
         }
@@ -92,6 +104,7 @@ public class ButtonScript : MonoBehaviour
         }
         isPressed = false;
         onePress = false;
+        buttonNumber--;
         transform.localPosition = unpressedPos;
     }
 }

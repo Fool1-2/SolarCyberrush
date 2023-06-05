@@ -9,6 +9,7 @@ public class useLessScriptWereShouldNotGetRidOfYet : MonoBehaviour
     {
         
         OptionsMenuScript.volume = 0.5f;
+        ButtonScript.buttonNumber = 2;
     }
 
     // Update is called once per frame

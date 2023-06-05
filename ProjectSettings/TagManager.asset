@@ -35,6 +35,14 @@ TagManager:
   - PlayerSpawn
   - IgnoreCollide
   - Pipes
+  - floatingPlatform
+  - ground
+  - pinkDoor
+  - pinkKey
+  - purpleKey
+  - blueKey
+  - purpleDoor
+  - blueDoor
   layers:
   - Default
   - TransparentFX

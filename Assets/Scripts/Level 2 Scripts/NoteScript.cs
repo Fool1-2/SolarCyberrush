@@ -26,6 +26,10 @@ public class NoteScript : MonoBehaviour
             //Debug.Log("2");
             gm.noteUIUp(noteNumber);
             Destroy(gameObject);
+            if (Glow.isGlowActive)
+            {
+                Glow.isGlowActive = false;
+            }
 
         }
     }
