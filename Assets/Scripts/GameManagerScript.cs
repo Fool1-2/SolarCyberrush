@@ -155,6 +155,7 @@ public class GameManagerScript : MonoBehaviour
     public static void LoadPuzzle(string SceneName)
     {
         isSceneLoaded = true;
+        PlayerMovement.canMove = false;
         SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);//Loads the scene by the string
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
         
