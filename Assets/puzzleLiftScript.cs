@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class liftScript : MonoBehaviour
+public class puzzleLiftScript : MonoBehaviour
 {
     Vector2 VectorDown, VectorUp;
     float motionSpeed = 5f;
@@ -11,8 +11,7 @@ public class liftScript : MonoBehaviour
     public bool goingUp;
     public bool goingDown;
     public float timer;
-
-    //This will be triggered to true when the lift button is being pressed
+    // Start is called before the first frame update
     public static bool buttonPressed = false;
 
 
@@ -21,8 +20,8 @@ public class liftScript : MonoBehaviour
     {
 
         liftTransform = gameObject.transform;
-        VectorDown = new Vector2(-6.5f, -8.8f);
-        VectorUp = new Vector2(-6.5f, 4.3f);
+        VectorDown = new Vector2(-46.66f, -1.0f);
+        VectorUp = new Vector2(-46.66f, 12.0736f);
         goingUp = false;
         goingDown = false;
     }
@@ -33,18 +32,17 @@ public class liftScript : MonoBehaviour
         //If the lift button is pressed the lift will go to the up position else go to down position
         if (buttonScript.isPressed)
         {
-            if (timer < 1000)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, VectorUp, motionSpeed * Time.deltaTime);
-            }
-            if (timer >= 2000)
+            if (timer < 2000)
             {
                 transform.position = Vector3.MoveTowards(transform.position, VectorDown, motionSpeed * Time.deltaTime);
-                //
+                goingDown = true;
+                goingUp = false;
             }
             if (timer >= 3000)
             {
-                timer = 0;
+                transform.position = Vector3.MoveTowards(transform.position, VectorUp, motionSpeed * Time.deltaTime);
+                goingUp = true;
+                goingDown = false;
                 //
             }
             if (!OptionsMenuScript.isPaused)
@@ -55,11 +53,12 @@ public class liftScript : MonoBehaviour
 
         if (!buttonScript.isPressed)
         {
-            transform.position = Vector3.MoveTowards(transform.position, VectorDown, motionSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, VectorUp, motionSpeed * Time.deltaTime);
             timer = 0;
+            goingUp = false;
+            goingDown = false;
         }
 
     }
-
 
 }
