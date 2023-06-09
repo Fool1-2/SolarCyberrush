@@ -35,7 +35,8 @@ public class SGameManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.T)) 
         { 
-            isWin = true; 
+            isWin = true;
+            
         }
  
  
@@ -44,6 +45,7 @@ public class SGameManager : MonoBehaviour
             GrateScript.slidePuzzleCompleted = true; 
 
             gameManager.UnLoadPuzzle("SlidePuzzle");
+            GrateScript.slidePuzzleInProgress = false;
         } 
     }
 }

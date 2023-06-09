@@ -78,6 +78,58 @@ public class Glow : MonoBehaviour
         #endregion activatingGlow 
 
 
+    void Update()
+    {
+        #region activatingGlow 
+        if (PlayerMovement.canMove && !PlayerMovement.isPaused)
+
+        {
+            #endregion activatingGlow 
+            if (Input.GetKeyDown(KeyCode.Q))//Turns on glow when G is pressed 
+            {
+
+                isGlowActive = !isGlowActive;//Turns the bool off and on 
+
+                if (PlayerMovement.isPossessing == true)
+                {
+
+                    isGlowActive = !isGlowActive;//Turns the bool off and on 
+                    Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
+                    PlayerMovement.isPossessing = false;
+                }
+
+                #region LightBridgeController
+                if (lightCon1 != null && lightCon2 != null)
+                {
+                    // 
+
+                    isGlowActive = !isGlowActive;//Turns the bool off and on
+
+                    if (PlayerMovement.isPossessing == true)
+                    {
+                        SpawnLightBridge();
+                        bridgeTimer += Time.deltaTime;
+                        if (bridgeTimer >= bridgeEndTime)
+                        {
+                            lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
+                            lightCon2.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
+                            lightCon1 = null;
+                            lightCon2 = null;
+                            Destroy(bridge);
+                            isConnected = false;
+                        }
+                    }
+                }
+                #endregion LightBridgeController
+                if (!isConnected)
+                {
+                    bridgeTimer = 0;
+                }
+
+            }
+        }
+    
+
     }
 
     void SpawnLightBridge()
