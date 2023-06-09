@@ -31,9 +31,7 @@ public class Glow : MonoBehaviour
     {
         #region activatingGlow 
         if (PlayerMovement.canMove && !PlayerMovement.isPaused)
-
         {
-            #endregion activatingGlow 
             if (Input.GetKeyDown(KeyCode.Q))//Turns on glow when G is pressed 
             {
 
@@ -77,10 +75,11 @@ public class Glow : MonoBehaviour
 
             }
         }
-    
+        #endregion activatingGlow 
+
 
     }
-    
+
     void SpawnLightBridge()
     {
 

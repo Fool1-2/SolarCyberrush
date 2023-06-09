@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jumped;
     public static bool isPaused;
     [SerializeField]private Rigidbody2D rb;
+    public static bool playerflipped;
     #endregion
 
     [Header("-----GroundChecks-----")]
@@ -82,6 +83,16 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Left mouse button");
         }
 
+        //controlls the turning of the player
+        if (playerflipped)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);//flips the player and everything attached to the player as a child
+        }
+        else if (!playerflipped)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);//reverts it back to its original position
+        }
+
         if (!Glow.isGlowActive && canMove && !isPaused)
         {
 
@@ -92,21 +103,19 @@ public class PlayerMovement : MonoBehaviour
 
             //Seperating out the sound Not the same
             horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+
+            if (horizontal > 0)
             {
-                if (horizontal > 0 && !OptionsMenuScript.isPaused)
-                {
-                    _renderer.flipX = true;
-                    
-                }
-                else if (horizontal < 0 && !OptionsMenuScript.isPaused)
-                {
-                    _renderer.flipX = false;
-                }
+                playerflipped = true;
             }
-            else
+            else if (horizontal < 0)
             {
-                playerRunSound.Stop();                 
+                playerflipped = false;
+            }
+
+            if (horizontal == 0)
+            {
+                playerRunSound.Stop();
             }
 
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
