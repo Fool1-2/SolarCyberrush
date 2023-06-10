@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private bool jumped;
     public static bool isPaused;
     [SerializeField]private Rigidbody2D rb;
-    
+    public static bool playerflipped;
     #endregion
 
     [Header("-----GroundChecks-----")]
@@ -86,113 +86,122 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Left mouse button");
         }
 
-        if (!Glow.isGlowActive && canMove && !isPaused && InsideBuildingManagerScript.atSIA == false)
+        //controlls the turning of the player
+        if (playerflipped)
         {
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.None;
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-            {
-                playerRunSound.Play();
-            }
+            transform.rotation = Quaternion.Euler(0, 180, 0);//flips the player and everything attached to the player as a child
+        }
+        else if (!playerflipped)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);//reverts it back to its original position
+        }
 
-            //Seperating out the sound Not the same
-            horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (!Glow.isGlowActive && canMove && !isPaused)
+        {
+
+            if (!Glow.isGlowActive && canMove && !isPaused && InsideBuildingManagerScript.atSIA == false)
             {
-                if (horizontal > 0 && !OptionsMenuScript.isPaused)
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.None;
+                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
                 {
-                    _renderer.flipX = true;
-                    
+                    playerRunSound.Play();
                 }
-                else if (horizontal < 0 && !OptionsMenuScript.isPaused)
+
+                //Seperating out the sound Not the same
+                horizontal = Input.GetAxisRaw("Horizontal");//Gets the keys from the Input manager. Horizontal = left and right
+
+                if (horizontal > 0)
                 {
-                    _renderer.flipX = false;
+                    playerflipped = true;
+                }
+                else if (horizontal < 0)
+                {
+                    playerflipped = false;
+                }
+
+                if (horizontal == 0)
+                {
+                    playerRunSound.Stop();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
+                {
+                    GetComponent<Animator>().Play("SolarCyberrushJumping");
+                    jumped = true;
+                    playerJumpUpSound.Play();
                 }
             }
             else
             {
-                playerRunSound.Stop();                 
+                playerRunSound.Stop();
+                rb.velocity = new Vector2(0, 0);
+                rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                rb.inertia = 0;
+
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
+            if (Input.GetKeyDown(KeyCode.Q) && (Glow.isGlowActive))//Turns on glow when G is pressed
             {
-                GetComponent<Animator>().Play("SolarCyberrushJumping");
-                jumped = true;
-                playerJumpUpSound.Play();
+
+                glowActivate.Play();
+
             }
-        }
-        else
-        {
-            playerRunSound.Stop();
-            rb.velocity = new Vector2(0,0);
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-            rb.inertia = 0;
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q) && (Glow.isGlowActive))//Turns on glow when G is pressed
-        {
-
-            glowActivate.Play();
-
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && (Glow.isGlowActive))//Turns on glow when G is pressed
-        {
-
-            glowChangeSound.Play();
-
-        }
-        if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
-        {
-
-            glowActivate.Play();
-
-        }
-        if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
-        {
-            if (Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss)//if the current possessedObj isPoss bool on then it will trun on isPossessing
+            if (Input.GetKeyDown(KeyCode.LeftShift) && (Glow.isGlowActive))//Turns on glow when G is pressed
             {
-                isPossessing = true;
+
+                glowChangeSound.Play();
+
             }
-            else
+            if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
             {
-                isPossessing = false;
+
+                glowActivate.Play();
+
             }
-        }
+            if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
+            {
+                if (Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss)//if the current possessedObj isPoss bool on then it will trun on isPossessing
+                {
+                    isPossessing = true;
+                }
+                else
+                {
+                    isPossessing = false;
+                }
+            }
 
+        }
     }
 
-    private void FixedUpdate()
-    {
-        interactCol = Physics2D.OverlapBox(transform.position, interactArea, interactAreaNum, interactMask);//Checks if the object has a collider + the layermask interactable
-
-        if (!isPossessing && !Glow.isGlowActive)
+        private void FixedUpdate()
         {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by
+            interactCol = Physics2D.OverlapBox(transform.position, interactArea, interactAreaNum, interactMask);//Checks if the object has a collider + the layermask interactable
+
+            if (!isPossessing && !Glow.isGlowActive)
+            {
+                rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by
+            }
+            if (jumped)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                jumped = false;
+            }
+
+
         }
-        if (jumped)
+
+        bool isGrounded()
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-            jumped = false;
+            return Physics2D.OverlapBox(groundCheck.position, groundVec, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
         }
-        
-        
-    }
-
-    bool isGrounded()
-    {
-        return Physics2D.OverlapBox(groundCheck.position, groundVec, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
-    }
 
 
-    private void OnDrawGizmos() 
-    {
-        Gizmos.DrawWireCube(groundCheck.position, groundVec);//Shows the outline of it in scene
-        Gizmos.color = Color.blue;//changes the color of the interactable box
-        Gizmos.DrawWireCube(transform.position, interactArea);
-    }
-
-
-
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireCube(groundCheck.position, groundVec);//Shows the outline of it in scene
+            Gizmos.color = Color.blue;//changes the color of the interactable box
+            Gizmos.DrawWireCube(transform.position, interactArea);
+        }
 }
 
 
