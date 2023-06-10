@@ -78,7 +78,6 @@ public class GrateScript : MonoBehaviour, IInteractableScript
             else
             {
                 slidePuzzleInProgress = true;
-                gameManager.LoadPuzzle("SlidePuzzle");
                 PlayerMovement.canMove = false;
             }
         }
