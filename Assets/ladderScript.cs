@@ -26,4 +26,5 @@ public class ladderScript : MonoBehaviour
         collision.gameObject.transform.position += new Vector3(0, height, 0);
         Debug.Log("stepped");
     }
+
 }
