@@ -176,6 +176,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &51800331
 Rigidbody2D:
   serializedVersion: 4
@@ -405,6 +408,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &165897553
 Rigidbody2D:
   serializedVersion: 4
@@ -555,7 +561,7 @@ Transform:
   - {fileID: 1070567504}
   - {fileID: 1421843357}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &233103169
 GameObject:
@@ -862,6 +868,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &340750666
 Rigidbody2D:
   serializedVersion: 4
@@ -1214,7 +1223,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPressed: 0
+  onePress: 0
   buttonPressSound: {fileID: 8300000, guid: 81498011a65754dc78207ae4bd213e77, type: 3}
+  timerOn: 0
+  timeUp: 0
 --- !u!61 &426416859
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1458,6 +1470,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &481496612
 Rigidbody2D:
   serializedVersion: 4
@@ -1721,6 +1736,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &516254242
 Rigidbody2D:
   serializedVersion: 4
@@ -1931,6 +1949,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &541939902
 Rigidbody2D:
   serializedVersion: 4
@@ -2359,10 +2380,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 864538106}
-  m_Father: {fileID: 1323336365}
-  m_RootOrder: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2486,6 +2506,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  noteImageSprite: {fileID: 0}
+  noteSol1: {fileID: 0}
+  noteImage: {fileID: 0}
 --- !u!4 &669886618
 Transform:
   m_ObjectHideFlags: 0
@@ -2499,7 +2522,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &673184625
 GameObject:
@@ -2800,6 +2823,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &729804040
 Rigidbody2D:
   serializedVersion: 4
@@ -3233,6 +3259,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &842012614
 Rigidbody2D:
   serializedVersion: 4
@@ -3385,6 +3414,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &861341689
 Rigidbody2D:
   serializedVersion: 4
@@ -3565,6 +3597,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &878095227
 Rigidbody2D:
   serializedVersion: 4
@@ -3717,6 +3752,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &888620797
 Rigidbody2D:
   serializedVersion: 4
@@ -4093,7 +4131,7 @@ Transform:
   - {fileID: 1879507187}
   - {fileID: 673184626}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994013157
 GameObject:
@@ -4148,6 +4186,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &994013160
 Rigidbody2D:
   serializedVersion: 4
@@ -4315,6 +4356,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &995034286
 Rigidbody2D:
   serializedVersion: 4
@@ -4641,7 +4685,7 @@ Transform:
   m_Children:
   - {fileID: 1272140747}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1034759140
 GameObject:
@@ -4821,7 +4865,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1070567503
 GameObject:
@@ -5233,6 +5277,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &1111331337
 Rigidbody2D:
   serializedVersion: 4
@@ -5441,7 +5488,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1115378124
 GameObject:
@@ -5607,6 +5654,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &1115586784
 Rigidbody2D:
   serializedVersion: 4
@@ -5892,7 +5942,7 @@ Transform:
   - {fileID: 878095225}
   - {fileID: 1543257098}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1214852540
 GameObject:
@@ -6004,7 +6054,7 @@ Transform:
   - {fileID: 822332454}
   - {fileID: 674151354}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1232249208
 GameObject:
@@ -6044,6 +6094,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &1232249210
 Rigidbody2D:
   serializedVersion: 4
@@ -6269,6 +6322,8 @@ MonoBehaviour:
   promptText: {fileID: 1760926242}
   curText: 
   player: {fileID: 0}
+  OST2: {fileID: 0}
+  puzzleWinSound: {fileID: 0}
   delayActive: 0
   timer: 0
 --- !u!4 &1258508460
@@ -6286,7 +6341,7 @@ Transform:
   - {fileID: 1789212741}
   - {fileID: 2123594590}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1258508461
 BoxCollider2D:
@@ -6560,7 +6615,7 @@ Transform:
   - {fileID: 888620800}
   - {fileID: 165897556}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1388967704
 GameObject:
@@ -6595,7 +6650,7 @@ RectTransform:
   m_Children:
   - {fileID: 2003422919}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6706,7 +6761,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1421843356
 GameObject:
@@ -6761,6 +6816,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &1421843359
 Rigidbody2D:
   serializedVersion: 4
@@ -7024,6 +7082,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &1463934475
 Rigidbody2D:
   serializedVersion: 4
@@ -7222,6 +7283,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonScript: {fileID: 426416858}
+  goingUp: 0
+  goingDown: 0
+  timer: 0
 --- !u!61 &1486185633
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7351,7 +7415,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1531447851
 GameObject:
@@ -7406,6 +7470,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &1531447854
 Rigidbody2D:
   serializedVersion: 4
@@ -7558,6 +7625,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &1543257100
 Rigidbody2D:
   serializedVersion: 4
@@ -7710,6 +7780,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &1585872013
 Rigidbody2D:
   serializedVersion: 4
@@ -7862,6 +7935,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &1612017461
 Rigidbody2D:
   serializedVersion: 4
@@ -8386,6 +8462,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &1797682790
 Rigidbody2D:
   serializedVersion: 4
@@ -8538,6 +8617,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &1817259953
 Rigidbody2D:
   serializedVersion: 4
@@ -9085,7 +9167,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1940948373
 GameObject:
@@ -9133,6 +9215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonscript: {fileID: 426416858}
+  ignoredCollider: []
 --- !u!61 &1940948376
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9191,7 +9274,7 @@ Transform:
   - {fileID: 1979858714}
   - {fileID: 527555404}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1979858713
 GameObject:
@@ -9439,6 +9522,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &2015093311
 Rigidbody2D:
   serializedVersion: 4
@@ -9556,7 +9642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2019766253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9632,7 +9718,7 @@ RectTransform:
   m_Children:
   - {fileID: 1214852541}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9692,6 +9778,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &2031590191
 Rigidbody2D:
   serializedVersion: 4
@@ -9948,6 +10037,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gratePosition: {x: 0, y: 0}
+  gs: {fileID: 0}
+  curText: {fileID: 0}
+  player: {fileID: 0}
 --- !u!61 &2123594592
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10027,6 +10119,9 @@ MonoBehaviour:
   duration: 0.1
   shakeForce: 1
   yDif: 1
+  outLine: {fileID: 0}
+  outLineVec: {x: 0, y: 0}
+  teleWaitTimer: 0
 --- !u!50 &2131413265
 Rigidbody2D:
   serializedVersion: 4
