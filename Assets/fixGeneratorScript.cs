@@ -31,7 +31,7 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
 
         if (ishere)
         {
-            if (genManager.isGeneratorPuzzleCompleted[genNumID - 1])
+            if (GeneratorManager.isGeneratorPuzzleCompleted[genNumID - 1])
             {
                 curText = "";
 
@@ -53,7 +53,7 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
     {
         if (!genManager.genInProgress)
         {
-            if(!genManager.isGeneratorPuzzleCompleted[genNumID - 1])
+            if(!GeneratorManager.isGeneratorPuzzleCompleted[genNumID - 1])
             {
                 genManager.curGenNumID = genNumID;
                 gameManager.LoadPuzzle("Generator1Scene");

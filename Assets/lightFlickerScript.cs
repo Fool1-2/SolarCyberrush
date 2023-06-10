@@ -9,10 +9,12 @@ public class lightFlickerScript : MonoBehaviour, ILightAbility
     Glow glow;
     bool powered = false;
     float timer;
-    float flickerSpeed = 3;
+    float flickerSpeed = Random.Range(0,15);
+    L1LightManager l1lightManager;
     // Start is called before the first frame update
     void Start()
     {
+        l1lightManager = GameObject.Find("Level1Manager").GetComponent<L1LightManager>();
         l2D = GetComponent<Light2D>();
         glow = GameObject.FindGameObjectWithTag("Player").GetComponent<Glow>();
     }
@@ -32,14 +34,14 @@ public class lightFlickerScript : MonoBehaviour, ILightAbility
         if (timer > flickerSpeed)
         {
             timer = 0;
-            flickerSpeed = Random.Range(2.5f, 4.5f);
+            flickerSpeed = Random.Range(5.5f, 10.5f);
             StartCoroutine(flicker());
         }
     }
     IEnumerator flicker()
     {
         powered = true;
-        yield return new WaitForSeconds(Random.Range(0.1f, 0.8f));
+        yield return new WaitForSeconds(Random.Range(0.8f, 2.5f));
         powered = false;
     }
 
