@@ -283,7 +283,7 @@ public class wireThreeScript : MonoBehaviour
         deathSound.Play();
         yield return new WaitForSeconds(0.5f);// wait for a secound and change color
         GameManagerScript.UnloadWirePuzzle();
-
+        PlayerAnim.doFallingAnimation();
         yield return null;
     }
     void OnTriggerExit2D(Collider2D collision)

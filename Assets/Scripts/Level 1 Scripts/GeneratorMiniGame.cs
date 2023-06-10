@@ -200,7 +200,7 @@ public class GeneratorMiniGame : MonoBehaviour
         {
             //Display win or lose
             endResultText.text = "PASSED";
-            genManager.isGeneratorPuzzleCompleted[genManager.curGenNumID - 1] = true;
+            GeneratorManager.isGeneratorPuzzleCompleted[genManager.curGenNumID - 1] = true;
         }
         else
         {

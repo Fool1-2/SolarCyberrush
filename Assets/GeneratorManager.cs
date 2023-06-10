@@ -6,7 +6,7 @@ using GameManagerScript = gmScript;
 
 public class GeneratorManager : MonoBehaviour
 {
-    public List<bool> isGeneratorPuzzleCompleted;
+    public static List<bool> isGeneratorPuzzleCompleted;
     [SerializeField]private int amountOfGen;
     public int curGenNumID;
     public bool genInProgress;

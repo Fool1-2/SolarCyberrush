@@ -28,4 +28,9 @@ public class PlayerAnim : MonoBehaviour
         }
         
     }
+
+    public static void doFallingAnimation()
+    {
+
+    }
 }
