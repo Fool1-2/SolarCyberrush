@@ -32,4 +32,17 @@ public class GeneratorManager : MonoBehaviour
         }
         return true;
     }
+
+    bool IsGeneratorsCompleted()
+    {
+        for (int i = 0; i < isGeneratorPuzzleCompleted.Capacity; i++)
+        {
+            if (!isGeneratorPuzzleCompleted[i])
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
