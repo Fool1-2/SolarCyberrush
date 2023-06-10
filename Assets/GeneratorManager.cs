@@ -15,13 +15,13 @@ public class GeneratorManager : MonoBehaviour
     void Update()
     {
         //isGeneratorPuzzleCompleted.Capacity = amountOfGen;
-        if (!IsGeneratorsCompleted())
+        if (!isGeneratorsCompleted())
         {
             DontDestroyOnLoad(this.gameObject);
         }
     }
 
-    bool IsGeneratorsCompleted()
+    bool isGeneratorsCompleted()
     {
         for (int i = 0; i < isGeneratorPuzzleCompleted.Capacity; i++)
         {
