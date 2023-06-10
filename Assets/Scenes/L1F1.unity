@@ -2330,6 +2330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 480319239}
+  - component: {fileID: 480319240}
   m_Layer: 0
   m_Name: GeneratorManager
   m_TagString: Untagged
@@ -2352,6 +2353,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &480319240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480319238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc1900027de412040bd13e4f174ea351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGeneratorPuzzleCompleted: 00
+  amountOfGen: 1
+  curGenNumID: 0
+  genInProgress: 0
 --- !u!1 &519516015
 GameObject:
   m_ObjectHideFlags: 0
@@ -4547,8 +4564,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82698597bd75626498c99fda4b244d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bc: {fileID: 0}
-  promptText: {fileID: 0}
+  genManager: {fileID: 480319240}
+  genNumID: 1
+  bc: {fileID: 945685253}
+  promptText: {fileID: 218592667}
   curText: 
 --- !u!61 &945685253
 BoxCollider2D:
@@ -5408,11 +5427,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1271182409550023003, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.5
+      value: 40.24
       objectReference: {fileID: 0}
     - target: {fileID: 1271182409550023003, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 29.7
+      value: 44.25
       objectReference: {fileID: 0}
     - target: {fileID: 1271182409550023003, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
       propertyPath: m_LocalPosition.z

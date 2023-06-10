@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using gameManager = GameManagerScript;
+using System;
 public class GeneratorMiniGame : MonoBehaviour
 {
     [SerializeField]private Animator anim;
+    private GeneratorManager genManager;
 
     #region Note section
     [SerializeField]private int _rounds;//How many turns there are in the song
@@ -16,6 +19,11 @@ public class GeneratorMiniGame : MonoBehaviour
     [SerializeField]private GameObject[] _rightNotes;
     [SerializeField]private Slider _electricitySlider;
     private bool _isSliderFilling;
+    /*
+    [SerializeField]private GameObject energyNotifier;
+    private IEnumerator _Notifier;
+    private bool _oneNotifier;
+    */
     #endregion
     
     private bool isNoteRunning;
@@ -55,9 +63,22 @@ public class GeneratorMiniGame : MonoBehaviour
         //noteAnim = GetComponent<Animation>();
     }
 
+    private void OnEnable() {
+        try//this will first try to find the script but if it doesnt it will return and keep running the script
+        {
+            genManager = GameObject.Find("GeneratorManager").GetComponent<GeneratorManager>();
+        }
+        catch (Exception e)
+        {
+            
+            Debug.Log(e.Message);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+
         anim.SetBool("Reset", resetNotes);
         anim.SetBool("CanPress", isNoteRunning);
         
@@ -102,6 +123,16 @@ public class GeneratorMiniGame : MonoBehaviour
         }
     }
 
+    /* still working on this
+    IEnumerator MiddleNoteNotifier()
+    {
+        energyNotifier.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        energyNotifier.SetActive(false);
+        StopCoroutine(_Notifier);
+    }
+    */
+
     void GeneratorFunc()
     {
         for (int i = _currentRound; i < _rounds;)
@@ -135,26 +166,11 @@ public class GeneratorMiniGame : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (noteTimer <= 0.1 && noteTimer >= 0.001)
+                if (noteTimer <= 0.8 || noteTimer >= 0.001)
                 {
                     _currentRound++;
                     NotesSuceeded++;     
                     _isSliderFilling = true;  
-                    resetNotes = true;
-                }
-                else if(noteTimer <= 0.3 && noteTimer >= 0.003)
-                {
-                    
-                    _currentRound++;
-                    NotesSuceeded++;
-                    _isSliderFilling = true;
-                    resetNotes = true;
-                }
-                else if(noteTimer <= 0.6 && noteTimer >= 0.006)
-                {
-                    
-                    _currentRound++; 
-                    _isSliderFilling = true;
                     resetNotes = true;
                 }
             }
@@ -175,6 +191,7 @@ public class GeneratorMiniGame : MonoBehaviour
 
     IEnumerator EndGamePanel()
     {   
+        
         yield return new WaitForSeconds(3);
         endGamePanel.SetActive(true);
         notesSuccededText.text = NotesSuceeded.ToString();
@@ -183,6 +200,7 @@ public class GeneratorMiniGame : MonoBehaviour
         {
             //Display win or lose
             endResultText.text = "PASSED";
+            genManager.isGeneratorPuzzleCompleted[genManager.curGenNumID - 1] = true;
         }
         else
         {
@@ -194,6 +212,6 @@ public class GeneratorMiniGame : MonoBehaviour
         yield return new WaitForSeconds(5);
         //Need to change to load the first level
         hasGameStarted = false;
-        SceneManager.LoadScene(0);
+        gameManager.UnLoadPuzzle("Generator1Scene");
     }
 }

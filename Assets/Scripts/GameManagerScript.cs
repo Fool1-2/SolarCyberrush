@@ -165,6 +165,7 @@ public class GameManagerScript : MonoBehaviour
     public static void UnLoadPuzzle(string SceneName)
     {
         isSceneLoaded = false;
+        PlayerMovement.canMove = true;
         SceneManager.UnloadSceneAsync(SceneName);//Unloads the scene by string
     }
    /* public void openPauseMenu()
