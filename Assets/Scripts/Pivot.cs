@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pivot : MonoBehaviour
+public class Pivoting : MonoBehaviour
 {
-    Transform player;
+    /*Transform player;
 
 
     private void OnEnable()
@@ -43,5 +43,5 @@ public class Pivot : MonoBehaviour
         }
 
 
-    }
+    }*/
 }
