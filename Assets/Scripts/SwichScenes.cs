@@ -14,15 +14,16 @@ public class SwichScenes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.JoystickButton0))
-        {
-            SceneManager.LoadScene(4);
-        }
+
     }
 
     public static void SceneSwitch(string scene)
     {
         SceneManager.LoadScene(4);
-       
+        if (Input.GetKeyDown(KeyCode.JoystickButton0))
+        {
+            SceneManager.LoadScene(4);
+        }
+
     }
 }
