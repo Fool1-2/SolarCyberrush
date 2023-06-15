@@ -72,6 +72,7 @@ public class GlowActivator : MonoBehaviour
             //Check the other gameObject is a light ob and this is the light glow arrow
             else if (this.gameObject.tag == "Light")
             {
+
                 try
                 {
                     var lightObj = other.gameObject.GetComponent<ILightAbility>();

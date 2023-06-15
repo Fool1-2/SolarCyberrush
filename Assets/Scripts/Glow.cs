@@ -89,7 +89,7 @@ public class Glow : MonoBehaviour
             {
                 //isGlowActive = !isGlowActive;//Turns the bool off and on
 
-                if (PlayerMovement.isPossessing == true)
+                if (PlayerMovement.isPossessing == false)
                 {
                     SpawnLightBridge();
                     bridgeTimer += Time.deltaTime;
