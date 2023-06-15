@@ -78,14 +78,14 @@ public class PlayerMovement : MonoBehaviour
             if (interactCol != null)//checks if interactcol is equal to anything
             {
                 var interactable = interactCol.GetComponent<IInteractableScript>();//equals the object to a variable
-                if (interactable != null && Input.GetKeyDown(KeyCode.E))//checks again if its not null and if the player pressed E
+                if (interactable != null && Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.JoystickButton4)))//checks again if its not null and if the player pressed E
                 {
                     interactable.Interact();//Activates the function
                 }
             }
         }
 
-        if (Glow.isGlowActive && Input.GetKeyDown(KeyCode.Mouse0))
+        if (Glow.isGlowActive && Input.GetKeyDown(KeyCode.Mouse0) || (Input.GetKeyDown(KeyCode.JoystickButton0)))
         {
             //glowShootSound.Play();
             //Debug.Log("Left mouse button");
@@ -129,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
                     playerRunSound.Stop();
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
+                if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.JoystickButton1)) && isGrounded())
                 {
                     jumped = true;
                     playerJumpUpSound.Play();
@@ -144,13 +144,13 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.Q) && (Glow.isGlowActive))//Turns on glow when G is pressed
+            if (Input.GetKeyDown(KeyCode.Q) || (Input.GetKeyDown(KeyCode.JoystickButton5)) && (Glow.isGlowActive))//Turns on glow when G is pressed
             {
 
                 glowActivate.Play();
 
             }
-            if (Input.GetKeyDown(KeyCode.LeftShift) && (Glow.isGlowActive))//Turns on glow when G is pressed
+            if (Input.GetKeyDown(KeyCode.LeftShift) || (Input.GetKeyDown(KeyCode.JoystickButton6)) && (Glow.isGlowActive))//Turns on glow when G is pressed
             {
 
                 glowChangeSound.Play();
