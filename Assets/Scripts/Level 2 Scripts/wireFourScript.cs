@@ -263,7 +263,7 @@ public class wireFourScript : MonoBehaviour
         //yield on a new YieldInstruction that waits for 5 seconds.
         deathSound.Play();
         yield return new WaitForSeconds(0.5f);// wait for a secound and change color
-        PlayerAnim.doFallingAnimation();
+        PlayerAnim.playerFall = true;
         GameManagerScript.UnloadWirePuzzle();
 
         yield return null;
