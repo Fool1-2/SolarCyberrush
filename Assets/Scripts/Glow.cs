@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class Glow : MonoBehaviour
 {
     public static bool isGlowActive;
-    public static int glowType = 0; 
+    public static int glowType;
     [SerializeField]private Light2D _glowLight;
     [Range(1, 10)]
     [SerializeField]private float _glowLightIntensity;
@@ -41,6 +41,15 @@ public class Glow : MonoBehaviour
             _glowLight.color = _glowColor[glowType];
             _glowLight.intensity = _glowLightIntensity;
             PlayerMovement.canPlayerInteract = false;
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                glowType++;
+                if (glowType > 1)
+                {
+                    glowType = 0;
+                }
+            }
         }
         else
         {
@@ -48,6 +57,16 @@ public class Glow : MonoBehaviour
             _glowLight.intensity = 0;
             PlayerMovement.isPossessing = false;
             PlayerMovement.canPlayerInteract = true;
+        }
+
+        switch (glowType)
+        {
+           case 0:
+                _glowLight.color = _glowColor[glowType];
+                break;
+           case 1:
+                _glowLight.color = _glowColor[glowType];
+                break;
         }
 
         #region activatingGlow 
@@ -64,38 +83,35 @@ public class Glow : MonoBehaviour
                     Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
                     PlayerMovement.isPossessing = false;
                 }
+            }
 
-                #region LightBridgeController
-                if (lightCon1 != null && lightCon2 != null)
+            if (lightCon1 != null && lightCon2 != null)
+            {
+                //isGlowActive = !isGlowActive;//Turns the bool off and on
+
+                if (PlayerMovement.isPossessing == true)
                 {
-                    isGlowActive = !isGlowActive;//Turns the bool off and on
-
-                    if (PlayerMovement.isPossessing == true)
+                    SpawnLightBridge();
+                    bridgeTimer += Time.deltaTime;
+                    if (bridgeTimer >= bridgeEndTime)
                     {
-                        SpawnLightBridge();
-                        bridgeTimer += Time.deltaTime;
-                        if (bridgeTimer >= bridgeEndTime)
-                        {
-                            lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
-                            lightCon2.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
-                            lightCon1 = null;
-                            lightCon2 = null;
-                            Destroy(bridge);
-                            isConnected = false;
-                        }
+                        lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
+                        lightCon2.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
+                        lightCon1 = null;
+                        lightCon2 = null;
+                        Destroy(bridge);
+                        isConnected = false;
                     }
                 }
-
-                if (!isConnected)
-                {
-                    bridgeTimer = 0;
-                }
-                #endregion LightBridgeController
             }
+
+            if (!isConnected)
+            {
+                bridgeTimer = 0;
+            }
+
         }
         #endregion activatingGlow 
-
-        
 
     }
 
