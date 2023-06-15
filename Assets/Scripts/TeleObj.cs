@@ -165,7 +165,7 @@ public class TeleObj : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "floor")
+        if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "floor" || collision.gameObject.layer == 6)
         {
 
             if (teleWaitTimer > 1)
