@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class Glow_ProjectileControl : MonoBehaviour
 {
     #region Bullet Variables
+    public GameObject glowShooter;
     public GameObject[] glowProjectiles;
     public static int curProjNum = 1;
     [SerializeField]Rigidbody2D rb;
@@ -21,7 +22,7 @@ public class Glow_ProjectileControl : MonoBehaviour
     [SerializeField]Color[] diffGlowColors;
     
     private void OnEnable() {
-        glowProjectiles[curProjNum].GetComponent<FollowMouse>().enabled = true;//turns on follow mouse script
+        //glowProjectiles[curProjNum].GetComponent<Pivot>().enabled = true;//turns on follow mouse script
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();//finds the player through its tag
         glow = GameObject.FindGameObjectWithTag("Player").GetComponent<Glow>();//Finds the script in playe called Glow
         rb = glowProjectiles[curProjNum].GetComponent<Rigidbody2D>();//finds its childs rigidbody2D
@@ -100,7 +101,7 @@ public class Glow_ProjectileControl : MonoBehaviour
         if (!oneShot)//Checks to see if the player shot once 
         {
             rb.AddForce(glowProjectiles[curProjNum].transform.up * speed, ForceMode2D.Impulse);//Shoots the bullet in the direction its facing multiplied by speed
-            glowProjectiles[curProjNum].GetComponent<FollowMouse>().enabled = false;//Turns followmouse script off
+            //glowProjectiles[curProjNum].GetComponent<FollowMouse>().enabled = false;//Turns followmouse script off
             oneShot = true;
         }
     }
@@ -113,13 +114,6 @@ public class Glow_ProjectileControl : MonoBehaviour
         glowProjectiles[curProjNum].SetActive(true);
         isShot = false;
         oneShot = false;
-        
-    }
-
-    public void respawnItem(float time)
-    {
-        
-        
     }
 
     

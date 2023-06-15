@@ -9,10 +9,11 @@ using gameManager = GameManagerScript;//Turns the gamemanagerscript into a using
 public class fixGeneratorScript : MonoBehaviour, IInteractableScript
 {
     [SerializeField]private GeneratorManager genManager;
+    [SerializeField]private GeneartorScriptable genScriptable;
+
     public static bool genCompleted;
     public static bool genInProgress;
     public int genNumID;
-    public Collider2D bc;
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
@@ -56,6 +57,7 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
             if(!genManager.isGeneratorPuzzleCompleted[genNumID - 1])
             {
                 genManager.curGenNumID = genNumID;
+                genManager.curgGenScriptable = genScriptable;
                 gameManager.LoadPuzzle("Generator1Scene");
                 PlayerMovement.canMove = false;
             }

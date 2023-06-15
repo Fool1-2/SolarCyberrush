@@ -702,7 +702,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 263931246}
   m_FillRect: {fileID: 756622989}
   m_HandleRect: {fileID: 0}
@@ -1857,6 +1857,8 @@ MonoBehaviour:
   _electricitySlider: {fileID: 263931248}
   hasGameStarted: 0
   NotesSuceeded: 0
+  _MaxGenTime: 0
+  _MinGenTime: 0
   _notesNeededToPass: 5
   _Timedifficulty: 1
   _songBPM: 120

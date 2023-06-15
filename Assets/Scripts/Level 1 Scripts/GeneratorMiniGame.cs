@@ -19,13 +19,10 @@ public class GeneratorMiniGame : MonoBehaviour
     [SerializeField]private GameObject[] _rightNotes;
     [SerializeField]private Slider _electricitySlider;
     private bool _isSliderFilling;
-    /*
-    [SerializeField]private GameObject energyNotifier;
-    private IEnumerator _Notifier;
-    private bool _oneNotifier;
-    */
     #endregion
-    
+
+    private IEnumerator _spaceCoolDown;
+    private bool _isSpacePressed;
     private bool isNoteRunning;
     private bool resetNotes;
     private float noteTimer;
@@ -36,6 +33,10 @@ public class GeneratorMiniGame : MonoBehaviour
     private bool didPlayerwin;
 
     #region Customizable Aspect
+
+    [Tooltip("MaxGen should be a 1 decimal(0.1) and MinGen should be 3 decimals(0.0003)")]
+    [SerializeField]private float _MaxGenTime, _MinGenTime;//The max & min amount of time given to the player to press space
+
     [SerializeField]private int _notesNeededToPass;
     [Range(0, 5)][SerializeField]private float _Timedifficulty;
     [SerializeField]private float _songBPM;
@@ -67,12 +68,21 @@ public class GeneratorMiniGame : MonoBehaviour
         try//this will first try to find the script but if it doesnt it will return and keep running the script
         {
             genManager = GameObject.Find("GeneratorManager").GetComponent<GeneratorManager>();
+
+            _rounds = genManager.curgGenScriptable.rounds;
+            _roundSpeed = genManager.curgGenScriptable.roundSpeed;
+            _notesNeededToPass = genManager.curgGenScriptable.notesNeededToPass;
+            _MaxGenTime = genManager.curgGenScriptable.MaxGenTime;
+            _MinGenTime = genManager.curgGenScriptable.MinGenTime;
+            _Timedifficulty = genManager.curgGenScriptable.Timedifficulty;
         }
         catch (Exception e)
         {
-            
             Debug.Log(e.Message);
         }
+
+        
+
     }
 
     // Update is called once per frame
@@ -90,6 +100,7 @@ public class GeneratorMiniGame : MonoBehaviour
             {
                 FillSlider(NotesSuceeded);
             }
+            
             if (_currentRound != _rounds)
             {
                 GeneratorFunc();
@@ -133,11 +144,30 @@ public class GeneratorMiniGame : MonoBehaviour
     }
     */
 
+    IEnumerator ActivateButton()
+    {
+        _isSpacePressed = true;
+        if (isNoteRunning)
+        {
+            if (noteTimer <= _MaxGenTime || noteTimer >= _MinGenTime)
+            {
+                _currentRound++;
+                NotesSuceeded++;     
+                _isSliderFilling = true;  
+                resetNotes = true;
+                
+            }
+        }
+        yield return new WaitForSeconds(1.5f);
+        _isSpacePressed = false;
+    }
+
     void GeneratorFunc()
     {
         for (int i = _currentRound; i < _rounds;)
         {
             anim.SetFloat("AnimSpeed", _roundSpeed[_currentRound]);
+            StopCoroutine(_spaceCoolDown);
             break;
         }
 
@@ -163,16 +193,14 @@ public class GeneratorMiniGame : MonoBehaviour
                 resetNotes = true;
                 noteTimer = 0;
             }
+        }
 
+        if (!_isSpacePressed)
+        {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (noteTimer <= 0.8 || noteTimer >= 0.001)
-                {
-                    _currentRound++;
-                    NotesSuceeded++;     
-                    _isSliderFilling = true;  
-                    resetNotes = true;
-                }
+                _spaceCoolDown = ActivateButton();
+                StartCoroutine(_spaceCoolDown);
             }
         }
     }

@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlayerAnim : MonoBehaviour
 {
     private PlayerMovement playerMovement;
-    private Animator anim;
-    private bool onceOffset;
     private Transform playerPosition;
-    private Vector3 offset = new Vector3(-1f, -1f, 0f);
+    private Animator anim;
+
+    public static bool playerFall;
+    [SerializeField]private AnimationClip fallAnimation;
+    private IEnumerator _fallFunc;
+
 
     // Start is called before the first frame update
     private void OnEnable() {
@@ -21,11 +24,43 @@ public class PlayerAnim : MonoBehaviour
     void Update()
     {
         anim.SetBool("IsGlow", Glow.isGlowActive);
+        anim.SetBool("IsJumping", playerMovement.isGrounded());
         if (!Glow.isGlowActive) 
         { 
             anim.SetInteger("XInput", (int)playerMovement.horizontal);
-            onceOffset = false;
+        }
+
+        if (fallAnimation != null)
+        {
+            if (playerFall)
+            {
+                _fallFunc = PlayerFallAnimation(fallAnimation.length);
+                StartCoroutine(_fallFunc);
+            }
+            else
+            {
+                if(_fallFunc != null) {StopCoroutine(_fallFunc);}
+            }
+        }
+        else
+        {
+            return;
         }
         
+        
     }
+
+    IEnumerator PlayerFallAnimation(float FallTime)
+    {
+        anim.SetBool("PlayerFall", true);
+        PlayerMovement.canPlayerInteract = false;
+        PlayerMovement.canMove = false;
+        yield return new WaitForSeconds(FallTime);
+        anim.SetBool("PlayerFall", false);
+        PlayerMovement.canPlayerInteract = true;
+        PlayerMovement.canMove = true;
+        playerFall = false;
+    }
+
+    
 }
