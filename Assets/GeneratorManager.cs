@@ -6,28 +6,23 @@ using GameManagerScript = gmScript;
 
 public class GeneratorManager : MonoBehaviour
 {
-    public static List<bool> isGeneratorPuzzleCompleted;
-
-    //bool allGenCompleted;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<bool> isGeneratorPuzzleCompleted;
+    public int curGenNumID;
+    public bool genInProgress;
+    public GeneartorScriptable curgGenScriptable; 
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {   
 
-        if (!IsGeneratorsCompleted())
+
+        if (!isGeneratorsCompleted())
         {
             DontDestroyOnLoad(this.gameObject);
         }
     }
 
-    bool IsGeneratorsCompleted()
+    bool isGeneratorsCompleted()
     {
         for (int i = 0; i < isGeneratorPuzzleCompleted.Capacity; i++)
         {
@@ -36,7 +31,6 @@ public class GeneratorManager : MonoBehaviour
                 return false;
             }
         }
-
         return true;
     }
 }

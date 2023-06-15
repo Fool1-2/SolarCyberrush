@@ -22,6 +22,7 @@ public class GameManagerScript : MonoBehaviour
 
     private void Update()
     {
+
         if(wireSceneManager.wirePuzzleCompleted == true)
         {
             puzzleWinSound.Play();
@@ -31,19 +32,23 @@ public class GameManagerScript : MonoBehaviour
             playerList[0] = GameObject.FindGameObjectWithTag("Player");//finds the player
         }
 
-   
-
-
-        if (wireSceneManager.Mcamera.enabled == false || GrateScript.slidePuzzleInProgress == true)//turns off the playermovement in the original scene if we have loaded into another scene
+        try
         {
-
-            PlayerMovement.canMove = false;
+            if (wireSceneManager.Mcamera.enabled == false || GrateScript.slidePuzzleInProgress == true)//turns off the playermovement in the original scene if we have loaded into another scene
+            {
+    
+                PlayerMovement.canMove = false;
+            }
+    
+            if (wireSceneManager.Mcamera.enabled == true && GrateScript.slidePuzzleInProgress == false)//turns on the playermovement in the original scene if we have loaded into another scene
+            {
+                PlayerMovement.canMove = true;
+    
+            }
         }
-
-        if (wireSceneManager.Mcamera.enabled == true && GrateScript.slidePuzzleInProgress == false)//turns on the playermovement in the original scene if we have loaded into another scene
+        catch (System.Exception)
         {
-            PlayerMovement.canMove = true;
-
+           return;
         }
         if (InsideBuildingManagerScript.atSIA)
         {
@@ -97,6 +102,10 @@ public class GameManagerScript : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);// this object doesnt die
        // OST1.Play();
+        if (pauseMenuCanvas == null)
+        {
+            return;
+        }
         pauseMenuCanvas.enabled = false;
        // volumeSlider.value = volume;
        // OST2.Play();
@@ -165,6 +174,7 @@ public class GameManagerScript : MonoBehaviour
     public static void UnLoadPuzzle(string SceneName)
     {
         isSceneLoaded = false;
+        PlayerMovement.canMove = true;
         SceneManager.UnloadSceneAsync(SceneName);//Unloads the scene by string
     }
    /* public void openPauseMenu()
