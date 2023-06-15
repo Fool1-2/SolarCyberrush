@@ -6,15 +6,16 @@ using GameManagerScript = gmScript;
 
 public class GeneratorManager : MonoBehaviour
 {
-    public static List<bool> isGeneratorPuzzleCompleted;
-    [SerializeField]private int amountOfGen;
+    public List<bool> isGeneratorPuzzleCompleted;
     public int curGenNumID;
     public bool genInProgress;
+    public GeneartorScriptable curgGenScriptable; 
 
     // Update is called once per frame
     void Update()
-    {
-        //isGeneratorPuzzleCompleted.Capacity = amountOfGen;
+    {   
+
+
         if (!isGeneratorsCompleted())
         {
             DontDestroyOnLoad(this.gameObject);
@@ -30,19 +31,6 @@ public class GeneratorManager : MonoBehaviour
                 return false;
             }
         }
-        return true;
-    }
-
-    bool IsGeneratorsCompleted()
-    {
-        for (int i = 0; i < isGeneratorPuzzleCompleted.Capacity; i++)
-        {
-            if (!isGeneratorPuzzleCompleted[i])
-            {
-                return false;
-            }
-        }
-
         return true;
     }
 }

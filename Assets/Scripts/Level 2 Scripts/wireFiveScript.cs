@@ -297,7 +297,7 @@ public class wireFiveScript : MonoBehaviour
         deathSound.Play();
         yield return new WaitForSeconds(0.5f);// wait for a secound and change color
         GameManagerScript.UnloadWirePuzzle();
-        PlayerAnim.doFallingAnimation();
+        PlayerAnim.playerFall = true;
         yield return null;
     }
 

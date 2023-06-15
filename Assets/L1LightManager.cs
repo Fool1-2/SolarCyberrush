@@ -11,6 +11,7 @@ public class L1LightManager : MonoBehaviour
     [SerializeField] GameObject globalLight;
     [SerializeField] GameObject build1GlobalLight;
     [SerializeField] GameObject build2GlobalLight;
+    GeneratorManager genManager;
 
 
     // Start is called before the first frame update
@@ -41,7 +42,7 @@ public class L1LightManager : MonoBehaviour
 
     public void checkLights()
     {
-        if (GeneratorManager.isGeneratorPuzzleCompleted[2])
+        if (genManager.isGeneratorPuzzleCompleted[2])
         {
             globalLight.SetActive(true);
             for (int i = 0; i < building3Lights.Count; i++)
@@ -51,7 +52,7 @@ public class L1LightManager : MonoBehaviour
             build1GlobalLight.SetActive(false);
             build2GlobalLight.SetActive(false);
         }
-        if (GeneratorManager.isGeneratorPuzzleCompleted[0] && !GeneratorManager.isGeneratorPuzzleCompleted[2])
+        if (genManager.isGeneratorPuzzleCompleted[0] && !genManager.isGeneratorPuzzleCompleted[2])
         {
             build1GlobalLight.SetActive(true);
             for (int i = 0; i < building1Lights.Count; i++)
@@ -60,7 +61,7 @@ public class L1LightManager : MonoBehaviour
             }
         }
       
-        if (GeneratorManager.isGeneratorPuzzleCompleted[1] && !GeneratorManager.isGeneratorPuzzleCompleted[2])
+        if (genManager.isGeneratorPuzzleCompleted[1] && !genManager.isGeneratorPuzzleCompleted[2])
         {
             build2GlobalLight.SetActive(true);
             for (int i = 0; i < building2Lights.Count; i++)

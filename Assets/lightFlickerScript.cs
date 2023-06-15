@@ -9,11 +9,12 @@ public class lightFlickerScript : MonoBehaviour, ILightAbility
     Glow glow;
     bool powered = false;
     float timer;
-    float flickerSpeed = Random.Range(0,15);
+    float flickerSpeed;
     L1LightManager l1lightManager;
     // Start is called before the first frame update
     void Start()
     {
+        flickerSpeed = Random.Range(0f,15f);
         l1lightManager = GameObject.Find("Level1Manager").GetComponent<L1LightManager>();
         l2D = GetComponent<Light2D>();
         glow = GameObject.FindGameObjectWithTag("Player").GetComponent<Glow>();
