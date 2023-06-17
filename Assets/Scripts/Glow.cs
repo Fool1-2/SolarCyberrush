@@ -18,8 +18,6 @@ public class Glow : MonoBehaviour
 
     public AudioSource glowActivate;
     public AudioSource glowChangeSound;
-
-    [SerializeField]private InputAction glowMousePos;
     [SerializeField]private Camera camA;
 
     #region LightBridgeSettings
@@ -60,6 +58,7 @@ public class Glow : MonoBehaviour
             mouse.WarpCursorPosition(look);
             print(look);
             */
+            
 
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton5))
             {

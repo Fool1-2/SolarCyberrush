@@ -134,16 +134,6 @@ public class GeneratorMiniGame : MonoBehaviour
         }
     }
 
-    /* still working on this
-    IEnumerator MiddleNoteNotifier()
-    {
-        energyNotifier.SetActive(true);
-        yield return new WaitForSeconds(0.4f);
-        energyNotifier.SetActive(false);
-        StopCoroutine(_Notifier);
-    }
-    */
-
     void GeneratorFunc()
     {
         for (int i = _currentRound; i < _rounds;)
@@ -219,7 +209,6 @@ public class GeneratorMiniGame : MonoBehaviour
 
     IEnumerator EndGamePanel()
     {   
-        
         yield return new WaitForSeconds(3);
         endGamePanel.SetActive(true);
         notesSuccededText.text = NotesSuceeded.ToString();

@@ -24,7 +24,8 @@ public class PlayerAnim : MonoBehaviour
     void Update()
     {
         anim.SetBool("IsGlow", Glow.isGlowActive);
-        anim.SetBool("IsJumping", playerMovement.isGrounded());
+        
+
         if (!Glow.isGlowActive) 
         { 
             anim.SetInteger("XInput", (int)playerMovement.horizontal);
