@@ -12,7 +12,7 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
     [SerializeField]private GeneartorScriptable genScriptable;
 
     public static bool genCompleted;
-    public static bool genInProgress;
+    public bool genInProgress;
     public int genNumID;
     public TMP_Text promptText;
     public string curText = "";
@@ -42,9 +42,10 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
                 curText = "Press E to fix the generator";
 
             }
+
             if (gameManager.isSceneLoaded == false)
             {
-                genInProgress = false;
+                genManager.genInProgress = false;
             }
         }
         
@@ -58,8 +59,9 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
             {
                 genManager.curGenNumID = genNumID;
                 genManager.curgGenScriptable = genScriptable;
-                gameManager.LoadPuzzle("Generator1Scene");
                 PlayerMovement.canMove = false;
+                genManager.genInProgress = true;
+                gameManager.LoadPuzzle("Generator1Scene");
             }
         }
     }
