@@ -19,7 +19,7 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] Slider volumeSlider;
     public Canvas pauseMenuCanvas;
     [SerializeField] TMP_Text sliderText;
-
+    public static bool ranThroughSIA;
     private void Update()
     {
 
@@ -135,11 +135,13 @@ public class GameManagerScript : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("SIARoomScene"));// sets wirepuzzle scene as active scene
 
     }
+
+    
     public static void CameraControl()
     {
         QuitScene.Camera.enabled = false;
         wireSceneManager.Mcamera.enabled = true;
-        
+
         // isSceneLoaded = false;
 
     }
