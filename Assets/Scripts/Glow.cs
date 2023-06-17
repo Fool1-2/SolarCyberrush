@@ -117,10 +117,6 @@ public class Glow : MonoBehaviour
 
     void SpawnLightBridge()
     {
-
-        //Gets the middle positon between the two connectors and divids it by two
-
-
         if (bridge == null)
         {
             Vector2 midPoint;
