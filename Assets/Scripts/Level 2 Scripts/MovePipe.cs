@@ -24,8 +24,8 @@ public class MovePipe : MonoBehaviour
     {
         mouseOn = false;
         rb = GetComponent<Rigidbody2D>();
-         ObjectCamPos = cam.WorldToScreenPoint(transform.position);
-         CursorControl.SetLocalCursorPos(ObjectCamPos);
+        ObjectCamPos = cam.WorldToScreenPoint(transform.position);
+        CursorControl.SetLocalCursorPos(ObjectCamPos);
     }
 
     private void Update()
@@ -50,13 +50,6 @@ public class MovePipe : MonoBehaviour
             //CursorControl.SetPosition(0, 0);
             rb.bodyType = RigidbodyType2D.Dynamic;
         }
-    }/// <summary>
-     /// edit->project settings->player->other settings->API compability level: from .NET 2.0 to .NET 4.x
-
-     /// </summary>
-
-    private void FixedUpdate() {
-
     }
 
     private void OnMouseDrag()

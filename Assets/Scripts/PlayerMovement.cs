@@ -37,9 +37,6 @@ public class PlayerMovement : MonoBehaviour
     #region PlayerSounds
     public AudioSource playerJumpUpSound;
     public AudioSource playerRunSound;//public AudioSource playerRunSound;
-    public AudioSource glowActivate;
-    public AudioSource glowChangeSound;
-    public AudioSource glowShootSound;
     #endregion
 
     [Header("-----Interact-----")]
@@ -55,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable() {
         playerJumpUpSound = GameObject.Find("PlayerJumpSound").GetComponent<AudioSource>();
         playerRunSound = GameObject.Find("PlayerRunSound").GetComponent<AudioSource>();
-        glowActivate = GameObject.Find("GlowActivateSound").GetComponent<AudioSource>();
-        glowChangeSound = GameObject.Find("GlowChangeSound").GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -129,7 +124,13 @@ public class PlayerMovement : MonoBehaviour
                     playerRunSound.Stop();
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.JoystickButton1)) && isGrounded())
+                if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
+                {
+                    jumped = true;
+                    playerJumpUpSound.Play();
+                }
+
+                if (Input.GetKeyDown(KeyCode.JoystickButton1) && isGrounded())
                 {
                     jumped = true;
                     playerJumpUpSound.Play();
@@ -144,26 +145,10 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.Q) || (Input.GetKeyDown(KeyCode.JoystickButton5)) && (Glow.isGlowActive))//Turns on glow when G is pressed
-            {
-
-                glowActivate.Play();
-
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift) || (Input.GetKeyDown(KeyCode.JoystickButton6)) && (Glow.isGlowActive))//Turns on glow when G is pressed
-            {
-
-                glowChangeSound.Play();
-
-            }
             if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
             {
 
-                glowActivate.Play();
 
-            }
-            if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
-            {
                 if (Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss)//if the current possessedObj isPoss bool on then it will trun on isPossessing
                 {
                     isPossessing = true;
@@ -172,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     isPossessing = false;
                 }
+
             }
 
         }
