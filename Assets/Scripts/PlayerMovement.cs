@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     #region Basic Movement Elements
     [HideInInspector]public float horizontal;
     public static bool canMove;
+    public static bool canPlayerInteract;
     public float speed;
     public float jumpPower;
     private bool jumped;
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     #region Interactables
     [SerializeField]private Vector2 interactArea;
     private float interactAreaNum;
-    Collider2D interactCol;
+    [SerializeField]Collider2D interactCol;
     [SerializeField]LayerMask interactMask;
     #endregion
 
@@ -63,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         canMove = true;
+        canPlayerInteract = true;
         isPaused = false;
         
     }
@@ -71,29 +73,32 @@ public class PlayerMovement : MonoBehaviour
     {
 
 
-        if (interactCol != null)//checks if interactcol is equal to anything
+        if (canPlayerInteract && !isPaused)
         {
-            var interactable = interactCol.GetComponent<IInteractableScript>();//equals the object to a variable
-            if (interactable != null && Input.GetKeyDown(KeyCode.E))//checks again if its not null and if the player pressed E
+            if (interactCol != null)//checks if interactcol is equal to anything
             {
-                interactable.Interact();//Activates the function
+                var interactable = interactCol.GetComponent<IInteractableScript>();//equals the object to a variable
+                if (interactable != null && Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.JoystickButton4)))//checks again if its not null and if the player pressed E
+                {
+                    interactable.Interact();//Activates the function
+                }
             }
         }
 
-        if (Glow.isGlowActive && Input.GetKeyDown(KeyCode.Mouse0))
+        if (Glow.isGlowActive && Input.GetKeyDown(KeyCode.Mouse0) || (Input.GetKeyDown(KeyCode.JoystickButton0)))
         {
-            glowShootSound.Play();
+            //glowShootSound.Play();
             //Debug.Log("Left mouse button");
         }
 
         //controlls the turning of the player
         if (playerflipped)
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0);//flips the player and everything attached to the player as a child
+            transform.localScale = new Vector3(-7, 7, 7);//flips the player and everything attached to the player as a child
         }
         else if (!playerflipped)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);//reverts it back to its original position
+            transform.localScale = new Vector3(7, 7, 7);//reverts it back to its original position
         }
 
         if (!Glow.isGlowActive && canMove && !isPaused)
@@ -124,9 +129,8 @@ public class PlayerMovement : MonoBehaviour
                     playerRunSound.Stop();
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
+                if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.JoystickButton1)) && isGrounded())
                 {
-                    GetComponent<Animator>().Play("SolarCyberrushJumping");
                     jumped = true;
                     playerJumpUpSound.Play();
                 }
@@ -140,13 +144,13 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.Q) && (Glow.isGlowActive))//Turns on glow when G is pressed
+            if (Input.GetKeyDown(KeyCode.Q) || (Input.GetKeyDown(KeyCode.JoystickButton5)) && (Glow.isGlowActive))//Turns on glow when G is pressed
             {
 
                 glowActivate.Play();
 
             }
-            if (Input.GetKeyDown(KeyCode.LeftShift) && (Glow.isGlowActive))//Turns on glow when G is pressed
+            if (Input.GetKeyDown(KeyCode.LeftShift) || (Input.GetKeyDown(KeyCode.JoystickButton6)) && (Glow.isGlowActive))//Turns on glow when G is pressed
             {
 
                 glowChangeSound.Play();
@@ -190,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        bool isGrounded()
+        public bool isGrounded()
         {
             return Physics2D.OverlapBox(groundCheck.position, groundVec, groundCheckNum, groundLayer);//returns true if the groundCheck is touching the layer mask groundLayer
         }

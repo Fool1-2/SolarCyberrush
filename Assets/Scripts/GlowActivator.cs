@@ -5,45 +5,46 @@ using UnityEngine;
 
 public class GlowActivator : MonoBehaviour
 {
-    public Glow_ProjectileControl glowProjectile;
+    public GlowShooterControl glowProjectile;
     public Collider2D bc;
     [SerializeField]GameObject[] camBoxCollider;
     public float bulletTimer;
+    [SerializeField]private float capBulletTimer;//Maxium time the bullet can be on before beign destroyed
     
 
     private void Start() {
-        camBoxCollider = GameObject.FindGameObjectsWithTag("CamSwitcher");//finds all the gameObjects that have the tag Camswitcher
     }
 
     private void OnEnable() {
+        camBoxCollider = GameObject.FindGameObjectsWithTag("CamSwitcher");//finds all the gameObjects that have the tag Camswitcher
         foreach (GameObject col in camBoxCollider)
         {
             Physics2D.IgnoreCollision(col.GetComponent<Collider2D>(), GetComponent<Collider2D>());//ignores all the gameObjects collison with the tag CamSwitcher
         }
         bulletTimer = 0f;
-        glowProjectile = GameObject.FindGameObjectWithTag("ProjectileController").GetComponent<Glow_ProjectileControl>();
+        glowProjectile = GameObject.FindGameObjectWithTag("ProjectileController").GetComponent<GlowShooterControl>();
         bc = gameObject.GetComponent<Collider2D>();
-        GetComponent<FollowMouse>().enabled = true;
+        //GetComponent<FollowMouse>().enabled = true;
         
     }
-    private void OnDisable() {
-        this.transform.position = glowProjectile.gameObject.transform.position;
-    }
+
     private void Update()
     {   
-        if (glowProjectile.isShot)
+        
+        if (!glowProjectile._canShoot)
         {
             bulletTimer += Time.deltaTime;
-            if (bulletTimer >= 3f)
+            if (bulletTimer >= capBulletTimer)
             {
                 glowProjectile.ReloadBullet();
             }
         }
+        
 
-        if (!glowProjectile.isShot)
+        if (glowProjectile._canShoot)
         {
             bc.enabled = false;
-            transform.position = glowProjectile.transform.position;
+            //transform.position = glowProjectile.transform.position;
         }
         else
         {
@@ -55,7 +56,7 @@ public class GlowActivator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         //Checks this is a tele arrow and other object is a teleob   
-        if (glowProjectile.isShot)
+        if (!glowProjectile._canShoot)
         {
             if (other.gameObject.tag == "TeleObj" && gameObject.tag == "Telekinesis")
             {

@@ -39,7 +39,7 @@ public class Narrative : MonoBehaviour
 
         }
         //The text section
-        if (Input.GetKeyDown(KeyCode.Space) && backgroundFinished == true)
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.JoystickButton0)) && backgroundFinished == true)
         {
             autoText = false;
             if (textComponent.text == lines[index])

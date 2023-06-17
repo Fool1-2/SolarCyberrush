@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Glow : MonoBehaviour
 {
     public static bool isGlowActive;
-    public bool glowboolthing;
-    //public enum glowAbility{Light, Telekinesis, Growth}// An enum is also converted to ints kinda of like an array
-    public int glowAB; 
+    public static int glowType = 0; 
+    [SerializeField]private Light2D _glowLight;
+    [Range(1, 10)]
+    [SerializeField]private float _glowLightIntensity;
+    [SerializeField]private Color[] _glowColor;
+    
+    [SerializeField]private GameObject _glowShooterArm;
     public static GameObject currentPossessedObj;
 
     #region LightBridgeSettings
@@ -30,6 +35,21 @@ public class Glow : MonoBehaviour
 
     void Update()
     {
+        if (isGlowActive)
+        {
+            _glowShooterArm.SetActive(true);
+            _glowLight.color = _glowColor[glowType];
+            _glowLight.intensity = _glowLightIntensity;
+            PlayerMovement.canPlayerInteract = false;
+        }
+        else
+        {
+            _glowShooterArm.SetActive(false);
+            _glowLight.intensity = 0;
+            PlayerMovement.isPossessing = false;
+            PlayerMovement.canPlayerInteract = true;
+        }
+
         #region activatingGlow 
         if (PlayerMovement.canMove && !PlayerMovement.isPaused)
         {
@@ -40,8 +60,7 @@ public class Glow : MonoBehaviour
 
                 if (PlayerMovement.isPossessing == true)
                 {
-
-                    isGlowActive = !isGlowActive;//Turns the bool off and on 
+                    isGlowActive = false;//Turns the bool off and on 
                     Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
                     PlayerMovement.isPossessing = false;
                 }
@@ -49,8 +68,6 @@ public class Glow : MonoBehaviour
                 #region LightBridgeController
                 if (lightCon1 != null && lightCon2 != null)
                 {
-                    // 
-
                     isGlowActive = !isGlowActive;//Turns the bool off and on
 
                     if (PlayerMovement.isPossessing == true)
@@ -68,15 +85,17 @@ public class Glow : MonoBehaviour
                         }
                     }
                 }
-                #endregion LightBridgeController
+
                 if (!isConnected)
                 {
                     bridgeTimer = 0;
                 }
-
+                #endregion LightBridgeController
             }
         }
         #endregion activatingGlow 
+
+        
 
     }
 
