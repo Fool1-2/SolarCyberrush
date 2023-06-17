@@ -57,7 +57,7 @@ public class OptionsMenuScript : MonoBehaviour
              Debug.Log("Resoulution is 1920, 1080");
          }*/
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
             settingsCanvas.enabled = !settingsCanvas.enabled;
         }

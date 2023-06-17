@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem;
 
 public class Glow : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class Glow : MonoBehaviour
     
     [SerializeField]private GameObject _glowShooterArm;
     public static GameObject currentPossessedObj;
+
+    public AudioSource glowActivate;
+    public AudioSource glowChangeSound;
+
+    [SerializeField]private InputAction glowMousePos;
+    [SerializeField]private Camera camA;
 
     #region LightBridgeSettings
     public Transform lightCon1, lightCon2;
@@ -31,10 +38,13 @@ public class Glow : MonoBehaviour
     private void OnEnable() 
     {
         PlayerMovement.isPossessing = false;
+        glowActivate = GameObject.Find("GlowActivateSound").GetComponent<AudioSource>();
+        glowChangeSound = GameObject.Find("GlowChangeSound").GetComponent<AudioSource>();
     }
 
     void Update()
     {
+        
         if (isGlowActive)
         {
             _glowShooterArm.SetActive(true);
@@ -42,13 +52,23 @@ public class Glow : MonoBehaviour
             _glowLight.intensity = _glowLightIntensity;
             PlayerMovement.canPlayerInteract = false;
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            /*
+            var gamepadTest = Gamepad.current;
+            var mouse = Mouse.current;
+
+            var look = camA.WorldToScreenPoint(gamepadTest.leftStick.ReadValue() * 8);
+            mouse.WarpCursorPosition(look);
+            print(look);
+            */
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton5))
             {
                 glowType++;
                 if (glowType > 1)
                 {
                     glowType = 0;
                 }
+                glowChangeSound.Play();
             }
         }
         else
@@ -72,10 +92,11 @@ public class Glow : MonoBehaviour
         #region activatingGlow 
         if (PlayerMovement.canMove && !PlayerMovement.isPaused)
         {
-            if (Input.GetKeyDown(KeyCode.Q))//Turns on glow when G is pressed 
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4))//Turns on glow when G is pressed 
             {
 
                 isGlowActive = !isGlowActive;//Turns the bool off and on 
+                glowActivate.Play();
 
                 if (PlayerMovement.isPossessing == true)
                 {
@@ -92,7 +113,7 @@ public class Glow : MonoBehaviour
                 if (PlayerMovement.isPossessing == false)
                 {
                     SpawnLightBridge();
-                    bridgeTimer += Time.deltaTime;
+                    
                     if (bridgeTimer >= bridgeEndTime)
                     {
                         lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
@@ -103,6 +124,16 @@ public class Glow : MonoBehaviour
                         isConnected = false;
                     }
                 }
+            }
+            if (bridge != null)
+            {
+                bridgeTimer += Time.deltaTime;
+                if (bridgeTimer >= bridgeEndTime)
+                {
+                    Destroy(bridge);
+                    isConnected = false;
+                }
+                Debug.Log("BridgeTime" + bridgeTimer + "End Time" + bridgeEndTime);
             }
 
             if (!isConnected)
@@ -123,7 +154,7 @@ public class Glow : MonoBehaviour
             midPoint.x = (lightCon1.position.x + lightCon2.position.x) / 2;
             midPoint.y = (lightCon1.position.y + lightCon2.position.y) / 2;
 
-
+            isConnected = true;
             bridge = Instantiate(lightBridgePrefab, midPoint, Quaternion.identity);
             bridge.transform.position = midPoint;
             calculatedScale = Vector2.Distance(lightCon1.position, lightCon2.position) - 2;//This calculates the distance between the two points to get the right scale
@@ -139,6 +170,7 @@ public class Glow : MonoBehaviour
         {
             Destroy(bridge);
             bridgeTimer = 0;
+            isConnected = false;
         }
     }
 }
