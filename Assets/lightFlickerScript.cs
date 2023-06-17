@@ -18,6 +18,7 @@ public class lightFlickerScript : MonoBehaviour, ILightAbility
         l1lightManager = GameObject.Find("Level1Manager").GetComponent<L1LightManager>();
         l2D = GetComponent<Light2D>();
         glow = GameObject.FindGameObjectWithTag("Player").GetComponent<Glow>();
+        flickerSpeed = Random.Range(0f, 15f);
     }
 
     // Update is called once per frame

@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 884cbd4019d1bb945909a507bfd93699, type: 3}
-  m_Name: GenOne
+  m_Name: GenTwo
   m_EditorClassIdentifier: 
-  rounds: 3
+  rounds: 5
   roundSpeed:
   - 1
-  - 2
+  - 2.5
   - 3
-  notesNeededToPass: 2
-  MaxGenTime: 0.5
+  - 4.5
+  - 5
+  notesNeededToPass: 3
+  MaxGenTime: 0.3
   MinGenTime: 0.0001
-  Timedifficulty: 3
+  Timedifficulty: 2

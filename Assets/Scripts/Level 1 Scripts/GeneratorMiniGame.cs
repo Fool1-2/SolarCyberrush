@@ -144,30 +144,12 @@ public class GeneratorMiniGame : MonoBehaviour
     }
     */
 
-    IEnumerator ActivateButton()
-    {
-        _isSpacePressed = true;
-        if (isNoteRunning)
-        {
-            if (noteTimer <= _MaxGenTime || noteTimer >= _MinGenTime)
-            {
-                _currentRound++;
-                NotesSuceeded++;     
-                _isSliderFilling = true;  
-                resetNotes = true;
-                
-            }
-        }
-        yield return new WaitForSeconds(1.5f);
-        _isSpacePressed = false;
-    }
-
     void GeneratorFunc()
     {
         for (int i = _currentRound; i < _rounds;)
         {
+            StopCoroutine(ActivateButton());
             anim.SetFloat("AnimSpeed", _roundSpeed[_currentRound]);
-            StopCoroutine(_spaceCoolDown);
             break;
         }
 
@@ -199,8 +181,8 @@ public class GeneratorMiniGame : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _spaceCoolDown = ActivateButton();
-                StartCoroutine(_spaceCoolDown);
+               // _spaceCoolDown = ActivateButton();
+                StartCoroutine(ActivateButton());
             }
         }
     }
@@ -215,6 +197,24 @@ public class GeneratorMiniGame : MonoBehaviour
             }
         }
         return true;
+    }
+
+    IEnumerator ActivateButton()
+    {
+        _isSpacePressed = true;
+        if (isNoteRunning)
+        {
+            if (noteTimer <= _MaxGenTime || noteTimer >= _MinGenTime)
+            {
+                _currentRound++;
+                NotesSuceeded++;
+                _isSliderFilling = true;
+                resetNotes = true;
+
+            }
+        }
+        yield return new WaitForSeconds(1.5f);
+        _isSpacePressed = false;
     }
 
     IEnumerator EndGamePanel()
