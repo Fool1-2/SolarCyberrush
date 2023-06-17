@@ -119,13 +119,15 @@ public class Glow : MonoBehaviour
     {
 
         //Gets the middle positon between the two connectors and divids it by two
-        Vector2 midPoint;
-        midPoint.x = (lightCon1.position.x + lightCon2.position.x)/2;
-        midPoint.y = (lightCon1.position.y + lightCon2.position.y)/2;
 
 
-        if(bridge == null)
+        if (bridge == null)
         {
+            Vector2 midPoint;
+            midPoint.x = (lightCon1.position.x + lightCon2.position.x) / 2;
+            midPoint.y = (lightCon1.position.y + lightCon2.position.y) / 2;
+
+
             bridge = Instantiate(lightBridgePrefab, midPoint, Quaternion.identity);
             bridge.transform.position = midPoint;
             calculatedScale = Vector2.Distance(lightCon1.position, lightCon2.position) - 2;//This calculates the distance between the two points to get the right scale
@@ -136,13 +138,11 @@ public class Glow : MonoBehaviour
             lightCon2.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
             lightCon1 = null;
             lightCon2 = null;
-
-        }  
+        }
         else
         {
             Destroy(bridge);
             bridgeTimer = 0;
-            SpawnLightBridge();
         }
     }
 }
