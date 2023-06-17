@@ -41,4 +41,9 @@ public class QuitScene : MonoBehaviour
         GameManagerScript.CameraControl();
 
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameManagerScript.CameraControl();
+        
+    }
 }
