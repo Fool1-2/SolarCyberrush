@@ -92,7 +92,7 @@ public class Glow : MonoBehaviour
                 if (PlayerMovement.isPossessing == false)
                 {
                     SpawnLightBridge();
-                    bridgeTimer += Time.deltaTime;
+                    
                     if (bridgeTimer >= bridgeEndTime)
                     {
                         lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
@@ -103,6 +103,12 @@ public class Glow : MonoBehaviour
                         isConnected = false;
                     }
                 }
+            }
+            if (bridge != null)
+            {
+                bridgeTimer += Time.deltaTime;
+                Destroy(bridge);
+                isConnected = false;
             }
 
             if (!isConnected)
