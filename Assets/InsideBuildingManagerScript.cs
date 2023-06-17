@@ -46,6 +46,7 @@ public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
         {
             camera2.enabled = false;
             QuitScene.Camera.enabled = true;
+            player.transform.position = new Vector2(900, 900);
         }
         
 
