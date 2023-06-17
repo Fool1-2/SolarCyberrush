@@ -23,30 +23,27 @@ public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
+            gameManager.UnLoadPuzzle("SIARoomScene");
             player.transform.position = new Vector2(4, 24);
             gameManager.CameraControl2();
+            camera2.enabled = true;
             PlayerMovement.canMove = true;
             atSIA = false;
             
+
         }
         
  
     }
     public void Interact()
     {
-        if (!gameManager.isSceneLoaded)
+        if (Input.GetKeyDown(KeyCode.E) && !gameManager.isSceneLoaded)
         {
-            player.transform.position = new Vector2(900, 900);
-           // StartCoroutine(DoCheck());
+            player.transform.position = new Vector2(893, 890);
             gameManager.LoadPuzzle("SIARoomScene");
             camera2.enabled = false;
-            
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            camera2.enabled = false;
             QuitScene.Camera.enabled = true;
-            player.transform.position = new Vector2(900, 900);
+            
         }
         
 
