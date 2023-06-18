@@ -55,13 +55,14 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
     {
         if (!genManager.genInProgress)
         {
-            if(!genManager.isGeneratorPuzzleCompleted[genNumID - 1])
+            PlayerMovement.canMove = false;
+            if (!genManager.isGeneratorPuzzleCompleted[genNumID - 1])
             {
                 genManager.curGenNumID = genNumID;
                 genManager.curgGenScriptable = genScriptable;
-                PlayerMovement.canMove = false;
                 genManager.genInProgress = true;
                 gameManager.LoadPuzzle("Generator1Scene");
+                
             }
         }
     }

@@ -243,6 +243,7 @@ public class GeneratorMiniGame : MonoBehaviour
         hasGameStarted = false;
 
         l1lightManager.checkLights();
+        PlayerMovement.canMove = true;
         gameManager.UnLoadPuzzle("Generator1Scene");
     }
 }

@@ -22,7 +22,7 @@ public class temporaryPlayerTeleporterManagerObjectScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" )// if collides with other wires
         {
-            player.transform.position = new Vector2(4, 24);
+            player.transform.position = new Vector2(-14, 36);
             gameManager.UnLoadPuzzle("SIARoomScene");
         }
 

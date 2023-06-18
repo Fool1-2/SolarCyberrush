@@ -13,7 +13,8 @@ public class GeneratorManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+        
 
 
         if (!isGeneratorsCompleted())
