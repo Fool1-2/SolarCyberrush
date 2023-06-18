@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem;
 
 public class Glow : MonoBehaviour
 {
     public static bool isGlowActive;
-    public static int glowType = 0; 
+    public static int glowType;
     [SerializeField]private Light2D _glowLight;
     [Range(1, 10)]
     [SerializeField]private float _glowLightIntensity;
@@ -14,6 +15,12 @@ public class Glow : MonoBehaviour
     
     [SerializeField]private GameObject _glowShooterArm;
     public static GameObject currentPossessedObj;
+
+    public AudioSource glowActivate;
+    public AudioSource glowChangeSound;
+
+    [SerializeField]private InputAction glowMousePos;
+    [SerializeField]private Camera camA;
 
     #region LightBridgeSettings
     public Transform lightCon1, lightCon2;
@@ -31,16 +38,38 @@ public class Glow : MonoBehaviour
     private void OnEnable() 
     {
         PlayerMovement.isPossessing = false;
+        glowActivate = GameObject.Find("GlowActivateSound").GetComponent<AudioSource>();
+        glowChangeSound = GameObject.Find("GlowChangeSound").GetComponent<AudioSource>();
     }
 
     void Update()
     {
+        
         if (isGlowActive)
         {
             _glowShooterArm.SetActive(true);
             _glowLight.color = _glowColor[glowType];
             _glowLight.intensity = _glowLightIntensity;
             PlayerMovement.canPlayerInteract = false;
+
+            /*
+            var gamepadTest = Gamepad.current;
+            var mouse = Mouse.current;
+
+            var look = camA.WorldToScreenPoint(gamepadTest.leftStick.ReadValue() * 8);
+            mouse.WarpCursorPosition(look);
+            print(look);
+            */
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton5))
+            {
+                glowType++;
+                if (glowType > 1)
+                {
+                    glowType = 0;
+                }
+                glowChangeSound.Play();
+            }
         }
         else
         {
@@ -50,13 +79,24 @@ public class Glow : MonoBehaviour
             PlayerMovement.canPlayerInteract = true;
         }
 
+        switch (glowType)
+        {
+           case 0:
+                _glowLight.color = _glowColor[glowType];
+                break;
+           case 1:
+                _glowLight.color = _glowColor[glowType];
+                break;
+        }
+
         #region activatingGlow 
         if (PlayerMovement.canMove && !PlayerMovement.isPaused)
         {
-            if (Input.GetKeyDown(KeyCode.Q))//Turns on glow when G is pressed 
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4))//Turns on glow when G is pressed 
             {
 
                 isGlowActive = !isGlowActive;//Turns the bool off and on 
+                glowActivate.Play();
 
                 if (PlayerMovement.isPossessing == true)
                 {
@@ -64,52 +104,57 @@ public class Glow : MonoBehaviour
                     Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
                     PlayerMovement.isPossessing = false;
                 }
+            }
 
-                #region LightBridgeController
-                if (lightCon1 != null && lightCon2 != null)
+            if (lightCon1 != null && lightCon2 != null)
+            {
+                //isGlowActive = !isGlowActive;//Turns the bool off and on
+
+                if (PlayerMovement.isPossessing == false)
                 {
-                    isGlowActive = !isGlowActive;//Turns the bool off and on
-
-                    if (PlayerMovement.isPossessing == true)
+                    SpawnLightBridge();
+                    
+                    if (bridgeTimer >= bridgeEndTime)
                     {
-                        SpawnLightBridge();
-                        bridgeTimer += Time.deltaTime;
-                        if (bridgeTimer >= bridgeEndTime)
-                        {
-                            lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
-                            lightCon2.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
-                            lightCon1 = null;
-                            lightCon2 = null;
-                            Destroy(bridge);
-                            isConnected = false;
-                        }
+                        lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
+                        lightCon2.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
+                        lightCon1 = null;
+                        lightCon2 = null;
+                        Destroy(bridge);
+                        isConnected = false;
                     }
                 }
-
-                if (!isConnected)
-                {
-                    bridgeTimer = 0;
-                }
-                #endregion LightBridgeController
             }
+            if (bridge != null)
+            {
+                bridgeTimer += Time.deltaTime;
+                if (bridgeTimer >= bridgeEndTime)
+                {
+                    Destroy(bridge);
+                    isConnected = false;
+                }
+                Debug.Log("BridgeTime" + bridgeTimer + "End Time" + bridgeEndTime);
+            }
+
+            if (!isConnected)
+            {
+                bridgeTimer = 0;
+            }
+
         }
         #endregion activatingGlow 
-
-        
 
     }
 
     void SpawnLightBridge()
     {
-
-        //Gets the middle positon between the two connectors and divids it by two
-        Vector2 midPoint;
-        midPoint.x = (lightCon1.position.x + lightCon2.position.x)/2;
-        midPoint.y = (lightCon1.position.y + lightCon2.position.y)/2;
-
-
-        if(bridge == null)
+        if (bridge == null)
         {
+            Vector2 midPoint;
+            midPoint.x = (lightCon1.position.x + lightCon2.position.x) / 2;
+            midPoint.y = (lightCon1.position.y + lightCon2.position.y) / 2;
+
+            isConnected = true;
             bridge = Instantiate(lightBridgePrefab, midPoint, Quaternion.identity);
             bridge.transform.position = midPoint;
             calculatedScale = Vector2.Distance(lightCon1.position, lightCon2.position) - 2;//This calculates the distance between the two points to get the right scale
@@ -120,13 +165,12 @@ public class Glow : MonoBehaviour
             lightCon2.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
             lightCon1 = null;
             lightCon2 = null;
-
-        }  
+        }
         else
         {
             Destroy(bridge);
             bridgeTimer = 0;
-            SpawnLightBridge();
+            isConnected = false;
         }
     }
 }

@@ -49,7 +49,7 @@ public class GeneratorMiniGame : MonoBehaviour
     [SerializeField]private TMP_Text endResultText;
     [SerializeField]private Animation endGameAnim;
     [SerializeField]private GameObject endGamePanel;
-
+    [SerializeField] L1LightManager l1lightManager;
     #endregion
 
     // Start is called before the first frame update
@@ -61,6 +61,7 @@ public class GeneratorMiniGame : MonoBehaviour
         hasGameStarted = true;
 
         anim = GetComponent<Animator>();
+        l1lightManager = GameObject.Find("Level1Manager").GetComponent<L1LightManager>();
         //noteAnim = GetComponent<Animation>();
     }
 
@@ -144,30 +145,12 @@ public class GeneratorMiniGame : MonoBehaviour
     }
     */
 
-    IEnumerator ActivateButton()
-    {
-        _isSpacePressed = true;
-        if (isNoteRunning)
-        {
-            if (noteTimer <= _MaxGenTime || noteTimer >= _MinGenTime)
-            {
-                _currentRound++;
-                NotesSuceeded++;     
-                _isSliderFilling = true;  
-                resetNotes = true;
-                
-            }
-        }
-        yield return new WaitForSeconds(1.5f);
-        _isSpacePressed = false;
-    }
-
     void GeneratorFunc()
     {
         for (int i = _currentRound; i < _rounds;)
         {
+            StopCoroutine(ActivateButton());
             anim.SetFloat("AnimSpeed", _roundSpeed[_currentRound]);
-            StopCoroutine(_spaceCoolDown);
             break;
         }
 
@@ -199,8 +182,8 @@ public class GeneratorMiniGame : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _spaceCoolDown = ActivateButton();
-                StartCoroutine(_spaceCoolDown);
+               // _spaceCoolDown = ActivateButton();
+                StartCoroutine(ActivateButton());
             }
         }
     }
@@ -215,6 +198,24 @@ public class GeneratorMiniGame : MonoBehaviour
             }
         }
         return true;
+    }
+
+    IEnumerator ActivateButton()
+    {
+        _isSpacePressed = true;
+        if (isNoteRunning)
+        {
+            if (noteTimer <= _MaxGenTime || noteTimer >= _MinGenTime)
+            {
+                _currentRound++;
+                NotesSuceeded++;
+                _isSliderFilling = true;
+                resetNotes = true;
+
+            }
+        }
+        yield return new WaitForSeconds(1.5f);
+        _isSpacePressed = false;
     }
 
     IEnumerator EndGamePanel()
@@ -240,6 +241,8 @@ public class GeneratorMiniGame : MonoBehaviour
         yield return new WaitForSeconds(5);
         //Need to change to load the first level
         hasGameStarted = false;
+
+        l1lightManager.checkLights();
         gameManager.UnLoadPuzzle("Generator1Scene");
     }
 }
