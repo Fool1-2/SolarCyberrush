@@ -11,12 +11,13 @@ public class L1LightManager : MonoBehaviour
     [SerializeField] GameObject globalLight;
     [SerializeField] GameObject build1GlobalLight;
     [SerializeField] GameObject build2GlobalLight;
-    GeneratorManager genManager;
+    [SerializeField] GeneratorManager genManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        genManager = GameObject.Find("GeneratorManager").GetComponent<GeneratorManager>();
         globalLight.SetActive(false);
         build1GlobalLight.SetActive(false);
         build2GlobalLight.SetActive(false);
@@ -37,6 +38,10 @@ public class L1LightManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (genManager != null)
+        {
+            Debug.Log("Is not null");
+        }
 
     }
 

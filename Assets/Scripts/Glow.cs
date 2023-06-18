@@ -112,7 +112,7 @@ public class Glow : MonoBehaviour
                 if (PlayerMovement.isPossessing == false)
                 {
                     SpawnLightBridge();
-                    bridgeTimer += Time.deltaTime;
+                    
                     if (bridgeTimer >= bridgeEndTime)
                     {
                         lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
@@ -123,6 +123,16 @@ public class Glow : MonoBehaviour
                         isConnected = false;
                     }
                 }
+            }
+            if (bridge != null)
+            {
+                bridgeTimer += Time.deltaTime;
+                if (bridgeTimer >= bridgeEndTime)
+                {
+                    Destroy(bridge);
+                    isConnected = false;
+                }
+                Debug.Log("BridgeTime" + bridgeTimer + "End Time" + bridgeEndTime);
             }
 
             if (!isConnected)
@@ -137,17 +147,13 @@ public class Glow : MonoBehaviour
 
     void SpawnLightBridge()
     {
-
-        //Gets the middle positon between the two connectors and divids it by two
-
-
         if (bridge == null)
         {
             Vector2 midPoint;
             midPoint.x = (lightCon1.position.x + lightCon2.position.x) / 2;
             midPoint.y = (lightCon1.position.y + lightCon2.position.y) / 2;
 
-
+            isConnected = true;
             bridge = Instantiate(lightBridgePrefab, midPoint, Quaternion.identity);
             bridge.transform.position = midPoint;
             calculatedScale = Vector2.Distance(lightCon1.position, lightCon2.position) - 2;//This calculates the distance between the two points to get the right scale
@@ -163,6 +169,7 @@ public class Glow : MonoBehaviour
         {
             Destroy(bridge);
             bridgeTimer = 0;
+            isConnected = false;
         }
     }
 }

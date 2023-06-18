@@ -49,7 +49,7 @@ public class GeneratorMiniGame : MonoBehaviour
     [SerializeField]private TMP_Text endResultText;
     [SerializeField]private Animation endGameAnim;
     [SerializeField]private GameObject endGamePanel;
-
+    [SerializeField] L1LightManager l1lightManager;
     #endregion
 
     // Start is called before the first frame update
@@ -61,6 +61,7 @@ public class GeneratorMiniGame : MonoBehaviour
         hasGameStarted = true;
 
         anim = GetComponent<Animator>();
+        l1lightManager = GameObject.Find("Level1Manager").GetComponent<L1LightManager>();
         //noteAnim = GetComponent<Animation>();
     }
 
@@ -229,6 +230,8 @@ public class GeneratorMiniGame : MonoBehaviour
         yield return new WaitForSeconds(5);
         //Need to change to load the first level
         hasGameStarted = false;
+
+        l1lightManager.checkLights();
         gameManager.UnLoadPuzzle("Generator1Scene");
     }
 }
