@@ -26,9 +26,9 @@ public class floatingPlatformObj : MonoBehaviour
     {
  
 
-        if (rb.gravityScale > 4 || rb.gravityScale < 4)
+        if (rb.gravityScale > 10 || rb.gravityScale < 10)
         {
-            rb.gravityScale = 4;
+            rb.gravityScale = 10;
         }
 
     }
