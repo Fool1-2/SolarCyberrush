@@ -20,7 +20,7 @@ public class puzzleLiftScript : MonoBehaviour
     {
 
         liftTransform = gameObject.transform;
-        VectorDown = new Vector2(-46.66f, -1.0f);
+        VectorDown = new Vector2(-46.66f, -36.80f);
         VectorUp = new Vector2(-46.66f, 12.0736f);
         goingUp = false;
         goingDown = false;
@@ -51,7 +51,7 @@ public class puzzleLiftScript : MonoBehaviour
             }
         }
 
-        if (!buttonScript.isPressed)
+        if (!buttonScript.isPressed || timer >= 5000)
         {
             transform.position = Vector3.MoveTowards(transform.position, VectorUp, motionSpeed * Time.deltaTime);
             timer = 0;

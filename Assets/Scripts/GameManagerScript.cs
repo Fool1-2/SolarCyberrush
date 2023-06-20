@@ -149,7 +149,8 @@ public class GameManagerScript : MonoBehaviour
     public static void CameraControl2()
     {
         QuitScene.Camera.enabled = false;
-        InsideBuildingManagerScript.Mcamera.enabled = true;
+        InsideBuildingManagerScript.Mcamera.enabled = false;
+        UnLoadPuzzle("SIARoomScene");
 
         // isSceneLoaded = false;
 
@@ -166,8 +167,8 @@ public class GameManagerScript : MonoBehaviour
 
     public static void LoadPuzzle(string SceneName)
     {
+        
         isSceneLoaded = true;
-        PlayerMovement.canMove = false;
         SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);//Loads the scene by the string
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
         
@@ -176,8 +177,8 @@ public class GameManagerScript : MonoBehaviour
 
     public static void UnLoadPuzzle(string SceneName)
     {
-        isSceneLoaded = false;
-        PlayerMovement.canMove = true;
+        
+        isSceneLoaded = false; 
         SceneManager.UnloadSceneAsync(SceneName);//Unloads the scene by string
     }
    /* public void openPauseMenu()
