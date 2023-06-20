@@ -27,7 +27,6 @@ public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
             player.transform.position = new Vector2(4, 24);
             gameManager.CameraControl2();
             camera2.enabled = true;
-            PlayerMovement.canMove = true;
             atSIA = false;
             
 
@@ -43,7 +42,6 @@ public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
         {
             player.transform.position = new Vector2(900, 900);
            // StartCoroutine(DoCheck());
-           PlayerMovement.canMove = true;
             gameManager.LoadSIA();
             camera2.enabled = false;
             QuitScene.Camera.enabled = true;
