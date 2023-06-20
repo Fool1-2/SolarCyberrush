@@ -82,7 +82,7 @@ public class ButtonScript : MonoBehaviour
                 transform.localPosition = pressedPos;
                 buttonNumber++;
                 timerOn = true;
-                if(buttonNumber == 1)
+                if(buttonNumber >= 1)
                 {
                     isPressed = true;
                     onePress = true;
@@ -105,6 +105,10 @@ public class ButtonScript : MonoBehaviour
         isPressed = false;
         onePress = false;
         buttonNumber--;
+        if (buttonNumber > 0)
+        {
+            buttonNumber = 0;
+        }
         transform.localPosition = unpressedPos;
     }
 }
