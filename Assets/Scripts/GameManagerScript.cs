@@ -125,12 +125,11 @@ public class GameManagerScript : MonoBehaviour
     }
     public static void LoadSIA()
     {
-        //  SceneManager.UnloadSceneAsync("L1F2");
+        
         isSceneLoaded = true;
         InsideBuildingManagerScript.Mcamera.enabled = false;
-        InsideBuildingManagerScript.atSIA = true;
+       // InsideBuildingManagerScript.atSIA = true;
         PlayerMovement.isPossessing = false;
-        PlayerMovement.canMove = true;
         SceneManager.LoadSceneAsync("SIARoomScene", LoadSceneMode.Additive);// Loads the wire puzzle scene addative to the main scene
                                                                                //cameraControl = true;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("SIARoomScene"));// sets wirepuzzle scene as active scene
