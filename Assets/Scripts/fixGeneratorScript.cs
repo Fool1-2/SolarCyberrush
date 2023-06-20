@@ -12,16 +12,15 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
     [SerializeField]private GeneartorScriptable genScriptable;
 
     public static bool genCompleted;
-    public bool genInProgress;
+    //public bool genInProgress;
     public int genNumID;
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Awake() {
+        genManager.genInProgress = false;
     }
 
     // Update is called once per frame
@@ -41,11 +40,6 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
             {
                 curText = "Press E to fix the generator";
 
-            }
-
-            if (gameManager.isSceneLoaded == false)
-            {
-                genManager.genInProgress = false;
             }
         }
         

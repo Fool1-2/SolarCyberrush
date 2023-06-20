@@ -52,11 +52,11 @@ public class GameManagerScript : MonoBehaviour
         }
         if (InsideBuildingManagerScript.atSIA)
         {
-            PlayerMovement.canMove = false;
+            //PlayerMovement.canMove = false;
         }
         if (!InsideBuildingManagerScript.atSIA)
         {
-            PlayerMovement.canMove = true;
+            //PlayerMovement.canMove = true;
         }
         else
         {
@@ -129,7 +129,8 @@ public class GameManagerScript : MonoBehaviour
         isSceneLoaded = true;
         InsideBuildingManagerScript.Mcamera.enabled = false;
         InsideBuildingManagerScript.atSIA = true;
-        //PlayerMovement/can = true;
+        PlayerMovement.isPossessing = false;
+        PlayerMovement.canMove = true;
         SceneManager.LoadSceneAsync("SIARoomScene", LoadSceneMode.Additive);// Loads the wire puzzle scene addative to the main scene
                                                                                //cameraControl = true;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("SIARoomScene"));// sets wirepuzzle scene as active scene

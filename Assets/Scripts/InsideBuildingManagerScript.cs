@@ -34,11 +34,14 @@ public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
     }
     public void Interact()
     {
+        //print(PlayerMovement.isPossessing);
+        //print(PlayerMovement.canMove);
         if (!gameManager.isSceneLoaded)
         {
             player.transform.position = new Vector2(900, 900);
            // StartCoroutine(DoCheck());
-            gameManager.LoadPuzzle("SIARoomScene");
+           PlayerMovement.canMove = true;
+            gameManager.LoadSIA();
             camera2.enabled = false;
             
         }
