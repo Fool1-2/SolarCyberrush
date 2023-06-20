@@ -18,8 +18,6 @@ public class Glow : MonoBehaviour
 
     public AudioSource glowActivate;
     public AudioSource glowChangeSound;
-
-    [SerializeField]private InputAction glowMousePos;
     [SerializeField]private Camera camA;
 
     #region LightBridgeSettings
@@ -51,15 +49,8 @@ public class Glow : MonoBehaviour
             _glowLight.color = _glowColor[glowType];
             _glowLight.intensity = _glowLightIntensity;
             PlayerMovement.canPlayerInteract = false;
-
-            /*
-            var gamepadTest = Gamepad.current;
-            var mouse = Mouse.current;
-
-            var look = camA.WorldToScreenPoint(gamepadTest.leftStick.ReadValue() * 8);
-            mouse.WarpCursorPosition(look);
-            print(look);
-            */
+            
+            
 
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton5))
             {

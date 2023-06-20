@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2f4ef7436e6a645b46d444132f6979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  virtualMouse: {fileID: 0}
 --- !u!114 &813228496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ MonoBehaviour:
   _glowPreFab:
   - {fileID: 1183431901674285308, guid: a22b61beecb79e44aac28ac4de177dc4, type: 3}
   - {fileID: 3950644625081003051, guid: b9b90daaf0a962041a79cdfa1d5088c8, type: 3}
-  _bulletSpeed: 6
+  _bulletSpeed: 10
   _canShoot: 0
 --- !u!114 &797908949
 MonoBehaviour:
@@ -398,9 +399,6 @@ MonoBehaviour:
     m_Bits: 128
   playerJumpUpSound: {fileID: 0}
   playerRunSound: {fileID: 0}
-  glowActivate: {fileID: 0}
-  glowChangeSound: {fileID: 0}
-  glowShootSound: {fileID: 0}
   interactArea: {x: 3.5, y: 4.92}
   interactCol: {fileID: 0}
   interactMask:
@@ -424,6 +422,9 @@ MonoBehaviour:
   - {r: 0, g: 0.88927233, b: 0.9811321, a: 1}
   - {r: 0.9528302, g: 0.82321227, b: 0.03146139, a: 1}
   _glowShooterArm: {fileID: 1190979438}
+  glowActivate: {fileID: 0}
+  glowChangeSound: {fileID: 0}
+  camA: {fileID: 0}
   lightCon1: {fileID: 0}
   lightCon2: {fileID: 0}
   lightBridgePrefab: {fileID: 3950644625081003051, guid: 0faafb2a6033a254081a9cc3a9bbba3f, type: 3}

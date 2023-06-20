@@ -28,6 +28,8 @@ public class GrateScript : MonoBehaviour, IInteractableScript
     // Start is called before the first frame update
     void Start()
     {
+        slidePuzzleInProgress = false;
+        slidePuzzleCompleted = false;
         bc = gameObject.GetComponent<Collider2D>();
         gm = GameObject.Find("GMOb").GetComponent<gmScript>();
     }
@@ -79,6 +81,7 @@ public class GrateScript : MonoBehaviour, IInteractableScript
             {
                 slidePuzzleInProgress = true;
                 PlayerMovement.canMove = false;
+                gameManager.LoadPuzzle("SlidePuzzle");
             }
         }
     }

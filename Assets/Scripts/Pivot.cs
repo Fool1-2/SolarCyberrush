@@ -6,6 +6,7 @@ public class Pivot : MonoBehaviour
 {
     private Transform player;
     private float rot_z;
+    [SerializeField]private Transform virtualMouse;
 
 
     private void OnEnable()
@@ -18,7 +19,7 @@ public class Pivot : MonoBehaviour
     {
         if (!PlayerMovement.isPossessing)
         {
-            Vector2 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;//Gets the position between the mouse and transform
+            Vector2 difference = virtualMouse.position - transform.position;//Gets the position between the mouse and transform
             difference.Normalize();
     
             rot_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;// y/x in radians --> turns it into a degree

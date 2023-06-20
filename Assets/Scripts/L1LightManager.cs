@@ -9,8 +9,8 @@ public class L1LightManager : MonoBehaviour
     public List<GameObject> building2Lights;
     public List<GameObject> building3Lights;
     [SerializeField] GameObject globalLight;
-    [SerializeField] GameObject build1GlobalLight;
-    [SerializeField] GameObject build2GlobalLight;
+    //[SerializeField] GameObject build1GlobalLight;
+    //[SerializeField] GameObject build2GlobalLight;
     [SerializeField] GeneratorManager genManager;
 
 
@@ -19,20 +19,9 @@ public class L1LightManager : MonoBehaviour
     {
         genManager = GameObject.Find("GeneratorManager").GetComponent<GeneratorManager>();
         globalLight.SetActive(false);
-        build1GlobalLight.SetActive(false);
-        build2GlobalLight.SetActive(false);
-        for (int i = 0; i < building1Lights.Count; i++)
-        {
-            building1Lights[i].SetActive(true);
-        }
-        for (int i = 0; i < building2Lights.Count; i++)
-        {
-            building2Lights[i].SetActive(true);
-        }
-        for (int i = 0; i < building3Lights.Count; i++)
-        {
-            building3Lights[i].SetActive(true);
-        }
+        //build1GlobalLight.SetActive(false);
+        //build2GlobalLight.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -40,7 +29,7 @@ public class L1LightManager : MonoBehaviour
     {
         if (genManager != null)
         {
-            Debug.Log("Is not null");
+            Debug.Log("Gen is not null");
         }
 
     }
@@ -52,26 +41,26 @@ public class L1LightManager : MonoBehaviour
             globalLight.SetActive(true);
             for (int i = 0; i < building3Lights.Count; i++)
             {
-                building3Lights[i].SetActive(false);
+                building3Lights[i].SetActive(true);
             }
-            build1GlobalLight.SetActive(false);
-            build2GlobalLight.SetActive(false);
+            //build1GlobalLight.SetActive(false);
+            //build2GlobalLight.SetActive(false);
         }
         if (genManager.isGeneratorPuzzleCompleted[0] && !genManager.isGeneratorPuzzleCompleted[2])
         {
-            build1GlobalLight.SetActive(true);
+            //build1GlobalLight.SetActive(true);
             for (int i = 0; i < building1Lights.Count; i++)
             {
-                building1Lights[i].SetActive(false);
+                building1Lights[i].SetActive(true);
             }
         }
       
         if (genManager.isGeneratorPuzzleCompleted[1] && !genManager.isGeneratorPuzzleCompleted[2])
         {
-            build2GlobalLight.SetActive(true);
+            //build2GlobalLight.SetActive(true);
             for (int i = 0; i < building2Lights.Count; i++)
             {
-                building2Lights[i].SetActive(false);
+                building2Lights[i].SetActive(true);
             }
         }
     }

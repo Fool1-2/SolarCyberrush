@@ -10,6 +10,7 @@ public class GeneratorMiniGame : MonoBehaviour
 {
     [SerializeField]private Animator anim;
     private GeneratorManager genManager;
+    //[SerializeField]private DialogueSystem dialogueSystem;
 
     #region Note section
     [SerializeField]private int _rounds;//How many turns there are in the song
@@ -21,13 +22,15 @@ public class GeneratorMiniGame : MonoBehaviour
     private bool _isSliderFilling;
     #endregion
 
-    private IEnumerator _spaceCoolDown;
+    public GameObject dPanel;
+    [SerializeField]private GameObject _noteNotifier;
+    private IEnumerator _activateButton;
     private bool _isSpacePressed;
     private bool isNoteRunning;
     private bool resetNotes;
     private float noteTimer;
-    public bool hasGameStarted = false;
-    private int accuracyDifficulty;
+    public static bool hasGameStarted = false;
+    //private int accuracyDifficulty;
     [HideInInspector]public int NotesSuceeded;
     private bool gameFinished;
     private bool didPlayerwin;
@@ -44,7 +47,7 @@ public class GeneratorMiniGame : MonoBehaviour
     #endregion
 
     #region End Game
-    [SerializeField]private TMP_Text accuracyDifficultyText;
+    //[SerializeField]private TMP_Text accuracyDifficultyText;
     [SerializeField]private TMP_Text notesSuccededText;
     [SerializeField]private TMP_Text endResultText;
     [SerializeField]private Animation endGameAnim;
@@ -55,14 +58,12 @@ public class GeneratorMiniGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //songTime = song.length;
-        _secPerBeat = _songBPM / 60f;
+        //_secPerBeat = _songBPM / 60f;
         isNoteRunning = false;
-        hasGameStarted = true;
+        //hasGameStarted = true;
 
         anim = GetComponent<Animator>();
         l1lightManager = GameObject.Find("Level1Manager").GetComponent<L1LightManager>();
-        //noteAnim = GetComponent<Animation>();
     }
 
     private void OnEnable() {
@@ -82,31 +83,50 @@ public class GeneratorMiniGame : MonoBehaviour
             Debug.Log(e.Message);
         }
 
-        
+        if (genManager.firstGen)
+        {
+            hasGameStarted = true;
+            dPanel.SetActive(false);
+        }
+    }
 
+    IEnumerator Panel()
+    {
+        dPanel.SetActive(true);
+        yield return new WaitForSeconds(2);
+        dPanel.SetActive(false);
+        hasGameStarted = true;
+        genManager.firstGen = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         anim.SetBool("Reset", resetNotes);
         anim.SetBool("CanPress", isNoteRunning);
         
         //If a note is being played counts down the timer for the player to press space. If they do press space notesSuceeded goes up. Then notes completed goes up and timer is reset
-        if (hasGameStarted)
+        if (!hasGameStarted)
         {
-            _electricitySlider.maxValue = _rounds;//this will equal the max amount of 
+            if (!genManager.firstGen)
+            {
+                StartCoroutine(Panel());
+            }
+        }
+
+        if(hasGameStarted)
+        {
+            _electricitySlider.maxValue = _rounds;//this will equal the max value to the amount of rounds
             if (_isSliderFilling)
             {
-                FillSlider(NotesSuceeded);
+                FillSlider(NotesSuceeded);//Fills up the slider when is set to true
             }
             
             if (_currentRound != _rounds)
             {
-                GeneratorFunc();
+                GeneratorFunc();//Keeps the function going until there are no more rounds
             }
-            else if (_currentRound == _rounds)
+            else if (_currentRound == _rounds)//plays the end screen once there are no rounds
             {
                 gameFinished = true;
                 if (NotesSuceeded >= _notesNeededToPass)
@@ -124,9 +144,10 @@ public class GeneratorMiniGame : MonoBehaviour
 
     void FillSlider(float amountToFill)
     {
+        _noteNotifier.SetActive(false);
         if (_electricitySlider.value < amountToFill)
         {
-            _electricitySlider.value += Time.deltaTime * 3;
+            _electricitySlider.value += Time.deltaTime * 3;//fills the slider until it hits the amount of notes pressed correctly
         }
         else if (_electricitySlider.value >= amountToFill)
         {
@@ -135,22 +156,20 @@ public class GeneratorMiniGame : MonoBehaviour
         }
     }
 
-    /* still working on this
-    IEnumerator MiddleNoteNotifier()
-    {
-        energyNotifier.SetActive(true);
-        yield return new WaitForSeconds(0.4f);
-        energyNotifier.SetActive(false);
-        StopCoroutine(_Notifier);
-    }
-    */
-
     void GeneratorFunc()
     {
+        if (!_isSpacePressed)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton1))
+            {
+                _activateButton = ActivateButton();
+                StartCoroutine(_activateButton);
+            }
+        }
+
         for (int i = _currentRound; i < _rounds;)
         {
-            StopCoroutine(ActivateButton());
-            anim.SetFloat("AnimSpeed", _roundSpeed[_currentRound]);
+            anim.SetFloat("AnimSpeed", _roundSpeed[_currentRound]);//sets the speed each round
             break;
         }
 
@@ -173,19 +192,51 @@ public class GeneratorMiniGame : MonoBehaviour
             {
                 _currentRound++;
                 _isSliderFilling = true;
+                //Add cool colors to show you  failed STUPID
+                _noteNotifier.GetComponent<Image>().color = Color.red;
+                _noteNotifier.SetActive(true);
                 resetNotes = true;
-                noteTimer = 0;
             }
         }
 
-        if (!_isSpacePressed)
+    }
+
+    IEnumerator ActivateButton()
+    {
+        _isSpacePressed = true;
+        if (isNoteRunning)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (noteTimer <= _MaxGenTime || noteTimer >= _MinGenTime)
             {
-               // _spaceCoolDown = ActivateButton();
-                StartCoroutine(ActivateButton());
+                _currentRound++;
+                NotesSuceeded++;
+                _noteNotifier.GetComponent<Image>().color = Color.green;
+                _noteNotifier.SetActive(true);
+                yield return new WaitForSeconds(0.3f);
+                _isSliderFilling = true;
+            }
+            else
+            {
+                _currentRound++;
+                _noteNotifier.GetComponent<Image>().color = Color.red;
+                _noteNotifier.SetActive(true);
+                yield return new WaitForSeconds(0.3f);
+                _isSliderFilling = true;
             }
         }
+        else
+        {
+            _currentRound++;
+            _noteNotifier.GetComponent<Image>().color = Color.red;
+            _noteNotifier.SetActive(true);
+            yield return new WaitForSeconds(0.3f);
+            _isSliderFilling = true;
+        }
+        yield return new WaitForSeconds(1f);
+        resetNotes = true;
+        anim.SetBool("Reset", resetNotes);
+        _isSpacePressed = false;
+        StopCoroutine(_activateButton);
     }
 
     bool IsAllNotesActivated()
@@ -200,31 +251,13 @@ public class GeneratorMiniGame : MonoBehaviour
         return true;
     }
 
-    IEnumerator ActivateButton()
-    {
-        _isSpacePressed = true;
-        if (isNoteRunning)
-        {
-            if (noteTimer <= _MaxGenTime || noteTimer >= _MinGenTime)
-            {
-                _currentRound++;
-                NotesSuceeded++;
-                _isSliderFilling = true;
-                resetNotes = true;
-
-            }
-        }
-        yield return new WaitForSeconds(1.5f);
-        _isSpacePressed = false;
-    }
 
     IEnumerator EndGamePanel()
     {   
-        
         yield return new WaitForSeconds(3);
         endGamePanel.SetActive(true);
-        notesSuccededText.text = NotesSuceeded.ToString();
-        accuracyDifficultyText.text = accuracyDifficulty.ToString();
+        notesSuccededText.text = "Succeded Inputs \n" + NotesSuceeded.ToString();
+        //accuracyDifficultyText.text = accuracyDifficulty.ToString();
         if (didPlayerwin)
         {
             //Display win or lose
@@ -243,7 +276,7 @@ public class GeneratorMiniGame : MonoBehaviour
         hasGameStarted = false;
 
         l1lightManager.checkLights();
-        PlayerMovement.canMove = true;
+        genManager.genInProgress = false;
         gameManager.UnLoadPuzzle("Generator1Scene");
     }
 }
