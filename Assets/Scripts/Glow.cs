@@ -9,7 +9,7 @@ public class Glow : MonoBehaviour
 {
     public static bool isGlowActive;
     public static int glowType;
-    private bool canUseTele;
+    [SerializeField]private bool canUseTele;
     [SerializeField]private Light2D _glowLight;
     [Range(1, 10)]
     [SerializeField]private float _glowLightIntensity;
@@ -71,7 +71,14 @@ public class Glow : MonoBehaviour
                     {
                         glowType = 0;
                     }
-                    glowChangeSound.Play();
+                    if (glowChangeSound != null)
+                    {
+                        glowChangeSound.Play();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
             else
@@ -104,7 +111,14 @@ public class Glow : MonoBehaviour
             {
 
                 isGlowActive = !isGlowActive;//Turns the bool off and on 
-                glowActivate.Play();
+                if (glowActivate != null)
+                {
+                    glowActivate.Play();
+                }
+                else
+                {
+                    return;
+                }
 
                 if (PlayerMovement.isPossessing == true)
                 {

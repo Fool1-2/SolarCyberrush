@@ -217,7 +217,7 @@ RectTransform:
   m_Children:
   - {fileID: 2001967273}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 115553528}
   - component: {fileID: 115553527}
   - component: {fileID: 115553534}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: StraightPipe (8)
   m_TagString: Pipes
   m_Icon: {fileID: 0}
@@ -339,9 +339,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOn: 0
-  rb: {fileID: 0}
+  clicked: 0
+  rb: {fileID: 115553531}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
+  virtualMousePos: {fileID: 1442182478}
 --- !u!114 &115553529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,7 +486,7 @@ Transform:
   - {fileID: 1978891389}
   - {fileID: 1500430680}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!111 &115553534
 Animation:
@@ -840,7 +842,7 @@ Transform:
   - {fileID: 1101768334}
   - {fileID: 1883977435}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &269660196
 MonoBehaviour:
@@ -978,9 +980,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOn: 0
+  clicked: 0
   rb: {fileID: 0}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
+  virtualMousePos: {fileID: 0}
 --- !u!114 &269660200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1241,7 +1245,7 @@ GameObject:
   - component: {fileID: 332686492}
   - component: {fileID: 332686491}
   - component: {fileID: 332686490}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: TurnPipe (1)
   m_TagString: Pipes
   m_Icon: {fileID: 0}
@@ -1306,9 +1310,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOn: 0
-  rb: {fileID: 0}
+  clicked: 0
+  rb: {fileID: 332686495}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
+  virtualMousePos: {fileID: 1442182478}
 --- !u!114 &332686493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1522,7 +1528,7 @@ Transform:
   - {fileID: 243560166}
   - {fileID: 951780563}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &402364432
 GameObject:
@@ -1619,7 +1625,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &592673070
 GameObject:
@@ -1637,7 +1643,7 @@ GameObject:
   - component: {fileID: 592673073}
   - component: {fileID: 592673072}
   - component: {fileID: 592673079}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: StraightPipe (7)
   m_TagString: Pipes
   m_Icon: {fileID: 0}
@@ -1736,9 +1742,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOn: 0
-  rb: {fileID: 0}
+  clicked: 0
+  rb: {fileID: 592673076}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
+  virtualMousePos: {fileID: 1442182478}
 --- !u!114 &592673074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1881,7 +1889,7 @@ Transform:
   - {fileID: 1823167561}
   - {fileID: 1384659667}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!111 &592673079
 Animation:
@@ -2210,7 +2218,7 @@ GameObject:
   - component: {fileID: 840227000}
   - component: {fileID: 840226999}
   - component: {fileID: 840226998}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: StraightPipe (9)
   m_TagString: Pipes
   m_Icon: {fileID: 0}
@@ -2246,9 +2254,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOn: 0
+  clicked: 0
   rb: {fileID: 840227003}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 1088.5919, y: 86.94031}
+  virtualMousePos: {fileID: 1442182478}
 --- !u!114 &840227000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2470,7 +2480,7 @@ Transform:
   - {fileID: 402364435}
   - {fileID: 1071594749}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &951780560
 GameObject:
@@ -2549,17 +2559,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: MOUSECircle
       objectReference: {fileID: 0}
+    - target: {fileID: 7651229492135058524, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
+      propertyPath: m_TagString
+      value: invisibleWall
+      objectReference: {fileID: 0}
     - target: {fileID: 7651229492135058525, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
       propertyPath: _cam
       value: 
       objectReference: {fileID: 750219706}
+    - target: {fileID: 7651229492135058525, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
+      propertyPath: _gizmoRadius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651229492135058525, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
+      propertyPath: _mask.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651229492135058525, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
+      propertyPath: isController
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7651229492135058525, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
       propertyPath: isPuzzleCursor
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7651229492135058527, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7651229492135058527, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2632,7 +2658,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1071594746
 GameObject:
@@ -2914,7 +2940,7 @@ GameObject:
   - component: {fileID: 1169469235}
   - component: {fileID: 1169469234}
   - component: {fileID: 1169469233}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: TurnPipe (2)
   m_TagString: Pipes
   m_Icon: {fileID: 0}
@@ -2979,9 +3005,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOn: 0
-  rb: {fileID: 0}
+  clicked: 0
+  rb: {fileID: 1169469238}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
+  virtualMousePos: {fileID: 1442182478}
 --- !u!114 &1169469236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3193,7 +3221,7 @@ Transform:
   - {fileID: 1486991733}
   - {fileID: 1967611435}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!1 &1199398927
 GameObject:
@@ -3296,7 +3324,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1232448690
 GameObject:
@@ -3314,7 +3342,7 @@ GameObject:
   - component: {fileID: 1232448693}
   - component: {fileID: 1232448692}
   - component: {fileID: 1232448691}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: StraightPipe (5)
   m_TagString: Pipes
   m_Icon: {fileID: 0}
@@ -3429,9 +3457,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOn: 0
-  rb: {fileID: 0}
+  clicked: 0
+  rb: {fileID: 1232448696}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
+  virtualMousePos: {fileID: 1442182478}
 --- !u!114 &1232448694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3574,7 +3604,7 @@ Transform:
   - {fileID: 1159469021}
   - {fileID: 1628610391}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &1384659664
 GameObject:
@@ -3642,6 +3672,11 @@ Transform:
   m_Father: {fileID: 592673078}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1442182478 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7651229492135058527, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
+  m_PrefabInstance: {fileID: 1014064165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1486991732
 GameObject:
   m_ObjectHideFlags: 0
@@ -3785,7 +3820,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1619308354
 MonoBehaviour:
@@ -3926,7 +3961,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1628610388
 GameObject:
@@ -4030,7 +4065,7 @@ Transform:
   - {fileID: 1199398929}
   - {fileID: 252520974}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1722129952
 GameObject:
@@ -4154,9 +4189,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1190979440, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
+      propertyPath: virtualMouse
+      value: 
+      objectReference: {fileID: 1442182478}
     - target: {fileID: 1271182409550023003, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1271182409550023003, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4198,6 +4237,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1271182409550023008, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
+      propertyPath: canUseTele
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1271182409550023009, guid: 30716027298d74877a4ba9bf59143a9a, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -4224,7 +4267,7 @@ GameObject:
   - component: {fileID: 1753992538}
   - component: {fileID: 1753992537}
   - component: {fileID: 1753992544}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: StraightPipe (10)
   m_TagString: Pipes
   m_Icon: {fileID: 0}
@@ -4323,9 +4366,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOn: 0
-  rb: {fileID: 0}
+  clicked: 0
+  rb: {fileID: 1753992541}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
+  virtualMousePos: {fileID: 1442182478}
 --- !u!114 &1753992539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4468,7 +4513,7 @@ Transform:
   - {fileID: 1857375779}
   - {fileID: 1944925315}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!111 &1753992544
 Animation:
@@ -4705,7 +4750,7 @@ GameObject:
   - component: {fileID: 1871775455}
   - component: {fileID: 1871775454}
   - component: {fileID: 1871775453}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: StraightPipe (3)
   m_TagString: Pipes
   m_Icon: {fileID: 0}
@@ -4820,9 +4865,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOn: 0
-  rb: {fileID: 0}
+  clicked: 0
+  rb: {fileID: 1871775458}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
+  virtualMousePos: {fileID: 1442182478}
 --- !u!114 &1871775456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4965,7 +5012,7 @@ Transform:
   - {fileID: 1079538915}
   - {fileID: 1809472111}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &1883977432
 GameObject:
@@ -5165,6 +5212,27 @@ Transform:
   m_Father: {fileID: 1753992543}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1955085768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7651229492135058524, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
+  m_PrefabInstance: {fileID: 1014064165}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1955085774
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955085768}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.49999997
 --- !u!1 &1967611432
 GameObject:
   m_ObjectHideFlags: 0
@@ -5366,7 +5434,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2001967272
 GameObject:
@@ -5525,7 +5593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7669042944771108180, guid: c9d50fc11868eb94eb6b7c9a0c682ff4, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7669042944771108180, guid: c9d50fc11868eb94eb6b7c9a0c682ff4, type: 3}
       propertyPath: m_LocalPosition.x

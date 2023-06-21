@@ -67,11 +67,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        if (!isPaused)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
+        if (isPaused)
         {
             Cursor.lockState = CursorLockMode.None;
         }
@@ -106,7 +102,14 @@ public class PlayerMovement : MonoBehaviour
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.None;
                 if (horizontal < 0 || horizontal > 0)
                 {
-                    playerRunSound.Play();
+                    if (playerRunSound != null)
+                    {
+                        playerRunSound.Play();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
 
                 //Seperating out the sound Not the same
@@ -123,19 +126,40 @@ public class PlayerMovement : MonoBehaviour
 
                 if (horizontal == 0)
                 {
-                    playerRunSound.Stop();
+                    if (playerRunSound != null)
+                    {
+                        playerRunSound.Stop();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
 
                 if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
                 {
                     jumped = true;
-                    playerJumpUpSound.Play();
+                    if (playerJumpUpSound != null)
+                    {
+                        playerJumpUpSound.Play();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
 
                 if (Input.GetKeyDown(KeyCode.JoystickButton1) && isGrounded())
                 {
                     jumped = true;
-                    playerJumpUpSound.Play();
+                    if (playerJumpUpSound != null)
+                    {
+                        playerJumpUpSound.Play();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
             else
