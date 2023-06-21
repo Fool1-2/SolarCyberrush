@@ -21,7 +21,7 @@ public class GeneratorManager : MonoBehaviour
         }
     }
 
-    bool isGeneratorsCompleted()
+    public bool isGeneratorsCompleted()
     {
         for (int i = 0; i < isGeneratorPuzzleCompleted.Capacity; i++)
         {

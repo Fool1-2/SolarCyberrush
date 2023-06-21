@@ -6,15 +6,14 @@ using gameManager = GameManagerScript;
 public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
 {
     public static Camera Mcamera;
-    public Camera camera2;
+    public static Camera camera2;
     public static bool atSIA;
     public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        Mcamera = camera2;
-        camera2.enabled = true;
+        camera2 = Camera.main;
         atSIA = false;
     }
 
@@ -28,9 +27,8 @@ public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
             gameManager.CameraControl2();
             camera2.enabled = true;
             atSIA = false;
-            
-
         }
+        
         
  
     }
@@ -41,10 +39,7 @@ public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
         if (!gameManager.isSceneLoaded)
         {
             player.transform.position = new Vector2(900, 900);
-           // StartCoroutine(DoCheck());
             gameManager.LoadSIA();
-            camera2.enabled = false;
-            QuitScene.Camera.enabled = true;
             
         }
         

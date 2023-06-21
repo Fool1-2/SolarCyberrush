@@ -31,6 +31,10 @@ public class PlayerAnim : MonoBehaviour
             anim.SetInteger("XInput", (int)playerMovement.horizontal);
         }
 
+        anim.SetBool("Jumping", playerMovement.jumped);
+
+
+
         if (fallAnimation != null)
         {
             if (playerFall)
