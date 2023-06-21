@@ -52,11 +52,11 @@ public class GameManagerScript : MonoBehaviour
         }
         if (InsideBuildingManagerScript.atSIA)
         {
-            PlayerMovement.canMove = false;
+            //PlayerMovement.canMove = false;
         }
         if (!InsideBuildingManagerScript.atSIA)
         {
-            PlayerMovement.canMove = true;
+            //PlayerMovement.canMove = true;
         }
         else
         {
@@ -125,22 +125,30 @@ public class GameManagerScript : MonoBehaviour
     }
     public static void LoadSIA()
     {
-        //  SceneManager.UnloadSceneAsync("L1F2");
+        
         isSceneLoaded = true;
-        InsideBuildingManagerScript.Mcamera.enabled = false;
-        InsideBuildingManagerScript.atSIA = true;
-        //PlayerMovement/can = true;
+        InsideBuildingManagerScript.camera2.enabled = false;
+       // InsideBuildingManagerScript.atSIA = true;
+        PlayerMovement.isPossessing = false;
         SceneManager.LoadSceneAsync("SIARoomScene", LoadSceneMode.Additive);// Loads the wire puzzle scene addative to the main scene
                                                                                //cameraControl = true;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("SIARoomScene"));// sets wirepuzzle scene as active scene
 
     }
 
+    public static void UnloadSia()
+    {
+        isSceneLoaded = false;
+        InsideBuildingManagerScript.camera2.enabled = true;
+        PlayerMovement.isPossessing = false;
+        SceneManager.UnloadSceneAsync("SIARoomScene");
+    }
+
     
     public static void CameraControl()
     {
         QuitScene.Camera.enabled = false;
-        wireSceneManager.Mcamera.enabled = true;
+        InsideBuildingManagerScript.camera2.enabled = true;
 
         // isSceneLoaded = false;
 
@@ -148,7 +156,8 @@ public class GameManagerScript : MonoBehaviour
     public static void CameraControl2()
     {
         QuitScene.Camera.enabled = false;
-        InsideBuildingManagerScript.Mcamera.enabled = true;
+        InsideBuildingManagerScript.Mcamera.enabled = false;
+        UnLoadPuzzle("SIARoomScene");
 
         // isSceneLoaded = false;
 
@@ -165,6 +174,7 @@ public class GameManagerScript : MonoBehaviour
 
     public static void LoadPuzzle(string SceneName)
     {
+        
         isSceneLoaded = true;
         PlayerMovement.canMove = false;
         SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);//Loads the scene by the string
@@ -175,7 +185,8 @@ public class GameManagerScript : MonoBehaviour
 
     public static void UnLoadPuzzle(string SceneName)
     {
-        isSceneLoaded = false;
+        
+        isSceneLoaded = false; 
         PlayerMovement.canMove = true;
         SceneManager.UnloadSceneAsync(SceneName);//Unloads the scene by string
     }

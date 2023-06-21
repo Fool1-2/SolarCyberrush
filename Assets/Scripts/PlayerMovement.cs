@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public static bool canPlayerInteract;
     public float speed;
     public float jumpPower;
-    private bool jumped;
+    [HideInInspector]public bool jumped;
     public static bool isPaused;
     [SerializeField]private Rigidbody2D rb;
     public static bool playerflipped;
@@ -67,23 +67,25 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+        if (!isPaused)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
 
         if (canPlayerInteract && !isPaused)
         {
             if (interactCol != null)//checks if interactcol is equal to anything
             {
                 var interactable = interactCol.GetComponent<IInteractableScript>();//equals the object to a variable
-                if (interactable != null && Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.JoystickButton4)))//checks again if its not null and if the player pressed E
+                if (interactable != null && Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.JoystickButton2)))//checks again if its not null and if the player pressed E
                 {
                     interactable.Interact();//Activates the function
                 }
             }
-        }
-
-        if (Glow.isGlowActive && Input.GetKeyDown(KeyCode.Mouse0) || (Input.GetKeyDown(KeyCode.JoystickButton0)))
-        {
-            //glowShootSound.Play();
-            //Debug.Log("Left mouse button");
         }
 
         //controlls the turning of the player
@@ -102,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
             if (!Glow.isGlowActive && canMove && !isPaused && InsideBuildingManagerScript.atSIA == false)
             {
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.None;
-                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+                if (horizontal < 0 || horizontal > 0)
                 {
                     playerRunSound.Play();
                 }
@@ -157,9 +159,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     isPossessing = false;
                 }
-
             }
-
         }
     }
 
@@ -171,6 +171,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by
             }
+
             if (jumped)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);

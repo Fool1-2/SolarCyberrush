@@ -32,6 +32,7 @@ public class TriggerScript : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        buttonscript.Pressed();
         if (other.gameObject.tag != "Telekinesis" || other.gameObject.tag != "Light")
         {
             if (!buttonscript.timeUp)
@@ -41,4 +42,5 @@ public class TriggerScript : MonoBehaviour
             
         }
     }
+
 }

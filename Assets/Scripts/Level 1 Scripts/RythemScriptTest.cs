@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RythemScriptTest : MonoBehaviour
 {
+    /*
     [SerializeField]private GeneratorMiniGame gSManager;
     [SerializeField]private GameObject[] leftNotes;
     [SerializeField]private GameObject[] rightNotes;
@@ -83,4 +84,5 @@ public class RythemScriptTest : MonoBehaviour
 
         return true;
     }
+    */
 }

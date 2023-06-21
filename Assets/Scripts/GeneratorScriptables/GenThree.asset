@@ -22,6 +22,6 @@ MonoBehaviour:
   - 7
   - 8
   notesNeededToPass: 6
-  MaxGenTime: 0.1
+  MaxGenTime: 0.2
   MinGenTime: 0.0001
-  Timedifficulty: 1
+  Timedifficulty: 2

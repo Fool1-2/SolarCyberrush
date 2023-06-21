@@ -10,19 +10,18 @@ public class GeneratorManager : MonoBehaviour
     public int curGenNumID;
     public bool genInProgress;
     public GeneartorScriptable curgGenScriptable; 
+    [HideInInspector]public bool firstGen;
 
     // Update is called once per frame
     void Update()
     {   
-
-
         if (!isGeneratorsCompleted())
         {
             DontDestroyOnLoad(this.gameObject);
         }
     }
 
-    bool isGeneratorsCompleted()
+    public bool isGeneratorsCompleted()
     {
         for (int i = 0; i < isGeneratorPuzzleCompleted.Capacity; i++)
         {
