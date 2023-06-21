@@ -17,7 +17,7 @@ public class l1Manager : MonoBehaviour
     IEnumerator NextLevel()
     {
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("FinalLevel2");
+        SceneManager.LoadScene(4);
     }
     
 }
