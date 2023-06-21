@@ -127,7 +127,7 @@ public class GameManagerScript : MonoBehaviour
     {
         
         isSceneLoaded = true;
-        InsideBuildingManagerScript.Mcamera.enabled = false;
+        InsideBuildingManagerScript.camera2.enabled = false;
        // InsideBuildingManagerScript.atSIA = true;
         PlayerMovement.isPossessing = false;
         SceneManager.LoadSceneAsync("SIARoomScene", LoadSceneMode.Additive);// Loads the wire puzzle scene addative to the main scene
@@ -136,11 +136,19 @@ public class GameManagerScript : MonoBehaviour
 
     }
 
+    public static void UnloadSia()
+    {
+        isSceneLoaded = false;
+        InsideBuildingManagerScript.camera2.enabled = true;
+        PlayerMovement.isPossessing = false;
+        SceneManager.UnloadSceneAsync("SIARoomScene");
+    }
+
     
     public static void CameraControl()
     {
         QuitScene.Camera.enabled = false;
-        wireSceneManager.Mcamera.enabled = true;
+        InsideBuildingManagerScript.camera2.enabled = true;
 
         // isSceneLoaded = false;
 
@@ -168,6 +176,7 @@ public class GameManagerScript : MonoBehaviour
     {
         
         isSceneLoaded = true;
+        PlayerMovement.canMove = false;
         SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);//Loads the scene by the string
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
         
@@ -178,6 +187,7 @@ public class GameManagerScript : MonoBehaviour
     {
         
         isSceneLoaded = false; 
+        PlayerMovement.canMove = true;
         SceneManager.UnloadSceneAsync(SceneName);//Unloads the scene by string
     }
    /* public void openPauseMenu()

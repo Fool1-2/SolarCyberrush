@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Glow : MonoBehaviour
 {
     public static bool isGlowActive;
     public static int glowType;
+    private bool canUseTele;
     [SerializeField]private Light2D _glowLight;
     [Range(1, 10)]
     [SerializeField]private float _glowLightIntensity;
@@ -38,6 +40,14 @@ public class Glow : MonoBehaviour
         PlayerMovement.isPossessing = false;
         glowActivate = GameObject.Find("GlowActivateSound").GetComponent<AudioSource>();
         glowChangeSound = GameObject.Find("GlowChangeSound").GetComponent<AudioSource>();
+        if (SceneManager.GetActiveScene().name == "L1F1")
+        {
+            canUseTele = false;
+        }
+        else
+        {
+            canUseTele = true;
+        }
     }
 
     void Update()
@@ -52,14 +62,21 @@ public class Glow : MonoBehaviour
             
             
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton5))
+            if (canUseTele)
             {
-                glowType++;
-                if (glowType > 1)
+                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton5))
                 {
-                    glowType = 0;
+                    glowType++;
+                    if (glowType > 1)
+                    {
+                        glowType = 0;
+                    }
+                    glowChangeSound.Play();
                 }
-                glowChangeSound.Play();
+            }
+            else
+            {
+                glowType = 1;
             }
         }
         else

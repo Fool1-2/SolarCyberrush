@@ -14,6 +14,7 @@ public class MoveWithMouse : MonoBehaviour
     Vector2 _ZERO = new Vector2(500, 300);  
     Rigidbody2D _rb;
     [SerializeField, Tooltip("Click this when its used for puzzles too")]private bool isPuzzleCursor;
+    public bool isController;
 
     private void Start() {
         spriteR = GetComponent<SpriteRenderer>();
@@ -24,44 +25,10 @@ public class MoveWithMouse : MonoBehaviour
     void Update()
     {
 
-        if (isPuzzleCursor)
+        if (isController)
         {
-            transform.Translate(_movement * _SPEED * Time.deltaTime);
-            var mouse = Mouse.current;
-            mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
-            Vector2 vec = _cam.WorldToScreenPoint(transform.position);
-            if (vec.x < 0)
+            if (isPuzzleCursor)
             {
-                mouse.WarpCursorPosition(_cam.WorldToScreenPoint(_ZERO));
-                transform.position = _cam.ScreenToWorldPoint(_ZERO);
-                transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            }
-            else if (vec.x > 1050)
-            {
-                mouse.WarpCursorPosition(_cam.WorldToScreenPoint(_ZERO));
-                transform.position = _cam.ScreenToWorldPoint(_ZERO);
-                transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            }
-
-            if (vec.y > 600)
-            {
-                mouse.WarpCursorPosition(_cam.WorldToScreenPoint(_ZERO));
-                transform.position = _cam.ScreenToWorldPoint(_ZERO);
-                transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            }
-            else if (vec.y < 0)
-            {
-                mouse.WarpCursorPosition(_cam.WorldToScreenPoint(_ZERO));
-                transform.position = _cam.ScreenToWorldPoint(_ZERO);
-                transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            }
-        }
-        
-        if(!isPuzzleCursor)
-        {
-            if (Glow.isGlowActive)
-            {
-                spriteR.enabled = true;
                 transform.Translate(_movement * _SPEED * Time.deltaTime);
                 var mouse = Mouse.current;
                 mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
@@ -78,7 +45,7 @@ public class MoveWithMouse : MonoBehaviour
                     transform.position = _cam.ScreenToWorldPoint(_ZERO);
                     transform.position = new Vector3(transform.position.x, transform.position.y, 0);
                 }
-
+    
                 if (vec.y > 600)
                 {
                     mouse.WarpCursorPosition(_cam.WorldToScreenPoint(_ZERO));
@@ -92,10 +59,53 @@ public class MoveWithMouse : MonoBehaviour
                     transform.position = new Vector3(transform.position.x, transform.position.y, 0);
                 }
             }
-            else
+            
+            if(!isPuzzleCursor)
             {
-                spriteR.enabled = false;
+                if (Glow.isGlowActive)
+                {
+                    spriteR.enabled = true;
+                    transform.Translate(_movement * _SPEED * Time.deltaTime);
+                    var mouse = Mouse.current;
+                    mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
+                    Vector2 vec = _cam.WorldToScreenPoint(transform.position);
+                    if (vec.x < 0)
+                    {
+                        mouse.WarpCursorPosition(_cam.WorldToScreenPoint(_ZERO));
+                        transform.position = _cam.ScreenToWorldPoint(_ZERO);
+                        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                    }
+                    else if (vec.x > 1050)
+                    {
+                        mouse.WarpCursorPosition(_cam.WorldToScreenPoint(_ZERO));
+                        transform.position = _cam.ScreenToWorldPoint(_ZERO);
+                        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                    }
+    
+                    if (vec.y > 600)
+                    {
+                        mouse.WarpCursorPosition(_cam.WorldToScreenPoint(_ZERO));
+                        transform.position = _cam.ScreenToWorldPoint(_ZERO);
+                        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                    }
+                    else if (vec.y < 0)
+                    {
+                        mouse.WarpCursorPosition(_cam.WorldToScreenPoint(_ZERO));
+                        transform.position = _cam.ScreenToWorldPoint(_ZERO);
+                        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+                    }
+                }
+                else
+                {
+                    spriteR.enabled = false;
+                }
             }
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Vector2 newPos = _cam.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = newPos;
         }
         
     }

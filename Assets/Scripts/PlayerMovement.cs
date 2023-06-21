@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public static bool canPlayerInteract;
     public float speed;
     public float jumpPower;
-    private bool jumped;
+    [HideInInspector]public bool jumped;
     public static bool isPaused;
     [SerializeField]private Rigidbody2D rb;
     public static bool playerflipped;
@@ -171,6 +171,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by
             }
+
             if (jumped)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
