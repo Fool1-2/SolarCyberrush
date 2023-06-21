@@ -6,33 +6,33 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/L1F3.unity
-    guid: 38f99e1619642274db6e1242d5eaaedc
-  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 95a3a835b4214864689136d45727d90e
   - enabled: 0
-    path: Assets/Scenes/FinalLevel2.unity
-    guid: d8defbf19ce344db8b9cb11efc0e9804
-  - enabled: 0
     path: Assets/Scenes/L1F2.unity
     guid: b45f2cf64a0544da8b968c316c03879f
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/Generator1Scene.unity
+    guid: 76b119eb7530348a5ae5be66cdba7893
+  - enabled: 1
+    path: Assets/Scenes/Cutscene.unity
+    guid: bc260bb1380bc4448b5bd373ace9efa0
+  - enabled: 1
+    path: Assets/Scenes/FinalLevel2.unity
+    guid: d8defbf19ce344db8b9cb11efc0e9804
+  - enabled: 1
     path: Assets/Scenes/WirePuzzleScene.unity
     guid: bde508f2db67ff1489b82f4178f320f1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SlidePuzzle.unity
     guid: 19fd598bdb9056e4c9771ac97c222396
+  - enabled: 1
+    path: Assets/Scenes/L1F3.unity
+    guid: 38f99e1619642274db6e1242d5eaaedc
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/SIARoomScene.unity
     guid: f27c18698fb6ab14eb57f1ffc2dcf0dc
-  - enabled: 0
-    path: Assets/Scenes/Generator1Scene.unity
-    guid: 76b119eb7530348a5ae5be66cdba7893
-  - enabled: 0
-    path: Assets/Scenes/Cutscene.unity
-    guid: bc260bb1380bc4448b5bd373ace9efa0
   m_configObjects: {}
