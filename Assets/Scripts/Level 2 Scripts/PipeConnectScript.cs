@@ -48,11 +48,26 @@ public class PipeConnectScript : MonoBehaviour
                     snappableParent.GetComponent<PipeConnectScript>().isSnapped = false;
                 }
             }
+
+            if (movePipe != null && snappableParent.GetComponentInParent<MovePipe>() != null)
+            {
+                if (movePipe.clicked || snappableParent.GetComponentInParent<MovePipe>().clicked)
+                {
+                    isSnapped = false;
+                    snappableParent.GetComponent<PipeConnectScript>().isSnapped = false;
+                }
+            }
             
 
             if (movePipe != null && snappableParent.GetComponentInParent<MovePipe>() == null)
             {
                 if (movePipe.mouseOn)
+                {
+                    isSnapped = false;
+                    snappableParent.GetComponent<PipeConnectScript>().isSnapped = false;
+                }
+
+                if (movePipe.clicked)
                 {
                     isSnapped = false;
                     snappableParent.GetComponent<PipeConnectScript>().isSnapped = false;
@@ -71,6 +86,7 @@ public class PipeConnectScript : MonoBehaviour
         {
             if (movePipe != null)
             {
+                #region Mouse Version
                 if (!movePipe.mouseOn)
                 {
                     snappableParent = other.gameObject;
@@ -100,6 +116,39 @@ public class PipeConnectScript : MonoBehaviour
                         return;
                     }
                 }
+                #endregion
+                
+                #region Virtual Mouse Version
+                if (!movePipe.clicked)
+                {
+                    snappableParent = other.gameObject;
+                    if (snappableParent != null && snappableParent.GetComponentInParent<MovePipe>() != null)
+                    {
+                        if (!movePipe.clicked && !snappableParent.GetComponentInParent<MovePipe>().clicked)
+                        {
+                            isSnapped = true;
+                            offSet = parentsTransform.position - snappableParent.transform.position;
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                    if (snappableParent != null && snappableParent.GetComponentInParent<MovePipe>() == null)
+                    {
+                        if (!movePipe.clicked)
+                        {
+                            isSnapped = true;
+                            offSet = parentsTransform.position - snappableParent.transform.position;
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                #endregion
             }
             else
             {
@@ -115,6 +164,20 @@ public class PipeConnectScript : MonoBehaviour
                         }
                     }
                 }
+
+                #region Virtual Mouse Version
+                if (!snappableParent.GetComponentInParent<MovePipe>().clicked)
+                {
+                    if (snappableParent != null)
+                    {
+                        if (!snappableParent.GetComponentInParent<MovePipe>().clicked)
+                        {
+                            isSnapped = true;
+                            offSet = parentsTransform.position - snappableParent.transform.position;
+                        }
+                    }
+                }
+                #endregion
             }
         }
     }

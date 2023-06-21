@@ -56,7 +56,14 @@ public class GlowShooterControl : MonoBehaviour
         {
             if (_canShoot && !PlayerMovement.isPossessing)
             {
-                glowShootSound.Play();
+                if (glowShootSound != null)
+                {
+                    glowShootSound.Play();
+                }
+                else
+                {
+                    return;
+                }
                 ShootBullet();
             }
         }

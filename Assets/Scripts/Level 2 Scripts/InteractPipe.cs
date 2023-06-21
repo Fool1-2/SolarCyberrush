@@ -27,10 +27,13 @@ public class InteractPipe : MonoBehaviour, IInteractableScript
 
         if (isplayerNear)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !SGameManager.isPlayerBallOut)
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton2) && !SGameManager.isPlayerBallOut)
             {
-                SGameManager.isPlayerBallOut = true;
-                player.SetActive(true);
+                if (Glow.isGlowActive && Glow.glowType == 0)
+                {
+                    SGameManager.isPlayerBallOut = true;
+                    player.SetActive(true);
+                }
             }
         }
         
