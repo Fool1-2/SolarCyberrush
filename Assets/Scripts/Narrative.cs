@@ -15,6 +15,7 @@ public class Narrative : MonoBehaviour
     public bool backgroundFinished;
     public bool autoText;
     public GameObject npc;
+    public GameObject player;
     public Vector2 npcPos;
     public Scene scene;
 
@@ -27,6 +28,7 @@ public class Narrative : MonoBehaviour
         StreetBackgroundPlayer.SetActive(false);
         StreetBackgroundGrate.SetActive(false);
         npc.SetActive(false);
+        player.SetActive(false);
         textComponent.text = string.Empty;
         //StartSpeaking();
         StartCoroutine(BackgroundScroll());
@@ -78,7 +80,7 @@ public class Narrative : MonoBehaviour
         }
         if (textComponent.text == lines[index] && autoText == true)
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(2);
             NextLine();
 
         }
@@ -95,9 +97,9 @@ public class Narrative : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-            if (scene.buildIndex == 3)
+            if (scene.buildIndex == 1)
             {
-                SceneManager.LoadScene(4);
+                SceneManager.LoadScene(2);
                 Debug.Log("Cutscene");
             }
             if (scene.buildIndex == 4)
@@ -118,6 +120,7 @@ public class Narrative : MonoBehaviour
         StreetBackgroundPlayer.SetActive(true);
         StreetBackgroundGrate.SetActive(false);
         npc.SetActive(true);
+        player.SetActive(true);
         backgroundFinished = true;
         StartSpeaking();
     }

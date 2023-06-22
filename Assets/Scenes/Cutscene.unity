@@ -623,22 +623,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 358943960}
   lines:
-  - "Ah, that\u2019s a weird place to come out of. Are you lost?"
-  - Oh, get back home? Why not stay here? It's neat.
-  - "Alright, alright. You surely can\u2019t claw your way back through sewage, so
-    try venturing further into the city."
-  - "In fact, I\u2019ll help you if you help me. I work in that warehouse, but I\u2019m
-    pretty swamped. I lost my keys."
-  - "It\u2019s probably in my locker, and I\u2019d tell you the code if I knew it,
-    but beats me. I lost that too."
-  - "Sweet. I\u2019ll hand you Glow in return."
-  - "I got you, dude. We have a stash for employees, but don\u2019t tell my boss
-    I\u2019m giving you one. I\u2019m already at twenty three code violations. You\u2019d
-    think we\u2019d be shipping into every district with how my boss acts! I mean,
-    it\u2019s not like we\u2019d want to anyways."
-  - "With this, you\u2019ll be able to navigate the warehouse with ease. Just don\u2019t
-    hit the boxes on each other! You\u2019ll drop it."
-  - "Gato. Just leave my locker open and you\u2019re free to go!"
+  - "\u201CHello.\u201D"
+  - "\u201CThis area is reserved for building residents as you can see by the sign.
+    It\u2019s dark, so squint hard!\u201D"
+  - "\u201CGetting back out? Why not stay? There\u2019s no better place than here.\u201D"
+  - "\u201CAlright, relax. You certainly can\u2019t claw your way back through the
+    sewage, so try venturing further into the city.\u201D"
+  - "\u201CYou have something to show me? Coming from you, that's concerning.\u201D"
+  - "\u201COh, that\u2019s Glow. And you found it around here? It's only sold in
+    the other districts\u2013 we do just fine without it. Which one?\u201D"
+  - "\u201COh, that\u2019s contraband here. The district planners recalled that one
+    ages ago. Most people here recognize it anymore, but you found the right guy\u2026
+    Look, I\u2019ll take it off your hands no problem. And sell it for a fortune!\u201D "
+  - No, I want to be rich!!!
+  - "\u201COkay, suit yourself. Try not to slip and fall!\u201D"
   characterSpeed: 0.01
   SewerBackground: {fileID: 79903589}
   StreetBackgroundPlayer: {fileID: 1792399287}
@@ -647,6 +645,8 @@ MonoBehaviour:
   autoText: 0
   npc: {fileID: 2102456332}
   npcPos: {x: -3.39, y: -2.84}
+  scene:
+    m_Handle: 0
 --- !u!114 &630737392
 MonoBehaviour:
   m_ObjectHideFlags: 0
