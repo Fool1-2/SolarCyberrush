@@ -148,9 +148,8 @@ public class TeleObj : MonoBehaviour
     //These two combined break telekinesis when you're touching somethimg
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "ground" || collision.gameObject.tag == "Floor")
+        if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "floor" || collision.gameObject.layer == 6 || collision.gameObject.tag == "Player")
         {
-
 
             if (teleWaitTimer > 1)
             {
@@ -165,7 +164,7 @@ public class TeleObj : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "floor" || collision.gameObject.layer == 6)
+        if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "floor" || collision.gameObject.layer == 6 || collision.gameObject.tag == "Player")
         {
 
             if (teleWaitTimer > 1)
