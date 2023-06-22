@@ -4256,10 +4256,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 359457838}
-  - component: {fileID: 359457841}
-  - component: {fileID: 359457840}
-  - component: {fileID: 359457839}
+  - component: {fileID: 427898769}
+  - component: {fileID: 427898772}
+  - component: {fileID: 427898771}
+  - component: {fileID: 427898770}
   m_Layer: 0
   m_Name: KeyBinds
   m_TagString: Untagged
