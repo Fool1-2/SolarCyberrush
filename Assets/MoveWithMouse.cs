@@ -36,7 +36,10 @@ public class MoveWithMouse : MonoBehaviour
             {
                 transform.Translate(_movement * _SPEED * Time.deltaTime);
                 var mouse = Mouse.current;
-                mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
+                if (!PlayerMovement.isPaused)
+                {
+                    mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
+                }
                 Vector2 vec = _cam.WorldToScreenPoint(transform.position);
                 if (vec.x < 0)
                 {
@@ -72,7 +75,10 @@ public class MoveWithMouse : MonoBehaviour
                     spriteR.enabled = true;
                     transform.Translate(_movement * _SPEED * Time.deltaTime);
                     var mouse = Mouse.current;
-                    mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
+                    if (!PlayerMovement.isPaused)
+                    {
+                        mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
+                    }
                     Vector2 vec = _cam.WorldToScreenPoint(transform.position);
                     if (vec.x < 0)
                     {
@@ -108,8 +114,11 @@ public class MoveWithMouse : MonoBehaviour
         }
         else
         {
-            Vector2 newPos = _cam.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = newPos;
+            if (!PlayerMovement.isPaused)
+            {
+                Vector2 newPos = _cam.ScreenToWorldPoint(Input.mousePosition);
+                transform.position = newPos;
+            }
         }
         
 
