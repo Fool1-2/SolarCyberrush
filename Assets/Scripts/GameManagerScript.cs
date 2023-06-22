@@ -143,8 +143,7 @@ public class GameManagerScript : MonoBehaviour
         PlayerMovement.isPossessing = false;
         SceneManager.UnloadSceneAsync("SIARoomScene");
     }
-
-    
+   
     public static void CameraControl()
     {
         QuitScene.Camera.enabled = false;

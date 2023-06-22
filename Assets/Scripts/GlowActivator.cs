@@ -9,6 +9,7 @@ public class GlowActivator : MonoBehaviour
     public Collider2D bc;
     public Collider2D[] ignoredCollider;
     [SerializeField]GameObject[] camBoxCollider;
+    [SerializeField]Collider2D playerCol;
     public float bulletTimer;
     [SerializeField]private float capBulletTimer;//Maxium time the bullet can be on before beign destroyed
     
@@ -17,7 +18,9 @@ public class GlowActivator : MonoBehaviour
     }
 
     private void OnEnable() {
+        playerCol = GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>();
         camBoxCollider = GameObject.FindGameObjectsWithTag("CamSwitcher");//finds all the gameObjects that have the tag Camswitcher
+        Physics2D.IgnoreCollision(playerCol, GetComponent<Collider2D>());
         foreach (GameObject col in camBoxCollider)
         {
             Physics2D.IgnoreCollision(col.GetComponent<Collider2D>(), GetComponent<Collider2D>());//ignores all the gameObjects collison with the tag CamSwitcher
