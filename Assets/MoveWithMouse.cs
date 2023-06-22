@@ -7,6 +7,8 @@ public class MoveWithMouse : MonoBehaviour
 {
     SpriteRenderer spriteR;
     const float _SPEED = 15f;
+    [SerializeField]private float _gizmoRadius; 
+    [SerializeField]private LayerMask _mask;
 
     [SerializeField]private Camera _cam;
 
@@ -15,6 +17,9 @@ public class MoveWithMouse : MonoBehaviour
     Rigidbody2D _rb;
     [SerializeField, Tooltip("Click this when its used for puzzles too")]private bool isPuzzleCursor;
     public bool isController;
+    Collider2D col;
+    public GameObject colObj;
+    public bool hasClicked;
 
     private void Start() {
         spriteR = GetComponent<SpriteRenderer>();
@@ -31,7 +36,10 @@ public class MoveWithMouse : MonoBehaviour
             {
                 transform.Translate(_movement * _SPEED * Time.deltaTime);
                 var mouse = Mouse.current;
-                mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
+                if (!PlayerMovement.isPaused)
+                {
+                    mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
+                }
                 Vector2 vec = _cam.WorldToScreenPoint(transform.position);
                 if (vec.x < 0)
                 {
@@ -67,7 +75,10 @@ public class MoveWithMouse : MonoBehaviour
                     spriteR.enabled = true;
                     transform.Translate(_movement * _SPEED * Time.deltaTime);
                     var mouse = Mouse.current;
-                    mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
+                    if (!PlayerMovement.isPaused)
+                    {
+                        mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
+                    }
                     Vector2 vec = _cam.WorldToScreenPoint(transform.position);
                     if (vec.x < 0)
                     {
@@ -103,15 +114,34 @@ public class MoveWithMouse : MonoBehaviour
         }
         else
         {
-            Cursor.lockState = CursorLockMode.None;
-            Vector2 newPos = _cam.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = newPos;
+            if (!PlayerMovement.isPaused)
+            {
+                Vector2 newPos = _cam.ScreenToWorldPoint(Input.mousePosition);
+                transform.position = newPos;
+            }
         }
         
+
+        if (col != null)
+        {
+            var clickableObj = col.GetComponent<IVirtualMouse>();
+            if (Input.GetKeyDown(KeyCode.Joystick1Button2) || Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                clickableObj.Click();
+            }
+        }
+
     }
 
-    private void FixedUpdate() => _rb.AddForce(_movement * _SPEED * Time.deltaTime);
+    private void FixedUpdate()
+    {
+        _rb.AddForce(_movement * _SPEED * Time.deltaTime);
+
+        col = Physics2D.OverlapCircle(transform.position, _gizmoRadius, _mask);
+    }
 
     public void OnMove(InputValue v) => _movement = v.Get<Vector2>();
+
+    private void OnDrawGizmosSelected() => Gizmos.DrawWireSphere(transform.position, _gizmoRadius);
     
 }

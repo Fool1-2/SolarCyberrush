@@ -19,7 +19,6 @@ public class OptionsMenuScript : MonoBehaviour
     public AudioSource glowShootSound;
     public static float volume;
     public static bool isPaused;
-   // public bool menuOpen;
     
     // Start is called before the first frame update
     void Start()
@@ -46,16 +45,6 @@ public class OptionsMenuScript : MonoBehaviour
         glowActivate.volume = volume;
         glowChangeSound.volume = volume;
         glowShootSound.volume = volume;
-        /* if (Input.GetKeyDown(KeyCode.W))
-         {
-             Screen.SetResolution(800, 600, false);
-             Debug.Log("Resoulution is 800, 600,");
-         }  
-         if (Input.GetKeyDown(KeyCode.S))
-         {
-             Screen.SetResolution(1920, 1080, false);
-             Debug.Log("Resoulution is 1920, 1080");
-         }*/
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -125,12 +114,10 @@ public class OptionsMenuScript : MonoBehaviour
         Screen.SetResolution(1024, 768, false);
     }
 
-
     public void resolutionOption1280x1024()
     {
         Screen.SetResolution(1280, 1024, false);
     }
-
 
     public void resolutionOption1280x720()
     {
@@ -143,12 +130,10 @@ public class OptionsMenuScript : MonoBehaviour
         Screen.SetResolution(1366, 768, false);
     }
 
-
     public void resolutionOption1600x900()
     {
         Screen.SetResolution(1600, 900, false);
     }
-
 
     public void resolutionOption1280x800()
     {

@@ -59,4 +59,9 @@ public class lightFlickerScript : MonoBehaviour, ILightAbility
         yield return new WaitForSeconds(10);
         powered = false;
     }
+    public void genPowered()
+    {
+        StopAllCoroutines();
+        powered = true;
+    }
 }

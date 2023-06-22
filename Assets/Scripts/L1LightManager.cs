@@ -12,7 +12,9 @@ public class L1LightManager : MonoBehaviour
     //[SerializeField] GameObject build1GlobalLight;
     //[SerializeField] GameObject build2GlobalLight;
     [SerializeField] GeneratorManager genManager;
-
+    [SerializeField] GameObject building1LightObject;
+    [SerializeField] GameObject building2LightObject;
+    [SerializeField] GameObject building3LightObject;
 
     // Start is called before the first frame update
     void Start()
@@ -38,11 +40,12 @@ public class L1LightManager : MonoBehaviour
     {
         if (genManager.isGeneratorPuzzleCompleted[2])
         {
-            globalLight.SetActive(true);
+            //globalLight.SetActive(true);
             for (int i = 0; i < building3Lights.Count; i++)
             {
-                building3Lights[i].SetActive(true);
+                building3Lights[i].GetComponent<lightFlickerScript>().genPowered();
             }
+            building3LightObject.SetActive(true);
             //build1GlobalLight.SetActive(false);
             //build2GlobalLight.SetActive(false);
         }
@@ -51,8 +54,9 @@ public class L1LightManager : MonoBehaviour
             //build1GlobalLight.SetActive(true);
             for (int i = 0; i < building1Lights.Count; i++)
             {
-                building1Lights[i].SetActive(true);
+                building1Lights[i].GetComponent<lightFlickerScript>().genPowered();
             }
+            building1LightObject.SetActive(true);
         }
       
         if (genManager.isGeneratorPuzzleCompleted[1] && !genManager.isGeneratorPuzzleCompleted[2])
@@ -60,8 +64,9 @@ public class L1LightManager : MonoBehaviour
             //build2GlobalLight.SetActive(true);
             for (int i = 0; i < building2Lights.Count; i++)
             {
-                building2Lights[i].SetActive(true);
+                building2Lights[i].GetComponent<lightFlickerScript>().genPowered();
             }
+            building2LightObject.SetActive(true);
         }
     }
 }
