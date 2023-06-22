@@ -6,6 +6,14 @@ using UnityEngine.SceneManagement;
 public class l1Manager : MonoBehaviour
 {
     public GeneratorManager generatorGM;
+    public Camera panCam;
+    public Camera mainCam;
+    public GameObject swicther1;
+    public GameObject swicther2;
+    public GameObject swicther3;
+    public GameObject swicther4;
+    public static bool panCamOn;
+
 
     private void Update() {
         if (generatorGM.isGeneratorsCompleted())
@@ -16,8 +24,16 @@ public class l1Manager : MonoBehaviour
 
     IEnumerator NextLevel()
     {
-        yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(4);
+        swicther1.SetActive(false);
+        swicther2.SetActive(false);
+        swicther3.SetActive(false);
+        swicther4.SetActive(false);
+       // mainCam.enabled = false;
+        panCamOn = true;
+        yield return new WaitForSeconds(1f);
+       // panCam.enabled = true;
+        yield return new WaitForSeconds(115f);
+       // SceneManager.LoadScene(4);
     }
     
 }
