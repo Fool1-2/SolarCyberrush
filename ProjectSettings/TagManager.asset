@@ -44,6 +44,7 @@ TagManager:
   - purpleDoor
   - blueDoor
   - invisibleWall
+  - PanCamera
   layers:
   - Default
   - TransparentFX
