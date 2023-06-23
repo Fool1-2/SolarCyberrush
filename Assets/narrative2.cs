@@ -1,9 +1,9 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-public class Narrative : MonoBehaviour
+public class narrative2 : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public string[] lines;
@@ -17,6 +17,7 @@ public class Narrative : MonoBehaviour
     public GameObject npc;
     public GameObject player;
     public Vector2 npcPos;
+    public float mainMenuTimer;
     public Scene scene;
 
     // Start is called before the first frame update
@@ -39,8 +40,19 @@ public class Narrative : MonoBehaviour
     {
 
         //The background section
-        if (index == 2)
+        if (index == 6)
         {
+            SewerBackground.SetActive(false);
+            StreetBackgroundPlayer.SetActive(true);
+            StreetBackgroundGrate.SetActive(false);
+        }
+        if (index == 12)
+        {
+            StreetBackgroundPlayer.SetActive(false);
+            SewerBackground.SetActive(false);
+            StreetBackgroundGrate.SetActive(true);
+            npc.SetActive(false);
+            player.SetActive(false);
 
         }
         //The text section
@@ -50,7 +62,7 @@ public class Narrative : MonoBehaviour
             if (textComponent.text == lines[index])
             {
                 NextLine();
-                
+
 
 
             }
@@ -67,13 +79,13 @@ public class Narrative : MonoBehaviour
     {
         index = 0;
         StartCoroutine(TextBox());
-        
+
     }
 
 
     IEnumerator TextBox()
     {
-        foreach(char c in lines[index].ToCharArray())
+        foreach (char c in lines[index].ToCharArray())
         {
             textComponent.text += c;
             yield return new WaitForSeconds(characterSpeed);
@@ -107,24 +119,28 @@ public class Narrative : MonoBehaviour
                 SceneManager.LoadScene(5);
                 Debug.Log("Cutscene");
             }
+            if (scene.buildIndex == 9)
+            {
+                mainMenuTimer++;
+                if(mainMenuTimer <= 3000)
+                {
+                    SceneManager.LoadScene(0);
+                }
+                Debug.Log("MainMenu");
+            }
 
         }
     }
     //Temporary scroll of backgrounds to make it seem like player came out of sewer
     IEnumerator BackgroundScroll()
     {
-        yield return new WaitForSeconds(2);
-        SewerBackground.SetActive(false);
-        StreetBackgroundGrate.SetActive(true);
-        yield return new WaitForSeconds(2);
-        StreetBackgroundPlayer.SetActive(true);
-        StreetBackgroundGrate.SetActive(false);
+        StartSpeaking();
         npc.SetActive(true);
         player.SetActive(true);
-        backgroundFinished = true;
-        StartSpeaking();
+        return null;
 
 
 
     }
+
 }
