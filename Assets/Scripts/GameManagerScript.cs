@@ -69,7 +69,7 @@ public class GameManagerScript : MonoBehaviour
         {
             
             //OST2.Play();
-            OST1.Stop();
+            //OST1.Stop();
            // OST2.Play();
 
         }

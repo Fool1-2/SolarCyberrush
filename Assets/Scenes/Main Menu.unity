@@ -2771,6 +2771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 641899982}
   - component: {fileID: 641899983}
+  - component: {fileID: 641899984}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -2809,6 +2810,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundPlaylist: []
   curPlaying: {fileID: 0}
+--- !u!114 &641899984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641899981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f77f4c13bdac547917d244727bf928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &689922433
 GameObject:
   m_ObjectHideFlags: 0
@@ -2912,7 +2925,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 044436f3cc08e4eb6a8caaf560966979, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2ab0bd2e47a1b4d648faac7a5fddb82c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

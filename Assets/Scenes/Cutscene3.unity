@@ -353,6 +353,7 @@ MonoBehaviour:
   npc: {fileID: 1039658429}
   player: {fileID: 1692294293}
   npcPos: {x: 0, y: 0}
+  mainMenuTimer: 0
   scene:
     m_Handle: 0
 --- !u!1 &903505013
@@ -1184,7 +1185,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8d472952d3b7cfb4e8c42539ec1e65a4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 163a9e7d5746d44709a2740f7fe9a8cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
