@@ -31,23 +31,7 @@ public class MovePipe : MonoBehaviour, IVirtualMouse
     }
 
     private void OnEnable() {
-        virtualMouse = GameObject.Find("MOUSECircle");
-    }
-
-    void MovingMouse()
-    {
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);//Gets the camera position from the screen and puts into the world.
-
-        if (!mouseOn)//If the mouse is off turn the movement off. Also turns the body type from kinematic(still state) to dynamic(move state)
-        {
-            rb.velocity = Vector2.zero;
-            rb.bodyType = RigidbodyType2D.Kinematic;
-        }
-        else
-        {
-            //CursorControl.SetPosition(0, 0);
-            rb.bodyType = RigidbodyType2D.Dynamic;
-        }
+        //virtualMouse = GameObject.Find("MOUSECircle");
     }
 
     void MovingVirtualMouse()
@@ -67,7 +51,7 @@ public class MovePipe : MonoBehaviour, IVirtualMouse
     {
         //rb.MovePosition(new Vector2(virtualMouse.position.x, virtualMouse.position.y));
 
-        MovingMouse();
+        //MovingMouse();
 
         MovingVirtualMouse();
 
@@ -108,21 +92,6 @@ public class MovePipe : MonoBehaviour, IVirtualMouse
                 return;
             }
         }
-    }
-
-    private void OnMouseDrag()
-    {
-        mouseOn = true;//checks if player is clicking the object
-    }
-
-    private void OnMouseUp() {
-        mouseOn = false;//when player clicks off object.
-    }
-
-    private void OnMouseDown() {
-        ObjectCamPos = cam.WorldToScreenPoint(transform.position);
-        var mouse = Mouse.current;
-        mouse.WarpCursorPosition(ObjectCamPos);
     }
 
     
