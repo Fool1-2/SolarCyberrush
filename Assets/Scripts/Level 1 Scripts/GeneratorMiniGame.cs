@@ -58,6 +58,7 @@ public class GeneratorMiniGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         //_secPerBeat = _songBPM / 60f;
         isNoteRunning = false;
         //hasGameStarted = true;
@@ -274,7 +275,7 @@ public class GeneratorMiniGame : MonoBehaviour
         yield return new WaitForSeconds(5);
         //Need to change to load the first level
         hasGameStarted = false;
-
+        PlayerMovement.canMove = true;
         l1lightManager.checkLights();
         genManager.genInProgress = false;
         gameManager.UnLoadPuzzle("Generator1Scene");
