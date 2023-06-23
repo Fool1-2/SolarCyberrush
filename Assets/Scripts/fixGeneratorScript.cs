@@ -10,6 +10,7 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
 {
     [SerializeField]private GeneratorManager genManager;
     [SerializeField]private GeneartorScriptable genScriptable;
+    public static bool genInProgress;
 
     public static bool genCompleted;
     //public bool genInProgress;
@@ -47,11 +48,13 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
     }
     public void Interact()
     {
+        
         if (!genManager.genInProgress)
         {
-            PlayerMovement.canMove = false;
+            
             if (!genManager.isGeneratorPuzzleCompleted[genNumID - 1])
             {
+                
                 genManager.curGenNumID = genNumID;
                 genManager.curgGenScriptable = genScriptable;
                 genManager.genInProgress = true;

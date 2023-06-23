@@ -23,7 +23,7 @@ public class GameManagerScript : MonoBehaviour
     private void Update()
     {
 
-        if(wireSceneManager.wirePuzzleCompleted == true)
+        if (wireSceneManager.wirePuzzleCompleted == true)
         {
             puzzleWinSound.Play();
         }
@@ -45,6 +45,8 @@ public class GameManagerScript : MonoBehaviour
                 PlayerMovement.canMove = true;
     
             }
+
+  
         }
         catch (System.Exception)
         {
