@@ -55,7 +55,7 @@ public class wireSceneManager : MonoBehaviour, IInteractableScript
                 hasPlayed = true;
             }
             curText = "Nice Job";
-            SceneManager.LoadScene(9);
+            SceneManager.LoadScene(8);
 
 
         }
