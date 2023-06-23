@@ -177,7 +177,7 @@ public class GameManagerScript : MonoBehaviour
     {
         
         isSceneLoaded = true;
-        PlayerMovement.canMove = true;
+        PlayerMovement.canMove = false;
         SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);//Loads the scene by the string
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
     }
@@ -186,7 +186,7 @@ public class GameManagerScript : MonoBehaviour
     {
         
         isSceneLoaded = true;
-        PlayerMovement.canMove = true;
+        PlayerMovement.canMove = false;
         SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);//Loads the scene by the string
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName)); 
     }
