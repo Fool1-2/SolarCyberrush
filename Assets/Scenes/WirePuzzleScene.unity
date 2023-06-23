@@ -5027,7 +5027,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   cam: {fileID: 490745376}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1905766475}
 --- !u!1001 &899344736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6879,7 +6879,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   cam: {fileID: 490745376}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1905766475}
 --- !u!1001 &1272535040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7553,7 +7553,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   cam: {fileID: 490745376}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1905766475}
 --- !u!1 &1369041560
 GameObject:
   m_ObjectHideFlags: 0
@@ -7652,7 +7652,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   cam: {fileID: 490745376}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1905766475}
 --- !u!1001 &1428568048
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9528,7 +9528,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   cam: {fileID: 490745376}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1905766475}
 --- !u!1 &1764815519
 GameObject:
   m_ObjectHideFlags: 0
@@ -10516,6 +10516,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
+--- !u!1 &1905766475 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7651229492135058524, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
+  m_PrefabInstance: {fileID: 1905766474}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1923556659
 GameObject:
   m_ObjectHideFlags: 0

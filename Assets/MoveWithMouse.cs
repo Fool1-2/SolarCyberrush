@@ -17,7 +17,7 @@ public class MoveWithMouse : MonoBehaviour
     Rigidbody2D _rb;
     [SerializeField, Tooltip("Click this when its used for puzzles too")]private bool isPuzzleCursor;
     public bool isController;
-    Collider2D col;
+    [SerializeField]Collider2D col;
     public GameObject colObj;
     public bool hasClicked;
 
