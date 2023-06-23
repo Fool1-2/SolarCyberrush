@@ -61,7 +61,9 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         canPlayerInteract = true;
         isPaused = false;
-        
+        GameManagerScript.player = this.gameObject;
+
+
     }
     // Update is called once per frame
     void Update()
