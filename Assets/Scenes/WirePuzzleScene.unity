@@ -10464,7 +10464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651229492135058525, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
       propertyPath: isController
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7651229492135058525, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
       propertyPath: isPuzzleCursor

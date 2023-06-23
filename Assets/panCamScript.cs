@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class panCamScript : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class panCamScript : MonoBehaviour
        // transform.position = Vector3.MoveTowards(transform.position, VectorRight, motionSpeed * Time.deltaTime);
         yield return new WaitForSeconds(2f);
         transform.position = Vector3.MoveTowards(transform.position, VectorDown, motionSpeed * Time.deltaTime);
+        SceneManager.LoadScene("Cutscene2");
         yield return null;
 
     }

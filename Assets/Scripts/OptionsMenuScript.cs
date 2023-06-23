@@ -88,6 +88,11 @@ public class OptionsMenuScript : MonoBehaviour
 
     }
 
+    public void Controller()
+    {
+        
+    }
+
     public void close()
     {
         settingsCanvas.enabled = false;
