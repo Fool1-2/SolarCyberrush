@@ -16,7 +16,7 @@ public class l1Manager : MonoBehaviour
 
 
     private void Update() {
-        if (generatorGM.isGeneratorsCompleted())
+        if (generatorGM.isGeneratorsCompleted() && !generatorGM.genInProgress)
         {
             StartCoroutine(NextLevel());
         }
