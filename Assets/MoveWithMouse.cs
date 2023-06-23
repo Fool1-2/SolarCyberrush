@@ -13,7 +13,7 @@ public class MoveWithMouse : MonoBehaviour
     [SerializeField]private Camera _cam;
 
     Vector2 _movement;
-    Vector2 _ZERO = new Vector2(500, 300);  
+    Vector2 _ZERO = new Vector2(0, 0);  
     Rigidbody2D _rb;
     [SerializeField, Tooltip("Click this when its used for puzzles too")]private bool isPuzzleCursor;
     public bool isController;
@@ -77,6 +77,7 @@ public class MoveWithMouse : MonoBehaviour
                     var mouse = Mouse.current;
                     if (!PlayerMovement.isPaused)
                     {
+
                         mouse.WarpCursorPosition(_cam.WorldToScreenPoint(transform.position));
                     }
                     Vector2 vec = _cam.WorldToScreenPoint(transform.position);

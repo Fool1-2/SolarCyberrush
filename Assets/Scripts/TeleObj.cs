@@ -65,7 +65,7 @@ public class TeleObj : MonoBehaviour
             rb.gravityScale = 60;
         }
 
-        if (Glow_ProjectileControl.curProjNum == 1 && Glow.isGlowActive)//if glow is on and telekensis is active then light2D will turn on the objects lights
+        if (Glow.glowType == 0 && Glow.isGlowActive)//if glow is on and telekensis is active then light2D will turn on the objects lights
         {
             outLine.SetVector("_Thickness", outLineVec);
             outLineVec = new Vector2(0.03f, 0.03f);

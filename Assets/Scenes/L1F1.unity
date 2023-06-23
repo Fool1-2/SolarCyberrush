@@ -595,7 +595,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: resolutionOption1280x720
         m_Mode: 1
@@ -3558,7 +3558,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: resolutionOption1280x1024
         m_Mode: 1
@@ -6575,6 +6575,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1755887659}
     - target: {fileID: 7651229492135058525, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
+      propertyPath: hasClicked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651229492135058525, guid: fa88dbe3bbc1b5342b233ced8e648040, type: 3}
       propertyPath: isController
       value: 0
       objectReference: {fileID: 0}
@@ -6695,7 +6699,7 @@ SpriteRenderer:
   m_Size: {x: 1.73, y: 0.86}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &633629325
@@ -9212,7 +9216,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: resolutionOption1280x800
         m_Mode: 1
@@ -14842,7 +14846,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: resolutionOption1440x900
         m_Mode: 1
@@ -15622,7 +15626,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: resolutionOption800x600
         m_Mode: 1
@@ -19279,7 +19283,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: resolutionOption1600x900
         m_Mode: 1
@@ -19413,7 +19417,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: resolutionOption1366x768
         m_Mode: 1
@@ -20863,9 +20867,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
-        m_MethodName: MainMenu
+      - m_Target: {fileID: 1818464686}
+        m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22038,7 +22042,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: resolutionOption1920by1080
         m_Mode: 1
@@ -22172,7 +22176,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: resolutionOption1024x768
         m_Mode: 1
@@ -22704,7 +22708,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: resolutionOption1680x1050
         m_Mode: 1
@@ -22838,7 +22842,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: fullScreen
         m_Mode: 1
@@ -24349,7 +24353,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1818464686}
         m_TargetAssemblyTypeName: OptionsMenuScript, Assembly-CSharp
         m_MethodName: resolutionOption2560x1440
         m_Mode: 1
