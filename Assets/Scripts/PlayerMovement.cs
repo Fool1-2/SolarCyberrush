@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public static bool canPlayerInteract;
     public float speed;
     public float jumpPower;
-    private bool jumped;
+    [HideInInspector]public bool jumped;
     public static bool isPaused;
     [SerializeField]private Rigidbody2D rb;
     public static bool playerflipped;
@@ -37,9 +37,6 @@ public class PlayerMovement : MonoBehaviour
     #region PlayerSounds
     public AudioSource playerJumpUpSound;
     public AudioSource playerRunSound;//public AudioSource playerRunSound;
-    public AudioSource glowActivate;
-    public AudioSource glowChangeSound;
-    public AudioSource glowShootSound;
     #endregion
 
     [Header("-----Interact-----")]
@@ -55,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable() {
         playerJumpUpSound = GameObject.Find("PlayerJumpSound").GetComponent<AudioSource>();
         playerRunSound = GameObject.Find("PlayerRunSound").GetComponent<AudioSource>();
-        glowActivate = GameObject.Find("GlowActivateSound").GetComponent<AudioSource>();
-        glowChangeSound = GameObject.Find("GlowChangeSound").GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -66,29 +61,29 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         canPlayerInteract = true;
         isPaused = false;
-        
+        GameManagerScript.player = this.gameObject;
+
+
     }
     // Update is called once per frame
     void Update()
     {
 
+        if (isPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
 
         if (canPlayerInteract && !isPaused)
         {
             if (interactCol != null)//checks if interactcol is equal to anything
             {
                 var interactable = interactCol.GetComponent<IInteractableScript>();//equals the object to a variable
-                if (interactable != null && Input.GetKeyDown(KeyCode.E))//checks again if its not null and if the player pressed E
+                if (interactable != null && Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.JoystickButton2)))//checks again if its not null and if the player pressed E
                 {
                     interactable.Interact();//Activates the function
                 }
             }
-        }
-
-        if (Glow.isGlowActive && Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            //glowShootSound.Play();
-            //Debug.Log("Left mouse button");
         }
 
         //controlls the turning of the player
@@ -107,9 +102,16 @@ public class PlayerMovement : MonoBehaviour
             if (!Glow.isGlowActive && canMove && !isPaused && InsideBuildingManagerScript.atSIA == false)
             {
                 rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.None;
-                if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+                if (horizontal < 0 || horizontal > 0)
                 {
-                    playerRunSound.Play();
+                    if (playerRunSound != null)
+                    {
+                        playerRunSound.Play();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
 
                 //Seperating out the sound Not the same
@@ -126,13 +128,40 @@ public class PlayerMovement : MonoBehaviour
 
                 if (horizontal == 0)
                 {
-                    playerRunSound.Stop();
+                    if (playerRunSound != null)
+                    {
+                        playerRunSound.Stop();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
 
                 if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
                 {
                     jumped = true;
-                    playerJumpUpSound.Play();
+                    if (playerJumpUpSound != null)
+                    {
+                        playerJumpUpSound.Play();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.JoystickButton1) && isGrounded())
+                {
+                    jumped = true;
+                    if (playerJumpUpSound != null)
+                    {
+                        playerJumpUpSound.Play();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
             else
@@ -144,26 +173,10 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.Q) && (Glow.isGlowActive))//Turns on glow when G is pressed
-            {
-
-                glowActivate.Play();
-
-            }
-            if (Input.GetKeyDown(KeyCode.LeftShift) && (Glow.isGlowActive))//Turns on glow when G is pressed
-            {
-
-                glowChangeSound.Play();
-
-            }
             if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
             {
 
-                glowActivate.Play();
 
-            }
-            if (Glow.currentPossessedObj != null)//Makes sure to check only if an object is possessed(Stops a error popping up)
-            {
                 if (Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss)//if the current possessedObj isPoss bool on then it will trun on isPossessing
                 {
                     isPossessing = true;
@@ -173,7 +186,6 @@ public class PlayerMovement : MonoBehaviour
                     isPossessing = false;
                 }
             }
-
         }
     }
 
@@ -185,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);//Moves the player by multiplying it by
             }
+
             if (jumped)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);

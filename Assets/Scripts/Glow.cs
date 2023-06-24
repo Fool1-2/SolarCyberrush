@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Glow : MonoBehaviour
 {
     public static bool isGlowActive;
     public static int glowType;
+    [SerializeField]private bool canUseTele;
     [SerializeField]private Light2D _glowLight;
     [Range(1, 10)]
     [SerializeField]private float _glowLightIntensity;
@@ -14,6 +17,10 @@ public class Glow : MonoBehaviour
     
     [SerializeField]private GameObject _glowShooterArm;
     public static GameObject currentPossessedObj;
+
+    public AudioSource glowActivate;
+    public AudioSource glowChangeSound;
+    [SerializeField]private Camera camA;
 
     #region LightBridgeSettings
     public Transform lightCon1, lightCon2;
@@ -31,24 +38,69 @@ public class Glow : MonoBehaviour
     private void OnEnable() 
     {
         PlayerMovement.isPossessing = false;
+        glowActivate = GameObject.Find("GlowActivateSound").GetComponent<AudioSource>();
+        glowChangeSound = GameObject.Find("GlowChangeSound").GetComponent<AudioSource>();
+        if (SceneManager.GetActiveScene().name == "L1F1")
+        {
+            canUseTele = false;
+        }
+        else
+        {
+            canUseTele = true;
+        }
     }
 
     void Update()
     {
+        
         if (isGlowActive)
         {
             _glowShooterArm.SetActive(true);
             _glowLight.color = _glowColor[glowType];
             _glowLight.intensity = _glowLightIntensity;
             PlayerMovement.canPlayerInteract = false;
+            
+            
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (canUseTele)
             {
-                glowType++;
-                if (glowType > 1)
+                if (Input.GetKeyDown(KeyCode.LeftShift))
                 {
-                    glowType = 0;
+                    glowType++;
+                    if (glowType > 1)
+                    {
+                        glowType = 0;
+                    }
+                    if (glowChangeSound != null)
+                    {
+                        glowChangeSound.Play();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
+
+                if (Input.GetKeyDown(KeyCode.JoystickButton5))
+                {
+                    glowType++;
+                    if (glowType > 1)
+                    {
+                        glowType = 0;
+                    }
+                    if (glowChangeSound != null)
+                    {
+                        glowChangeSound.Play();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                glowType = 1;
             }
         }
         else
@@ -72,10 +124,39 @@ public class Glow : MonoBehaviour
         #region activatingGlow 
         if (PlayerMovement.canMove && !PlayerMovement.isPaused)
         {
-            if (Input.GetKeyDown(KeyCode.Q))//Turns on glow when G is pressed 
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4))//Turns on glow when G is pressed 
             {
 
                 isGlowActive = !isGlowActive;//Turns the bool off and on 
+                if (glowActivate != null)
+                {
+                    glowActivate.Play();
+                }
+                else
+                {
+                    return;
+                }
+
+                if (PlayerMovement.isPossessing == true)
+                {
+                    isGlowActive = false;//Turns the bool off and on 
+                    Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
+                    PlayerMovement.isPossessing = false;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.JoystickButton4))//Turns on glow when G is pressed 
+            {
+
+                isGlowActive = !isGlowActive;//Turns the bool off and on 
+                if (glowActivate != null)
+                {
+                    glowActivate.Play();
+                }
+                else
+                {
+                    return;
+                }
 
                 if (PlayerMovement.isPossessing == true)
                 {
@@ -92,7 +173,7 @@ public class Glow : MonoBehaviour
                 if (PlayerMovement.isPossessing == false)
                 {
                     SpawnLightBridge();
-                    bridgeTimer += Time.deltaTime;
+                    
                     if (bridgeTimer >= bridgeEndTime)
                     {
                         lightCon1.gameObject.GetComponent<LightBridgeConnector>().isActivated = false;
@@ -103,6 +184,16 @@ public class Glow : MonoBehaviour
                         isConnected = false;
                     }
                 }
+            }
+            if (bridge != null)
+            {
+                bridgeTimer += Time.deltaTime;
+                if (bridgeTimer >= bridgeEndTime)
+                {
+                    Destroy(bridge);
+                    isConnected = false;
+                }
+                Debug.Log("BridgeTime" + bridgeTimer + "End Time" + bridgeEndTime);
             }
 
             if (!isConnected)
@@ -117,17 +208,13 @@ public class Glow : MonoBehaviour
 
     void SpawnLightBridge()
     {
-
-        //Gets the middle positon between the two connectors and divids it by two
-
-
         if (bridge == null)
         {
             Vector2 midPoint;
             midPoint.x = (lightCon1.position.x + lightCon2.position.x) / 2;
             midPoint.y = (lightCon1.position.y + lightCon2.position.y) / 2;
 
-
+            isConnected = true;
             bridge = Instantiate(lightBridgePrefab, midPoint, Quaternion.identity);
             bridge.transform.position = midPoint;
             calculatedScale = Vector2.Distance(lightCon1.position, lightCon2.position) - 2;//This calculates the distance between the two points to get the right scale
@@ -143,6 +230,7 @@ public class Glow : MonoBehaviour
         {
             Destroy(bridge);
             bridgeTimer = 0;
+            isConnected = false;
         }
     }
 }

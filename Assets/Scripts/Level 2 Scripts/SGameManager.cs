@@ -32,18 +32,11 @@ public class SGameManager : MonoBehaviour
                 pipe.GetComponent<PipeController>().isDone = false;
             }
         }
-
-        if (Input.GetKey(KeyCode.T)) 
-        { 
-            isWin = true;
-            
-        }
- 
  
         if (isWin) 
         { 
-            GrateScript.slidePuzzleCompleted = true; 
-
+            GrateScript.slidePuzzleCompleted = true;
+            GameManagerScript.player.SetActive(true);
             gameManager.UnLoadPuzzle("SlidePuzzle");
             GrateScript.slidePuzzleInProgress = false;
         } 

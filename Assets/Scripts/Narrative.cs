@@ -15,16 +15,20 @@ public class Narrative : MonoBehaviour
     public bool backgroundFinished;
     public bool autoText;
     public GameObject npc;
+    public GameObject player;
     public Vector2 npcPos;
+    public Scene scene;
 
     // Start is called before the first frame update
     void Start()
     {
+        scene = SceneManager.GetActiveScene();
         autoText = true;
         backgroundFinished = false;
         StreetBackgroundPlayer.SetActive(false);
         StreetBackgroundGrate.SetActive(false);
         npc.SetActive(false);
+        player.SetActive(false);
         textComponent.text = string.Empty;
         //StartSpeaking();
         StartCoroutine(BackgroundScroll());
@@ -33,13 +37,14 @@ public class Narrative : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //The background section
         if (index == 2)
         {
 
         }
         //The text section
-        if (Input.GetKeyDown(KeyCode.Space) && backgroundFinished == true)
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.JoystickButton0)) && backgroundFinished == true)
         {
             autoText = false;
             if (textComponent.text == lines[index])
@@ -75,7 +80,7 @@ public class Narrative : MonoBehaviour
         }
         if (textComponent.text == lines[index] && autoText == true)
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(2);
             NextLine();
 
         }
@@ -92,7 +97,17 @@ public class Narrative : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-            SceneManager.LoadScene(1);
+            if (scene.buildIndex == 1)
+            {
+                SceneManager.LoadScene(2);
+                Debug.Log("Cutscene");
+            }
+            if (scene.buildIndex == 4)
+            {
+                SceneManager.LoadScene(5);
+                Debug.Log("Cutscene");
+            }
+
         }
     }
     //Temporary scroll of backgrounds to make it seem like player came out of sewer
@@ -105,7 +120,11 @@ public class Narrative : MonoBehaviour
         StreetBackgroundPlayer.SetActive(true);
         StreetBackgroundGrate.SetActive(false);
         npc.SetActive(true);
+        player.SetActive(true);
         backgroundFinished = true;
         StartSpeaking();
+
+
+
     }
 }

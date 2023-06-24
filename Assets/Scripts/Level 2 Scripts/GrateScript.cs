@@ -17,6 +17,7 @@ public class GrateScript : MonoBehaviour, IInteractableScript
     public GameObject player;
     public AudioSource OST2;
     public AudioSource puzzleWinSound;
+    [SerializeField]private GameObject mouseObj;
     //public PlaceHolderSaveScript saveManager;
    
 
@@ -28,6 +29,8 @@ public class GrateScript : MonoBehaviour, IInteractableScript
     // Start is called before the first frame update
     void Start()
     {
+        slidePuzzleInProgress = false;
+        slidePuzzleCompleted = false;
         bc = gameObject.GetComponent<Collider2D>();
         gm = GameObject.Find("GMOb").GetComponent<gmScript>();
     }
@@ -42,7 +45,7 @@ public class GrateScript : MonoBehaviour, IInteractableScript
             if (slidePuzzleCompleted)
             {
                 curText = "Press E to Crawl to the Exit";
-
+                mouseObj.SetActive(false);
             }
             else
             {
@@ -78,7 +81,11 @@ public class GrateScript : MonoBehaviour, IInteractableScript
             else
             {
                 slidePuzzleInProgress = true;
-                PlayerMovement.canMove = false;
+                PlayerMovement.isPossessing = false;
+                //PlayerMovement.canMove = false;
+                mouseObj.SetActive(false);
+                player.SetActive(false);
+                gameManager.LoadPuzzle2("SlidePuzzle");
             }
         }
     }

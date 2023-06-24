@@ -10,11 +10,20 @@ public class GeneratorManager : MonoBehaviour
     public int curGenNumID;
     public bool genInProgress;
     public GeneartorScriptable curgGenScriptable; 
+    [HideInInspector]public bool firstGen;
+    [SerializeField]private GameObject playerObj;
 
     // Update is called once per frame
     void Update()
     {   
-
+        if (genInProgress)
+        {
+            playerObj.SetActive(false);
+        }
+        else
+        {
+            playerObj.SetActive(true);
+        }
 
         if (!isGeneratorsCompleted())
         {
@@ -22,7 +31,7 @@ public class GeneratorManager : MonoBehaviour
         }
     }
 
-    bool isGeneratorsCompleted()
+    public bool isGeneratorsCompleted()
     {
         for (int i = 0; i < isGeneratorPuzzleCompleted.Capacity; i++)
         {

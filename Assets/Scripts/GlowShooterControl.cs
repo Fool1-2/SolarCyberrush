@@ -16,6 +16,8 @@ public class GlowShooterControl : MonoBehaviour
     [HideInInspector]public bool _canShoot;
     private bool _canReload;
 
+    private AudioSource glowShootSound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,10 @@ public class GlowShooterControl : MonoBehaviour
         {
             return;
         }
+    }
+
+    private void OnEnable() {
+        glowShootSound = GameObject.Find("GlowShootSound").GetComponent<AudioSource>();
     }
 
     private void OnDisable() {
@@ -50,11 +56,35 @@ public class GlowShooterControl : MonoBehaviour
         {
             if (_canShoot && !PlayerMovement.isPossessing)
             {
+                if (glowShootSound != null)
+                {
+                    glowShootSound.Play();
+                }
+                else
+                {
+                    return;
+                }
                 ShootBullet();
             }
         }
 
-        
+        if (Input.GetKeyDown(KeyCode.Joystick1Button6))
+        {
+            if (_canShoot && !PlayerMovement.isPossessing)
+            {
+                if (glowShootSound != null)
+                {
+                    glowShootSound.Play();
+                }
+                else
+                {
+                    return;
+                }
+                ShootBullet();
+            }
+        }
+
+
     }
 
     private void ShootBullet()

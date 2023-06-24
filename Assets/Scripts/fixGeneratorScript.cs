@@ -10,18 +10,18 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
 {
     [SerializeField]private GeneratorManager genManager;
     [SerializeField]private GeneartorScriptable genScriptable;
+    public static bool genInProgress;
 
     public static bool genCompleted;
-    public bool genInProgress;
+    //public bool genInProgress;
     public int genNumID;
     public TMP_Text promptText;
     public string curText = "";
     bool ishere;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    private void Awake() {
+        genManager.genInProgress = false;
     }
 
     // Update is called once per frame
@@ -42,24 +42,20 @@ public class fixGeneratorScript : MonoBehaviour, IInteractableScript
                 curText = "Press E to fix the generator";
 
             }
-
-            if (gameManager.isSceneLoaded == false)
-            {
-                genManager.genInProgress = false;
-            }
         }
         
 
     }
     public void Interact()
     {
+        
         if (!genManager.genInProgress)
         {
-            if(!genManager.isGeneratorPuzzleCompleted[genNumID - 1])
+            if (!genManager.isGeneratorPuzzleCompleted[genNumID - 1])
             {
+                PlayerMovement.canMove = false;
                 genManager.curGenNumID = genNumID;
                 genManager.curgGenScriptable = genScriptable;
-                PlayerMovement.canMove = false;
                 genManager.genInProgress = true;
                 gameManager.LoadPuzzle("Generator1Scene");
             }

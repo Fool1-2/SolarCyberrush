@@ -6,15 +6,14 @@ using gameManager = GameManagerScript;
 public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
 {
     public static Camera Mcamera;
-    public Camera camera2;
+    public static Camera camera2;
     public static bool atSIA;
     public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        Mcamera = camera2;
-        camera2.enabled = true;
+        camera2 = Camera.main;
         atSIA = false;
     }
 
@@ -23,29 +22,25 @@ public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
+            gameManager.UnLoadPuzzle("SIARoomScene");
             player.transform.position = new Vector2(4, 24);
             gameManager.CameraControl2();
-            PlayerMovement.canMove = true;
+            camera2.enabled = true;
             atSIA = false;
-            
         }
+        
         
  
     }
     public void Interact()
     {
+        //print(PlayerMovement.isPossessing);
+        //print(PlayerMovement.canMove);
         if (!gameManager.isSceneLoaded)
         {
-            player.transform.position = new Vector2(900, 900);
-           // StartCoroutine(DoCheck());
-            gameManager.LoadPuzzle("SIARoomScene");
-            camera2.enabled = false;
+            player.transform.position = new Vector2(893.8008f, 890.5856f);
+            gameManager.LoadSIA();
             
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            camera2.enabled = false;
-            QuitScene.Camera.enabled = true;
         }
         
 

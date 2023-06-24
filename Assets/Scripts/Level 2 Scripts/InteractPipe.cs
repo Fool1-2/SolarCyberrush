@@ -27,7 +27,7 @@ public class InteractPipe : MonoBehaviour, IInteractableScript
 
         if (isplayerNear)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !SGameManager.isPlayerBallOut)
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton7) && !SGameManager.isPlayerBallOut)
             {
                 SGameManager.isPlayerBallOut = true;
                 player.SetActive(true);
@@ -55,7 +55,11 @@ public class InteractPipe : MonoBehaviour, IInteractableScript
 
     public void Interact()
     {
-        print("Test, this is from the pipe");
+        if (!SGameManager.isPlayerBallOut)
+        {
+            SGameManager.isPlayerBallOut = true;
+            player.SetActive(true);
+        }
     }
 
 

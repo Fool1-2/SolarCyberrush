@@ -43,6 +43,9 @@ TagManager:
   - blueKey
   - purpleDoor
   - blueDoor
+  - invisibleWall
+  - PanCamera
+  - FloatTeleObj
   layers:
   - Default
   - TransparentFX
@@ -57,7 +60,7 @@ TagManager:
   - Background
   - SnapAble
   - Interactable
-  - 
+  - Clickable
   - 
   - 
   - 

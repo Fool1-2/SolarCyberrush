@@ -7,7 +7,10 @@ public class GlowActivator : MonoBehaviour
 {
     public GlowShooterControl glowProjectile;
     public Collider2D bc;
+    public Collider2D[] ignoredCollider;
     [SerializeField]GameObject[] camBoxCollider;
+    [SerializeField]Collider2D playerCol;
+    GameObject[] invisibalWallsObj;
     public float bulletTimer;
     [SerializeField]private float capBulletTimer;//Maxium time the bullet can be on before beign destroyed
     
@@ -16,8 +19,15 @@ public class GlowActivator : MonoBehaviour
     }
 
     private void OnEnable() {
+        playerCol = GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>();
         camBoxCollider = GameObject.FindGameObjectsWithTag("CamSwitcher");//finds all the gameObjects that have the tag Camswitcher
+        invisibalWallsObj = GameObject.FindGameObjectsWithTag("invisibleWall");
+        Physics2D.IgnoreCollision(playerCol, GetComponent<Collider2D>());
         foreach (GameObject col in camBoxCollider)
+        {
+            Physics2D.IgnoreCollision(col.GetComponent<Collider2D>(), GetComponent<Collider2D>());//ignores all the gameObjects collison with the tag CamSwitcher
+        }
+        foreach (GameObject col in invisibalWallsObj)
         {
             Physics2D.IgnoreCollision(col.GetComponent<Collider2D>(), GetComponent<Collider2D>());//ignores all the gameObjects collison with the tag CamSwitcher
         }
@@ -52,14 +62,14 @@ public class GlowActivator : MonoBehaviour
         }
     }
 
-    
-
-    private void OnTriggerEnter2D(Collider2D other) {
+        private void OnTriggerEnter2D(Collider2D other) {
         //Checks this is a tele arrow and other object is a teleob   
         if (!glowProjectile._canShoot)
         {
-            if (other.gameObject.tag == "TeleObj" && gameObject.tag == "Telekinesis")
+            
+            if (other.gameObject.tag == "TeleObj"  && gameObject.tag == "Telekinesis")
             {
+                Physics2D.IgnoreCollision(other, GetComponent<Collider2D>());
                 Glow.currentPossessedObj = other.gameObject;
                 Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = true;
                 PlayerMovement.isPossessing = true;
@@ -67,21 +77,57 @@ public class GlowActivator : MonoBehaviour
                 Transform hi = other.gameObject.GetComponent<Transform>();
                 hi.position += new Vector3(0, 0.5f, 0);
                 other.gameObject.GetComponent<Transform>().position = hi.position;
+                Debug.Log("Hit object");
+
                 glowProjectile.ReloadBullet();
+
+            }
+
+            if (other.gameObject.tag == "FloatTeleObj" && gameObject.tag == "Telekinesis")
+            {
+                Physics2D.IgnoreCollision(other, GetComponent<Collider2D>());
+                Glow.currentPossessedObj = other.gameObject;
+                Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = true;
+                PlayerMovement.isPossessing = true;
+                //The dumbest way to add .1 to the y of the colliding object so that it isnt touching the floor
+                Transform hi = other.gameObject.GetComponent<Transform>();
+                hi.position += new Vector3(0, 0.5f, 0);
+                other.gameObject.GetComponent<Transform>().position = hi.position;
+                Debug.Log("Hit object");
+
+                glowProjectile.ReloadBullet();
+
+            }
+            // allows telek glow to ignore invisible box colliders
+            if (other.gameObject.tag == "invisibleWall" && gameObject.tag == "Telekinesis")
+            {
+                Physics2D.IgnoreCollision(other, GetComponent<Collider2D>());
+                Glow.currentPossessedObj = other.gameObject;
+                Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = true;
+                PlayerMovement.isPossessing = true;
+                //The dumbest way to add .1 to the y of the colliding object so that it isnt touching the floor
+                Transform hi = other.gameObject.GetComponent<Transform>();
+                hi.position += new Vector3(0, 0.5f, 0);
+                other.gameObject.GetComponent<Transform>().position = hi.position;
+                Debug.Log("Hit object");
+
+                glowProjectile.ReloadBullet();
+
             }
             //Check the other gameObject is a light ob and this is the light glow arrow
             else if (this.gameObject.tag == "Light")
             {
-
+                 
                 try
                 {
+                     
                     var lightObj = other.gameObject.GetComponent<ILightAbility>();
                     lightObj.ActivatePower();
                     glowProjectile.ReloadBullet();
                 }
                 catch 
                 {
-
+                    
                     Debug.Log("No object");
                 }
                 glowProjectile.ReloadBullet();
