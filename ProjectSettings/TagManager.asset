@@ -45,6 +45,7 @@ TagManager:
   - blueDoor
   - invisibleWall
   - PanCamera
+  - FloatTeleObj
   layers:
   - Default
   - TransparentFX

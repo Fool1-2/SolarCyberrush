@@ -20483,6 +20483,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1768045155}
+  scene:
+    m_Handle: 0
 --- !u!4 &1699176409
 Transform:
   m_ObjectHideFlags: 0
@@ -24890,7 +24892,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hi there
+  m_text: Press E to enter
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5c122bc586c3e2f418d9e8920292142c, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 5c122bc586c3e2f418d9e8920292142c, type: 2}

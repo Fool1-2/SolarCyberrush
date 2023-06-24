@@ -64,7 +64,24 @@ public class Glow : MonoBehaviour
 
             if (canUseTele)
             {
-                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton5))
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    glowType++;
+                    if (glowType > 1)
+                    {
+                        glowType = 0;
+                    }
+                    if (glowChangeSound != null)
+                    {
+                        glowChangeSound.Play();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.JoystickButton5))
                 {
                     glowType++;
                     if (glowType > 1)
@@ -108,6 +125,27 @@ public class Glow : MonoBehaviour
         if (PlayerMovement.canMove && !PlayerMovement.isPaused)
         {
             if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4))//Turns on glow when G is pressed 
+            {
+
+                isGlowActive = !isGlowActive;//Turns the bool off and on 
+                if (glowActivate != null)
+                {
+                    glowActivate.Play();
+                }
+                else
+                {
+                    return;
+                }
+
+                if (PlayerMovement.isPossessing == true)
+                {
+                    isGlowActive = false;//Turns the bool off and on 
+                    Glow.currentPossessedObj.GetComponent<TeleObj>().isPoss = false;
+                    PlayerMovement.isPossessing = false;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.JoystickButton4))//Turns on glow when G is pressed 
             {
 
                 isGlowActive = !isGlowActive;//Turns the bool off and on 
