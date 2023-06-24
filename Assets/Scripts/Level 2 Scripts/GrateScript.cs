@@ -84,6 +84,7 @@ public class GrateScript : MonoBehaviour, IInteractableScript
                 PlayerMovement.isPossessing = false;
                 //PlayerMovement.canMove = false;
                 mouseObj.SetActive(false);
+                player.SetActive(false);
                 gameManager.LoadPuzzle2("SlidePuzzle");
             }
         }

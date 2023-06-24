@@ -38,7 +38,7 @@ public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
         //print(PlayerMovement.canMove);
         if (!gameManager.isSceneLoaded)
         {
-            player.transform.position = new Vector2(900, 890.5856f);
+            player.transform.position = new Vector2(893.8008f, 890.5856f);
             gameManager.LoadSIA();
             
         }

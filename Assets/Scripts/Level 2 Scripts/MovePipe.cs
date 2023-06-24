@@ -5,21 +5,21 @@ using UnityEngine.InputSystem;
 
 
 
-[RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D
-//[RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D
+[RequireComponent(typeof(Rigidbody2D))]//adds rigidbody2D 
+//[RequireComponent(typeof(BoxCollider2D))]//adds boxcollider2D 
 public class MovePipe : MonoBehaviour, IVirtualMouse
 {
-    //Turn the positon of in constraints in rigidbody to limit the axis its on
-    
+    //Turn the positon of in constraints in rigidbody to limit the axis its on 
+
     public bool mouseOn;
     public bool clicked;
-    [SerializeField]private Rigidbody2D rb;
-    [SerializeField]private Camera cam;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Camera cam;
 
-    [SerializeField]private Vector2 ObjectCamPos;
+    [SerializeField] private Vector2 ObjectCamPos;
 
     Vector2 mousePos;
-    [SerializeField]GameObject virtualMouse;
+    [SerializeField] GameObject virtualMouse;
 
 
     private void Start()
@@ -30,13 +30,14 @@ public class MovePipe : MonoBehaviour, IVirtualMouse
         CursorControl.SetLocalCursorPos(ObjectCamPos);
     }
 
-    private void OnEnable() {
-        //virtualMouse = GameObject.Find("MOUSECircle");
+    private void OnEnable()
+    {
+        //virtualMouse = GameObject.Find("MOUSECircle"); 
     }
 
     void MovingVirtualMouse()
     {
-        if (!clicked)//If the mouse is off turn the movement off. Also turns the body type from kinematic(still state) to dynamic(move state)
+        if (!clicked)//If the mouse is off turn the movement off. Also turns the body type from kinematic(still state) to dynamic(move state) 
         {
             rb.velocity = Vector2.zero;
             rb.bodyType = RigidbodyType2D.Kinematic;
@@ -49,16 +50,16 @@ public class MovePipe : MonoBehaviour, IVirtualMouse
 
     private void Update()
     {
-        //rb.MovePosition(new Vector2(virtualMouse.position.x, virtualMouse.position.y));
+        //rb.MovePosition(new Vector2(virtualMouse.position.x, virtualMouse.position.y)); 
 
-        //MovingMouse();
+        //MovingMouse(); 
 
         MovingVirtualMouse();
 
-        if (mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
+        if (mouseOn)//if mouse is on the object move the object according to the position of the mouse.  
         {
-           // ObjectCamPos = cam.WorldToScreenPoint(transform.position);
-           // CursorControl.SetLocalCursorPos(ObjectCamPos);
+            // ObjectCamPos = cam.WorldToScreenPoint(transform.position); 
+            // CursorControl.SetLocalCursorPos(ObjectCamPos); 
             rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
         }
 
@@ -94,5 +95,5 @@ public class MovePipe : MonoBehaviour, IVirtualMouse
         }
     }
 
-    
+
 }

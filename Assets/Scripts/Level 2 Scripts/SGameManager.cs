@@ -35,8 +35,8 @@ public class SGameManager : MonoBehaviour
  
         if (isWin) 
         { 
-            GrateScript.slidePuzzleCompleted = true; 
-
+            GrateScript.slidePuzzleCompleted = true;
+            GameManagerScript.player.SetActive(true);
             gameManager.UnLoadPuzzle("SlidePuzzle");
             GrateScript.slidePuzzleInProgress = false;
         } 
