@@ -150,7 +150,7 @@ MonoBehaviour:
   _glowPreFab:
   - {fileID: 1183431901674285308, guid: a22b61beecb79e44aac28ac4de177dc4, type: 3}
   - {fileID: 3950644625081003051, guid: b9b90daaf0a962041a79cdfa1d5088c8, type: 3}
-  _bulletSpeed: 10
+  _bulletSpeed: 15
   _canShoot: 0
 --- !u!114 &797908949
 MonoBehaviour:
@@ -387,6 +387,7 @@ MonoBehaviour:
   horizontal: 0
   speed: 10
   jumpPower: 15
+  jumped: 0
   rb: {fileID: 0}
   groundCheck: {fileID: 1271182410508639764}
   groundLayer:
@@ -416,6 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebf4fbdab445ac4c8d6468ba8e04520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canUseTele: 0
   _glowLight: {fileID: 1271182410896208101}
   _glowLightIntensity: 1.8
   _glowColor:

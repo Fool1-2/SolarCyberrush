@@ -688,7 +688,7 @@ MonoBehaviour:
   rb: {fileID: 115553531}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1955085768}
 --- !u!114 &115553529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1757,7 +1757,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1955085768}
 --- !u!114 &269660200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,7 +2560,7 @@ MonoBehaviour:
   rb: {fileID: 332686495}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1955085768}
 --- !u!114 &332686493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3851,7 +3851,7 @@ MonoBehaviour:
   rb: {fileID: 592673076}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1955085768}
 --- !u!114 &592673074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4991,7 +4991,7 @@ MonoBehaviour:
   rb: {fileID: 840227003}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 1088.5919, y: 86.94031}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1955085768}
 --- !u!114 &840227000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6935,7 +6935,7 @@ MonoBehaviour:
   rb: {fileID: 1169469238}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1955085768}
 --- !u!114 &1169469236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7726,7 +7726,7 @@ MonoBehaviour:
   rb: {fileID: 1232448696}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1955085768}
 --- !u!114 &1232448694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10977,7 +10977,7 @@ MonoBehaviour:
   rb: {fileID: 1753992541}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1955085768}
 --- !u!114 &1753992539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11922,7 +11922,7 @@ MonoBehaviour:
   rb: {fileID: 1871775458}
   cam: {fileID: 750219706}
   ObjectCamPos: {x: 0, y: 0}
-  virtualMouse: {fileID: 0}
+  virtualMouse: {fileID: 1955085768}
 --- !u!114 &1871775456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13392,6 +13392,10 @@ PrefabInstance:
       propertyPath: LR
       value: 
       objectReference: {fileID: 269660196}
+    - target: {fileID: 7669042944771108181, guid: c9d50fc11868eb94eb6b7c9a0c682ff4, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7669042944771108181, guid: c9d50fc11868eb94eb6b7c9a0c682ff4, type: 3}
       propertyPath: curPos
       value: 
