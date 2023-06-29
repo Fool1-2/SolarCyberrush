@@ -39,6 +39,7 @@ public class SGameManager : MonoBehaviour
             GameManagerScript.player.SetActive(true);
             gameManager.UnLoadPuzzle("SlidePuzzle");
             GrateScript.slidePuzzleInProgress = false;
+           
         } 
     }
 }

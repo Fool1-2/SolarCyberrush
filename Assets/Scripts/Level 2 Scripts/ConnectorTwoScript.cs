@@ -57,10 +57,10 @@ public class ConnectorTwoScript : MonoBehaviour
 
             }
 
-            if (Input.GetKey(KeyCode.H))
+            if (Input.GetKey(KeyCode.E))
             {
                 //wirePuzzleCompleted = true;
-                wireSceneManager.wirePuzzleCompleted = true;
+                //wireSceneManager.wirePuzzleCompleted = true;
                 
 
                 //SceneInfo.isNextScene = isNextScene;
