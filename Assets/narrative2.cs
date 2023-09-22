@@ -38,9 +38,19 @@ public class narrative2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //The background section
-        if (index == 6)
+        if (scene.buildIndex == 8)
+        {
+            mainMenuTimer++;
+            if (index == 0)
+            {
+                if (Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.JoystickButton2)))
+                {
+                    SceneManager.LoadScene(11);
+                }
+            }
+        }
+            //The background section
+            if (index == 6)
         {
             SewerBackground.SetActive(false);
             StreetBackgroundPlayer.SetActive(true);
@@ -56,7 +66,7 @@ public class narrative2 : MonoBehaviour
 
         }
         //The text section
-        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.JoystickButton0)) && backgroundFinished == true)
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.JoystickButton0)))
         {
             autoText = false;
             if (textComponent.text == lines[index])
@@ -71,6 +81,10 @@ public class narrative2 : MonoBehaviour
                 StopAllCoroutines();
                 textComponent.text = lines[index];
             }
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            autoText = true;
         }
 
     }
@@ -92,7 +106,7 @@ public class narrative2 : MonoBehaviour
         }
         if (textComponent.text == lines[index] && autoText == true)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5);
             NextLine();
 
         }
@@ -105,6 +119,7 @@ public class narrative2 : MonoBehaviour
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TextBox());
+
         }
         else
         {
@@ -119,10 +134,15 @@ public class narrative2 : MonoBehaviour
                 SceneManager.LoadScene(5);
                 Debug.Log("Cutscene");
             }
-            if (scene.buildIndex == 9)
+            if (scene.buildIndex == 11)
+            {
+                SceneManager.LoadScene(9);
+            }
+            if (scene.buildIndex == 8)
             {
                 mainMenuTimer++;
-                if(mainMenuTimer <= 3000)
+                SceneManager.LoadScene(0);
+                if (mainMenuTimer >= 3000)
                 {
                     SceneManager.LoadScene(0);
                 }

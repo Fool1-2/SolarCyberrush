@@ -38,4 +38,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SIARoomScene.unity
     guid: f27c18698fb6ab14eb57f1ffc2dcf0dc
+  - enabled: 1
+    path: Assets/Scenes/Cutscene4.unity
+    guid: 3a7d512f778086844b8f8f98e46f367b
+  - enabled: 1
+    path: Assets/Scenes/cutscene5.unity
+    guid: 7b86e04ec3a41c041b9644a8c056d5d5
   m_configObjects: {}
