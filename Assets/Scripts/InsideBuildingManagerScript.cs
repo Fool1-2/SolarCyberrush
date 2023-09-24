@@ -23,7 +23,7 @@ public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
         if (Input.GetKeyDown(KeyCode.N))
         {
             gameManager.UnLoadPuzzle("SIARoomScene");
-            player.transform.position = new Vector2(4, 24);
+            player.transform.position = new Vector2(5, 25);
             gameManager.CameraControl2();
             camera2.enabled = true;
             atSIA = false;

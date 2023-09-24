@@ -33,13 +33,11 @@ public class TriggerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         buttonscript.Pressed();
-        if (other.gameObject.tag != "Telekinesis" || other.gameObject.tag != "Light")
+        if (other.gameObject.tag == "Telekinesis" || other.gameObject.tag == "Light")
         {
-            if (!buttonscript.timeUp)
-            {
-                buttonscript.Pressed();
-            }
-            
+            buttonscript.timerOn = false;
+            buttonscript.timeUp = false;
+            buttonscript.notPressed();
         }
     }
 

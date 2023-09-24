@@ -5,6 +5,9 @@ using TMPro;
 using UnityEngine.SceneManagement;
 public class Narrative : MonoBehaviour
 {
+
+    //code help by BMoDev 
+
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float characterSpeed;
