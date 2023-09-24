@@ -81,9 +81,9 @@ public class Narrative : MonoBehaviour
             textComponent.text += c;
             yield return new WaitForSeconds(characterSpeed);
         }
-        if (textComponent.text == lines[index] && autoText == true)
+        if (textComponent.text == lines[index])
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(5);
             NextLine();
 
         }

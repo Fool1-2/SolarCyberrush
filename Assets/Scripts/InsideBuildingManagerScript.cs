@@ -36,7 +36,7 @@ public class InsideBuildingManagerScript : MonoBehaviour, IInteractableScript
     {
         //print(PlayerMovement.isPossessing);
         //print(PlayerMovement.canMove);
-        if (!gameManager.isSceneLoaded)
+        if (atSIA == false)
         {
             player.transform.position = new Vector2(893.8008f, 890.5856f);
             gameManager.LoadSIA();

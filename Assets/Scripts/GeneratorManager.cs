@@ -27,7 +27,7 @@ public class GeneratorManager : MonoBehaviour
 
         if (!isGeneratorsCompleted())
         {
-            DontDestroyOnLoad(this.gameObject);
+           // DontDestroyOnLoad(this.gameObject);
         }
     }
 
