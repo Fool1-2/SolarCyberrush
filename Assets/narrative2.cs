@@ -1,13 +1,10 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-public class Narrative : MonoBehaviour
+public class narrative2 : MonoBehaviour
 {
-
-    //code help by BMoDev 
-
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float characterSpeed;
@@ -20,6 +17,7 @@ public class Narrative : MonoBehaviour
     public GameObject npc;
     public GameObject player;
     public Vector2 npcPos;
+    public float mainMenuTimer;
     public Scene scene;
 
     // Start is called before the first frame update
@@ -40,20 +38,41 @@ public class Narrative : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //The background section
-        if (index == 2)
+        if (scene.buildIndex == 8)
         {
+            mainMenuTimer++;
+            if (index == 0)
+            {
+                if (Input.GetKeyDown(KeyCode.E) || (Input.GetKeyDown(KeyCode.JoystickButton2)))
+                {
+                    SceneManager.LoadScene(11);
+                }
+            }
+        }
+            //The background section
+            if (index == 6)
+        {
+            SewerBackground.SetActive(false);
+            StreetBackgroundPlayer.SetActive(true);
+            StreetBackgroundGrate.SetActive(false);
+        }
+        if (index == 12)
+        {
+            StreetBackgroundPlayer.SetActive(false);
+            SewerBackground.SetActive(false);
+            StreetBackgroundGrate.SetActive(true);
+            npc.SetActive(false);
+            player.SetActive(false);
 
         }
         //The text section
-        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.JoystickButton0)) && backgroundFinished == true)
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.JoystickButton0)))
         {
             autoText = false;
             if (textComponent.text == lines[index])
             {
                 NextLine();
-                
+
 
 
             }
@@ -63,6 +82,10 @@ public class Narrative : MonoBehaviour
                 textComponent.text = lines[index];
             }
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            autoText = true;
+        }
 
     }
 
@@ -70,13 +93,13 @@ public class Narrative : MonoBehaviour
     {
         index = 0;
         StartCoroutine(TextBox());
-        
+
     }
 
 
     IEnumerator TextBox()
     {
-        foreach(char c in lines[index].ToCharArray())
+        foreach (char c in lines[index].ToCharArray())
         {
             textComponent.text += c;
             yield return new WaitForSeconds(characterSpeed);
@@ -96,6 +119,7 @@ public class Narrative : MonoBehaviour
             index++;
             textComponent.text = string.Empty;
             StartCoroutine(TextBox());
+
         }
         else
         {
@@ -110,24 +134,33 @@ public class Narrative : MonoBehaviour
                 SceneManager.LoadScene(5);
                 Debug.Log("Cutscene");
             }
+            if (scene.buildIndex == 11)
+            {
+                SceneManager.LoadScene(9);
+            }
+            if (scene.buildIndex == 8)
+            {
+                mainMenuTimer++;
+                SceneManager.LoadScene(0);
+                if (mainMenuTimer >= 3000)
+                {
+                    SceneManager.LoadScene(0);
+                }
+                Debug.Log("MainMenu");
+            }
 
         }
     }
     //Temporary scroll of backgrounds to make it seem like player came out of sewer
     IEnumerator BackgroundScroll()
     {
-        yield return new WaitForSeconds(2);
-        SewerBackground.SetActive(false);
-        StreetBackgroundGrate.SetActive(true);
-        yield return new WaitForSeconds(2);
-        StreetBackgroundPlayer.SetActive(true);
-        StreetBackgroundGrate.SetActive(false);
+        StartSpeaking();
         npc.SetActive(true);
         player.SetActive(true);
-        backgroundFinished = true;
-        StartSpeaking();
+        return null;
 
 
 
     }
+
 }

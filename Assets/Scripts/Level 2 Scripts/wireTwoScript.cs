@@ -76,7 +76,7 @@ public class wireTwoScript : MonoBehaviour
             }
         }
 
-        if (moveWires.mouseOn)//if mouse is on the object move the object according to the position of the mouse. 
+        if (moveWires.clicked)//if mouse is on the object move the object according to the position of the mouse. 
         {
             // float distance = Vector2.Distance(boxSize, mousePos);
             //rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
@@ -109,7 +109,7 @@ public class wireTwoScript : MonoBehaviour
 
             if (canStretchUp == true)
             {
-                if (Input.GetKey(KeyCode.W))
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Joystick1Button9))
                 {
                     //float distance = Vector2.Distance(boxSize, mousePos);
                     transform.localScale = new Vector2(xScale, yScale);
@@ -119,7 +119,7 @@ public class wireTwoScript : MonoBehaviour
             }
             if (canStretchDown == true)
             {
-                if (Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Joystick1Button10))
                 {
                     //float distance = Vector2.Distance(boxSize, mousePos);
                     transform.localScale = new Vector2(xScale, yScale);
@@ -149,14 +149,14 @@ public class wireTwoScript : MonoBehaviour
             wireSelected = true;
             if (canRotate == true)
             {
-                if (Input.GetKey(KeyCode.Q))
+                if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Joystick1Button7))
                 {
                     //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
                     // rotate_Z -= 90;
                     transform.rotation = Quaternion.Euler(0, 0, rotate);
                     rotate += 0.9f;
                 }
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Joystick1Button8))
                 {
                     //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
                     // rotate_Z -= 90;

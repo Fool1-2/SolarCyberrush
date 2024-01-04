@@ -52,7 +52,7 @@ public class GlowShooterControl : MonoBehaviour
             _projectileHolder.localRotation = Quaternion.Euler(0, 0, 90);//flips the rotation back to normal so it can keep the same shooting dir
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Joystick1Button6))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (_canShoot && !PlayerMovement.isPossessing)
             {
@@ -68,7 +68,23 @@ public class GlowShooterControl : MonoBehaviour
             }
         }
 
-        
+        if (Input.GetKeyDown(KeyCode.Joystick1Button6))
+        {
+            if (_canShoot && !PlayerMovement.isPossessing)
+            {
+                if (glowShootSound != null)
+                {
+                    glowShootSound.Play();
+                }
+                else
+                {
+                    return;
+                }
+                ShootBullet();
+            }
+        }
+
+
     }
 
     private void ShootBullet()

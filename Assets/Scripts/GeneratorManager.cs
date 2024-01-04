@@ -11,13 +11,23 @@ public class GeneratorManager : MonoBehaviour
     public bool genInProgress;
     public GeneartorScriptable curgGenScriptable; 
     [HideInInspector]public bool firstGen;
+    [SerializeField]private GameObject playerObj;
 
     // Update is called once per frame
     void Update()
     {   
+        if (genInProgress)
+        {
+            playerObj.SetActive(false);
+        }
+        else
+        {
+            playerObj.SetActive(true);
+        }
+
         if (!isGeneratorsCompleted())
         {
-            DontDestroyOnLoad(this.gameObject);
+           // DontDestroyOnLoad(this.gameObject);
         }
     }
 

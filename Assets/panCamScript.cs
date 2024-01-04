@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class panCamScript : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class panCamScript : MonoBehaviour
     float motionSpeed = 5f;
     public float panTime;
     public bool goingUp, goingRight, goingDown;
+    PlayerMovement player;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,8 @@ public class panCamScript : MonoBehaviour
         camTransform = gameObject.transform;
         VectorDown = new Vector3(80.4f, 7.9f, -10f);
         VectorUp = new Vector3(20.2f, 40.7f, -10f);
-        VectorRight = new Vector3(89.4f, 40.7f, -10f);
+        VectorRight = new Vector3(18f, 8f, -10f);
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -24,20 +27,23 @@ public class panCamScript : MonoBehaviour
     {
         if(l1Manager.panCamOn == true)
         {
-            StartCoroutine(cameraPan());
-        }
+            player.enabled = false;
+            panTime++;
+            if(panTime >= 0 && panTime <= 1500)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, VectorDown, motionSpeed * Time.deltaTime);
+            }
 
+            if (panTime >= 1500 && panTime <= 3000)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, VectorRight, motionSpeed * Time.deltaTime);
+            }
 
-        
+            if (panTime >= 3000)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, VectorUp, motionSpeed * Time.deltaTime);
+            }
+        }  
     }
-    IEnumerator cameraPan()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, VectorUp, motionSpeed * Time.deltaTime);
-        yield return new WaitForSeconds(2f);
-       // transform.position = Vector3.MoveTowards(transform.position, VectorRight, motionSpeed * Time.deltaTime);
-        yield return new WaitForSeconds(2f);
-        transform.position = Vector3.MoveTowards(transform.position, VectorDown, motionSpeed * Time.deltaTime);
-        yield return null;
 
-    }
 }

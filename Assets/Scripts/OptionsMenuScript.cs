@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class OptionsMenuScript : MonoBehaviour
 {
     public Canvas settingsCanvas;
@@ -88,14 +88,50 @@ public class OptionsMenuScript : MonoBehaviour
 
     }
 
+    public void Controller()
+    {
+        
+    }
+
     public void close()
     {
         settingsCanvas.enabled = false;
     }
 
+    public void MainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+        GrateScript.slidePuzzleCompleted = false;
+        GrateScript.slidePuzzleInProgress = false;
+
+        Destroy(this.gameObject);
+    }
+
     public void open()
     {
         settingsCanvas.enabled = true;
+    }
+
+    public void RestartLvl1()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
+        Destroy(this.gameObject);
+    }
+
+    public void RestartLvl2()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(4);
+        Destroy(this.gameObject);
+    }
+
+    public void RestartLvl3()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(11);
+        Destroy(this.gameObject);
     }
 
     public void QuitGame()

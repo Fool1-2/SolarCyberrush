@@ -182,6 +182,96 @@ public class wireScript : MonoBehaviour
 
         }
 
+        if (moveWires.clicked)//if mouse is on the object move the object according to the position of the mouse. 
+        {
+            // float distance = Vector2.Distance(boxSize, mousePos);
+            //rb.MovePosition(new Vector2(mousePos.x, mousePos.y));
+            //   transform.localScale = new Vector2(distance,boxSize.y);
+            if (yScale >= 10)
+            {
+                canStretchUp = false;
+
+
+            }
+            if (yScale < 5 || hitWall == true)
+            {
+                canStretchDown = false;
+
+
+            }
+            if (yScale < 10 && hitWall == false)
+            {
+                canStretchUp = true;
+
+
+            }
+            if (yScale >= 5 && hitWall == false)
+            {
+                canStretchDown = true;
+
+
+            }
+
+
+            if (canStretchUp == true)
+            {
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Joystick1Button9))
+                {
+                    //float distance = Vector2.Distance(boxSize, mousePos);
+                    transform.localScale = new Vector2(xScale, yScale);
+                    yScale += 0.01f;
+
+                }
+            }
+            if (canStretchDown == true)
+            {
+                if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Joystick1Button10))
+                {
+                    //float distance = Vector2.Distance(boxSize, mousePos);
+                    transform.localScale = new Vector2(xScale, yScale);
+                    yScale -= 0.01f;
+                }
+
+
+            }
+
+
+
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                //checks if the script is enabled or disabled
+                rotat.enabled = !rotat.enabled;
+
+            }
+            if (wireSelected == true)
+            {
+
+
+                GetComponent<SpriteRenderer>().color = Color.yellow;
+
+            }
+
+            wireSelected = true;
+            if (canRotate == true)
+            {
+                if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.Joystick1Button7))
+                {
+                    //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
+                    // rotate_Z -= 90;
+                    transform.rotation = Quaternion.Euler(0, 0, rotate);
+                    rotate += 0.9f;
+                }
+                if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Joystick1Button8))
+                {
+                    //float rotate_Z = Mathf.Atan2(mouse_Pos.y, mouse_Pos.x) * Mathf.Rad2Deg;
+                    // rotate_Z -= 90;
+                    transform.rotation = Quaternion.Euler(0, 0, rotate);
+                    rotate -= 0.9f;
+                }
+            }
+        }
+
     }
 
     private void FixedUpdate()

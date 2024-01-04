@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -49,7 +49,10 @@ public class TeleObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (this.gameObject.tag == "FloatTeleObj")
+        {
+            teleWaitTimer = 0;
+        }
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         if (this.gameObject != Glow.currentPossessedObj)
@@ -65,7 +68,7 @@ public class TeleObj : MonoBehaviour
             rb.gravityScale = 60;
         }
 
-        if (Glow_ProjectileControl.curProjNum == 1 && Glow.isGlowActive)//if glow is on and telekensis is active then light2D will turn on the objects lights
+        if (Glow.glowType == 0 && Glow.isGlowActive)//if glow is on and telekensis is active then light2D will turn on the objects lights
         {
             outLine.SetVector("_Thickness", outLineVec);
             outLineVec = new Vector2(0.03f, 0.03f);
@@ -148,6 +151,8 @@ public class TeleObj : MonoBehaviour
     //These two combined break telekinesis when you're touching somethimg
     private void OnCollisionEnter2D(Collision2D collision)
     {
+   
+
         if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "floor" || collision.gameObject.layer == 6 || collision.gameObject.tag == "Player")
         {
 

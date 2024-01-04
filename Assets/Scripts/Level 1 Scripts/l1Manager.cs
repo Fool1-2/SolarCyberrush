@@ -16,7 +16,7 @@ public class l1Manager : MonoBehaviour
 
 
     private void Update() {
-        if (generatorGM.isGeneratorsCompleted())
+        if (generatorGM.isGeneratorsCompleted() && !generatorGM.genInProgress)
         {
             StartCoroutine(NextLevel());
         }
@@ -32,8 +32,8 @@ public class l1Manager : MonoBehaviour
         panCamOn = true;
         yield return new WaitForSeconds(1f);
        // panCam.enabled = true;
-        yield return new WaitForSeconds(115f);
-       // SceneManager.LoadScene(4);
+        yield return new WaitForSeconds(22f);
+        SceneManager.LoadScene(4);
     }
     
 }
